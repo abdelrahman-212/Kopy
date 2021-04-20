@@ -78,7 +78,7 @@ class CareersController extends Controller
 
         return redirect()->route('admin.careers.index')->with([
             'type' => 'success',
-            'message' => 'Menu insert successfuly'
+            'message' => 'Job insert successfuly'
         ]);
     }
 

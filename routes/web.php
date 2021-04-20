@@ -69,17 +69,27 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::delete('delete/{id}','CareersController@delete')->name('delete');
 
     });
+    Route::group(['prefix' => 'news', 'as' => 'news.'], function() {
+        Route::get('','NewsController@index')->name('index');
+        Route::get('create','NewsController@create')->name('create');
+        Route::post('store','NewsController@store')->name('store');
+        Route::patch('update/{id}','NewsController@update')->name('update');
+        Route::get('edit/{id}','NewsController@edit')->name('edit');
+        Route::get('show/{id}','NewsController@show')->name('show');
+        Route::delete('delete/{id}','NewsController@delete')->name('delete');
 
+    });
 	Route::resource('role','RoleController');
 	Route::get('/permission/{id}', 'RoleController@permission')->name('get.permission');
 	Route::patch('/permissions/{id}', 'RoleController@asignPermission')->name('asign.permission');
 });
 
 Route::get('/categories/{category}', 'Admin\ItemController@getCategory');
-// careers
+// jobs
 Route::group(['prefix' => 'jobs', 'as' => 'jobs.'], function() {
     Route::get('','JobRequestController@index')->name('index');
-    Route::get('create','JobRequestController@create')->name('create');
-    Route::post('store','JobRequestController@store')->name('store');
+    Route::get('request/{id}','JobRequestController@request')->name('request');
+    Route::post('apply/{id}','JobRequestController@apply')->name('apply');
 
 });
+Route::get('/getnews/', 'Admin\NewsController@index')->name('news.index');
