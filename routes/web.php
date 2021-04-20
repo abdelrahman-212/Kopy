@@ -79,6 +79,16 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::delete('delete/{id}','NewsController@delete')->name('delete');
 
     });
+    Route::group(['prefix' => 'healthinfo', 'as' => 'healthinfo.'], function() {
+        Route::get('','HealthInfoController@index')->name('index');
+        Route::get('create','HealthInfoController@create')->name('create');
+        Route::post('store','HealthInfoController@store')->name('store');
+        Route::patch('update/{id}','HealthInfoController@update')->name('update');
+        Route::get('edit/{id}','HealthInfoController@edit')->name('edit');
+        Route::get('show/{id}','HealthInfoController@show')->name('show');
+        Route::delete('delete/{id}','HealthInfoController@delete')->name('delete');
+
+    });
 	Route::resource('role','RoleController');
 	Route::get('/permission/{id}', 'RoleController@permission')->name('get.permission');
 	Route::patch('/permissions/{id}', 'RoleController@asignPermission')->name('asign.permission');

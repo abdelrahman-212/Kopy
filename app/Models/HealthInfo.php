@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,8 +10,8 @@ class HealthInfo extends Model
         'id',
         'title_ar',
         'title_en',
-        'url'
-        ,'author',
+         'description_ar',
+        'description_en',
         'created_at',
         'updated_at',
      ];

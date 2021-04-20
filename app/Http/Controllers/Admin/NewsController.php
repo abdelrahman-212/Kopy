@@ -118,7 +118,7 @@ class NewsController extends Controller
             $image = $request->image;
             $image_new_name = time(). $image->getClientOriginalName();
             $image->move(public_path('blogs'), $image_new_name);
-            $file_path= '/blogs/' . $image_new_name;
+            $file_path= '/1618920292Hill /' . $image_new_name;
             News::where('id', $id)
                 ->update([
                     'title_ar' => $request->title_ar,
@@ -152,7 +152,12 @@ class NewsController extends Controller
      */
     public function delete($id)
     {
-        News::find($id)->delete();
+        $blog= News::find($id);
+
+
+        unlink($blog->image); //delete from folder
+
+         $blog->delete();
 
         return redirect()->back()->with([
             'type' => 'error', 'message' => 'Blog  deleted successfuly'
