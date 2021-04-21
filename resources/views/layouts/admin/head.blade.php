@@ -1,3 +1,4 @@
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -25,13 +26,13 @@
 <link rel="stylesheet" href="{{ asset('admin-assets/css/all.min.css') }}">
 <link rel="stylesheet" href="{{ asset('admin-assets/css/daterangepicker.css') }}">
 <style type="text/css">
-  .error
-  {
-    color: red;
-    border-color: red;
-  }
-  .content-wrapper {
-    background-color: white;
-  }
+    .error
+    {
+        color: red;
+        border-color: red;
+    }
+    .content-wrapper {
+        background-color: white;
+    }
 </style>
 @stack('css')

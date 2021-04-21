@@ -4,34 +4,96 @@
 
 <title>{{ config('app.name') }}</title>
 
-<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
-<link rel="stylesheet" href="{{ asset('admin-assets/css/select2.min.css') }}">
-<link rel="stylesheet" href="{{ asset('admin-assets/css/jquery.dataTables.min.css') }}">
-<link rel="stylesheet" href="http://cdn.datatables.net/plug-ins/28e7751dbec/integration/jqueryui/dataTables.jqueryui.css">
-<link rel="stylesheet" href="http://cdn.datatables.net/1.10.0/css/jquery.dataTables_themeroller.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
-<link rel="stylesheet" href="{{ asset('admin-assets/css/icheck-bootstrap.min.css') }}">
-<link rel="stylesheet" href="{{ asset('admin-assets/css/jqvmap.min.css') }}">
-<link rel="stylesheet" href="{{ asset('admin-assets/css/OverlayScrollbars.min.css') }}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
-<link rel="stylesheet" href="{{ asset('admin-assets/css/summernote-bs4.css') }}">
-<link rel="stylesheet" href="{{ asset('admin-assets/css/jquery.datetimepicker.min.css') }}">
-<link rel="stylesheet" href="{{ asset('admin-assets/css/adminlte.min.css') }}">
-<link rel="stylesheet" href="{{ asset('admin-assets/css/all.min.css') }}">
-<link rel="stylesheet" href="{{ asset('admin-assets/css/daterangepicker.css') }}">
-<style type="text/css">
-  .error
-  {
-    color: red;
-    border-color: red;
-  }
-  .content-wrapper {
-    background-color: white;
-  }
-</style>
+<meta charset="utf-8">
+<title>Home</title>
+<meta content="Chernyh Mihail" name="author">
+<meta content="Spedito - All in one place" name="description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="HandheldFriendly" content="true">
+<meta name="format-detection" content="telephone=no">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<link rel="shortcut icon" href="{{asset('front-assets/images/favicon.png')}}" type="image/x-icon">
+<link rel="stylesheet" href="{{asset('front-assets/css/uikit.min.css')}}">
+<link rel="stylesheet" href="{{asset('front-assets/css/main.css')}}">
+<link id="dm-dark" rel="stylesheet" href="{{asset('front-assets/css/dark.css')}}" >
+
+
+<link rel="shortcut icon" href="{{asset('front-assets/images/favicon.png')}}" type="image/x-icon">
+<link rel="stylesheet" href="{{asset('front-assets/css/uikit.min.css')}}">
+<link rel="stylesheet" href="{{asset('front-assets/css/main.css')}}">
+<link rel="stylesheet" href="{{asset('front-assets/css/showcase.css')}}">
+
+{{--<title>Page 404</title>--}}
+<link rel="shortcut icon" href="{{asset('front-assets/images/favicon.png')}}" type="image/x-icon">
+<link rel="stylesheet" href="{{asset('front-assets/css/uikit.min.css')}}">
+<link rel="stylesheet" href="{{asset('front-assets/css/main.css')}}">
+<link id="dm-dark" rel="stylesheet" href="{{asset('front-assets/css/dark.css')}}" >
+
+
+{{-- <title>Page blog</title>--}}
+
+<link rel="shortcut icon" href="{{asset('front-assets/images/favicon.png')}}" type="image/x-icon">
+<link rel="stylesheet" href="{{asset('front-assets/css/uikit.min.css')}}">
+<link rel="stylesheet" href="{{asset('front-assets/css/main.css')}}">
+<link id="dm-dark" rel="stylesheet" href="{{asset('front-assets/css/dark.css')}}" >
+
+
+{{-- <title>Page article</title> --}}
+<link rel="shortcut icon" href="{{asset('front-assets/images/favicon.png')}}" type="image/x-icon">
+<link rel="stylesheet" href="{{asset('front-assets/css/uikit.min.css')}}">
+<link rel="stylesheet" href="{{asset('front-assets/css/main.css')}}">
+<link id="dm-dark" rel="stylesheet" href="{{asset('front-assets/css/dark.css')}}" >
+
+{{--<title>Page Cart</title>--}}
+
+<link rel="shortcut icon" href="{{asset('front-assets/images/favicon.png')}}" type="image/x-icon">
+<link rel="stylesheet" href="{{asset('front-assets/css/uikit.min.css')}}">
+<link rel="stylesheet" href="{{asset('front-assets/css/main.css')}}">
+<link id="dm-dark" rel="stylesheet" href="{{asset('front-assets/css/dark.css')}}" >
+
+<!--  <title>Catalog</title>-->
+
+<link rel="shortcut icon" href="{{asset('front-assets/images/favicon.png')}}" type="image/x-icon">
+<link rel="stylesheet" href="{{asset('front-assets/css/uikit.min.css')}}">
+<link rel="stylesheet" href="{{asset('front-assets/css/main.css')}}">
+<link id="dm-dark" rel="stylesheet" href="{{asset('front-assets/css/dark.css')}}" >
+
+{{-- <title>Catalog side bar</title>--}}
+<link rel="shortcut icon" href="{{asset('front-assets/images/favicon.png')}}" type="image/x-icon">
+<link rel="stylesheet" href="{{asset('front-assets/css/uikit.min.css')}}">
+<link rel="stylesheet" href="{{asset('front-assets/css/main.css')}}">
+<link id="dm-dark" rel="stylesheet" href="{{asset('front-assets/css/dark.css')}}" >
+
+{{-- <title>Contacts</title> --}}
+<link rel="shortcut icon" href="{{asset('front-assets/images/favicon.png')}}" type="image/x-icon">
+<link rel="stylesheet" href="{{asset('front-assets/css/uikit.min.css')}}">
+<link rel="stylesheet" href="{{asset('front-assets/css/main.css')}}">
+<link id="dm-dark" rel="stylesheet" href="{{asset('front-assets/css/dark.css')}}" >
+
+
+{{-- <title>Page Pizza Builder</title> --}}
+<link rel="shortcut icon" href="{{asset('front-assets/images/favicon.png')}}" type="image/x-icon">
+<link rel="stylesheet" href="{{asset('front-assets/css/uikit.min.css')}}">
+<link rel="stylesheet" href="{{asset('front-assets/css/main.css')}}">
+<link id="dm-dark" rel="stylesheet" href="{{asset('front-assets/css/dark.css')}}" >
+
+{{-- <title>Product</title> --}}
+<link rel="shortcut icon" href="{{asset('front-assets/images/favicon.png')}}" type="image/x-icon">
+<link rel="stylesheet" href="{{asset('front-assets/css/uikit.min.css')}}">
+<link rel="stylesheet" href="{{asset('front-assets/css/main.css')}}">
+<link id="dm-dark" rel="stylesheet" href="{{asset('front-assets/css/dark.css')}}" >
+
+{{-- <title>Page Wishlist</title>--}}
+<link rel="shortcut icon" href="{{asset('front-assets/images/favicon.png')}}" type="image/x-icon">
+<link rel="stylesheet" href="{{asset('front-assets/css/uikit.min.css')}}">
+<link rel="stylesheet" href="{{asset('front-assets/css/main.css')}}">
+<link id="dm-dark" rel="stylesheet" href="{{asset('front-assets/css/dark.css')}}" >
+
+{{-- <title>Page article</title>--}}
+<link rel="shortcut icon" href="{{asset('front-assets/images/favicon.png')}}" type="image/x-icon">
+<link rel="stylesheet" href="{{asset('front-assets/css/uikit.min.css')}}">
+<link rel="stylesheet" href="{{asset('front-assets/css/main.css')}}">
+<link id="dm-dark" rel="stylesheet" href="{{asset('front-assets/css/dark.css')}}" >
+
+
 @stack('css')
