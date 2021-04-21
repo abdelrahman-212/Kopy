@@ -1,6 +1,6 @@
 
 
-@extends('layouts.admin.app')
+@extends('layouts.front.app')
 @section('content')
 <body class="page-pizza-builder dm-dark">
 

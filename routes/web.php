@@ -103,3 +103,6 @@ Route::group(['prefix' => 'jobs', 'as' => 'jobs.'], function() {
 
 });
 Route::get('/getnews/', 'Admin\NewsController@index')->name('news.index');
+Route::get('/hh/',function (){
+    return view('front.home');
+});

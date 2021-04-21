@@ -8,28 +8,28 @@
 </head>
 
 
-    @if (count($errors) > 0)
-    <div class = "alert alert-danger">
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
+                <li>{{ $error }}</li>
             @endforeach
         </ul>
     </div>
-    @endif
+@endif
 
-    <div class="wrapper">
+<div class="wrapper">
 
-        @include('layouts.front.header')
+    @include('layouts.front.header')
 
-        @include('layouts.front.sidebar')
 
-        <div id="app">
-            @yield('content')
-        </div>
-
+    <div id="app">
+        @yield('content')
     </div>
+    @include('layouts.front.footer')
 
-    @include('layouts.front.scripts')
+</div>
+
+@include('layouts.front.scripts')
 
 </html>
