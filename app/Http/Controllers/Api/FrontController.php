@@ -50,7 +50,7 @@ class FrontController extends BaseController
     }
     public function getNew($newID){
         $new = News::find($newID);
-        if($new){
+         if($new){
             return $this->sendResponse($new, 'News retrieved successfully.');
         }
         return $this->sendError('There is something');

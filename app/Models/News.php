@@ -14,7 +14,8 @@ class News extends Model
         ,'description_en',
         'created_at',
         'updated_at',
-        'image'
+        'image',
+        'auther'
     ];
     public function getImageAttribute($value)
     {

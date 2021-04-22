@@ -44,7 +44,7 @@ class NewsController extends Controller
             'title_en' => 'required|min:3|max:20',
             'description_ar' => 'nullable',
             'description_en' => 'nullable',
-            "image" => 'required|image',
+            "image" => 'required',
 
         ];
 

@@ -21,7 +21,12 @@
   <component name="ChangeListManager">
     <list default="true" id="e6a5e09c-0a78-4430-98df-c760e2dff5e3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NewsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NewsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/NewsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/NewsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/FrontController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/FrontController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HealthInfoController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NewsController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/News.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/News.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/website/script.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/website/script.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/website/page-blog-article.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/page-blog-article.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -167,7 +172,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/front" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/website" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -177,13 +182,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\kopy_git\resources\views\website" />
+      <recent name="C:\wamp64\www\kopy_git\app\Http\Controllers\Website" />
+      <recent name="C:\wamp64\www\kopy_git\app" />
+      <recent name="C:\wamp64\www\kopy_git\resources\views\layouts\admin" />
       <recent name="C:\wamp64\www\KOPY_2\resources\views\front" />
-      <recent name="C:\wamp64\www\KOPY_2\resources\views\layouts" />
-      <recent name="C:\wamp64\www\KOPY_2\public\front-assets" />
-      <recent name="C:\wamp64\www\KOPY_2\resources\views" />
-      <recent name="C:\wamp64\www\KOPY_2\resources\views\admin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\kopy_git\app\Http\Controllers\Website" />
       <recent name="C:\wamp64\www\KOPY_2\resources\views\layouts" />
       <recent name="C:\wamp64\www\KOPY_2\app\Models" />
     </key>
@@ -211,7 +217,8 @@
       <workItem from="1618919494915" duration="4027000" />
       <workItem from="1618927233541" duration="1586000" />
       <workItem from="1619005176881" duration="265000" />
-      <workItem from="1619093234688" duration="2647000" />
+      <workItem from="1619093234688" duration="9999000" />
+      <workItem from="1619104287187" duration="1394000" />
     </task>
     <servers />
   </component>
@@ -235,10 +242,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1618999401539" />
-    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1618928334231">
+    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1619098768511">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1618928334231" />
+    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1619098768511" />
     <state x="390" y="97" width="585" height="534" key="find.popup" timestamp="1619002133578">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -255,11 +262,6 @@
           <url>file://$PROJECT_DIR$/app/Filters/QueryFilter.php</url>
           <line>2</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/resources/views/layouts/admin/sidebar.blade.php</url>
-          <line>60</line>
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/admin/careers/create.blade.php</url>

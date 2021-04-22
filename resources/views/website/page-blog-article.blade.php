@@ -94,26 +94,34 @@
         <div class="page-content">
             <div class="uk-margin-large-top uk-container uk-container-small">
                 <article class="article-full">
-                    <div class="article-full__info">
-                        <div class="article-full__author"><i class="fas fa-user"></i><span>By Sam Joseph</span></div>
-                        <div class="article-full__category"><i class="fas fa-folder-open"></i><span>Posted in FOOD</span></div>
-                        <div class="article-full__date"><i class="fas fa-calendar-alt"></i><span>July 31, 2020</span></div>
-                        <div class="article-full__comments"><i class="fas fa-comment"></i><span>210</span></div>
+                    @if(isset($articles))
+
+                        @foreach($articles as $article)
+
+                            <div class="article-full__info">
+                        <div class="article-full__author"><i class="fas fa-user"></i><span>{{$article->auther}}</span></div>
+                        <div class="article-full__category"><i class="fas fa-folder-open"></i><span>Posted in {{$article->category}}</span></div>
+                        <div class="article-full__date"><i class="fas fa-calendar-alt"></i><span>{{$article->created_at}}</span></div>
+{{--                        <div class="article-full__comments"><i class="fas fa-comment"></i><span>210</span></div>--}}
                     </div>
-                    <div class="article-full__image"><a href="/page-blog-article.html"><img src="{{asset('website-assets/img/blog/img-article-full.jpg')}}" alt="img-article"></a></div>
-                    <div class="article-full__content">
-                        <p>Incididunt ut labore et dolore magna aliqua enim ad minim veniam quisya nos exercitation ullamco laboris nisi ut aliquip ex ea com labmodo consequat dhuis irure dolor in reprehen deritn volupta velit esse fst anim laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-                        <p>Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure.</p>
+
+                            <div class="article-full__image"><a href="/page-blog-article.html"><img src="{{$article->image}}" alt="img-article"></a></div>
+                            <div class="article-full__content">
+                                <h3> {{$article ->title_en}}</h3>
+                                <p> {{$article->description_en}}</p>
+                        @endforeach
+                    @endif
+
 {{--                        <div class="uk-grid uk-child-width-1-2@s" data-uk-grid>--}}
 {{--                            <div><img class="uk-width-1-1" src="{{asset('website-assets/img/blog/img-article-1.jpg')}}" alt="article"></div>--}}
 {{--                            <div><img class="uk-width-1-1" src="{{asset('website-assets/img/blog/img-article-2.jpg')}}" alt="article"></div>--}}
-{{--                        </div>--}}
-{{--                        <h3>Juicy White Meat, Light Bread With Lettuce</h3>--}}
-{{--                        <p>Ullamco laboris nisi ut aliquip ex ea com labmodo consequat dhuis irure dolor indy reprehen deritn olupt velit esse fst anim laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed doney eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. Laboris nisi ut aliquip ex ea aute irure dolor reprehenderit voluptate esse.</p>--}}
-{{--                        <blockquote>Exercitation ullamco laboris nisi ut aliquip ex ea com labmodo consequat Incididunt ut labore et dolore magna aliqua enim veniam.</blockquote>--}}
-{{--                        <p>Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor reprehenderit voluptate velit esse cillum dolore eu fugiat nulla pariatur sed ipsum.</p>--}}
-{{--                        <div class="article-full__bottom">--}}
-{{--                            <div class="article-full__tags">--}}
+{{--                  </div>--}}
+{{--                                <h3>Juicy White Meat, Light Bread With Lettuce</h3>--}}
+{{--                                <p>Ullamco laboris nisi ut aliquip ex ea com labmodo consequat dhuis irure dolor indy reprehen deritn olupt velit esse fst anim laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed doney eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. Laboris nisi ut aliquip ex ea aute irure dolor reprehenderit voluptate esse.</p>--}}
+{{--                                <blockquote>Exercitation ullamco laboris nisi ut aliquip ex ea com labmodo consequat Incididunt ut labore et dolore magna aliqua enim veniam.</blockquote>--}}
+{{--                                <p>Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor reprehenderit voluptate velit esse cillum dolore eu fugiat nulla pariatur sed ipsum.</p>--}}
+{{--                                <div class="article-full__bottom">--}}
+{{--                                <div class="article-full__tags">--}}
 {{--                                <div> <i class="fas fa-tags"></i><strong>Related Tags</strong></div><span>cheese, Pizza, Cookies, Bake</span>--}}
 {{--                            </div>--}}
 {{--                            <div class="article-full__share">--}}
@@ -233,5 +241,4 @@
         </div>
     </main>
 @endsection
-
 @section('scripts')@endsection

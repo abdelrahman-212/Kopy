@@ -101,8 +101,24 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::resource('role','RoleController');
         Route::get('/permission/{id}', 'RoleController@permission')->name('get.permission');
         Route::patch('/permissions/{id}', 'RoleController@asignPermission')->name('asign.permission');
+
+
     });
-    Route::get('hh',[\App\Http\Controllers\NewsController::class,'getarticles']);
+// Front routes
+    Route::group(['namespace' => 'Website'], function () {
+
+        // aboutUS
+        Route::get('/about-us', 'AboutUSController@aboutUSPage')->name('aboutUSPage');
+        Route::get('blog/{id}','NewsController@Blog');
+        Route::get('blogs/','NewsController@AllBlogs');
+        Route::get('health-info/','HealthInfo@Infos');
+
+
+    });
+        // aboutUS
+        Route::get('/about-us', 'AboutUSController@aboutUSPage')->name('aboutUSPage');
+        // all News
+
 
     Route::get('/categories/{category}', 'Admin\ItemController@getCategory');
 
