@@ -92,6 +92,21 @@
                   <p>Orders</p>
                 </a>
               </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.aboutUS.index')}}" class="nav-link"><i class="fab fa-first-order nav-icon"></i>
+                        <p>AboutUS</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.gallery.index')}}" class="nav-link"><i class="fab fa-first-order nav-icon"></i>
+                        <p>Gallery</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.media.index')}}" class="nav-link"><i class="fab fa-first-order nav-icon"></i>
+                        <p>Media</p>
+                    </a>
+                </li>
               @if(auth()->user()->hasRole('admin') )
               <li class="nav-item">
                 <a href="{{route('admin.offer.index')}}" class="nav-link"><i class="fas fa-dice-three nav-icon"></i>
@@ -160,22 +175,22 @@
                   <p>Contacts</p>
                 </a>
               </li>
-                    <li class="nav-item">
-                        <a href="{{route('admin.careers.index')}}" class="nav-link"><i class="fas fa-envelope-open-text nav-icon"></i>
-                            <p>Careers</p>
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.careers.index')}}" class="nav-link"><i class="fas fa-envelope-open-text nav-icon"></i>
+                        <p>Careers</p>
+                    </a>
+                </li>
 
-                    <li class="nav-item">
-                        <a href="{{route('admin.news.index')}}" class="nav-link"><i class="fas fa-envelope-open-text nav-icon"></i>
-                            <p>News</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{route('admin.healthinfo.index')}}" class="nav-link"><i class="fas fa-envelope-open-text nav-icon"></i>
-                            <p>Health Info</p>
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.news.index')}}" class="nav-link"><i class="fas fa-envelope-open-text nav-icon"></i>
+                        <p>News</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.healthinfo.index')}}" class="nav-link"><i class="fas fa-envelope-open-text nav-icon"></i>
+                        <p>Health Info</p>
+                    </a>
+                </li>
               <li class="nav-item has-treeview">
                 <a href="#" class="nav-link"><i class="nav-icon fas fa-user-cog"></i>
                   <p>Setting<i class="fas fa-angle-left right"></i></p>

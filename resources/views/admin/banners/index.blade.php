@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Banners </h1>
+                    <h1>Banners</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -31,7 +31,7 @@
                             @foreach ($banners as $banner)
                             <tr>
                                 <td>{{ $banner->id }}</td>
-                                <td><img src="{{ $banner->image }}" style="max-width: 75px" ></td>
+                                <td><img src="{{ asset($banner->image) }}" style="max-width: 75px" ></td>
                                 <td>
                                     <a href="{{ route('admin.banner.edit', $banner->id) }}" class="btn btn-primary btn-circle btn-sm" title="edit"><i class="fa fa-edit"></i></a>
                                     <a onclick="deleteCategory('{{ 'delete-banner-' . $banner->id }}')" href="#" class="btn btn-danger btn-circle btn-sm" title="delete"> <i class="fas fa-trash"></i></a>

@@ -45,6 +45,25 @@
                     bom: true
                 }, 'excel' ],
             aaSorting: [],
+            @if(app()->getLocale() == 'ar')
+            "language": {
+                "emptyTable": "لا يوجد بيانات",
+                "info": "عرض صفحة _PAGE_ من _PAGES_",
+                "infoEmpty": "لا يوجد بيانات لعرضها",
+                "search": "بحث: ",
+                "paginate": {
+                    "next":       "التالي",
+                    "previous":   "السابق"
+                },
+                "infoFiltered":   "(تمت التصفية من _MAX_ اجماي البيانات)",
+                "zeroRecords":    "لم يتم العثور على بيانات مطابقة",
+                "lengthMenu":     "عرض _MENU_ صفوف",
+                "buttons": {
+                    "print": "طباعة",
+                    "copy": "نسخ",
+                }
+            },
+            @endif
         });
 
         $('#timepicker1,#timepicker2,#timepicker3,#timepicker4,#timepicker5,#timepicker6,#timepicker7,#timepicker8,#timepicker9,#timepicker10,#timepicker11,#timepicker12,#timepicker13,#timepicker14, #timepicker19,#timepicker29,#timepicker39,#timepicker49,#timepicker59,#timepicker69,#timepicker79,#timepicker89,#timepicker99,#timepicker109,#timepicker119,#timepicker129,#timepicker139,#timepicker149').datetimepicker({
@@ -75,4 +94,11 @@
         @endforeach
     @endif
 </script>
+@endif
+<!-- Bootstrap RTL -->
+@if(LaravelLocalization::getCurrentLocaleName() == 'Arabic')
+    <script
+        src="https://cdn.rtlcss.com/bootstrap/v4.5.3/js/bootstrap.min.js"
+        integrity="sha384-VmD+lKnI0Y4FPvr6hvZRw6xvdt/QZoNHQ4h5k0RL30aGkR9ylHU56BzrE2UoohWK"
+        crossorigin="anonymous"></script>
 @endif

@@ -1,5 +1,25 @@
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-  <ul class="navbar-nav ml-auto">
+
+    <ul class="navbar-nav @if(LaravelLocalization::getCurrentLocaleName() == 'English') ml-auto @endif " @if(LaravelLocalization::getCurrentLocaleName() == 'Arabic') style="margin-right: auto" @endif>
+        <li class="dropdown dropdown-language nav-item">
+            <a class="dropdown-toggle nav-link" id="dropdown-flag" href="{{ LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(), null, [], true) }}" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                @if(LaravelLocalization::getCurrentLocaleName() == 'Arabic')
+                    <i class="flag-icon flag-icon-eg"></i><span class="selected-language"> العربية </span>
+                @else
+                    <i class="flag-icon flag-icon-us"></i><span class="selected-language"> English </span>
+                @endif
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdown-flag">
+                @if(LaravelLocalization::getCurrentLocaleName() == 'Arabic')
+                    <a class="dropdown-item" rel="alternate" hreflang="en" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">
+                        <i class="flag-icon flag-icon-us"></i><span> English </span></a>
+                @else
+                    <a class="dropdown-item" rel="alternate" hreflang="ar" href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}">
+                        <i class="flag-icon flag-icon-eg"></i><span> العربية </span></a>
+                @endif
+            </div>
+        </li>
     {{-- <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="far fa-bell"></i>
@@ -27,7 +47,7 @@
       </div>
     </li> --}}
     <li class="nav-item">
-      <a href="javascript:void" onclick="$('#logout-form').submit();" class="nav-link">Logout</a>
+      <a href="javascript:void()" onclick="$('#logout-form').submit();" class="nav-link">Logout</a>
     </li>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         @csrf
