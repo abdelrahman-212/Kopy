@@ -1,4 +1,7 @@
 <?php
+
+
+
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]],function (){
 
     // Authentication Routes
@@ -99,10 +102,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::get('/permission/{id}', 'RoleController@permission')->name('get.permission');
         Route::patch('/permissions/{id}', 'RoleController@asignPermission')->name('asign.permission');
     });
+    Route::get('hh',[\App\Http\Controllers\NewsController::class,'getarticles']);
 
     Route::get('/categories/{category}', 'Admin\ItemController@getCategory');
 
-});
-Route::get('hh', function (){
-    return view('website.typography');
 });

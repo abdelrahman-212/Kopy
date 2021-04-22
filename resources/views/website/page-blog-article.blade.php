@@ -104,28 +104,28 @@
                     <div class="article-full__content">
                         <p>Incididunt ut labore et dolore magna aliqua enim ad minim veniam quisya nos exercitation ullamco laboris nisi ut aliquip ex ea com labmodo consequat dhuis irure dolor in reprehen deritn volupta velit esse fst anim laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
                         <p>Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure.</p>
-                        <div class="uk-grid uk-child-width-1-2@s" data-uk-grid>
-                            <div><img class="uk-width-1-1" src="{{asset('website-assets/img/blog/img-article-1.jpg')}}" alt="article"></div>
-                            <div><img class="uk-width-1-1" src="{{asset('website-assets/img/blog/img-article-2.jpg')}}" alt="article"></div>
-                        </div>
-                        <h3>Juicy White Meat, Light Bread With Lettuce</h3>
-                        <p>Ullamco laboris nisi ut aliquip ex ea com labmodo consequat dhuis irure dolor indy reprehen deritn olupt velit esse fst anim laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed doney eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. Laboris nisi ut aliquip ex ea aute irure dolor reprehenderit voluptate esse.</p>
-                        <blockquote>Exercitation ullamco laboris nisi ut aliquip ex ea com labmodo consequat Incididunt ut labore et dolore magna aliqua enim veniam.</blockquote>
-                        <p>Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor reprehenderit voluptate velit esse cillum dolore eu fugiat nulla pariatur sed ipsum.</p>
-                        <div class="article-full__bottom">
-                            <div class="article-full__tags">
-                                <div> <i class="fas fa-tags"></i><strong>Related Tags</strong></div><span>cheese, Pizza, Cookies, Bake</span>
-                            </div>
-                            <div class="article-full__share">
-                                <div> <strong>Share This</strong><i class="fas fa-share-alt"></i></div>
-                                <ul>
-                                    <li><a href="#!"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#!"><i class="fab fa-google-plus-g"></i></a></li>
-                                    <li><a href="#!"><i class="fab fa-pinterest-p"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
+{{--                        <div class="uk-grid uk-child-width-1-2@s" data-uk-grid>--}}
+{{--                            <div><img class="uk-width-1-1" src="{{asset('website-assets/img/blog/img-article-1.jpg')}}" alt="article"></div>--}}
+{{--                            <div><img class="uk-width-1-1" src="{{asset('website-assets/img/blog/img-article-2.jpg')}}" alt="article"></div>--}}
+{{--                        </div>--}}
+{{--                        <h3>Juicy White Meat, Light Bread With Lettuce</h3>--}}
+{{--                        <p>Ullamco laboris nisi ut aliquip ex ea com labmodo consequat dhuis irure dolor indy reprehen deritn olupt velit esse fst anim laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed doney eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. Laboris nisi ut aliquip ex ea aute irure dolor reprehenderit voluptate esse.</p>--}}
+{{--                        <blockquote>Exercitation ullamco laboris nisi ut aliquip ex ea com labmodo consequat Incididunt ut labore et dolore magna aliqua enim veniam.</blockquote>--}}
+{{--                        <p>Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor reprehenderit voluptate velit esse cillum dolore eu fugiat nulla pariatur sed ipsum.</p>--}}
+{{--                        <div class="article-full__bottom">--}}
+{{--                            <div class="article-full__tags">--}}
+{{--                                <div> <i class="fas fa-tags"></i><strong>Related Tags</strong></div><span>cheese, Pizza, Cookies, Bake</span>--}}
+{{--                            </div>--}}
+{{--                            <div class="article-full__share">--}}
+{{--                                <div> <strong>Share This</strong><i class="fas fa-share-alt"></i></div>--}}
+{{--                                <ul>--}}
+{{--                                    <li><a href="#!"><i class="fab fa-twitter"></i></a></li>--}}
+{{--                                    <li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>--}}
+{{--                                    <li><a href="#!"><i class="fab fa-google-plus-g"></i></a></li>--}}
+{{--                                    <li><a href="#!"><i class="fab fa-pinterest-p"></i></a></li>--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="article-full__nav">
                             <ul class="articles-nav-list">
                                 <li class="articles-nav-item"><a class="articles-nav-item__link" href="#!">
@@ -148,85 +148,85 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="section-article-reviews">
-                            <div class="section-title">
-                                <div class="uk-h2">Comments (3)</div>
-                            </div>
-                            <div class="section-content">
-                                <ul class="uk-comment-list">
-                                    <li>
-                                        <article class="uk-comment">
-                                            <header class="uk-comment-header">
-                                                <div class="uk-grid-small uk-grid-divider" data-uk-grid>
-                                                    <div class="uk-width-auto@s"><img class="uk-comment-avatar" src="./{{asset('website-assets/img/blog/img-reviews-1.png')}}" alt></div>
-                                                    <div class="uk-width-expand@s">
-                                                        <div class="uk-flex uk-flex-middle uk-margin-small-bottom">
-                                                            <h4 class="uk-comment-title uk-margin-remove">Michael Shaw</h4><span class="uk-text-meta uk-margin-small-left">August 20, 2020</span>
-                                                        </div>
-                                                        <div class="uk-comment-body">
-                                                            <p>Incididunt ut labore et dolore magna aliqua enim ad minim veniam quisya nos ullamco laboris nisi ut aliquip ex ea com labmodo.</p><a class="link-more" href="#!"><span data-uk-icon="arrow-right">Reply</span></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </header>
-                                        </article>
-                                        <ul>
-                                            <li>
-                                                <article class="uk-comment">
-                                                    <header class="uk-comment-header">
-                                                        <div class="uk-grid-small uk-grid-divider" data-uk-grid>
-                                                            <div class="uk-width-auto@s"><img class="uk-comment-avatar" src="./{{asset('website-assets/img/blog/img-reviews-2.png')}}" alt></div>
-                                                            <div class="uk-width-expand@s">
-                                                                <div class="uk-flex uk-flex-middle uk-margin-small-bottom">
-                                                                    <h4 class="uk-comment-title uk-margin-remove">Tom Butler</h4><span class="uk-text-meta uk-margin-small-left">August 20, 2020</span>
-                                                                </div>
-                                                                <div class="uk-comment-body">
-                                                                    <p>Incididunt ut labore et dolore magna aliqua enim minim veniam ullamco laboris nisi ut aliquip ex ea com.</p><a class="link-more" href="#!"><span data-uk-icon="arrow-right">Reply</span></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </header>
-                                                </article>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <article class="uk-comment">
-                                            <header class="uk-comment-header">
-                                                <div class="uk-grid-small uk-grid-divider" data-uk-grid>
-                                                    <div class="uk-width-auto@s"><img class="uk-comment-avatar" src="./{{asset('website-assets/img/blog/img-reviews-3.png')}}" alt></div>
-                                                    <div class="uk-width-expand@s">
-                                                        <div class="uk-flex uk-flex-middle uk-margin-small-bottom">
-                                                            <h4 class="uk-comment-title uk-margin-remove">Jasmine Hold</h4><span class="uk-text-meta uk-margin-small-left">August 20, 2020</span>
-                                                        </div>
-                                                        <div class="uk-comment-body">
-                                                            <p>Incididunt ut labore et dolore magna aliqua enim ad minim veniam quisya nos ullamco laboris nisi ut aliquip ex ea com labmodo.</p><a class="link-more" href="#!"><span data-uk-icon="arrow-right">Reply</span></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </header>
-                                        </article>
-                                    </li>
-                                </ul>
-                                <div class="block-form">
-                                    <div class="section-title">
-                                        <div class="uk-h2">Leave a Reply</div>
-                                    </div>
-                                    <div class="section-content">
-                                        <p>Your email address will not be published. Required fields are marked *</p>
-                                        <form action="#!">
-                                            <div class="uk-grid uk-grid-small uk-child-width-1-2@s" data-uk-grid>
-                                                <div class="uk-width-1-1"><textarea class="uk-textarea uk-form-large" placeholder="Message *"></textarea></div>
-                                                <div><input class="uk-input uk-form-large" type="text" placeholder="Your Name *"></div>
-                                                <div><input class="uk-input uk-form-large" type="text" placeholder="Email *"></div>
-                                                <div class="uk-width-1-1"><input class="uk-input uk-form-large" type="text" placeholder="Website"></div>
-                                                <div><button class="uk-button uk-button-large" type="submit">Post comment</button></div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="section-article-reviews">--}}
+{{--                            <div class="section-title">--}}
+{{--                                <div class="uk-h2">Comments (3)</div>--}}
+{{--                            </div>--}}
+{{--                            <div class="section-content">--}}
+{{--                                <ul class="uk-comment-list">--}}
+{{--                                    <li>--}}
+{{--                                        <article class="uk-comment">--}}
+{{--                                            <header class="uk-comment-header">--}}
+{{--                                                <div class="uk-grid-small uk-grid-divider" data-uk-grid>--}}
+{{--                                                    <div class="uk-width-auto@s"><img class="uk-comment-avatar" src="./{{asset('website-assets/img/blog/img-reviews-1.png')}}" alt></div>--}}
+{{--                                                    <div class="uk-width-expand@s">--}}
+{{--                                                        <div class="uk-flex uk-flex-middle uk-margin-small-bottom">--}}
+{{--                                                            <h4 class="uk-comment-title uk-margin-remove">Michael Shaw</h4><span class="uk-text-meta uk-margin-small-left">August 20, 2020</span>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="uk-comment-body">--}}
+{{--                                                            <p>Incididunt ut labore et dolore magna aliqua enim ad minim veniam quisya nos ullamco laboris nisi ut aliquip ex ea com labmodo.</p><a class="link-more" href="#!"><span data-uk-icon="arrow-right">Reply</span></a>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </header>--}}
+{{--                                        </article>--}}
+{{--                                        <ul>--}}
+{{--                                            <li>--}}
+{{--                                                <article class="uk-comment">--}}
+{{--                                                    <header class="uk-comment-header">--}}
+{{--                                                        <div class="uk-grid-small uk-grid-divider" data-uk-grid>--}}
+{{--                                                            <div class="uk-width-auto@s"><img class="uk-comment-avatar" src="./{{asset('website-assets/img/blog/img-reviews-2.png')}}" alt></div>--}}
+{{--                                                            <div class="uk-width-expand@s">--}}
+{{--                                                                <div class="uk-flex uk-flex-middle uk-margin-small-bottom">--}}
+{{--                                                                    <h4 class="uk-comment-title uk-margin-remove">Tom Butler</h4><span class="uk-text-meta uk-margin-small-left">August 20, 2020</span>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="uk-comment-body">--}}
+{{--                                                                    <p>Incididunt ut labore et dolore magna aliqua enim minim veniam ullamco laboris nisi ut aliquip ex ea com.</p><a class="link-more" href="#!"><span data-uk-icon="arrow-right">Reply</span></a>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </header>--}}
+{{--                                                </article>--}}
+{{--                                            </li>--}}
+{{--                                        </ul>--}}
+{{--                                    </li>--}}
+{{--                                    <li>--}}
+{{--                                        <article class="uk-comment">--}}
+{{--                                            <header class="uk-comment-header">--}}
+{{--                                                <div class="uk-grid-small uk-grid-divider" data-uk-grid>--}}
+{{--                                                    <div class="uk-width-auto@s"><img class="uk-comment-avatar" src="./{{asset('website-assets/img/blog/img-reviews-3.png')}}" alt></div>--}}
+{{--                                                    <div class="uk-width-expand@s">--}}
+{{--                                                        <div class="uk-flex uk-flex-middle uk-margin-small-bottom">--}}
+{{--                                                            <h4 class="uk-comment-title uk-margin-remove">Jasmine Hold</h4><span class="uk-text-meta uk-margin-small-left">August 20, 2020</span>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="uk-comment-body">--}}
+{{--                                                            <p>Incididunt ut labore et dolore magna aliqua enim ad minim veniam quisya nos ullamco laboris nisi ut aliquip ex ea com labmodo.</p><a class="link-more" href="#!"><span data-uk-icon="arrow-right">Reply</span></a>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </header>--}}
+{{--                                        </article>--}}
+{{--                                    </li>--}}
+{{--                                </ul>--}}
+{{--                                <div class="block-form">--}}
+{{--                                    <div class="section-title">--}}
+{{--                                        <div class="uk-h2">Leave a Reply</div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="section-content">--}}
+{{--                                        <p>Your email address will not be published. Required fields are marked *</p>--}}
+{{--                                        <form action="#!">--}}
+{{--                                            <div class="uk-grid uk-grid-small uk-child-width-1-2@s" data-uk-grid>--}}
+{{--                                                <div class="uk-width-1-1"><textarea class="uk-textarea uk-form-large" placeholder="Message *"></textarea></div>--}}
+{{--                                                <div><input class="uk-input uk-form-large" type="text" placeholder="Your Name *"></div>--}}
+{{--                                                <div><input class="uk-input uk-form-large" type="text" placeholder="Email *"></div>--}}
+{{--                                                <div class="uk-width-1-1"><input class="uk-input uk-form-large" type="text" placeholder="Website"></div>--}}
+{{--                                                <div><button class="uk-button uk-button-large" type="submit">Post comment</button></div>--}}
+{{--                                            </div>--}}
+{{--                                        </form>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
                 </article>
             </div>
