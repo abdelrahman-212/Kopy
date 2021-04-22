@@ -20,9 +20,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6a5e09c-0a78-4430-98df-c760e2dff5e3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/KOPY.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/KOPY.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front/home.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front/index.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front/page-404.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front/page-blog-article.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front/page-blog.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front/page-cart.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front/page-catalog-sidebar.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front/page-catalog.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front/page-contacts.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front/page-content.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front/page-pizza-builder.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front/page-product.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front/page-sidebar.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front/page-wishlist.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/front/typography.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,6 +169,7 @@
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/vendor/opis/closure" />
       <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/vendor/mcamara/laravel-localization" />
     </include_path>
   </component>
   <component name="ProjectId" id="1pqFjVVCUvxvzS9DVhxARzSSrto" />
@@ -209,6 +226,7 @@
       <workItem from="1618919494915" duration="4027000" />
       <workItem from="1618927233541" duration="1586000" />
       <workItem from="1619005176881" duration="265000" />
+      <workItem from="1619093234688" duration="1003000" />
     </task>
     <servers />
   </component>
