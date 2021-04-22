@@ -134,3 +134,24 @@ Route::group(['prefix' => 'menu'], function () {
 // helper endpoints
 Route::get('/cities', "Api\HelperController@getCities");
 Route::get('/cities/{city}/areas', "Api\HelperController@getAreas");
+
+// Front routes
+Route::group(['prefix' => 'website'], function () {
+
+    // aboutUS
+    Route::get('/aboutUS', 'Api\FrontController@getAboutUS');
+    // gallery
+    Route::get('/gallery', 'Api\FrontController@getGallery');
+    // media
+    Route::get('/media/{videoID?}', 'Api\FrontController@getVideo');
+    // news
+    Route::get('/news', 'Api\FrontController@getAllNews');
+    Route::get('/news/{newID}', 'Api\FrontController@getNew');
+    // health info
+    Route::get('/health-info', 'Api\FrontController@getAllHealthInfo');
+    // careers
+    Route::get('/careers', 'Api\FrontController@getAllJobs');
+    Route::post('/careers', 'Api\MenuController@jobRequest');
+
+
+});
