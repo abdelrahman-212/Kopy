@@ -17,6 +17,7 @@ class CreateJobRequestsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email');
+            $table->string('phone');
             $table->string('cv_file');
             $table->longText('description');
             $table->bigInteger('job_id')->unsigned()->nullable();
