@@ -1,22 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Careers;
+use App\Models\AboutUs;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class JobRequestController extends Controller
+class AboutUsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-         $jobs = Careers::where('status',1)->get();
-        return $jobs;
+        $aboutUS = AboutUs::get();
 
+        return view('admin.aboutUS.index', compact('aboutUS'));
     }
 
     /**
@@ -26,7 +27,7 @@ class JobRequestController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.aboutUS.create');
     }
 
     /**
@@ -37,7 +38,8 @@ class JobRequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        AboutUs::create($request->all());
+        return redirect()->route('admin.aboutUS.index');
     }
 
     /**
@@ -48,7 +50,8 @@ class JobRequestController extends Controller
      */
     public function show($id)
     {
-        //
+        $about = AboutUs::findOrFail($id);
+        return view('admin.aboutUS.show', compact('about'));
     }
 
     /**
@@ -59,7 +62,8 @@ class JobRequestController extends Controller
      */
     public function edit($id)
     {
-        //
+        $about = AboutUs::findOrFail($id);
+        return view('admin.aboutUS.edit', compact('about'));
     }
 
     /**
@@ -71,7 +75,9 @@ class JobRequestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $about = AboutUs::findOrFail($id);
+        $about->update($request->all());
+        return redirect()->route('admin.aboutUS.index');
     }
 
     /**
@@ -82,6 +88,8 @@ class JobRequestController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $about = AboutUs::findOrFail($id);
+        $about->delete();
+        return back();
     }
 }

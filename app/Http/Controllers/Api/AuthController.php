@@ -18,7 +18,7 @@ use Twilio\Jwt\ClientToken;
 
 class AuthController extends BaseController
 {
-    //front
+    //website
     //
     //
 

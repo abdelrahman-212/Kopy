@@ -10,8 +10,9 @@ class JobRequest extends Model
         'id',
         'name',
         'email',
-        'cv_file'
-        , 'description',
+        'cv_file',
+        'phone',
+        'description',
         'job_id',
         'created_at',
         'updated_at',

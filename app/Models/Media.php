@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,9 +10,8 @@ class Media extends Model
         'id',
         'title_ar',
         'title_en',
-        'url'
-        ,'author',
-        'image',
+        'url',
+        'author',
         'created_at',
         'updated_at',
      ];

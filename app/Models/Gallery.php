@@ -1,20 +1,16 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class News extends Model
+class Gallery extends Model
 {
     protected $fillable = [
         'id',
         'title_ar',
         'title_en',
-        'description_ar'
-        ,'description_en',
-        'created_at',
-        'updated_at',
-        'image'
+        'url',
     ];
     public function getImageAttribute($value)
     {
