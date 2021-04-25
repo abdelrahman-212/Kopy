@@ -109,15 +109,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
         // aboutUS
         Route::get('/about-us', 'AboutUSController@aboutUSPage')->name('aboutUSPage');
+        // gallery
+        Route::get('/gallery', 'GalleryController@galleryPage')->name('galleryPage');
+        //
         Route::get('blog/{id}','NewsController@Blog');
         Route::get('blogs/','NewsController@AllBlogs');
         Route::get('health-info/','HealthInfo@Infos');
 
 
     });
-        // aboutUS
-        Route::get('/about-us', 'AboutUSController@aboutUSPage')->name('aboutUSPage');
-        // all News
 
 
     Route::get('/categories/{category}', 'Admin\ItemController@getCategory');

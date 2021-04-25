@@ -20,14 +20,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6a5e09c-0a78-4430-98df-c760e2dff5e3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Website/GalleryController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/website/gallery.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/KOPY.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/KOPY.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/NewsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/NewsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin new 20oct.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/GalleryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/GalleryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/FrontController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/FrontController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HealthInfoController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NewsController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/News.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/News.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/website/script.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/website/script.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/website/page-blog-article.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/page-blog-article.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContactUsController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JobController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JobRequestController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MediaController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/gallery/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/gallery/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/gallery/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/gallery/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/front/app.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/front/footer.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/front/head.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/front/header.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/front/scripts.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/website/footer.blade" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/website/head.blade" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/website/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/website/head.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +71,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
       <path value="$PROJECT_DIR$/vendor/symfony/error-handler" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
       <path value="$PROJECT_DIR$/vendor/symfony/mime" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
@@ -172,7 +187,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/website" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/layouts/front" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -182,11 +197,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\Kopy\resources\views\layouts\front" />
+      <recent name="C:\xampp\htdocs\Kopy\app\Http\Controllers\Website" />
+      <recent name="C:\xampp\htdocs\Kopy\resources\views\website" />
       <recent name="C:\wamp64\www\kopy_git\resources\views\website" />
       <recent name="C:\wamp64\www\kopy_git\app\Http\Controllers\Website" />
-      <recent name="C:\wamp64\www\kopy_git\app" />
-      <recent name="C:\wamp64\www\kopy_git\resources\views\layouts\admin" />
-      <recent name="C:\wamp64\www\KOPY_2\resources\views\front" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\kopy_git\app\Http\Controllers\Website" />
@@ -219,6 +234,8 @@
       <workItem from="1619005176881" duration="265000" />
       <workItem from="1619093234688" duration="9999000" />
       <workItem from="1619104287187" duration="1394000" />
+      <workItem from="1619340808945" duration="4935000" />
+      <workItem from="1619345881683" duration="5198000" />
     </task>
     <servers />
   </component>
@@ -236,24 +253,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1618999401539">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1618999401539" />
-    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1619098768511">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1619098768511" />
-    <state x="390" y="97" width="585" height="534" key="find.popup" timestamp="1619002133578">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="390" y="97" width="585" height="534" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1619002133578" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1618835436824">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1618835436824" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

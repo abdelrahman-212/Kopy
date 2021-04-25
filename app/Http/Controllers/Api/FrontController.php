@@ -24,7 +24,7 @@ class FrontController extends BaseController
 
     //gallery
     public function getGallery() {
-        $gallery = Gallery::all();
+        $gallery = Gallery::paginate(12);
         return $this->sendResponse($gallery, 'All Gallery retrieved successfully.');
     }
 
