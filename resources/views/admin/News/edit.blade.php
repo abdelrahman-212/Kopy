@@ -45,6 +45,16 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        <label for="exampleInputArabicDescription"> Author </label>
+                                        <textarea class="form-control" id="exampleInputArabicDescription"
+                                                  placeholder="Enter Author"
+                                                  name="author">{{$blog->author}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         <label for="exampleInputArabicDescription">Arabic Description</label>
                                         <textarea class="form-control" id="exampleInputArabicDescription"
                                                   placeholder="Enter Arabic Description"
@@ -67,10 +77,11 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Image</label>
-                                        <img src="{{ $blog->image }}" class="img-thumbnail" style="widht: 77px;" />
-                                        <div class="input-group">
+                                        <div class="col-md-6">
+                                            <img id="image" src="{{asset($blog->image)}}" class="img-thumbnail w-100 p-3" style="height: 250px;">
+                                        </div>                                        <div class="input-group">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input {!! $errors->first('image', 'is-invalid') !!}" name="image" value="{{ old('image') }}">
+                                                <input id="fileimage" type="file" class="custom-file-input {!! $errors->first('image', 'is-invalid') !!}" name="image" >
                                                 <label class="custom-file-label">Choose file</label>
                                             </div>
                                         </div>
@@ -92,31 +103,26 @@
 
 @push('js')
     <script>
-        $( document ).ready(function() {
+        $(document).ready(function() {
+            $('#fileimage').change(function(){
+                var input = this;
+                var url = $(this).val();
+                var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+                if (input.files && input.files[0]&& (ext == "mp4" || ext == "ogx" || ext == "oga" || ext == "ogv" || ext == "ogg" || ext == "webm" || ext == "wmv" || ext == "flv"))
+                {
+                    var reader = new FileReader();
 
-            $('.custom-file-input').on('change',function(){
-
-                //get the file name
-                var fileName = $(this).val();
-
-                //replace the "Choose a file" label
-                $(this).next('.custom-file-label').html(fileName);
-            })
-
-            $('input').change(function (e) {
-                // Warning
-                $(window).on('beforeunload', function(){
-                    return "Are you sure you want to navigate away from this page?";
-                });
-
-                // Form Submit
-                $(document).on("submit", "form", function(event){
-                    // disable unload warning
-                    $(window).off('beforeunload');
-                });
-
+                    reader.onload = function (e) {
+                        $('#image').attr('src',e.target.result);
+                        $('source').attr('src',e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+                else
+                {
+                    $('#fileimage').html('You can upload images only')
+                }
             });
-
         });
     </script>
 @endpush

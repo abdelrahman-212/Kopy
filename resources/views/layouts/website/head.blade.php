@@ -11,5 +11,9 @@
     <link rel="stylesheet" href="{{asset('website-assets/css/uikit.min.css')}}">
     <link rel="stylesheet" href="{{asset('website-assets/css/main.css')}}">
     <link id="dm-dark" rel="stylesheet" href="{{asset('website-assets/css/dark.css')}}" >
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     @yield('styles')
 </head>

@@ -17,7 +17,7 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::all();
-        return view('admin.news.index', compact('news'));
+        return view('admin.News.index', compact('news'));
     }
 
     /**
@@ -27,7 +27,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('admin.news.create');
+        return view('admin.News.create');
 
     }
 
@@ -45,9 +45,9 @@ class NewsController extends Controller
             'description_ar' => 'nullable',
             'description_en' => 'nullable',
             "image" => 'required',
+            "author" => 'required',
 
         ];
-
 
         $attributes = $request->validate($validationRules);
         if ($request->hasFile('image')) {
@@ -59,6 +59,7 @@ class NewsController extends Controller
         $job = News::create([
             'title_ar' => $request->title_ar,
             'title_en' => $request->title_en,
+            'author' => $request->author,
             'description_ar' => $request->description_ar,
             'description_en' => $request->description_en,
             'image' => $file_path,
@@ -80,8 +81,8 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-         $blog = News::find($id);
-         return view('admin.news.show' ,compact('blog'));
+        $blog = News::find($id);
+        return view('admin.News.show', compact('blog'));
     }
 
     /**
@@ -93,7 +94,7 @@ class NewsController extends Controller
     public function edit($id)
     {
         $blog = News::find($id);
-        return view('admin.news.edit',compact('blog'));
+        return view('admin.News.edit', compact('blog'));
     }
 
 
@@ -111,37 +112,37 @@ class NewsController extends Controller
             'title_en' => 'required|min:3|max:20',
             'description_ar' => 'nullable',
             'description_en' => 'nullable',
-            "image" => 'required|image',
+            "image" => 'required',
+            'author'=>'required'
         ]);
-        if ($request->hasFile('image'))
-        {
-            $image = $request->image;
-            $image_new_name = time(). $image->getClientOriginalName();
-            $image->move(public_path('blogs'), $image_new_name);
-            $file_path= '/1618920292Hill /' . $image_new_name;
-            News::where('id', $id)
-                ->update([
-                    'title_ar' => $request->title_ar,
-                    'title_en' => $request->title_en,
-                    'description_ar' => $request->description_ar,
-                    'description_en' => $request->description_en,
-                    'image'=>$file_path,
-                    'updated_at'=>Carbon::now()
-                ]);
 
-        }else{
-            News::where('id', $id)
-                ->update([
-                    'title_ar' => $request->title_ar,
-                    'title_en' => $request->title_en,
-                    'description_ar' => $request->description_ar,
-                    'description_en' => $request->description_en,
-                     'updated_at'=>Carbon::now()
-                ]);
-        }        return redirect()->route('admin.news.index')->with([
-        'type' => 'success',
-        'message' => 'Blog Update successfuly'
-    ]);
+
+        $blog = News::findOrFail($id);
+        $blog->title_ar = $request->title_ar;
+        $blog->title_en = $request->title_en;
+        $blog->description_ar = $request->description_ar;
+        $blog->description_en = $request->description_en;
+        $blog->author = $request->author;
+
+        if ($request->hasFile('image')) {
+            $oldImage = $blog->image;
+            $image = $request->image;
+            $NewImageName = time() . $image->getClientOriginalName();
+            $image->move(public_path('blogs'), $NewImageName);
+            $blog->image = '/blogs/' . $NewImageName;
+        }
+        $blog->save();
+        if ($request->hasFile('image')) {
+            if (file_exists(public_path($oldImage))) {
+                unlink(public_path($oldImage));
+            }
+        }
+
+
+        return redirect()->route('admin.news.index')->with([
+            'type' => 'success',
+            'message' => 'Blog News successfuly'
+        ]);
     }
 
     /**
@@ -152,12 +153,12 @@ class NewsController extends Controller
      */
     public function delete($id)
     {
-        $blog= News::find($id);
+        $blog = News::find($id);
 
 
         unlink($blog->image); //delete from folder
 
-         $blog->delete();
+        $blog->delete();
 
         return redirect()->back()->with([
             'type' => 'error', 'message' => 'Blog  deleted successfuly'

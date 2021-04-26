@@ -18,6 +18,7 @@
                     <ul class="uk-navbar-nav">
                         <li><a href="#">Our Menu</a></li>
                         <li><a href="#">Latest News</a></li>
+                        <li><a href="{{route('careers.all')}}">Careers</a></li>
                         <li><a href="#">Contact us</a></li>
                     </ul>
                 </div>

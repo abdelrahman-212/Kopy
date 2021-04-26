@@ -37,6 +37,13 @@ class CareersController extends Controller
     {
         return view('admin.careers.create');
     }
+    public function GetApplications($id)
+    {
+        $career = Careers::findOrfail($id);
+
+        $requests= $career->job_requests()->get();
+         return view('admin.careers.job-requests', compact('requests'));
+    }
 
     /**
      * Store a newly created resource in storage.

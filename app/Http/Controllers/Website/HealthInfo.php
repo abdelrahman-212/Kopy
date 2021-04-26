@@ -11,8 +11,8 @@ class HealthInfo extends Controller
         $return = (app(FrontController::class)->getAllHealthInfo())->getOriginalContent();
         foreach ($return as $in => $re){
             if($in == 'data'){
-                $articles = $re ;
-                return view('website.page-health-info',compact(['articles']));
+                $infos = $re ;
+                return view('website.page-health-info',compact(['infos']));
             }
         }
     }
