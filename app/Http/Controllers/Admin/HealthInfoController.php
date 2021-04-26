@@ -63,7 +63,7 @@ class HealthInfoController extends Controller
         ]);
 
 
-        return redirect()->route('admin.health.index')->with([
+        return redirect()->route('admin.healthinfo.index')->with([
             'type' => 'success',
             'message' => 'Blog insert successfuly'
         ]);

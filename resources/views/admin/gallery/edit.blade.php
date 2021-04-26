@@ -66,9 +66,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary float-right">Submit</button>
-                    </div>
+
                 </form>
             </div>
         </div>
@@ -87,7 +85,9 @@
                     var reader = new FileReader();
 
                     reader.onload = function (e) {
-                        $('#image').attr('src',e.target.result);
+                        $('#image')     <div class="card-footer">
+                            <button type="submit" class="btn btn-primary float-right">Submit</button>
+                    </div>.attr('src',e.target.result);
                     }
                     reader.readAsDataURL(input.files[0]);
                 }

@@ -12,7 +12,7 @@ class NewsController extends Controller
         foreach ($return as $in => $re){
             if($in == 'data'){
                 $articles = $re ;
-                return view('website.page-blog-article',compact(['articles']));
+                return view('website.page-blog',compact(['articles']));
             }
         }
     }

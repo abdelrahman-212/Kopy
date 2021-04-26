@@ -69,11 +69,15 @@ class FrontController extends BaseController
         $careers = Careers::all();
         return $this->sendResponse($careers, 'All Careers Info retrieved successfully.');
     }
-    public function jobRequest(Request $request)
+    public function GetJob($id){
+        $careers = Careers::find($id);
+
+        return $this->sendResponse($careers, 'All Careers Info retrieved successfully.');
+    }
+    public function jobRequest(Request $request ,$id)
     {
         $validator = Validator::make($request->all(), [
-            'job_id' => 'required|exists:jobs,id',
-            'name' => 'required',
+             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
             'description' => 'required',
@@ -84,7 +88,7 @@ class FrontController extends BaseController
             return $this->sendError('Validation Errors!', $validator->errors());
         }
         //check if application exist
-        $countExist = JobRequest::where('job_id',$request->job_id)
+        $countExist = JobRequest::where('id',$id)
             ->where(function($q) use ($request) {
                 $q->where('email', $request->email)
                 ->orWhere('phone', $request->phone);
@@ -95,7 +99,7 @@ class FrontController extends BaseController
 
         try {
             $jobRequest = new JobRequest();
-            $jobRequest->job_id = $request->job_id;
+            $jobRequest->job_id =$id;
             $jobRequest->name = $request->name;
             $jobRequest->email = $request->email;
             $jobRequest->phone = $request->phone;

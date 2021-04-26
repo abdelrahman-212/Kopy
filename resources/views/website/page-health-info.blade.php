@@ -117,11 +117,11 @@
                             </nav>
                         </nav>
                         <div class="first-screen__box">
-                            <h2 class="first-screen__title">Latest News</h2>
+                            <h2 class="first-screen__title">Health Infos </h2>
                             <div class="first-screen__breadcrumb">
                                 <ul class="uk-breadcrumb">
                                     <li><a href="/">Home</a></li>
-                                    <li><span>News Blog</span></li>
+                                    <li><span>Health Information</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -131,34 +131,34 @@
             <div class="page-content">
                 <div class="uk-margin-large-top uk-container">
                     <div class="uk-grid" data-uk-grid>
-                        <div class="uk-width-2-3@m">
-                            @if(isset($articles))
-                                @foreach($articles as $article)
+                        <div class="uk-width-2-3@m align-self-md-center">
+                            @if(isset($infos))
+                                @foreach($infos as $info)
 
                                     <article class="article-intro">
-                                        <div class="article-intro__image"><a href="page-blog-article.html"><img src="{{$article
-->image}}" alt="img-article"></a></div>
-                                        <div class="article-intro__body">
+                                        {{--                                        <div class="article-intro__image"><a href="page-blog-article.html"><img src="{{$article--}}
+                                        {{--->image}}" alt="img-article"></a></div>--}}
+                                        <div class="article-intro__body align text-center">
                                             <div class="article-intro__info">
-                                                <div class="article-intro__author"><i
-                                                        class="fas fa-user"></i><span>By {{$article->author}}</span>
-                                                </div>
+                                                {{--                                                <div class="article-intro__author"><i--}}
+                                                {{--                                                        class="fas fa-user"></i><span>By {{$article->author}}</span>--}}
+                                                {{--                                                </div>--}}
                                                 {{--                                    <div class="article-intro__category"><i class="fas fa-folder-open"></i><span>Posted in FOOD</span></div>--}}
                                                 <div class="article-intro__date"><i
-                                                        class="fas fa-calendar-alt"></i><span>{{$article->created_at}}</span>
+                                                        class="fas fa-calendar-alt"></i><span>{{$info->created_at}}</span>
                                                 </div>
                                                 {{--                                    <div class="article-intro__comments"><i class="fas fa-comment"></i><span>210</span></div>--}}
                                             </div>
-                                            <h2 class="article-intro__title">{{$article -> title_en}}</h2>
+                                            <h2 class="article-intro__title">{{$info -> title_en}}</h2>
                                             <div class="article-intro__content">
-                                                <p> {{$article -> description_en}} </p>
+                                                <p> {!! nl2br(e($info -> description_en)) !!} </p>
                                             </div>
-                                            <div class="article-intro__bottom">
-                                                {{--                                    <div class="article-intro__tags"><i class="fas fa-tags"></i><span>cheese, Pizza, Cookies, Bake</span></div>--}}
-                                                <div class="article-intro__more"><a class="uk-button"
-                                                                                    href="{{route('get.new',$article->id)}}">Read
-                                                        More</a></div>
-                                            </div>
+                                            {{--                                            <div class="article-intro__bottom">--}}
+                                            {{--                                                --}}{{--                                    <div class="article-intro__tags"><i class="fas fa-tags"></i><span>cheese, Pizza, Cookies, Bake</span></div>--}}
+                                            {{--                                                <div class="article-intro__more"><a class="uk-button"--}}
+                                            {{--                                                                                    href="{{route('get.new',$article->id)}}">Read--}}
+                                            {{--                                                        More</a></div>--}}
+                                            {{--                                            </div>--}}
                                         </div>
                                     </article>
                                 @endforeach

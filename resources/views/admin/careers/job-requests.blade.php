@@ -22,34 +22,35 @@
                         <thead>
                         <tr>
                             <th>#ID</th>
-                            <th>Job Title</th>
-                            <th>No. Of Applications</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>Details</th>
 
-                            <th>Status</th>
-                              <th>Action</th>
+                            <th>-</th>
+                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($jobs as $index => $job)
+                        @foreach ($requests as $index => $request)
                             <tr>
                                 <td>{{$index + 1 }}</td>
-                                <td>{{ $job->title_en}}</td>
-                                <td><a href="{{route('admin.careers.getapp', $job->id)}}">  {{ $job->job_requests->count() }}
-                                    </a>
-                                </td>
-                                <td>{{ $job->getStatus() }}</td>
+                                <td>{{ $request->name}}</td>
+                                <td>{{ $request->email}}</td>
+                                <td>{{ $request->phone}}</td>
+                                <td>{{ $request->description}}</td>
+                                <td><a href="{{asset($request->cv_file)}}">View C.V</a></td>
 
-                                <td>
-                                    <a href="{{ route('admin.careers.show', $job->id) }}" class="btn btn-primary btn-circle btn-sm" title="Show"><i class="fa fa-globe"></i></a>
-                                    <a href="{{ route('admin.careers.edit', $job->id) }}" class="btn btn-primary btn-circle btn-sm" title="edit"><i class="fa fa-edit"></i></a>
-                                     <a href="{{ route('admin.careers.changestatus', $job->id) }}" class="btn btn-primary btn-circle btn-sm" title="change status"><i class="fa fa-lock"></i></a>
+                                  <td>
+                                    <a href="{{ route('admin.careers.show', $request->id) }}" class="btn btn-primary btn-circle btn-sm" title="Show"><i class="fa fa-globe"></i></a>
+                                    <a href="{{ route('admin.careers.edit', $request->id) }}" class="btn btn-primary btn-circle btn-sm" title="edit"><i class="fa fa-edit"></i></a>
 
-                                     <a onclick="deleteJob('{{ 'delete-job-' . $job->id }}')" href="#" class="btn btn-danger btn-circle btn-sm" title="delete"><i class="fas fa-trash"></i> </a>
+                                     <a onclick="deleteRequest('{{ 'delete-request-' . $request->id }}')" href="#" class="btn btn-danger btn-circle btn-sm" title="delete"><i class="fas fa-trash"></i> </a>
                                     <!-- Form Delete category -->
                                     <form
-                                        action="{{ route('admin.careers.delete', $job->id) }}"
+                                        action="{{ route('admin.careers.delete', $request->id) }}"
                                         method="POST"
-                                        id="{{ 'delete-job-' . $job->id }}">
+                                        id="{{ 'delete-request-' . $request->id }}">
                                         @csrf
                                         @method('DELETE')
                                     </form>
@@ -66,11 +67,11 @@
 @endsection
 @push('js')
     <script type="text/javascript">
-        function deleteJob(id) {
+        function deleteRequest(id) {
             event.preventDefault();
             swal({
-                title: 'Are you sure to delete this Job ?',
-                text: 'Once the Job has been deleted you cannot retrieve its data',
+                title: 'Are you sure to delete this Request ?',
+                text: 'Once the Request has been deleted you cannot retrieve its data',
                 icon: 'warning',
                 buttons: true,
                 dangerMode: true,
@@ -78,11 +79,11 @@
                 .then((willDelete) => {
                     if (willDelete) {
                         $('#' + id).submit();
-                        swal('Job successfully deleted', {
+                        swal('Request successfully deleted', {
                             icon: 'success',
                         });
                     } else {
-                        swal('Job undeleted');
+                        swal('Request undeleted');
                     }
                 });
         }
