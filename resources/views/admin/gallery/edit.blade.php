@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('admin.aboutUS.index')}}">Back</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('admin.gallery.index')}}">Back</a></li>
                     </ol>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Image</label>
+                                            <label>Image <span style="color: #0f7ae5">hint: dimensional 270*260</span> </label>
                                             <div class="input-group">
                                                 <div class="custom-file">
                                                     <input id="fileimage" type="file" class="custom-file-input {!! $errors->first('url', 'is-invalid') !!}" name="url" required>

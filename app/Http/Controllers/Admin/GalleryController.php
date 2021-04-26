@@ -40,7 +40,7 @@ class GalleryController extends Controller
         $validatedData = $request->validate([
             'title_ar' => ['required','unique:galleries,title_ar'],
             'title_en' => ['required','unique:galleries,title_en'],
-            "url" => 'required|image',
+            "url" => 'required|mimes:jpeg,png,jpg,gif,svg,tif,bmp,ico,psd,webp',
         ]);
         try {
             $gallery = new Gallery();
@@ -102,7 +102,7 @@ class GalleryController extends Controller
         $validatedData = $request->validate([
             'title_ar' => ['required','unique:galleries,title_ar,'.$request->id],
             'title_en' => ['required','unique:galleries,title_en,'.$request->id],
-            "url" => 'required|image',
+            "url" => 'required|mimes:jpeg,png,jpg,gif,svg,tif,bmp,ico,psd,webp',
         ]);
         try {
             $gallery = Gallery::findOrFail($id);

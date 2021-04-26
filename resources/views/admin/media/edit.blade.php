@@ -29,7 +29,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <iframe id="video" class="w-100" height="330"
-                                        src="{{asset($media->url)}}?controls=0">
+                                        src="{{asset($media->url)}}">
                                 </iframe>
                             </div>
                             <div class="col-md-6">
@@ -64,8 +64,8 @@
                                             <label>Video</label>
                                             <div class="input-group">
                                                 <div class="custom-file">
-                                                    <input id="fileimage" type="file" class="custom-file-input {!! $errors->first('url', 'is-invalid') !!}" name="url" required>
-                                                    <label class="custom-file-label">Choose image</label>
+                                                    <input id="fileimage" type="file" class="custom-file-input {!! $errors->first('url', 'is-invalid') !!}" name="url">
+                                                    <label class="custom-file-label">Choose Video</label>
                                                 </div>
                                             </div>
                                             {!! $errors->first('url', '<p class="help-block">:message</p>') !!}
@@ -94,17 +94,14 @@
                 var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
                 if (input.files && input.files[0]&& (ext == "mp4" || ext == "ogx" || ext == "oga" || ext == "ogv" || ext == "ogg" || ext == "webm" || ext == "wmv" || ext == "flv"))
                 {
-                    var reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        $('#video').attr('src',e.target.result);
-                        $('source').attr('src',e.target.result);
-                    }
-                    reader.readAsDataURL(input.files[0]);
+                    var $source = $('#video');
+                    $source[0].src = URL.createObjectURL(input.files[0]);
+                    $source.parent()[0].load();
+                    URL.revokeObjectURL($source[0].src);
                 }
                 else
                 {
-                    $('#fileimage').html('You can upload images only')
+                    $('#fileimage').html('You can upload video only')
                 }
             });
         });
