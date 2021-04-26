@@ -34,11 +34,13 @@ class FrontController extends BaseController
         if($videoID == null){
             $all = Media::all();
             $media['current'] = $all[0];
-            $media['allRemain'] = array_slice((array)$all, 1);
+            //$media['allRemain'] = array_slice((array)$all, 1);
+            $media['allRemain'] = $all;
         }
         else{
             $media['current'] = Media::find($videoID);
-            $media['allRemain'] = Media::all()->except($videoID);
+            //$media['allRemain'] = Media::all()->except($videoID);
+            $media['allRemain'] = Media::all();
         }
         return $this->sendResponse($media, 'All Media retrieved successfully.');
     }

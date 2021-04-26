@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="{{asset('website-assets/images/favicon.png')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('website-assets/css/uikit.min.css')}}">
     <link rel="stylesheet" href="{{asset('website-assets/css/main.css')}}">
-    <link id="dm-dark" rel="stylesheet" href="{{asset('website-assets/css/dark.css')}}" >
+    <link id="dm-light" rel="stylesheet" href="{{asset('website-assets/css/light.css')}}">
+    <link id="dm-dark" rel="stylesheet" href="{{asset('website-assets/css/dark.css')}}" disabled="true">
     @yield('styles')
 </head>

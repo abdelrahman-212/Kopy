@@ -20,6 +20,9 @@
         .page-link {
             background-color: inherit;
         }
+        .uk-lightbox {
+            background: rgba(0, 0, 0, 0.60);
+        }
     </style>
 @endsection
 
@@ -112,7 +115,7 @@
         </div>
         <div class="page-content">
             <div class="uk-container">
-                <div class="mt-5" data-uk-filter="target: .js-filter">
+                <div class="mt-5">
                     <ul class="js-filter uk-grid uk-grid-small uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l" data-uk-grid>
                         @foreach($galleries as $gallery)
                         <li data-tags="spicy">
@@ -121,10 +124,32 @@
                                     <div class="product-item__intro">
                                         <div class="product-item__not-active">
                                             <div class="product-item__media">
-                                                <div class="uk-inline-clip uk-transition-toggle uk-light" data-uk-lightbox="data-uk-lightbox"><a href="{{asset($gallery->url)}}"><img class="h-100 w-100" src="{{asset($gallery->url)}}" alt="Creamy Melt Pizza" />
+
+                                                <!--<div class="uk-inline-clip uk-transition-toggle uk-light" data-uk-lightbox="data-uk-lightbox">
+                                                    <a>
+                                                        <img class="h-100 w-100" src="{{asset($gallery->url)}}" alt="{{(app()->getLocale() == 'ar')? $gallery->title_ar : $gallery->title_en}}" />
                                                         <div class="uk-transition-fade uk-position-cover uk-overlay uk-overlay-primary"></div>
                                                         <div class="uk-position-center"><span class="uk-transition-fade" data-uk-icon="icon: search;"></span></div>
-                                                    </a></div>
+                                                    </a>
+                                                </div>-->
+
+                                                <div class="uk-child-width-1-1@s m-0 p-0 w-100 h-100 uk-inline-clip uk-transition-toggle" uk-grid uk-lightbox="animation: scale">
+                                                    <div class="w-100 h-100 p-0">
+                                                        <a class="uk-inline h-100 w-100" href="{{asset($gallery->url)}}" data-caption="{{(app()->getLocale() == 'ar')? $gallery->title_ar : $gallery->title_en}}">
+                                                            <img class="h-100 w-100" src="{{asset($gallery->url)}}" alt="{{(app()->getLocale() == 'ar')? $gallery->title_ar : $gallery->title_en}}" />
+                                                            <div class="uk-transition-fade uk-position-cover uk-overlay uk-overlay-primary"></div>
+                                                            <div class="uk-position-center"><span class="uk-transition-fade" data-uk-icon="icon: search;"></span></div>
+                                                        </a>
+                                                    </div>
+                                                    @foreach($galleries as $gall)
+                                                        <div class="d-none">
+                                                            <a class="uk-inline" href="{{asset($gall->url)}}" data-caption="{{(app()->getLocale() == 'ar')? $gall->title_ar : $gall->title_en}}">
+                                                                <img class="h-100 w-100" src="{{asset($gall->url)}}" alt="{{(app()->getLocale() == 'ar')? $gall->title_ar : $gall->title_en}}" />
+                                                            </a>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+
                                                 <div class="product-item__whish"><i class="fas fa-heart"></i></div>
                                                 <div class="product-item__tooltip" data-uk-tooltip="title: {{(app()->getLocale() == 'ar')? $gallery->title_ar : $gallery->title_en}} ; pos: bottom-right"><i class="fas fa-info-circle"></i></div>
                                             </div>

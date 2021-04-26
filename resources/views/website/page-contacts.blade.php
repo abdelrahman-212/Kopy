@@ -121,13 +121,10 @@
                             <h3 class="uk-h3">Send us a Message</h3>
                         </div>
                         <div class="section-content">
-                            <form action="#!">
+                            <form action="">
                                 <div class="uk-grid uk-grid-medium uk-child-width-1-2@s" data-uk-grid>
-                                    <div><input class="uk-input" type="text" placeholder="Your Name"></div>
-                                    <div><input class="uk-input" type="text" placeholder="Email"></div>
-                                    <div><input class="uk-input" type="text" placeholder="Phone"></div>
-                                    <div><input class="uk-input" type="text" placeholder="Subject"></div>
-                                    <div class="uk-width-1-1"><textarea class="uk-textarea" name="message" placeholder="Message"></textarea></div>
+                                    <div class="uk-width-1-1"><input class="uk-input" type="text" placeholder="Subject" name="subject"></div>
+                                    <div class="uk-width-1-1"><textarea class="uk-textarea" name="body" placeholder="Message"></textarea></div>
                                     <div><input class="uk-button" type="submit" value="Send message"></div>
                                 </div>
                             </form>

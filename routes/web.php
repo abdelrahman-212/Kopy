@@ -108,14 +108,17 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
     Route::group(['namespace' => 'Website'], function () {
 
         // aboutUS
-        Route::get('/about-us', 'AboutUSController@aboutUSPage')->name('aboutUSPage');
+        Route::get('/about-us', 'AboutUSController@aboutUSPage')->name('aboutUS.page');
         // gallery
-        Route::get('/gallery', 'GalleryController@galleryPage')->name('galleryPage');
+        Route::get('/gallery', 'GalleryController@galleryPage')->name('gallery.page');
+        // video
+        Route::get('/video/{videoID?}', 'VideoController@videoPage')->name('video.page');
+        // contactUS
+        Route::get('/contact-us', 'ContactUSController@contactPage')->name('contact.page');
         //
         Route::get('blog/{id}','NewsController@Blog');
         Route::get('blogs/','NewsController@AllBlogs');
         Route::get('health-info/','HealthInfo@Infos');
-
 
     });
 
