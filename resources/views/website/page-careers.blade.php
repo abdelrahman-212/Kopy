@@ -156,7 +156,7 @@
                                             <div class="article-intro__content">
                                                 <p> {{$job -> brief_description_ar}} </p>
                                             </div>
-                                            <div class="article-intro__bottom">
+                                            <div class="article-intro__bottom row justify-content-center">
                                                 {{--                                    <div class="article-intro__tags"><i class="fas fa-tags"></i><span>cheese, Pizza, Cookies, Bake</span></div>--}}
                                                 <div class="article-intro__more"><a class="uk-button"
                                                                                     href="{{route('get.career',$job->id)}}">Read
@@ -191,15 +191,15 @@
                                                     <div class="article-intro__content">
                                                         <p> {{$job -> brief_description_en}} </p>
                                                     </div>
-                                                    <div class="article-intro__bottom">
+                                                    <div class="article-intro__bottom row justify-content-center">
                                                         {{--                                    <div class="article-intro__tags"><i class="fas fa-tags"></i><span>cheese, Pizza, Cookies, Bake</span></div>--}}
-                                                        <div class="article-intro__more"><a class="uk-button"
-                                                                                            href="{{route('get.career',$job->id)}}">Read
+                                                        <div class="article-intro__more "><a class="uk-button"
+                                                                                             href="{{route('get.career',$job->id)}}">Read
                                                                 More</a></div>
                                                     </div>
                                                 </div>
                                             </article>
-                                             @endif
+                                            @endif
 
                                             @endforeach
                                             @endif

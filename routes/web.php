@@ -134,5 +134,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
     Route::get('/signup',[\App\Http\Controllers\Website\AuthController::class,'get_sign_up'])->name('get.sign.up');
   Route::post('/get-sign-up',[\App\Http\Controllers\Website\AuthController::class,'sign_up'])->name('sign.up');
+    Route::get('/get-sign-up-with-facebook',[\App\Http\Controllers\Website\AuthController::class,'loginWithFacebook'])->name('loginWithFacebook');
 
 });

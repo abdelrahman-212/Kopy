@@ -162,7 +162,7 @@
 
                                         <div class="article-full__image"><a href="/page-blog-article.html"><img
                                                     src="{{$article->image}}" alt="img-article"></a></div>
-                                        <div class="article-full__content">
+                                        <div class="article-full__content article-full__nav text-center">
 
                                             <h2 class="article-intro__title">{{$article -> title_en}}</h2>
                                             <div class="article-intro__content">
@@ -190,32 +190,32 @@
                                             {{--                                </ul>--}}
                                             {{--                            </div>--}}
                                             {{--                        </div>--}}
-                                            <div class="article-full__nav">
-                                                <ul class="articles-nav-list">
-                                                    <li class="articles-nav-item"><a class="articles-nav-item__link"
-                                                                                     href="{{route('get.new',($article->id)-1)}}">
-                                                            {{--                                        <div class="articles-nav-item__img"><img src="{{asset('website-assets/img/blog/img-article-thumb-1.jpg')}}" alt="article-thumb"></div>--}}
-                                                            {{--                                        <div class="articles-nav-item__info">--}}
-                                                            {{--                                            <div class="articles-nav-item__title">The Ultimate King: Chicken-Eggs Burger</div>--}}
-                                                            {{--                                            <div class="articles-nav-item__user"> <i class="fas fa-user"></i><span>By Sam Joseph</span></div>--}}
-                                                            {{--                                        </div>--}}
-                                                            <div class="articles-nav-item__label">Prev Blog</div>
+                                            {{--                                            <div class="article-full__nav">--}}
+                                            {{--                                                <ul class="articles-nav-list">--}}
+                                            {{--                                                    <li class="articles-nav-item"><a class="articles-nav-item__link"--}}
+                                            {{--                                                                                     href="{{route('get.new',($article->id)-1)}}">--}}
+                                            {{--                                                                                                    <div class="articles-nav-item__img"><img src="{{asset('website-assets/img/blog/img-article-thumb-1.jpg')}}" alt="article-thumb"></div>--}}
+                                            {{--                                                                                                    <div class="articles-nav-item__info">--}}
+                                            {{--                                                                                                        <div class="articles-nav-item__title">The Ultimate King: Chicken-Eggs Burger</div>--}}
+                                            {{--                                                                                                        <div class="articles-nav-item__user"> <i class="fas fa-user"></i><span>By Sam Joseph</span></div>--}}
+                                            {{--                                                                                                    </div>--}}
+                                            {{--                                                            <div class="articles-nav-item__label">Prev Blog</div>--}}
 
-                                                        </a>
-                                                    </li>
-                                                    <li class="articles-nav-item"><a class="articles-nav-item__link"
-                                                                                     href="{{route('get.new',($article->id)+1)}}">
-                                                            {{--                                        <div class="articles-nav-item__img"><img src="{{asset('website-assets/img/blog/img-article-thumb-2.jpg')}}" alt="article-thumb"></div>--}}
-                                                            {{--                                        <div class="articles-nav-item__info">--}}
-                                                            {{--                                            <div class="articles-nav-item__title">Top 10 Recipes of 2020 With Chef Kim</div>--}}
-                                                            {{--                                            <div class="articles-nav-item__user"> <i class="fas fa-user"></i><span>By Sam Joseph</span></div>--}}
-                                                            {{--                                        </div>--}}
+                                            {{--                                                        </a>--}}
+                                            {{--                                                    </li>--}}
+                                            {{--                                                    <li class="articles-nav-item"><a class="articles-nav-item__link"--}}
+                                            {{--                                                                                     href="{{route('get.new',($article->id)+1)}}">--}}
+                                            {{--                                                                                                    <div class="articles-nav-item__img"><img src="{{asset('website-assets/img/blog/img-article-thumb-2.jpg')}}" alt="article-thumb"></div>--}}
+                                            {{--                                                                                                    <div class="articles-nav-item__info">--}}
+                                            {{--                                                                                                        <div class="articles-nav-item__title">Top 10 Recipes of 2020 With Chef Kim</div>--}}
+                                            {{--                                                                                                        <div class="articles-nav-item__user"> <i class="fas fa-user"></i><span>By Sam Joseph</span></div>--}}
+                                            {{--                                                                                                    </div>--}}
 
-                                                            <div class="articles-nav-item__label">Next Blog</div>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            {{--                                                            <div class="articles-nav-item__label">Next Blog</div>--}}
+                                            {{--                                                        </a>--}}
+                                            {{--                                                    </li>--}}
+                                            {{--                                                </ul>--}}
+                                            {{--                                            </div>--}}
                                             @endif
 
 

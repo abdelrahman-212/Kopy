@@ -40,9 +40,9 @@
                             SIGN UP
                         </button>
                         <div class="py-2">
-                            <button class="btn btn-facebook btn-lg btn-block"><i class="feather-facebook"></i> Connect with
+                            <a href="{{route('loginWithFacebook')}}" class="btn btn-facebook btn-lg btn-block"><i class="feather-facebook"></i> Connect with
                                 Facebook
-                            </button>
+                            </a>
                         </div>
                     </form>
                 </div>

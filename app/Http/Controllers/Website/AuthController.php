@@ -76,6 +76,36 @@ class AuthController extends Controller
 
         }
     }
+    public function loginWithFacebook(Request $request)
+    {
+     return   $return = (app(\App\Http\Controllers\Api\AuthController::class)->loginWithFacebook($request))->getOriginalContent();
+        $temp = '';
+        foreach ($return as $in => $re) {
+            if ($in == 'success') {
+                $temp = $re;
+            }
+
+            if ($in == 'data') {
+                if ($temp == true) {
+                    $success = $re;
+                    return redirect()->route('careers.all')->with(['success' => 'your application been submitted']);
+                } else {
+                    $error = $re;
+                    return redirect()->route('careers.all')->with(['error' => $error]);
+
+                }
+            }
+            if ($in == 'error') {
+
+                $error = $re;
+                return redirect()->route('get.sign.up')->with(['error' => $error]);
+
+
+            }
+
+
+        }
+    }
 
     public function logout()
     {
