@@ -115,7 +115,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::get('/video/{videoID?}', 'VideoController@videoPage')->name('video.page');
         // contactUS
         Route::get('/contact-us', 'ContactUSController@contactPage')->name('contact.page');
-        //
+        // login
+        Route::get('/test', function (){
+            return view('website.myOrder');
+        });
+
         Route::get('blog/{id}','NewsController@Blog');
         Route::get('blogs/','NewsController@AllBlogs');
         Route::get('health-info/','HealthInfo@Infos');

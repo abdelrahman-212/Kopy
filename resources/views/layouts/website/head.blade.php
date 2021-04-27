@@ -7,8 +7,15 @@
     <meta name="HandheldFriendly" content="true">
     <meta name="format-detection" content="telephone=no">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="shortcut icon" href="{{asset('website-assets/images/favicon.png')}}" type="image/x-icon">
+    <link href="{{asset('website2-assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{{asset('website2-assets/vendor/slick/slick.min.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('website2-assets/vendor/slick/slick-theme.min.css')}}" />
+    <link href="{{asset('website2-assets/vendor/icons/feather.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('website2-assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('website2-assets/vendor/sidebar/demo.css')}}" rel="stylesheet">
+
+    <link rel="shortcut icon" href="{{asset('website-assets/img/favicon.png')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('website-assets/css/uikit.min.css')}}">
     <link rel="stylesheet" href="{{asset('website-assets/css/main.css')}}">
     <link id="dm-light" rel="stylesheet" href="{{asset('website-assets/css/light.css')}}">
