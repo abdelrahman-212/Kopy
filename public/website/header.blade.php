@@ -18,10 +18,10 @@
                 <div class="uk-navbar-right"><a class="uk-button" href="#"> <span>Make Your Pizza</span><img class="uk-margin-small-left" src="{{asset('website-assets/img/icons/pizza.png')}}" alt="pizza"></a>
                     <ul class="uk-navbar-nav">
                         <li><a href="#">Our Menu</a></li>
-{{--                        <li><a href="{{route('gallery.page')}}">Gallery</a></li>--}}
-{{--                        <li><a href="{{route('video.page')}}">Videos</a></li>--}}
+                        <li><a href="{{route('gallery.page')}}">Gallery</a></li>
+                        <li><a href="{{route('video.page')}}">Videos</a></li>
                         <li><a href="#">Latest News</a></li>
-{{--                        <li><a href="{{route('contact.page')}}">Contact us</a></li>--}}
+                        <li><a href="{{route('contact.page')}}">Contact us</a></li>
                     </ul>
                 </div>
             </nav>

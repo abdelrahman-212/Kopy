@@ -115,7 +115,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
     });
     // aboutUS
-    Route::get('/about-us', 'AboutUSController@aboutUSPage')->name('aboutUSPage');
+    Route::get('/about-us', 'AboutUSController@aboutUSPage')->name('aboutUS.page');
     // all News
     Route::get('/categories/{category}', 'Admin\ItemController@getCategory');
     Route::get('/careers/',[\App\Http\Controllers\Website\CareersControllers::class,'AllJobs'])->name('careers.all');
@@ -127,5 +127,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     Route::get('/Blog/{id}',[\App\Http\Controllers\Website\NewsController::class,'Blog'])->name('get.new');
     Route::get('/health-infos/',[\App\Http\Controllers\Website\HealthInfo::class,'Infos'])->name('health-infos.all');
 
-});
 
+
+     Route::get('/signin',[\App\Http\Controllers\Website\AuthController::class,'get_login'])->name('get.login');
+    Route::post('/get-sign-in',[\App\Http\Controllers\Website\AuthController::class,'login'])->name('login');
+
+    Route::get('/signup',[\App\Http\Controllers\Website\AuthController::class,'get_sign_up'])->name('get.sign.up');
+  Route::post('/get-sign-up',[\App\Http\Controllers\Website\AuthController::class,'sign_up'])->name('sign.up');
+
+});

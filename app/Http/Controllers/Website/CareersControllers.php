@@ -64,12 +64,11 @@ class CareersControllers extends Controller
             }
             if ($in == 'data') {
                 if ($temp == true) {
-                    $job = $re;
+               return     $job = $re;
                     return redirect()->route('careers.all')->with(['success' => 'your application been submitted']);
                 } else {
-                    $error = $re;
-                    return gettype($error['email'][0]);
-                    return redirect()->route('apply.form',$id)->with(['error' => $error]);
+                    return   $error = $re;
+                     return redirect()->route('apply.form',$id)->with(['error' => $error]);
 
                 }
             }
