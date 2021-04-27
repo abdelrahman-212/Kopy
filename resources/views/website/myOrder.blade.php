@@ -69,7 +69,7 @@
                                                     </div>
                                                     <div class="text-right">
                                                         <a href="checkout.html" class="btn btn-primary px-3">Reorder</a>
-                                                        <a href="contact-us.html" class="btn btn-outline-primary px-3">Help</a>
+                                                        <a href="contact-us.html" class="btn btn-outline-primary px-3">Details</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -105,8 +105,8 @@
                                                         <span class="text-dark font-weight-bold">$12.74</span>
                                                     </div>
                                                     <div class="text-right">
-                                                        <a href="status_onprocess.html" class="btn btn-primary px-3">Track</a>
-                                                        <a href="contact-us.html" class="btn btn-outline-primary px-3">Help</a>
+                                                        <a href="checkout.html" class="btn btn-primary px-3">Reorder</a>
+                                                        <a href="contact-us.html" class="btn btn-outline-primary px-3">Details</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -143,7 +143,8 @@
                                                         <span class="text-dark font-weight-bold">$12.74</span>
                                                     </div>
                                                     <div class="text-right">
-                                                        <a href="contact-us.html" class="btn btn-outline-primary px-3">Help</a>
+                                                        <a href="checkout.html" class="btn btn-primary px-3">Reorder</a>
+                                                        <a href="contact-us.html" class="btn btn-outline-primary px-3">Details</a>
                                                     </div>
                                                 </div>
                                             </div>

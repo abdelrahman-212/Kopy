@@ -116,8 +116,20 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         // contactUS
         Route::get('/contact-us', 'ContactUSController@contactPage')->name('contact.page');
         // login
-        Route::get('/test', function (){
+        Route::get('/test1', function (){
             return view('website.myOrder');
+        });
+        Route::get('/test2', function (){
+            return view('website.cart');
+        });
+        Route::get('/test3', function (){
+            return view('website.checkout');
+        });Route::get('/test4', function (){
+            return view('website.signup');
+        });Route::get('/test5', function (){
+            return view('website.login');
+        });Route::get('/test6', function (){
+            return view('website.profile');
         });
 
         Route::get('blog/{id}','NewsController@Blog');
