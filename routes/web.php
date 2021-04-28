@@ -115,7 +115,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::get('/video/{videoID?}', 'VideoController@videoPage')->name('video.page');
         // contactUS
         Route::get('/contact-us', 'ContactUSController@contactPage')->name('contact.page');
-        // login
+        // contactUS
+        Route::get('/menu', 'MenuController@menuPage')->name('menu.page');
+        //
         Route::get('/test1', function (){
             return view('website.myOrder');
         });
@@ -130,6 +132,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
             return view('website.login');
         });Route::get('/test6', function (){
             return view('website.profile');
+        });Route::get('/test7', function (){
+            return view('website.home');
         });
 
         Route::get('blog/{id}','NewsController@Blog');

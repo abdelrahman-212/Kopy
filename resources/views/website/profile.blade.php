@@ -17,7 +17,7 @@
                     <div class=" position-relative">
                         <div class="pt-5 osahan-profile row">
                             <div class="col-md-4 mb-3">
-                                <div class="bg-white rounded shadow-sm sticky_sidebar overflow-hidden">
+                                <div class="bg-white rounded shadow-sm sticky_sidebar overflow-hidden" style="box-shadow: 0 .125rem .25rem rgba(0,0,0,.25)!important;">
                                     <a href="profile.html" class="">
                                         <div class="d-flex align-items-center p-3">
                                             <div class="left mr-3">
@@ -56,7 +56,7 @@
                                 </div>
                             </div>
                             <div class="col-md-8 mb-3">
-                                <div class="rounded shadow-sm p-4 bg-white">
+                                <div class="rounded shadow-sm p-4 bg-white" style="background-color: #e6e6e68c!important;box-shadow: 0 .125rem 0.25rem rgba(0,0,0,.25)!important;">
                                     <h5 class="mb-4">My account</h5>
                                     <div id="edit_profile">
                                         <div>

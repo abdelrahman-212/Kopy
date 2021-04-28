@@ -18,7 +18,7 @@ class MenuController extends BaseController
 
     public function getCategory(Request $request, Category $category) {
         $category = $category->with('items', 'extras', 'withouts')->find($category->id);
-        
+
         foreach ($category->items as $key => $item) {
 
             $branches = explode(',',$item->branches);
@@ -26,26 +26,26 @@ class MenuController extends BaseController
             if(in_array($request->branch_id, $branches))
             {
                 $offers = DB::table('offer_discount_items')->where('item_id', $item->id)->get();
-            
+
                 $parent_offer = null;
                 foreach ($offers as $offer) {
                     $parent_offer = OfferDiscount::find($offer->offer_id);
-                    
-                    
+
+
                     if ($parent_offer)  break;
-                    
+
                 }
-                
+
                 if ($parent_offer) {
-                    
+
                     if (\Carbon\Carbon::now() < $parent_offer->offer->date_from || \Carbon\Carbon::now() > $parent_offer->offer->date_to) {
                         $parent_offer = null;
                     }
                 }
-                
-                
+
+
                 $item->offer = $parent_offer;
-                
+
                 if ($parent_offer) {
                     if ($parent_offer->discount_type == 1) {
                         $disccountValue = $item->price * $parent_offer->discount_value / 100 ;
@@ -53,10 +53,10 @@ class MenuController extends BaseController
                     } elseif($parent_offer->discount_type == 2) {
                         $item->offer->offer_price = $item->price - $parent_offer->discount_value;
                     }
-                    
+
                     unset($item->offer->offer);
-                }    
-            }   
+                }
+            }
         }
 
         return $this->sendResponse($category, 'Categories retrieved successfully.');
@@ -71,26 +71,26 @@ class MenuController extends BaseController
             if(in_array($request->branch_id, $branches))
             {
                 $offers = DB::table('offer_discount_items')->where('item_id', $item->id)->get();
-            
+
                 $parent_offer = null;
                 foreach ($offers as $offer) {
                     $parent_offer = OfferDiscount::find($offer->offer_id);
-                    
+
                     // Just edit
                     if ($parent_offer)  break;
-                    
+
                 }
-                
+
                 if ($parent_offer) {
-                    
+
                     if (\Carbon\Carbon::now() < $parent_offer->offer->date_from || \Carbon\Carbon::now() > $parent_offer->offer->date_to) {
                         $parent_offer = null;
                     }
                 }
-                
-                
+
+
                 $item->offer = $parent_offer;
-                
+
                 if ($parent_offer) {
                     if ($parent_offer->discount_type == 1) {
                         $disccountValue = $item->price * $parent_offer->discount_value / 100 ;
@@ -98,12 +98,12 @@ class MenuController extends BaseController
                     } elseif($parent_offer->discount_type == 2) {
                         $item->offer->offer_price = $item->price - $parent_offer->discount_value;
                     }
-                    
+
                     unset($item->offer->offer);
                 }
             }
         }
-        
+
         return $this->sendResponse($items, 'items retrieved successfully.');
     }
 
