@@ -137,3 +137,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     Route::get('/get-sign-up-with-facebook',[\App\Http\Controllers\Website\AuthController::class,'loginWithFacebook'])->name('loginWithFacebook');
 
 });
+Route::get('/hh',function (){
+    return view('website.profile');
+});

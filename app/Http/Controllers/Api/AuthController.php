@@ -37,7 +37,7 @@ use Twilio\Jwt\ClientToken;
                     $user->save();
                 }
 
-           //    $user->branches;//??
+            $user->branches;//??
 
                 $data = [
                     'userData' => $user,
