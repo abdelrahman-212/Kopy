@@ -106,6 +106,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 // Front routes
     Route::group(['namespace' => 'Website'], function () {
 
+        /*mhmm 30/4*/
         // aboutUS
         Route::get('/about-us', 'AboutUSController@aboutUSPage')->name('aboutUS.page');
         // gallery
@@ -116,42 +117,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::get('/contact-us', 'ContactUSController@contactPage')->name('contact.page');
         // contactUS
         Route::get('/menu', 'MenuController@menuPage')->name('menu.page');
-        //
-<<<<<<< HEAD
-        Route::get('/about-us', 'AboutUSController@aboutUSPage')->name('aboutUSPage');
-        Route::get('blog/{id}', 'NewsController@Blog');
-        Route::get('blogs/', 'NewsController@AllBlogs');
-        Route::get('health-info/', 'HealthInfo@Infos');
-=======
-        Route::get('/test1', function (){
-            return view('website.myOrder');
-        });
-        Route::get('/test2', function (){
-            return view('website.cart');
-        });
-        Route::get('/test3', function (){
-            return view('website.checkout');
-        });Route::get('/test4', function (){
-            return view('website.signup');
-        });Route::get('/test5', function (){
-            return view('website.login');
-        });Route::get('/test6', function (){
-            return view('website.profile');
-        });Route::get('/test7', function (){
-            return view('website.home');
-        });
-
-        Route::get('blog/{id}','NewsController@Blog');
-        Route::get('blogs/','NewsController@AllBlogs');
-        Route::get('health-info/','HealthInfo@Infos');
-
-    });
->>>>>>> mhmm
+        /*mhmm30/4*/
 
 
     });
-    // aboutUS
-    Route::get('/about-us', 'AboutUSController@aboutUSPage')->name('aboutUSPage');
+    
     // all News
     Route::get('/categories/{category}', 'Admin\ItemController@getCategory');
     Route::get('/careers/',[\App\Http\Controllers\Website\CareersControllers::class,'AllJobs'])->name('careers.all');
