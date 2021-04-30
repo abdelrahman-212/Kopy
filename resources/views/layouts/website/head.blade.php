@@ -20,7 +20,5 @@
     <link rel="stylesheet" href="{{asset('website-assets/css/main.css')}}">
     <link id="dm-light" rel="stylesheet" href="{{asset('website-assets/css/light.css')}}">
     <link id="dm-dark" rel="stylesheet" href="{{asset('website-assets/css/dark.css')}}" disabled="true">
-
-
     @yield('styles')
 </head>

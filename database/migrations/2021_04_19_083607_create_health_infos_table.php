@@ -17,7 +17,7 @@ class CreateHealthInfosTable extends Migration
             $table->bigIncrements('id');
             $table->string('title_ar');
             $table->string('title_en');
-             $table->longText('description_ar')->nullable();
+            $table->longText('description_ar')->nullable();
             $table->longText('description_en')->nullable();
             $table->timestamps();
         });

@@ -3,6 +3,14 @@
 @section('title') Profile @endsection
 
 @section('styles')
+<style>
+    h6{
+      font-family: 'sans-serif';
+    }
+</style>
+    <link rel="icon" type="image/png" href="{{asset('website2-assets/img/favicon.png')}}">
+
+    <link href="{{asset('website2-assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <link href="{{asset('website2-assets/vendor/fontawesome/css/all.min.css')}}" rel="stylesheet">
 
@@ -11,11 +19,6 @@
     <link href="{{asset('website2-assets/vendor/select2/css/select2.min.css')}}" rel="stylesheet">
 
     <link href="{{asset('website2-assets/css/osahan.css')}}" rel="stylesheet">
-    <style>
-        p{
-            margin:0;
-        }
-    </style>
 @endsection
 
 @section('pageName')
@@ -43,6 +46,9 @@
                                                 <div class="right">
                                                     <h6 class="mb-1 font-weight-bold">Gurdeep Singh <i
                                                             class="feather-check-circle text-success"></i></h6>
+                                                    <p class="text-muted m-0 small"><span class="__cf_email__"
+                                                                                          data-cfemail="ea838b8785998b828b84aa8d878b8386c4898587">[email&#160;protected]</span>
+                                                    </p>
                                                 </div>
                                             </div>
                                         </a>
@@ -50,169 +56,282 @@
                                             <p class="m-0">Account Points</p>
                                             <h5 class="m-0 ml-auto text-primary">100</h5>
                                         </div>
-
                                         <div class="bg-white profile-details">
 
-                                            <a class="d-flex w-100 align-items-center border-bottom p-3">
-                                                <div class="left mr-3">
-                                                    <h6 class="font-weight-bold mb-1 text-dark">My Orders</h6>
-                                                    <p class="small text-muted m-0">show an order or reorder</p>
-                                                </div>
-                                            </a>
-                                            <a class="d-flex w-100 align-items-center border-bottom p-3" onclick="">
-                                                <div class="left mr-3">
-                                                    <h6 class="font-weight-bold mb-1 text-dark">
-                                                        Addresses
-                                                    </h6>
-                                                    <p class="small text-muted m-0">Add or remove a delivery address</p>
-                                                </div>
-                                            </a>
-                                            <a class="d-flex w-100 align-items-center border-bottom p-3" onclick="account()">
-                                                <div class="left mr-3">
-                                                    <h6 class="font-weight-bold mb-1 text-dark">
-                                                        account
-                                                    </h6>
-                                                    <p class="small text-muted m-0">Add or remove a delivery address</p>
-                                                </div>
-                                            </a>
+                                            <ul class="nav   flex-column border-0  " id="myTab"
+                                                role="tablist">
+
+                                                <li class="nav-item d-flex w-100 align-items-center border-bottom    ">
+                                                    <a class="nav-link" id="account-tab" data-toggle="tab"
+                                                       href="#account" role="tab"
+                                                       aria-controls="account" aria-selected="false">
+                                                        <div class="left mr-3">
+                                                            <h6 class="font-weight-bold mb-1 text-dark">
+                                                                Account
+                                                            </h6>
+                                                            <p class="small text-muted m-0">Edit your Account Details</p>
+                                                        </div>
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="nav-item d-flex w-100 align-items-center border-bottom ">
+                                                    <a class="nav-link" id="addresses-tab" data-toggle="tab"
+                                                       href="#addresses" role="tab"
+                                                       aria-controls="addresses" aria-selected="false">
+
+                                                        <div class="left mr-3">
+                                                            <h6 class="font-weight-bold mb-1 text-dark">
+                                                                Addresses
+                                                            </h6>
+                                                            <p class="small text-muted m-0">Add or remove a delivery
+                                                                address</p>
+                                                        </div>
+
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
-
-
-                                    </div>
+                                     </div>
                                 </div>
                                 <div class="col-md-9 mb-3">
-                                    <div class="rounded shadow-sm bg-white"
+                                    <div class="rounded shadow-sm p-4 bg-white"
                                          style="background-color: #e6e6e68c!important;box-shadow: 0 .125rem 0.25rem rgba(0,0,0,.25)!important;">
-
-                                        <div class="col-md-12 p-0">
-                                            <div class="osahan-account-page-right shadow-sm bg-white p-4 w-100 h-100">
-                                                <div class="modal fade" id="add-address-modal" tabindex="-1"
-                                                     role="dialog" aria-labelledby="add-address"
-                                                     aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="add-address">Add Delivery
-                                                                    Address</h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
+                                        <div class="tab-content" id="myTabContent">
+                                            <div class="tab-pane fade show active" id="account" role="tabpanel"
+                                                 aria-labelledby="account-tab">
+                                                <h4 class="font-weight-bold mt-0 mb-4">Manage account</h4>
+                                                <div id="edit_profile">
+                                                    <div>
+                                                        <form action="my_account.html">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputName1">Name <span
+                                                                        class="text-info">Hint:Name should be "first last"</span></label>
+                                                                <input type="text" class="form-control"
+                                                                       id="exampleInputName1d"
+                                                                       placeholder="Gurdeep Gurdeep">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="exampleInputNumber1">Mobile Number</label>
+                                                                <input type="number" class="form-control"
+                                                                       id="exampleInputNumber1"
+                                                                       value="1234567890">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Email</label>
+                                                                <input type="email" class="form-control"
+                                                                       id="exampleInputEmail1"
+                                                                       value="iamosahan@gmail.com">
+                                                            </div>
+                                                            <div class="text-center">
+                                                                <button type="submit" class="uk-button btn-block">Save
+                                                                    Changes
                                                                 </button>
                                                             </div>
-                                                            <div class="modal-body">
-                                                                <form>
-                                                                    <div class="form-row">
-                                                                        <div class="form-group col-md-12">
-                                                                            <label for="inputPassword4">Delivery
-                                                                                Area</label>
-                                                                            <div class="input-group">
-                                                                                <input type="text" class="form-control"
-                                                                                       placeholder="Delivery Area">
-                                                                                <div class="input-group-append">
-                                                                                    <button
-                                                                                        class="btn btn-outline-secondary"
-                                                                                        type="button"
-                                                                                        id="button-addon2"><i
-                                                                                            class="icofont-ui-pointer"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group col-md-12">
-                                                                            <label for="inputPassword4">Complete Address
-                                                                            </label>
-                                                                            <input type="text" class="form-control"
-                                                                                   placeholder="Complete Address e.g. house number, street name, landmark">
-                                                                        </div>
-                                                                        <div class="form-group col-md-12">
-                                                                            <label for="inputPassword4">Delivery
-                                                                                Instructions
-                                                                            </label>
-                                                                            <input type="text" class="form-control"
-                                                                                   placeholder="Delivery Instructions e.g. Opposite Gold Souk Mall">
-                                                                        </div>
-                                                                        <div class="form-group mb-0 col-md-12">
-                                                                            <label for="inputPassword4">Nickname
-                                                                            </label>
-                                                                            <div
-                                                                                class="btn-group btn-group-toggle d-flex justify-content-center"
-                                                                                data-toggle="buttons">
-                                                                                <label class="btn btn-info active">
-                                                                                    <input type="radio" name="options"
-                                                                                           id="option1"
-                                                                                           autocomplete="off" checked>
-                                                                                    Home
-                                                                                </label>
-                                                                                <label class="btn btn-info">
-                                                                                    <input type="radio" name="options"
-                                                                                           id="option2"
-                                                                                           autocomplete="off"> Work
-                                                                                </label>
-                                                                                <label class="btn btn-info">
-                                                                                    <input type="radio" name="options"
-                                                                                           id="option3"
-                                                                                           autocomplete="off"> Other
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button"
-                                                                        class="btn d-flex w-50 text-center justify-content-center btn-outline-primary"
-                                                                        data-dismiss="modal">CANCEL
-                                                                </button>
-                                                                <button type="button"
-                                                                        class="btn d-flex w-50 text-center justify-content-center btn-primary">
-                                                                    SUBMIT
-                                                                </button>
-                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="additional">
+                                                        <div class="change_password my-3">
+                                                            <a href="forgot_password.html"
+                                                               class="p-3 border rounded bg-white btn d-flex align-items-center">Change
+                                                                Password
+                                                                <i class="feather-arrow-right ml-auto"></i></a>
                                                         </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="modal fade" id="delete-address-modal" tabindex="-1"
-                                                     role="dialog" aria-labelledby="delete-address"
-                                                     aria-hidden="true">
-                                                    <div class="modal-dialog modal-sm modal-dialog-centered"
-                                                         role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="delete-address">Delete</h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p class="mb-0 text-black">Are you sure you want to
-                                                                    delete this xxxxx?</p>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button"
-                                                                        class="btn d-flex w-50 text-center justify-content-center btn-outline-primary"
-                                                                        data-dismiss="modal">CANCEL
-                                                                </button>
-                                                                <button type="button"
-                                                                        class="btn d-flex w-50 text-center justify-content-center btn-primary">
-                                                                    DELETE
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="tab-content" id="myTabContent">
-
 
                                                     </div>
-
                                                 </div>
 
                                             </div>
+                                            <div class="tab-pane fade" id="addresses" role="tabpanel"
+                                                 aria-labelledby="addresses-tab">
+                                                <h4 class="font-weight-bold mt-0 mb-4">Manage Addresses</h4>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div
+                                                            class="bg-white card addresses-item mb-4 border border-primary shadow">
+                                                            <div class="gold-members p-4">
+                                                                <div class="media">
+                                                                    <div class="mr-3"><i
+                                                                            class="icofont-ui-home icofont-3x"></i>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <h6 class="mb-1 text-secondary">Home</h6>
+                                                                        <p class="text-black">Osahan House, Jawaddi
+                                                                            Kalan, Ludhiana, Punjab
+                                                                            141002, India
+                                                                        </p>
+                                                                        <p class="mb-0 text-black font-weight-bold"><a
+                                                                                class="text-primary mr-3"
+                                                                                data-toggle="modal"
+                                                                                data-target="#add-address-modal"
+                                                                                href="#"><i
+                                                                                    class="icofont-ui-edit"></i>
+                                                                                EDIT</a> <a class="text-danger"
+                                                                                            data-toggle="modal"
+                                                                                            data-target="#delete-address-modal"
+                                                                                            href="#"><i
+                                                                                    class="icofont-ui-delete"></i>
+                                                                                DELETE</a></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="bg-white card addresses-item mb-4 shadow-sm">
+                                                            <div class="gold-members p-4">
+                                                                <div class="media">
+                                                                    <div class="mr-3"><i
+                                                                            class="icofont-briefcase icofont-3x"></i>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <h6 class="mb-1">Work</h6>
+                                                                        <p>NCC, Model Town Rd, Pritm Nagar, Model Town,
+                                                                            Ludhiana, Punjab
+                                                                            141002, India
+                                                                        </p>
+                                                                        <p class="mb-0 text-black font-weight-bold"><a
+                                                                                class="text-primary mr-3"
+                                                                                data-toggle="modal"
+                                                                                data-target="#add-address-modal"
+                                                                                href="#"><i
+                                                                                    class="icofont-ui-edit"></i>
+                                                                                EDIT</a> <a class="text-danger"
+                                                                                            data-toggle="modal"
+                                                                                            data-target="#delete-address-modal"
+                                                                                            href="#"><i
+                                                                                    class="icofont-ui-delete"></i>
+                                                                                DELETE</a></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pt-2 pb-2">
+                                                    <div class="col-md-6">
+                                                        <div class="bg-white card addresses-item mb-4  shadow-sm">
+                                                            <div class="gold-members p-4">
+                                                                <div class="media">
+                                                                    <div class="mr-3"><i
+                                                                            class="icofont-location-pin icofont-3x"></i>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <h6 class="mb-1">Other</h6>
+                                                                        <p>Delhi Bypass Rd, Jawaddi Taksal, Ludhiana,
+                                                                            Punjab 141002, India
+                                                                        </p>
+                                                                        <p class="mb-0 text-black font-weight-bold"><a
+                                                                                class="text-primary mr-3"
+                                                                                data-toggle="modal"
+                                                                                data-target="#add-address-modal"
+                                                                                href="#"><i
+                                                                                    class="icofont-ui-edit"></i>
+                                                                                EDIT</a> <a class="text-danger"
+                                                                                            data-toggle="modal"
+                                                                                            data-target="#delete-address-modal"
+                                                                                            href="#"><i
+                                                                                    class="icofont-ui-delete"></i>
+                                                                                DELETE</a></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="bg-white card addresses-item mb-4  shadow-sm">
+                                                            <div class="gold-members p-4">
+                                                                <div class="media">
+                                                                    <div class="mr-3"><i
+                                                                            class="icofont-location-pin icofont-3x"></i>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <h6 class="mb-1">Other</h6>
+                                                                        <p>MT, Model Town Rd, Pritm Nagar, Model Town,
+                                                                            Ludhiana, Punjab
+                                                                            141002, India
+                                                                        </p>
+                                                                        <p class="mb-0 text-black font-weight-bold"><a
+                                                                                class="text-primary mr-3"
+                                                                                data-toggle="modal"
+                                                                                data-target="#add-address-modal"
+                                                                                href="#"><i
+                                                                                    class="icofont-ui-edit"></i>
+                                                                                EDIT</a> <a class="text-danger"
+                                                                                            data-toggle="modal"
+                                                                                            data-target="#delete-address-modal"
+                                                                                            href="#"><i
+                                                                                    class="icofont-ui-delete"></i>
+                                                                                DELETE</a></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="bg-white card addresses-item shadow-sm">
+                                                            <div class="gold-members p-4">
+                                                                <div class="media">
+                                                                    <div class="mr-3"><i
+                                                                            class="icofont-location-pin icofont-3x"></i>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <h6 class="mb-1">Other</h6>
+                                                                        <p>GNE Rd, Jawaddi Taksal, Ludhiana, Punjab
+                                                                            141002, India
+                                                                        </p>
+                                                                        <p class="mb-0 text-black font-weight-bold"><a
+                                                                                class="text-primary mr-3"
+                                                                                data-toggle="modal"
+                                                                                data-target="#add-address-modal"
+                                                                                href="#"><i
+                                                                                    class="icofont-ui-edit"></i>
+                                                                                EDIT</a> <a class="text-danger"
+                                                                                            data-toggle="modal"
+                                                                                            data-target="#delete-address-modal"
+                                                                                            href="#"><i
+                                                                                    class="icofont-ui-delete"></i>
+                                                                                DELETE</a></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="bg-white card addresses-item shadow-sm">
+                                                            <div class="gold-members p-4">
+                                                                <div class="media">
+                                                                    <div class="mr-3"><i
+                                                                            class="icofont-location-pin icofont-3x"></i>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <h6 class="mb-1">Other</h6>
+                                                                        <p>GTTT, Model Town Rd, Pritm Nagar, Model Town,
+                                                                            Ludhiana, Punjab
+                                                                            141002, India
+                                                                        </p>
+                                                                        <p class="mb-0 text-black font-weight-bold"><a
+                                                                                class="text-primary mr-3"
+                                                                                data-toggle="modal"
+                                                                                data-target="#add-address-modal"
+                                                                                href="#"><i
+                                                                                    class="icofont-ui-edit"></i>
+                                                                                EDIT</a> <a class="text-danger"
+                                                                                            data-toggle="modal"
+                                                                                            data-target="#delete-address-modal"
+                                                                                            href="#"><i
+                                                                                    class="icofont-ui-delete"></i>
+                                                                                DELETE</a></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -388,275 +507,16 @@
             </div>
         </div>
     @endsection
+    <script src="{{asset('website2-assets/vendor/jquery/jquery-3.3.1.slim.min.js')}}"
+            type="350f2dc2cb10a9e5c7caa9c2-text/javascript"></script>
 
-    @section('scripts')
-        <script>
-             function account(){
-                $('#myTabContent').html('<div class="tab-pane fade show active" id="account">'+
-                    '<h4 class="font-weight-bold mt-0 mb-4"> My Account</h4>
-                    <div id="edit_profile">
-                    <div>
-                    <form action="my_account.html">
-                    <div class="form-group">
-                    <label for="exampleInputName1">Name <span
-                    class="text-info">Hint:Name should be "first last"</span></label>
-                <input type="text" class="form-control"
-                id="exampleInputName1d"
-                placeholder="Gurdeep Gurdeep">
-                    </div>
-                <div class="form-group">
-                    <label for="exampleInputNumber1">Mobile
-                        Number</label>
-                    <input type="number" class="form-control"
-                           id="exampleInputNumber1"
-                           value="1234567890">
-                </div>
-                <div class="form-group">
-                    <label
-                        for="exampleInputEmail1">Email</label>
-                    <input type="email" class="form-control"
-                           id="exampleInputEmail1"
-                           value="iamosahan@gmail.com">
-                </div>
-                <div class="text-center">
-                    <button type="submit"
-                            class="uk-button btn-block">Save
-                        Changes
-                    </button>
-                </div>
-            </form>
+    <script src="{{asset('website2-assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"
+            type="350f2dc2cb10a9e5c7caa9c2-text/javascript"></script>
 
-            </div>
-                <div class="additional">
-                    <div class="change_password my-3">
-                        <a href="forgot_password.html"
-                           class="p-3 border rounded bg-white btn d-flex align-items-center">Change
-                            Password
-                            <i class="feather-arrow-right ml-auto"></i></a>
-                    </div>
+    <script src="{{asset('website2-assets/vendor/select2/js/select2.min.js')}}"
+            type="350f2dc2cb10a9e5c7caa9c2-text/javascript"></script>
 
-                </div>
-            </div>
-
-            </div>');
-            }
-            function address(){
-                $('#myTabContent').html('<div class="tab-pane fade" id="addresses" role="tabpanel">'+
-                    '<h4 class="font-weight-bold mt-0 mb-4">Manage Addresses</h4>'+
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div
-                                class="bg-white card addresses-item mb-4 border border-primary shadow">
-                                <div class="gold-members p-4">
-                                    <div class="media">
-                                        <div class="mr-3"><i
-                                            class="icofont-ui-home icofont-3x"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <h6 class="mb-1 text-secondary">
-                                                Home</h6>
-                                            <p class="text-black">Osahan House,
-                                                Jawaddi Kalan, Ludhiana, Punjab
-                                                141002, India
-                                            </p>
-                                            <p class="mb-0 text-black font-weight-bold">
-                                                <a
-                                                    class="text-primary mr-3"
-                                                    data-toggle="modal"
-                                                    data-target="#add-address-modal"
-                                                    href="#"><i
-                                                    class="icofont-ui-edit"></i>
-                                                    EDIT</a> <a
-                                                class="text-danger"
-                                                data-toggle="modal"
-                                                data-target="#delete-address-modal"
-                                                href="#"><i
-                                                class="icofont-ui-delete"></i>
-                                                DELETE</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div
-                                class="bg-white card addresses-item mb-4 shadow-sm">
-                                <div class="gold-members p-4">
-                                    <div class="media">
-                                        <div class="mr-3"><i
-                                            class="icofont-briefcase icofont-3x"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <h6 class="mb-1">Work</h6>
-                                            <p>NCC, Model Town Rd, Pritm Nagar,
-                                                Model Town, Ludhiana, Punjab
-                                                141002, India
-                                            </p>
-                                            <p class="mb-0 text-black font-weight-bold">
-                                                <a
-                                                    class="text-primary mr-3"
-                                                    data-toggle="modal"
-                                                    data-target="#add-address-modal"
-                                                    href="#"><i
-                                                    class="icofont-ui-edit"></i>
-                                                    EDIT</a> <a
-                                                class="text-danger"
-                                                data-toggle="modal"
-                                                data-target="#delete-address-modal"
-                                                href="#"><i
-                                                class="icofont-ui-delete"></i>
-                                                DELETE</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <div class="row pt-2 pb-2">
-                    <div class="col-md-6">
-                        <div
-                            class="bg-white card addresses-item mb-4  shadow-sm">
-                            <div class="gold-members p-4">
-                                <div class="media">
-                                    <div class="mr-3"><i
-                                        class="icofont-location-pin icofont-3x"></i>
-                                    </div>
-                                    <div class="media-body">
-                                        <h6 class="mb-1">Other</h6>
-                                        <p>Delhi Bypass Rd, Jawaddi Taksal,
-                                            Ludhiana, Punjab 141002, India
-                                        </p>
-                                        <p class="mb-0 text-black font-weight-bold">
-                                            <a
-                                                class="text-primary mr-3"
-                                                data-toggle="modal"
-                                                data-target="#add-address-modal"
-                                                href="#"><i
-                                                class="icofont-ui-edit"></i>
-                                                EDIT</a> <a
-                                            class="text-danger"
-                                            data-toggle="modal"
-                                            data-target="#delete-address-modal"
-                                            href="#"><i
-                                            class="icofont-ui-delete"></i>
-                                            DELETE</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div
-                            class="bg-white card addresses-item mb-4  shadow-sm">
-                            <div class="gold-members p-4">
-                                <div class="media">
-                                    <div class="mr-3"><i
-                                        class="icofont-location-pin icofont-3x"></i>
-                                    </div>
-                                    <div class="media-body">
-                                        <h6 class="mb-1">Other</h6>
-                                        <p>MT, Model Town Rd, Pritm Nagar,
-                                            Model Town, Ludhiana, Punjab
-                                            141002, India
-                                        </p>
-                                        <p class="mb-0 text-black font-weight-bold">
-                                            <a
-                                                class="text-primary mr-3"
-                                                data-toggle="modal"
-                                                data-target="#add-address-modal"
-                                                href="#"><i
-                                                class="icofont-ui-edit"></i>
-                                                EDIT</a> <a
-                                            class="text-danger"
-                                            data-toggle="modal"
-                                            data-target="#delete-address-modal"
-                                            href="#"><i
-                                            class="icofont-ui-delete"></i>
-                                            DELETE</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="bg-white card addresses-item shadow-sm">
-                            <div class="gold-members p-4">
-                                <div class="media">
-                                    <div class="mr-3"><i
-                                        class="icofont-location-pin icofont-3x"></i>
-                                    </div>
-                                    <div class="media-body">
-                                        <h6 class="mb-1">Other</h6>
-                                        <p>GNE Rd, Jawaddi Taksal, Ludhiana,
-                                            Punjab 141002, India
-                                        </p>
-                                        <p class="mb-0 text-black font-weight-bold">
-                                            <a
-                                                class="text-primary mr-3"
-                                                data-toggle="modal"
-                                                data-target="#add-address-modal"
-                                                href="#"><i
-                                                class="icofont-ui-edit"></i>
-                                                EDIT</a> <a
-                                            class="text-danger"
-                                            data-toggle="modal"
-                                            data-target="#delete-address-modal"
-                                            href="#"><i
-                                            class="icofont-ui-delete"></i>
-                                            DELETE</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="bg-white card addresses-item shadow-sm">
-                            <div class="gold-members p-4">
-                                <div class="media">
-                                    <div class="mr-3"><i
-                                        class="icofont-location-pin icofont-3x"></i>
-                                    </div>
-                                    <div class="media-body">
-                                        <h6 class="mb-1">Other</h6>
-                                        <p>GTTT, Model Town Rd, Pritm Nagar,
-                                            Model Town, Ludhiana, Punjab
-                                            141002, India
-                                        </p>
-                                        <p class="mb-0 text-black font-weight-bold">
-                                            <a
-                                                class="text-primary mr-3"
-                                                data-toggle="modal"
-                                                data-target="#add-address-modal"
-                                                href="#"><i
-                                                class="icofont-ui-edit"></i>
-                                                EDIT</a> <a
-                                            class="text-danger"
-                                            data-toggle="modal"
-                                            data-target="#delete-address-modal"
-                                            href="#"><i
-                                            class="icofont-ui-delete"></i>
-                                            DELETE</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>');
-            }
-        </script>
-
-        <script src="{{asset('website2-assets/vendor/jquery/jquery-3.3.1.slim.min.js')}}"
-                type="text/javascript"></script>
-
-        <script src="{{asset('website2-assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"
-                type="text/javascript"></script>
-
-        <script src="{{asset('website2-assets/vendor/select2/js/select2.min.js')}}"
-                type="text/javascript"></script>
-
-        <script src="{{asset('website2-assets/js/custom.js')}}"
-                type="text/javascript')}}"></script>
-@endsection
+    <script src="{{asset('website2-assets/js/custom.js')}}" type="350f2dc2cb10a9e5c7caa9c2-text/javascript"></script>
+    <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js"
+            data-cf-settings="350f2dc2cb10a9e5c7caa9c2-|49" defer=""></script>
+@section('scripts')@endsection

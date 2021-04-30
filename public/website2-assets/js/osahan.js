@@ -6,14 +6,11 @@ Version: 1.0
 */
 (function($) {
     "use strict"; // Start of use strict
-    
-    
-    
 
 
-    $("body").on("contextmenu",function(e){
+    /*$("body").on("contextmenu",function(e){
         return false;
-    });
+    });*/
     $(document).keydown(function(e){
          if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 85 || e.keyCode === 117)){
            return false;
@@ -49,7 +46,7 @@ Version: 1.0
             return false;
          }
     });
-	
+
 
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
