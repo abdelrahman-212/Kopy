@@ -30,10 +30,9 @@ class AddressesController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request,$guard='api')
     {
-        $user = $request->user();
-
+        $user= auth()->guard($guard)->user();
         $address = Address::where('customer_id', $user->id)->orderBy('created_at', 'DESC')->get();
         return $this->sendResponse($address, 'The addresses returned successfuly');
     }
@@ -147,10 +146,9 @@ class AddressesController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Address $address, Request $request)
+    public function destroy(Address $address, Request $request ,$guard='api')
     {
-
-        if ($address->customer->id == $request->user()->id) {
+          if ($address->customer->id ==   auth()->guard($guard)->user()->id) {
             if ($address->delete())
                 return $this->sendResponse(null, 'The address deleted successfully!');
         }

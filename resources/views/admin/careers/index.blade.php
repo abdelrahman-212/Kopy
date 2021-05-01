@@ -26,7 +26,7 @@
                             <th>No. Of Applications</th>
 
                             <th>Status</th>
-                              <th>Action</th>
+                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -34,12 +34,9 @@
                             <tr>
                                 <td>{{$index + 1 }}</td>
                                 <td>{{ $job->title_en}}</td>
-                                <td><a href="{{route('admin.careers.getapp', $job->id)}}">  {{ $job->job_requests->count() }}
-                                    </a>
-                                </td>
+                                <td>{{ $job->job_requests->count() }}</td>
                                 <td>{{ $job->getStatus() }}</td>
-
-                                <td>
+                                 <td>
                                     <a href="{{ route('admin.careers.show', $job->id) }}" class="btn btn-primary btn-circle btn-sm" title="Show"><i class="fa fa-globe"></i></a>
                                     <a href="{{ route('admin.careers.edit', $job->id) }}" class="btn btn-primary btn-circle btn-sm" title="edit"><i class="fa fa-edit"></i></a>
                                      <a href="{{ route('admin.careers.changestatus', $job->id) }}" class="btn btn-primary btn-circle btn-sm" title="change status"><i class="fa fa-lock"></i></a>

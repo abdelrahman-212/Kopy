@@ -42,15 +42,6 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputArabicName">Arabic Title</label>
-                                        <input type="text" class="form-control" id="exampleInputArabicTitle"
-                                               placeholder="Enter Author Name"   name="author" value="{{ old('author') ?? "" }}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="exampleInputArabicDescription">Arabic Description</label>

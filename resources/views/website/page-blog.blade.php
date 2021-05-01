@@ -129,14 +129,15 @@
                 </div>
             </div>
             <div class="page-content">
-                <div class="uk-margin-large-top uk-container">
+                <div class="uk-margin-large-top uk-container text-center">
                     <div class="uk-grid" data-uk-grid>
                         <div class="uk-width-2-3@m">
                             @if(isset($articles))
                                 @foreach($articles as $article)
 
                                     <article class="article-intro">
-                                        <div class="article-intro__image"><a href="page-blog-article.html"><img src="{{$article
+                                        <div class="article-intro__image"><a
+                                                href="{{route('get.new',$article->id)}}"><img src="{{$article
 ->image}}" alt="img-article"></a></div>
                                         <div class="article-intro__body">
                                             <div class="article-intro__info">
@@ -153,15 +154,14 @@
                                             <div class="article-intro__content">
                                                 <p> {{$article -> description_en}} </p>
                                             </div>
-                                            <div class="article-intro__bottom">
+                                            <div class="article-intro__bottom row justify-content-center">
                                                 {{--                                    <div class="article-intro__tags"><i class="fas fa-tags"></i><span>cheese, Pizza, Cookies, Bake</span></div>--}}
-                                                <div class="article-intro__more"><a class="uk-button"
-                                                                                    href="{{route('get.new',$article->id)}}">Read
-                                                        More</a></div>
+                                                <div class="article-intro__more align-self-center"><a class="uk-button " href="{{route('get.new',$article->id)}}">Read More</a></div>
                                             </div>
                                         </div>
                                     </article>
                                 @endforeach
+                                {{$articles->links()}}
                             @endif
                             {{--                        <article class="article-intro">--}}
                             {{--                            <div class="article-intro__image">--}}
@@ -230,13 +230,13 @@
                             {{--                                </div>--}}
                             {{--                            </div>--}}
                             {{--                        </article>--}}
-                            <ul class="uk-pagination uk-flex-center uk-margin-medium-top">
-                                <li class="uk-active"><span>1</span></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li class="uk-disabled"><span>...</span></li>
-                                <li><a href="#"><span data-uk-pagination-next></span></a></li>
-                            </ul>
+                            {{--                            <ul class="uk-pagination uk-flex-center uk-margin-medium-top">--}}
+                            {{--                                <li class="uk-active"><span>1</span></li>--}}
+                            {{--                                <li><a href="#">2</a></li>--}}
+                            {{--                                <li><a href="#">3</a></li>--}}
+                            {{--                                <li class="uk-disabled"><span>...</span></li>--}}
+                            {{--                                <li><a href="#"><span data-uk-pagination-next></span></a></li>--}}
+                            {{--                            </ul>--}}
                         </div>
                         <div class="uk-width-1-3@m">
                             {{--                        <aside class="sidebar">--}}
@@ -319,7 +319,7 @@
                 </div>
             </div>
         </main>
-    @endsection
+@endsection
 
-    @section('scripts')@endsection
-    z
+@section('scripts')@endsection
+

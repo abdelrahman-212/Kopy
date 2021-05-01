@@ -15,8 +15,7 @@ use App\Notifications\activateSMS;
 use AWS;
 use Twilio\Rest\Client;
 use Twilio\Jwt\ClientToken;
-
-class AuthController extends BaseController
+ class AuthController extends BaseController
 {
     //website
     //
@@ -25,21 +24,20 @@ class AuthController extends BaseController
     public function login(Request $request)
     {
 
-        $credentials = [
+         $credentials = [
             'email' => request('email'),
             'password' => request('password')
         ];
 
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-
-            if ($user->hasRole('customer')) {
+         if (Auth::attempt($credentials)) {
+             $user = Auth::user();
+             if ($user->hasRole('customer')) {
                 if ($request->has('device_token')) {
                     $user->device_token = $request->device_token;
                     $user->save();
                 }
 
-                $user->branches;//??
+             $user->branches;//??
 
                 $data = [
                     'userData' => $user,
@@ -49,7 +47,7 @@ class AuthController extends BaseController
                 return $this->sendResponse($data, 'User logged in successfuly');
             }
         }
-        return $this->sendError('Unauthorised!', 401);
+        return $this->sendError('Unauthorised!', $credentials);
     }
 
     public function loginCashier(Request $request)
@@ -92,7 +90,9 @@ class AuthController extends BaseController
         ]);
 //, 'unique:users,first_phone'
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 401);
+            return response()->json(["success" => false,
+                'error' => $validator->errors()],
+                401);
         }
 
         $name = explode(" ", $request->name);
@@ -106,9 +106,20 @@ class AuthController extends BaseController
             'activation_token' => mt_rand(100000, 999999)
         ]);
 
+        try {
+            $user = User::create($request->all());
+            $user->attachRole(3);
+            return $this->sendResponse($user, 'Successfully created user!');
 
-        $user = User::create($request->all());
-        $user->attachRole(3);
+        } catch (\Exception $e) {
+            return response()->json([
+                "success" => false,
+                "message" => $e->getMessage()
+            ], 400);
+
+            //echo "Error: " . $e->getMessage();
+        }
+
 
         // $user->notify(new SignupActivate($user));
 
@@ -132,30 +143,30 @@ class AuthController extends BaseController
         // temp
 
         //test twilio
-        $accountSid = config('app.twilio')['TWILIO_ACCOUNT_SID'];
-        $authToken  = config('app.twilio')['TWILIO_AUTH_TOKEN'];
-        $client = new Client($accountSid, $authToken);
-        try {
-            // Use the client to do fun stuff like send text messages!
-            $client->messages->create(
-                // the number you'd like to send the message to
-                $user->first_phone,
-                array(
-                    // A Twilio phone number you purchased at twilio.com/console
-                    'from' => '+1 314 720 6127',
-                    // the body of the text message you'd like to send
-                    'body' => 'KOP:Thanks for signup! Please before you begin, you must confirm your account. Your Code is:' . $user->activation_token,
-                )
-            );
-               return $this->sendResponse($user, 'Successfully created user!');
-        } catch (\Exception $e) {
-            return response()->json([
-                    "success" => false,
-                    "message" => $e->getMessage()
-                ], 400);
-
-            //echo "Error: " . $e->getMessage();
-        }
+//        $accountSid = config('app.twilio')['TWILIO_ACCOUNT_SID'];
+//        $authToken  = config('app.twilio')['TWILIO_AUTH_TOKEN'];
+//        $client = new Client($accountSid, $authToken);
+//        try {
+//            // Use the client to do fun stuff like send text messages!
+//            $client->messages->create(
+//                // the number you'd like to send the message to
+//                $user->first_phone,
+//                array(
+//                    // A Twilio phone number you purchased at twilio.com/console
+//                    'from' => '+1 314 720 6127',
+//                    // the body of the text message you'd like to send
+//                    'body' => 'KOP:Thanks for signup! Please before you begin, you must confirm your account. Your Code is:' . $user->activation_token,
+//                )
+//            );
+//               return $this->sendResponse($user, 'Successfully created user!');
+//        } catch (\Exception $e) {
+//            return response()->json([
+//                    "success" => false,
+//                    "message" => $e->getMessage()
+//                ], 400);
+//
+//            //echo "Error: " . $e->getMessage();
+//        }
         //end test Twillo
 
 
