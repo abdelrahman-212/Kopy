@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6a5e09c-0a78-4430-98df-c760e2dff5e3" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Website/AddressController.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Website/AuthController.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Website/MenuController.php" afterDir="false" />
@@ -256,6 +257,16 @@
       <change beforePath="$PROJECT_DIR$/resources/views/website/page-blog.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/page-blog.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/website/page-careers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/page-careers.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Website/MenuController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/website/menu.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/MenuController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/MenuController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/website/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/website/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/website/cart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/cart.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/website/myOrder.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/myOrder.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/website/profile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/website/profile.blade.php" afterDir="false" />
+>>>>>>> 732e2394b491137bd1e9b664dcfb9b94e1042666
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -268,6 +279,30 @@
     <execution />
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="mhmm" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
@@ -417,8 +452,14 @@
       <recent name="C:\wamp64\www\kopy_git\resources\views\website" />
       <recent name="C:\xampp\htdocs\Kopy\app\Http\Controllers\Website" />
       <recent name="C:\xampp\htdocs\Kopy\resources\views\website" />
+<<<<<<< HEAD
       <recent name="C:\xampp\htdocs\Kopy\resources\views\layouts\front" />
       <recent name="C:\wamp64\www\kopy_git\app\Http\Controllers\Website" />
+=======
+      <recent name="C:\xampp\htdocs\Kopy\public\website2-assets" />
+      <recent name="C:\xampp\htdocs\Kopy\public\website2-assets\css" />
+      <recent name="C:\xampp\htdocs\Kopy\public\website2-assets\js" />
+>>>>>>> 732e2394b491137bd1e9b664dcfb9b94e1042666
     </key>
   </component>
   <component name="RunManager">
@@ -449,6 +490,10 @@
       <workItem from="1619340808945" duration="4935000" />
       <workItem from="1619345881683" duration="14256000" />
       <workItem from="1619423747689" duration="18047000" />
+      <workItem from="1619510451604" duration="26919000" />
+      <workItem from="1619540487851" duration="138000" />
+      <workItem from="1619545278526" duration="2542000" />
+      <workItem from="1619597298637" duration="19818000" />
     </task>
     <servers />
   </component>
