@@ -117,18 +117,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::get('/video/{videoID?}', 'VideoController@videoPage')->name('video.page');
         // contactUS
         Route::get('/contact-us', 'ContactUSController@contactPage')->name('contact.page');
-<<<<<<< HEAD
 
         //
         Route::get('/about-us', 'AboutUSController@aboutUSPage')->name('aboutUSPage');
         Route::get('blog/{id}', 'NewsController@Blog');
         Route::get('blogs/', 'NewsController@AllBlogs');
         Route::get('health-info/', 'HealthInfo@Infos');
-=======
-        // contactUS
+         // contactUS
         Route::get('/menu', 'MenuController@menuPage')->name('menu.page');
         /*mhmm30/4*/
->>>>>>> 732e2394b491137bd1e9b664dcfb9b94e1042666
 
         // contactUS
         Route::get('/menu', 'MenuController@menuPage')->name('menu.page');
@@ -182,16 +179,14 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         });
 
     });
-<<<<<<< HEAD
-=======
-    
+
+
     // all News
     Route::get('/categories/{category}', 'Admin\ItemController@getCategory');
     Route::get('/careers/',[\App\Http\Controllers\Website\CareersControllers::class,'AllJobs'])->name('careers.all');
     Route::get('/get-career/{id}',[\App\Http\Controllers\Website\CareersControllers::class,'GetJob'])->name('get.career');
     Route::get('/apply-form/{id}',[\App\Http\Controllers\Website\CareersControllers::class,'ApplyJobForm'])->name('apply.form');
     Route::post('/career-request/{id}',[\App\Http\Controllers\Website\CareersControllers::class,'CareerRequest'])->name('career.request');
->>>>>>> 732e2394b491137bd1e9b664dcfb9b94e1042666
 
 
     Route::get('/categories/{category}', 'Admin\ItemController@getCategory');

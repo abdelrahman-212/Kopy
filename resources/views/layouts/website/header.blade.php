@@ -4,35 +4,29 @@
             <nav class="uk-navbar-container uk-navbar-transparent" data-uk-navbar="">
                 <div class="uk-navbar-left"><button class="uk-button" type="button" data-target="#offcanvas" data-uk-toggle data-uk-icon="menu"></button>
                     <ul class="uk-navbar-nav">
-<<<<<<< HEAD
-                        <li><a href="{{route('menu.page')}}">Home</a></li>
+                         <li><a href="{{route('menu.page')}}">Home</a></li>
                         <li><a href="{{route('aboutUS.page')}}">About us</a></li>
                         @auth()
                         <li><a href="{{route('logout')}}">Log Out </a></li>
                         @endauth
-=======
-<<<<<<< HEAD
-                        <li><a href="#">Home</a></li>
-=======
-                        <li><a href="{{route('menu.page')}}">Home</a></li>
-                        <li><a href="{{route('aboutUS.page')}}">About us</a></li>
->>>>>>> mhmm
->>>>>>> 732e2394b491137bd1e9b664dcfb9b94e1042666
+                        @if(!auth()->user())
+                            <li><a href="{{route('get.login')}}">login</a></li>
+
+                        @endif
+                         <li><a href="{{route('aboutUS.page')}}">About us</a></li>
+
                         <li><a href="#">Order Online</a></li>
                         <li><a href="#">Your Wishlist</a></li>
                     </ul>
                 </div>
                 <div class="uk-navbar-center">
                     <div class="logo">
-<<<<<<< HEAD
+
                         <div class="logo__box"><a class="logo__link" href="{{route('menu.page')}}"> <img class="logo__img logo__img--full" src="{{asset('website-assets/img/logo.png')}}" alt="logo"><img class="logo__img logo__img-small" src="{{asset('website-assets/img/logo-small.png')}}" alt="logo"></a></div>
-=======
-<<<<<<< HEAD
-                        <div class="logo__box"><a class="logo__link" href="#"> <img class="logo__img logo__img--full" src="{{asset('website-assets/img/logo.png')}}" alt="logo"><img class="logo__img logo__img-small" src="{{asset('website-assets/img/logo-small.png')}}" alt="logo"></a></div>
-=======
+                         <div class="logo__box"><a class="logo__link" href="#"> <img class="logo__img logo__img--full" src="{{asset('website-assets/img/logo.png')}}" alt="logo"><img class="logo__img logo__img-small" src="{{asset('website-assets/img/logo-small.png')}}" alt="logo"></a></div>
+
                         <div class="logo__box"><a class="logo__link" href="{{route('menu.page')}}"> <img class="logo__img logo__img--full" src="{{asset('website-assets/img/logo.png')}}" alt="logo"><img class="logo__img logo__img-small" src="{{asset('website-assets/img/logo-small.png')}}" alt="logo"></a></div>
->>>>>>> mhmm
->>>>>>> 732e2394b491137bd1e9b664dcfb9b94e1042666
+
                     </div>
                 </div>
                 <div class="uk-navbar-right"><a class="uk-button" href="#"> <span>Make Your Pizza</span><img class="uk-margin-small-left" src="{{asset('website-assets/img/icons/pizza.png')}}" alt="pizza"></a>
