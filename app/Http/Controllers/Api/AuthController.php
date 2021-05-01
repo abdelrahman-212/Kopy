@@ -95,18 +95,18 @@ use Twilio\Jwt\ClientToken;
                 401);
         }
 
-        $name = explode(" ", $request->name);
-
-        $request->merge([
-            'first_name' => $name[0],
-            'last_name' => $name[1],
-            'password' => bcrypt($request->password),
-            'first_phone' => $request->phone,
-            'age' => $request->age,
-            'activation_token' => mt_rand(100000, 999999)
-        ]);
-
         try {
+            $name = explode(" ", $request->name);
+
+            $request->merge([
+                'first_name' => $name[0],
+                'last_name' => $name[1],
+                'password' => bcrypt($request->password),
+                'first_phone' => $request->phone,
+                'age' => $request->age,
+                'activation_token' => mt_rand(100000, 999999)
+            ]);
+
             $user = User::create($request->all());
             $user->attachRole(3);
             return $this->sendResponse($user, 'Successfully created user!');

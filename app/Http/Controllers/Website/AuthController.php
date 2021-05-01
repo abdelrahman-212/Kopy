@@ -26,27 +26,27 @@ class AuthController extends Controller
             return redirect()->route('get.login')->with(['success' => 'your application been submitted']);
         }
         else{
-            $error = [];
+            $errorarray = [];
             if(array_key_exists('message', $return)){
-                $error['message'] = "Failed to sign up, Try again later.";
-                return back()->with('error', $error);
+                $errorarray['message'] = "Failed to sign up, Try again later.";
+
+                return view('website.signup',compact(['errorarray']));
             }
             else{
                 if($return['error']->first('email')){
-                    $error['email'] = $return['error']->first('email');
+                    $errorarray['email'] = $return['error']->first('email');
                 }
                 if ($return['error']->first('name')){
-                    $error['name'] = $return['error']->first('name');
+                    $errorarray['name'] = $return['error']->first('name');
                 }
                 if ($return['error']->first('password')){
-                    $error['password'] = $return['error']->first('password');
+                    $errorarray['password'] = $return['error']->first('password');
                 }
                 if ($return['error']->first('phone')){
-                    $error['phone'] = $return['error']->first('phone');
+                    $errorarray['phone'] = $return['error']->first('phone');
                 }
 
-                return $error['phone'];
-                return back()->with('error', 'Failed to find that resource');
+               return view('website.signup',compact(['errorarray']));
             }
         }
 
@@ -76,7 +76,8 @@ class AuthController extends Controller
                 return redirect()->route('home.page');
             }
         }
-        return redirect()->back()->withErrors(['error' => 'unauthorized!, Please Check Your Credentials.']);
+        $error = 'Unauthorized, Please Check Your Credentials.';
+        return view('website.login',compact(['error']));
 
     }
 
