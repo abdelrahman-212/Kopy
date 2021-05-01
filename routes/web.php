@@ -6,7 +6,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
     Route::group(['prefix'=>'admin'], function (){
         Auth::routes(['register' => false]);
     });
-
+    Route::get('/categories/{category}', 'Admin\ItemController@getCategory');
 
     // Admin Panel
     Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], function (){
@@ -106,8 +106,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
     });
 
-    Route::get('/categories/{category}', 'Admin\ItemController@getCategory');
-
 
     // Front routes
     Route::group(['namespace' => 'Website'], function () {
@@ -124,7 +122,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::get('/contact-us', 'ContactUSController@contactPage')->name('contact.page');
         // menu
         Route::get('/menu', 'MenuController@menuPage')->name('menu.page');
-
 
         Route::get('/careers/',[\App\Http\Controllers\Website\CareersControllers::class,'AllJobs'])->name('careers.all');
         Route::get('/get-career/{id}',[\App\Http\Controllers\Website\CareersControllers::class,'GetJob'])->name('get.career');
