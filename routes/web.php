@@ -137,9 +137,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
             return view('website.home');
         });
 
-        Route::get('blog/{id}','NewsController@Blog');
-        Route::get('blogs/','NewsController@AllBlogs');
-        Route::get('health-info/','HealthInfo@Infos');
+//        Route::get('blog/{id}','NewsController@Blog');
+//        Route::get('blogs/','NewsController@AllBlogs');
+//        Route::get('health-info/','HealthInfo@Infos');
 
 
         Route::get('/categories/{category}', 'Admin\ItemController@getCategory');
@@ -152,13 +152,19 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::get('/Blog/{id}',[\App\Http\Controllers\Website\NewsController::class,'Blog'])->name('get.new');
         Route::get('/health-infos/',[\App\Http\Controllers\Website\HealthInfo::class,'Infos'])->name('health-infos.all');
 
-        Route::get('/signin',[\App\Http\Controllers\Website\AuthController::class,'get_login'])->name('get.login');
-        Route::post('/get-sign-in',[\App\Http\Controllers\Website\AuthController::class,'login'])->name('login');
+        Route::get('/get-sign-in',[\App\Http\Controllers\Website\AuthController::class,'get_login'])->name('get.login');
+        Route::post('/signin',[\App\Http\Controllers\Website\AuthController::class,'login'])->name('login');
 
-        Route::get('/signup',[\App\Http\Controllers\Website\AuthController::class,'get_sign_up'])->name('get.sign.up');
-        Route::post('/get-sign-up',[\App\Http\Controllers\Website\AuthController::class,'sign_up'])->name('sign.up');
-        Route::get('/get-sign-up-with-facebook',[\App\Http\Controllers\Website\AuthController::class,'loginWithFacebook'])->name('loginWithFacebook');
+        Route::get('/signup',[\App\Http\Controllers\Website\AuthController::class,'get_sign_up'])->middleware('web')->name('get.sign.up');
+        Route::post('/get-sign-up',[\App\Http\Controllers\Website\AuthController::class,'sign_up'])->middleware('web')->name('sign.up');
 
+         Route::group(['middleware' => ['auth'] ], function () {
+            Route::get('/my-addresses',[\App\Http\Controllers\Website\AddressController::class,'get_address'])->middleware('auth')->name('profile');
+            Route::get('/delete_address/{address}',[\App\Http\Controllers\Website\AddressController::class,'delete'])->name('delete_address');
+            Route::post('/delete_address/{address}',[\App\Http\Controllers\Website\AddressController::class,'update'])->name('update_address');
+            Route::get('/logout',[\App\Http\Controllers\Website\AuthController::class,'logout'])->name('logout');
+
+        });
 
     });
 
@@ -166,6 +172,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
     Route::get('/categories/{category}', 'Admin\ItemController@getCategory');
 
 });
-Route::get('/hh',function (){
-    return view('website.profile');
-});
+
+
+

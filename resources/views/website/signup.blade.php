@@ -12,7 +12,8 @@
             <div class="px-5 col-md-6 ml-auto">
                 <div class="px-5 col-10 mx-auto">
                     <h2 class="text-dark my-0">Hello There.</h2>
-                    <p class="text-50">Sign up to continue</p>
+                    <p class="text-50">Sign up to continue
+                      </p>
                     <form class="mt-5 mb-4"  method="POSt" action="{{route('sign.up')}}">
                          @CSRF
                         <div class="form-group">
@@ -20,6 +21,7 @@
                             <input type="text" name="name" placeholder="Enter Full Name" class="form-control" id="exampleInputName1"
                                    aria-describedby="nameHelp">
                         </div>
+
                         <div class="form-group">
                             <label for="exampleInputEmail" class="text-dark">E-mail</label>
                             <input type="email" name="email" placeholder="Enter Your E-mail" class="form-control" id="exampleInputEmail"
@@ -40,7 +42,7 @@
                             SIGN UP
                         </button>
                         <div class="py-2">
-                            <a href="{{route('loginWithFacebook')}}" class="btn btn-facebook btn-lg btn-block"><i class="feather-facebook"></i> Connect with
+                            <a href="/" class="btn btn-facebook btn-lg btn-block"><i class="feather-facebook"></i> Connect with
                                 Facebook
                             </a>
                         </div>

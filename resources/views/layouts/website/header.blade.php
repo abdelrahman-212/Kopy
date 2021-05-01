@@ -6,6 +6,9 @@
                     <ul class="uk-navbar-nav">
                         <li><a href="{{route('menu.page')}}">Home</a></li>
                         <li><a href="{{route('aboutUS.page')}}">About us</a></li>
+                        @auth()
+                        <li><a href="{{route('logout')}}">Log Out </a></li>
+                        @endauth
                         <li><a href="#">Order Online</a></li>
                         <li><a href="#">Your Wishlist</a></li>
                     </ul>

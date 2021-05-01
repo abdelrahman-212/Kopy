@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Website;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
-class AuthController extends Controller
+ class AuthController extends Controller
 {
     public function get_login()
     {
@@ -21,95 +20,39 @@ class AuthController extends Controller
     {
         $return = (app(\App\Http\Controllers\Api\AuthController::class)->register($request))->getOriginalContent();
         $temp = '';
-        foreach ($return as $in => $re) {
-            if ($in == 'success') {
-                $temp = $re;
-            }
-            if ($in == 'data') {
-                if ($temp == true) {
-                    $success = $re;
-                    return redirect()->route('careers.all')->with(['success' => 'your application been submitted']);
-                } else {
-                    $error = $re;
-                    return redirect()->route('careers.all')->with(['error' => $error]);
-
-                }
-            }
-            if ($in == 'error') {
-
-                $error = $re;
-                return redirect()->route('get.sign.up')->with(['error' => $error]);
 
 
-            }
+        if ($return['success'] == true) {
+            return redirect()->route('profile')->with(['success' => 'your application been submitted']);
 
         }
+        if ($return['error']) {
+
+             return redirect()->route('get.sign.up')->withErrors($return['error'])->withInput();
+        }
+
     }
 
     public function login(Request $request)
     {
         $return = (app(\App\Http\Controllers\Api\AuthController::class)->login($request))->getOriginalContent();
         $temp = '';
-        foreach ($return as $in => $re) {
-            if ($in == 'success') {
-                $temp = $re;
-            }
-
-            if ($in == 'data') {
-                if ($temp == true) {
-                    $success = $re;
-                    return redirect()->route('careers.all')->with(['success' => 'your application been submitted']);
-                } else {
-                    $error = $re;
-                    return redirect()->route('careers.all')->with(['error' => $error]);
-
-                }
-            }
-            if ($in == 'error') {
-
-                $error = $re;
-                return redirect()->route('get.sign.up')->with(['error' => $error]);
+        $return['message'];
 
 
-            }
-
+        if ($return['success'] == true) {
+            return redirect()->route('profile')->with(['success' => 'your application been submitted']);
 
         }
-    }
-    public function loginWithFacebook(Request $request)
-    {
-     return   $return = (app(\App\Http\Controllers\Api\AuthController::class)->loginWithFacebook($request))->getOriginalContent();
-        $temp = '';
-        foreach ($return as $in => $re) {
-            if ($in == 'success') {
-                $temp = $re;
-            }
-
-            if ($in == 'data') {
-                if ($temp == true) {
-                    $success = $re;
-                    return redirect()->route('careers.all')->with(['success' => 'your application been submitted']);
-                } else {
-                    $error = $re;
-                    return redirect()->route('careers.all')->with(['error' => $error]);
-
-                }
-            }
-            if ($in == 'error') {
-
-                $error = $re;
-                return redirect()->route('get.sign.up')->with(['error' => $error]);
-
-
-            }
-
-
+        if ($return['message']) {
+            return redirect()->route('get.login')->with(['error' => 'Please Check Your Credentials']);
         }
+
     }
 
     public function logout()
     {
         auth()->logout();
-        return 'logged out Succeccfully';
+        return redirect()->route('get.login')->with(['success' => 'logged out successfully']);
     }
 }

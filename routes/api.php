@@ -39,7 +39,7 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::get('get-branch-working-hours', 'Api\BranchesController@getBranchWorkingHours');
 
-Route::middleware('auth:api')->group(function () {
+Route::middleware('web')->group(function () {
 
     Route::get('get-user-points', 'Api\AuthController@getUserPoints');
     Route::post('change-user-points', 'Api\AuthController@changeUserPoints');

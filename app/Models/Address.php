@@ -19,11 +19,11 @@ class Address extends Model
     }
 
     public function city() {
-        return $this->belongsTo('App\Models\City');
+        return $this->belongsTo('App\Models\City','city_id');
     }
 
     public function area() {
-        return $this->belongsTo('App\Models\Area');
+        return $this->belongsTo('App\Models\Area','area_id');
     }
 
 }

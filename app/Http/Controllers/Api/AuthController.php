@@ -37,7 +37,7 @@ use Twilio\Jwt\ClientToken;
                     $user->save();
                 }
 
-            $user->branches;//??
+             $user->branches;//??
 
                 $data = [
                     'userData' => $user,
@@ -108,7 +108,7 @@ use Twilio\Jwt\ClientToken;
 
         try {
             $user = User::create($request->all());
-            $user->attachRole(10);
+            $user->attachRole(3);
             return $this->sendResponse($user, 'Successfully created user!');
 
         } catch (\Exception $e) {
