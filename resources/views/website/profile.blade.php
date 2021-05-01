@@ -46,8 +46,7 @@
                                                 <div class="right">
                                                     <h6 class="mb-1 font-weight-bold">{{auth()->user()->name}} <i
                                                             class="feather-check-circle text-success"></i></h6>
-                                                    <p class="text-muted m-0 small"><span class="__cf_email__"
-                                                                                          data-cfemail="ea838b8785998b828b84aa8d878b8386c4898587">[email&#160;protected]</span>
+                                                    <p class="text-muted m-0 small"><span class="__cf_email__">{{auth()->user()->email}}</span>
                                                     </p>
                                                 </div>
                                             </div>
@@ -151,14 +150,10 @@
                                                     @foreach($addresses as $address)
 
                                                         <div class="col-md-6">
-                                                            <div
-
-                                                                class="bg-white card addresses-item mb-4 border border-primary shadow">
+                                                            <div class="bg-white card addresses-item mb-4 shadow">
                                                                 <div class="gold-members p-4">
                                                                     <div class="media">
-                                                                        <div class="mr-3"><i
-                                                                                class="icofont-ui-home icofont-3x"></i>
-                                                                        </div>
+                                                                        <div class="mr-3"><i class="icofont-ui-home icofont-3x"></i></div>
                                                                         <div class="media-body">
                                                                             <h6 class="mb-1 text-secondary">{{$address ->
                                                                             name}}</h6>
@@ -173,18 +168,18 @@
                                                                                 <a
                                                                                     class="text-primary mr-3"
                                                                                     data-toggle="modal"
-                                                                                    data-target="#add-address-modal"
+                                                                                    data-target="#add-address-modal{{$address->id}}"
                                                                                     href="#"><i
                                                                                         class="icofont-ui-edit"></i>
                                                                                     EDIT</a> <a class="text-danger"
                                                                                                 data-toggle="modal"
-                                                                                                data-target="#delete-address-modal"
+                                                                                                data-target="#delete-address-modal{{$address->id}}"
                                                                                                 href="{{route('delete_address',$address->id)}}"><i
                                                                                         class="icofont-ui-delete"></i>
                                                                                     DELETE</a></p>
                                                                         </div>
 
-                                                                        <div class="modal fade" id="add-address-modal"
+                                                                        <div class="modal fade" id="add-address-modal{{$address->id}}"
                                                                              tabindex="-1" role="dialog"
                                                                              aria-labelledby="add-address"
                                                                              aria-hidden="true">
@@ -232,14 +227,14 @@
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div
-                                                                                                    class="form-group col-md-12">
+                                                                                                    class="form-group col-md-12 wrapCity">
                                                                                                     <label
                                                                                                         for="inputPassword4">
                                                                                                         City </label>
                                                                                                     <div
                                                                                                         class="input-group">
                                                                                                         <select
-                                                                                                            class="form-control city"
+                                                                                                            class="form-control city w-100"
                                                                                                             name="Address['+rmoveID+'][city_id]"
                                                                                                             required
 
@@ -254,7 +249,7 @@
                                                                                                                 $cities = (app(\App\Http\Controllers\Api\HelperController::class)->getCities())->getOriginalContent();
                                                                                                             @endphp
                                                                                                             @foreach( $cities ['data']  as $city)
-                                                                                                                <option
+                                                                                                                <option @if($address->city_id == $city->id) selected @endif
                                                                                                                     value="{{$city->id}}">
                                                                                                                     {{$city->name_ar}}
                                                                                                                 </option>
@@ -272,14 +267,14 @@
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div
-                                                                                                    class="form-group col-md-12">
+                                                                                                    class="form-group col-md-12 wrapArea">
                                                                                                     <label
                                                                                                         for="inputPassword4">
                                                                                                         Area </label>
                                                                                                     <div
                                                                                                         class="input-group">
                                                                                                         <select
-                                                                                                            class="form-control "
+                                                                                                            class="form-control area w-100"
                                                                                                             name="Address[' + rmoveID + '][area_id]"
                                                                                                             required>
                                                                                                             <option
@@ -303,14 +298,14 @@
                                                                                             </div>
                                                                                         </form>
                                                                                     </div>
-                                                                                    <div class="modal-footer">
+                                                                                    <div class="modal-footer d-flex">
                                                                                         <button type="button"
-                                                                                                class="btn d-flex w-50 text-center justify-content-center btn-outline-primary"
-                                                                                                data-dismiss="modal">
+                                                                                                class="btn text-center btn-outline-primary"
+                                                                                                data-dismiss="modal" style="width: 48%!important;">
                                                                                             CANCEL
                                                                                         </button>
                                                                                         <button type="button"
-                                                                                                class="btn d-flex w-50 text-center justify-content-center btn-primary">
+                                                                                                class="btn text-center btn-outline-primary" style="width: 48%!important;">
                                                                                             SUBMIT
                                                                                         </button>
                                                                                     </div>
@@ -320,7 +315,7 @@
 
 
                                                                         <div class="modal fade"
-                                                                             id="delete-address-modal" tabindex="-1"
+                                                                             id="delete-address-modal{{$address->id}}" tabindex="-1"
                                                                              role="dialog"
                                                                              aria-labelledby="delete-address"
                                                                              aria-hidden="true">
@@ -389,41 +384,42 @@
     @endsection
 
     @section('scripts')
-        <script src="{{asset('website2-assets/vendor/jquery/jquery-3.3.1.slim.min.js')}}"
-                type="350f2dc2cb10a9e5c7caa9c2-text/javascript"></script>
-
-        <script src="{{asset('website2-assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"
-                type="350f2dc2cb10a9e5c7caa9c2-text/javascript"></script>
 
         <script src="{{asset('website2-assets/vendor/select2/js/select2.min.js')}}"
-                type="350f2dc2cb10a9e5c7caa9c2-text/javascript"></script>
+                type="text/javascript"></script>
 
         <script src="{{asset('website2-assets/js/custom.js')}}"
-                type="350f2dc2cb10a9e5c7caa9c2-text/javascript"></script>
-        <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js"
-                data-cf-settings="350f2dc2cb10a9e5c7caa9c2-|49" defer=""></script>
+                type="text/javascript"></script>
 
         <script>
-            $(".city").change(function (event) {
-                alert('adhadh');
-                $.ajax({
-                    url: app_url + "/api/cities/" + city_id + "/areas",
-                    type: 'get',
-                    success: function (data) {
-                        console.log(data);
-                        if (data) {
-                            $(".area" + id).html('');
-                            $(this).closest(".area").first().html().append('<option selected value="">Choose Area</option>');
-                            $.each(data, function (index, area) {
-                                $(this).closest(".area").first().html().append('<option value="' + area.id + '">' + area.name_ar + '</option>');
-                            });
-                        }
-                    },
-                    error: function (jqXhr, textStatus, errorMessage) {
+            window.onload = function() {
 
-                    }
-                });
-            });
+                    //$(document).on("change", "select.city", function () {
+                    $('.city').change(function(){
+                        let app_url = '{{ url('/') }}';
+                        let city_id = $(this).val();
+                        let selectele = $(this);
+                        $.ajax({
+                            type:'get',
+                            url: app_url + "/api/cities/" + city_id + "/areas",
+                            data:{},
+                            success:function (data){
+                                if (data) {
+                                    selectele.parent().parent().next().first().find('.area').html('');
+                                    selectele.parent().parent().next().first().find('.area').append('<option selected value="">Choose Area</option>');
+                                    $.each(data, function (index, area) {
+                                        selectele.parent().parent().next().first().find('.area').append('<option value="' + area.id + '">' + area.name_ar + '</option>');
+                                    });
+                                }
+                            },
+                            error: function (jqXhr, textStatus, errorMessage) {
+
+                            }
+                        })
+
+                    });
+
+            };
 
         </script>
 @endsection

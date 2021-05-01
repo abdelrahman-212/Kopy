@@ -15,14 +15,20 @@
             <div class="px-5 col-10 mx-auto">
                 <h2 class="text-dark my-0">Welcome Back</h2>
                 <p class="text-50">Sign in to continue</p>
-                @if(Session::has('error'))
 
-                    <div class="row mr-2 ml-2">
-                        <button type="text" class="btn btn-lg btn-block btn-outline-danger mb-2"
-                                id="type-error">{{Session::get('error')}}
-                        </button>
+                <div class="row mr-2 ml-2" >
+                    <alert type="text" class="btn btn-lg btn-block btn-outline-danger mb-2"
+                           id="type-error">{{$errors}}
+                    </alert>
+                </div>
+                @if(Session::has('error'))
+                    <div class="row mr-2 ml-2" >
+                        <alert type="text" class="btn btn-lg btn-block btn-outline-danger mb-2"
+                               id="type-error">{{Session::get('error')}}
+                        </alert>
                     </div>
                 @endif
+
                 <form class="mt-5 mb-4" method="post" action="{{route('login')}}">
                     @csrf
                     <div class="form-group">

@@ -73,10 +73,10 @@ class AuthController extends Controller
                     'userData' => $user,
                 ];
 
-                return redirect()->route('home.page')->with(['success' => 'your application been submitted']);
+                return redirect()->route('home.page');
             }
         }
-        return redirect()->route('get.login')->with(['error' => 'unauthorized!, Please Check Your Credentials.']);
+        return redirect()->back()->withErrors(['error' => 'unauthorized!, Please Check Your Credentials.']);
 
     }
 
