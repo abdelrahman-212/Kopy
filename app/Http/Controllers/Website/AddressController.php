@@ -29,7 +29,6 @@ class AddressController extends Controller
         $return = (app(\App\Http\Controllers\Api\AddressesController::class)->destroy($address, $request, 'web'))->getOriginalContent();
         if ($return['success'] == 'success') {
             return view('website.profile')->with(['success' => 'address deleted successfully']);
-
         }
     }
 
@@ -39,7 +38,6 @@ class AddressController extends Controller
         $return = (app(\App\Http\Controllers\Api\AddressesController::class)->update($address, $request, 'web'))->getOriginalContent();
         if ($return['success'] == 'success') {
             return view('website.profile')->with(['success' => 'address deleted successfully']);
-
         }
     }
 }

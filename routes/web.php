@@ -136,11 +136,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::post('/signin',[\App\Http\Controllers\Website\AuthController::class,'login'])->name('login');
 
         Route::get('/signup',[\App\Http\Controllers\Website\AuthController::class,'get_sign_up'])->middleware('web')->name('get.sign.up');
-        Route::post('/get-sign-up',[\App\Http\Controllers\Website\AuthController::class,'sign_up'])->middleware('web')->name('sign.up');
+        Route::post('/get-sign-up',[\App\Http\Controllers\Website\AuthController::class,'sign_up'])->name('sign.up');
 
         //auth routes
         Route::group(['middleware' => ['auth'] ], function () {
-            Route::get('/my-addresses',[\App\Http\Controllers\Website\AddressController::class,'get_address'])->middleware('auth')->name('profile');
+            Route::get('/my-addresses',[\App\Http\Controllers\Website\AddressController::class,'get_address'])->name('profile');
             Route::get('/delete_address/{address}',[\App\Http\Controllers\Website\AddressController::class,'delete'])->name('delete_address');
             Route::post('/delete_address/{address}',[\App\Http\Controllers\Website\AddressController::class,'update'])->name('update_address');
             Route::get('/logout',[\App\Http\Controllers\Website\AuthController::class,'logout'])->name('logout');

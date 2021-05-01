@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Website;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
- class AuthController extends Controller
+use Illuminate\Support\Facades\Auth;
+
+class AuthController extends Controller
 {
     public function get_login()
     {
@@ -19,40 +21,69 @@ use App\Http\Controllers\Controller;
     public function sign_up(Request $request)
     {
         $return = (app(\App\Http\Controllers\Api\AuthController::class)->register($request))->getOriginalContent();
-        $temp = '';
-
 
         if ($return['success'] == true) {
-            return redirect()->route('profile')->with(['success' => 'your application been submitted']);
-
+            return redirect()->route('get.login')->with(['success' => 'your application been submitted']);
         }
-        if ($return['error']) {
+        else{
+            $error = [];
+            if(array_key_exists('message', $return)){
+                $error['message'] = "Failed to sign up, Try again later.";
+                return back()->with('error', $error);
+            }
+            else{
+                if($return['error']->first('email')){
+                    $error['email'] = $return['error']->first('email');
+                }
+                if ($return['error']->first('name')){
+                    $error['name'] = $return['error']->first('name');
+                }
+                if ($return['error']->first('password')){
+                    $error['password'] = $return['error']->first('password');
+                }
+                if ($return['error']->first('phone')){
+                    $error['phone'] = $return['error']->first('phone');
+                }
 
-             return redirect()->route('get.sign.up')->withErrors($return['error'])->withInput();
+                return $error['phone'];
+                return back()->with('error', 'Failed to find that resource');
+            }
         }
 
     }
 
     public function login(Request $request)
     {
-        $return = (app(\App\Http\Controllers\Api\AuthController::class)->login($request))->getOriginalContent();
-        $temp = '';
-        $return['message'];
+        $credentials = [
+            'email' => request('email'),
+            'password' => request('password')
+        ];
 
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            if ($user->hasRole('customer')) {
+                if ($request->has('device_token')) {
+                    $user->device_token = $request->device_token;
+                    $user->save();
+                }
 
-        if ($return['success'] == true) {
-            return redirect()->route('profile')->with(['success' => 'your application been submitted']);
+                $user->branches;//??
 
+                $data = [
+                    'userData' => $user,
+                ];
+
+                return redirect()->route('home.page')->with(['success' => 'your application been submitted']);
+            }
         }
-        if ($return['message']) {
-            return redirect()->route('get.login')->with(['error' => 'Please Check Your Credentials']);
-        }
+        return redirect()->route('get.login')->with(['error' => 'unauthorized!, Please Check Your Credentials.']);
 
     }
 
     public function logout()
     {
         auth()->logout();
-        return redirect()->route('get.login')->with(['success' => 'logged out successfully']);
+        return redirect()->route('get.login')->with(['success' => 'Successfully logged out']);
     }
+
 }
