@@ -13,7 +13,6 @@
                             <li><a href="{{route('get.login')}}">login</a></li>
 
                         @endif
-                         <li><a href="{{route('aboutUS.page')}}">About us</a></li>
 
                         <li><a href="#">Order Online</a></li>
                         <li><a href="#">Your Wishlist</a></li>
@@ -22,10 +21,7 @@
                 <div class="uk-navbar-center">
                     <div class="logo">
 
-                        <div class="logo__box"><a class="logo__link" href="{{route('menu.page')}}"> <img class="logo__img logo__img--full" src="{{asset('website-assets/img/logo.png')}}" alt="logo"><img class="logo__img logo__img-small" src="{{asset('website-assets/img/logo-small.png')}}" alt="logo"></a></div>
-                         <div class="logo__box"><a class="logo__link" href="#"> <img class="logo__img logo__img--full" src="{{asset('website-assets/img/logo.png')}}" alt="logo"><img class="logo__img logo__img-small" src="{{asset('website-assets/img/logo-small.png')}}" alt="logo"></a></div>
-
-                        <div class="logo__box"><a class="logo__link" href="{{route('menu.page')}}"> <img class="logo__img logo__img--full" src="{{asset('website-assets/img/logo.png')}}" alt="logo"><img class="logo__img logo__img-small" src="{{asset('website-assets/img/logo-small.png')}}" alt="logo"></a></div>
+                        <div class="logo__box"><a class="logo__link" href="{{route('home.page')}}"> <img class="logo__img logo__img--full" src="{{asset('website-assets/img/logo.png')}}" alt="logo"><img class="logo__img logo__img-small" src="{{asset('website-assets/img/logo-small.png')}}" alt="logo"></a></div>
 
                     </div>
                 </div>

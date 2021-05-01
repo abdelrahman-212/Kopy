@@ -1,11 +1,12 @@
 <?php
 
-
-
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]],function (){
 
     // Authentication Routes
-    Auth::routes(['register' => false]);
+    Route::group(['prefix'=>'admin'], function (){
+        Auth::routes(['register' => false]);
+    });
+
 
     // Admin Panel
     Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], function (){
@@ -87,7 +88,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
             Route::get('show/{id}', 'CareersController@show')->name('show');
             Route::get('{id}', 'CareersController@changestatus')->name('changestatus');
             Route::get('/{id}/applications','CareersController@GetApplications')->name('getapp');
-
             Route::delete('delete/{id}', 'CareersController@delete')->name('delete');
 
         });
@@ -105,10 +105,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
 
     });
-// Front routes
+
+    Route::get('/categories/{category}', 'Admin\ItemController@getCategory');
+
+
+    // Front routes
     Route::group(['namespace' => 'Website'], function () {
 
-        /*mhmm 30/4*/
+        // home
+        Route::get('/', 'HomeController@homePage')->name('home.page');
         // aboutUS
         Route::get('/about-us', 'AboutUSController@aboutUSPage')->name('aboutUS.page');
         // gallery
@@ -117,43 +122,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::get('/video/{videoID?}', 'VideoController@videoPage')->name('video.page');
         // contactUS
         Route::get('/contact-us', 'ContactUSController@contactPage')->name('contact.page');
-
-        //
-        Route::get('/about-us', 'AboutUSController@aboutUSPage')->name('aboutUSPage');
-        Route::get('blog/{id}', 'NewsController@Blog');
-        Route::get('blogs/', 'NewsController@AllBlogs');
-        Route::get('health-info/', 'HealthInfo@Infos');
-         // contactUS
+        // menu
         Route::get('/menu', 'MenuController@menuPage')->name('menu.page');
-        /*mhmm30/4*/
-
-        // contactUS
-        Route::get('/menu', 'MenuController@menuPage')->name('menu.page');
-        //
-        Route::get('/test1', function (){
-            return view('website.myOrder');
-        });
-        Route::get('/test2', function (){
-            return view('website.cart');
-        });
-        Route::get('/test3', function (){
-            return view('website.checkout');
-        });Route::get('/test4', function (){
-            return view('website.signup');
-        });Route::get('/test5', function (){
-            return view('website.login');
-        });Route::get('/test6', function (){
-            return view('website.profile');
-        });Route::get('/test7', function (){
-            return view('website.home');
-        });
-
-//        Route::get('blog/{id}','NewsController@Blog');
-//        Route::get('blogs/','NewsController@AllBlogs');
-//        Route::get('health-info/','HealthInfo@Infos');
 
 
-        Route::get('/categories/{category}', 'Admin\ItemController@getCategory');
         Route::get('/careers/',[\App\Http\Controllers\Website\CareersControllers::class,'AllJobs'])->name('careers.all');
         Route::get('/get-career/{id}',[\App\Http\Controllers\Website\CareersControllers::class,'GetJob'])->name('get.career');
         Route::get('/apply-form/{id}',[\App\Http\Controllers\Website\CareersControllers::class,'ApplyJobForm'])->name('apply.form');
@@ -163,33 +135,21 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::get('/Blog/{id}',[\App\Http\Controllers\Website\NewsController::class,'Blog'])->name('get.new');
         Route::get('/health-infos/',[\App\Http\Controllers\Website\HealthInfo::class,'Infos'])->name('health-infos.all');
 
-
         Route::get('/get-sign-in',[\App\Http\Controllers\Website\AuthController::class,'get_login'])->name('get.login');
         Route::post('/signin',[\App\Http\Controllers\Website\AuthController::class,'login'])->name('login');
 
         Route::get('/signup',[\App\Http\Controllers\Website\AuthController::class,'get_sign_up'])->middleware('web')->name('get.sign.up');
         Route::post('/get-sign-up',[\App\Http\Controllers\Website\AuthController::class,'sign_up'])->middleware('web')->name('sign.up');
 
-         Route::group(['middleware' => ['auth'] ], function () {
+        //auth routes
+        Route::group(['middleware' => ['auth'] ], function () {
             Route::get('/my-addresses',[\App\Http\Controllers\Website\AddressController::class,'get_address'])->middleware('auth')->name('profile');
             Route::get('/delete_address/{address}',[\App\Http\Controllers\Website\AddressController::class,'delete'])->name('delete_address');
             Route::post('/delete_address/{address}',[\App\Http\Controllers\Website\AddressController::class,'update'])->name('update_address');
             Route::get('/logout',[\App\Http\Controllers\Website\AuthController::class,'logout'])->name('logout');
-
         });
 
     });
-
-
-    // all News
-    Route::get('/categories/{category}', 'Admin\ItemController@getCategory');
-    Route::get('/careers/',[\App\Http\Controllers\Website\CareersControllers::class,'AllJobs'])->name('careers.all');
-    Route::get('/get-career/{id}',[\App\Http\Controllers\Website\CareersControllers::class,'GetJob'])->name('get.career');
-    Route::get('/apply-form/{id}',[\App\Http\Controllers\Website\CareersControllers::class,'ApplyJobForm'])->name('apply.form');
-    Route::post('/career-request/{id}',[\App\Http\Controllers\Website\CareersControllers::class,'CareerRequest'])->name('career.request');
-
-
-    Route::get('/categories/{category}', 'Admin\ItemController@getCategory');
 
 });
 
