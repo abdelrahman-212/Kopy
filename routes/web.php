@@ -140,9 +140,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
         //auth routes
         Route::group(['middleware' => ['auth'] ], function () {
-            Route::get('/my-addresses',[\App\Http\Controllers\Website\AddressController::class,'get_address'])->name('profile');
+            Route::get('/profile',[\App\Http\Controllers\Website\AddressController::class,'get_address'])->name('profile');
             Route::get('/delete_address/{address}',[\App\Http\Controllers\Website\AddressController::class,'delete'])->name('delete_address');
-            Route::post('/delete_address/{address}',[\App\Http\Controllers\Website\AddressController::class,'update'])->name('update_address');
+
+            Route::get('/update/{address}',[\App\Http\Controllers\Website\AddressController::class,'update'])->name('update_address');
             Route::get('/logout',[\App\Http\Controllers\Website\AuthController::class,'logout'])->name('logout');
         });
 
