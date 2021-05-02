@@ -98,7 +98,9 @@
 
                                 <div class="col-md-9 mb-3">
                                     <div class="rounded shadow-sm p-4 bg-white"
-                                         style="background-color: #e6e6e68c!important;box-shadow: 0 .125rem 0.25rem rgba(0,0,0,.25)!important;">
+{{--                                         style="background-color: #e6e6e68c!important;box-shadow: 0 .125rem 0.25rem rgba(0,0,0,.25)!important;"--}}
+
+                                    >
                                         <div class="tab-content" id="myTabContent">
                                             <div class="tab-pane fade show active" id="account" role="tabpanel"
                                                  aria-labelledby="account-tab">
