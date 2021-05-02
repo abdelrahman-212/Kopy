@@ -32,7 +32,12 @@ class AddressesController extends BaseController
      */
     public function index(Request $request, $guard = 'api')
     {
-        $user = auth()->guard($guard)->user();
+        if ($request->user()) {
+                $user = $request->user();
+        }
+        else {
+            $user = auth()->guard($guard)->user();
+        }
         $address = Address::where('customer_id', $user->id)->orderBy('created_at', 'DESC')->get();
         return $this->sendResponse($address, 'The addresses returned successfuly');
     }
@@ -53,14 +58,17 @@ class AddressesController extends BaseController
         }
 
         // attach customer reference
-        if ($request->user()->hasRole('customer')) {
-            if ($request->user()) {
+        if ($request->user()) {
+            if ($request->user()->hasRole('customer')) {
                 $request->merge(['customer_id' => $request->user()->id]);
             }
-            if (auth()->user()) {
+        }
+        else {
+            if (auth()->user()->hasRole('customer')) {
                 $request->merge(['customer_id' => auth()->user()->id]);
             }
         }
+        
         if ($request->has('_token')) {
             unset($request['_token']);
         }
@@ -98,12 +106,23 @@ class AddressesController extends BaseController
             return $this->sendError('Some information not correct');
 
         // attach customer reference
-        if ($request->user()->hasRole('customer')) {
-            $request->merge([
-                'customer_id' => $request->user()->id,
-                'city_id' => $city->id,
-                'area_id' => $area->id
-            ]);
+        if ($request->user()) {
+            if ($request->user()->hasRole('customer')) {
+                    $request->merge([
+                        'customer_id' => $request->user()->id,
+                        'city_id' => $city->id,
+                        'area_id' => $area->id
+                    ]);
+            }
+        }
+        else {
+            if (auth()->user()->hasRole('customer')) {
+                $request->merge([
+                        'customer_id' => auth()->user()->id,
+                        'city_id' => $city->id,
+                        'area_id' => $area->id
+                    ]);
+            }
         }
 
         $address = Address::firstOrCreate($request->all());
@@ -155,9 +174,17 @@ class AddressesController extends BaseController
      */
     public function destroy(Address $address, Request $request, $guard = 'api')
     {
-        if ($address->customer->id == auth()->guard($guard)->user()->id) {
-            if ($address->delete())
-                return $this->sendResponse(null, 'The address deleted successfully!');
+        if ($request->user()) {
+            if ($address->customer->id == $request->user()->id) {
+                if ($address->delete())
+                    return $this->sendResponse(null, 'The address deleted successfully!');
+            }
+        }
+        else {
+            if ($address->customer->id == auth()->user()->id) {
+                if ($address->delete())
+                    return $this->sendResponse(null, 'The address deleted successfully!');
+            }
         }
 
         return $this->sendError('The cannot be deleted');
