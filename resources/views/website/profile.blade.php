@@ -28,9 +28,9 @@
 
         <main class="page-main">
             <div class="page-content">
-                 <div class="uk-container">
-                 
-                      <div class="osahan-profile">
+                <div class="uk-container">
+
+                    <div class="osahan-profile">
 
                         <div class=" position-relative">
                             <div class="pt-5 osahan-profile row">
@@ -147,8 +147,10 @@
                                             <div class="tab-pane fade" id="addresses" role="tabpanel"
                                                  aria-labelledby="addresses-tab">
                                                 <h4 class="font-weight-bold mt-0 mb-4">Manage Addresses</h4>
+
                                                 <div class="row">
-                                                    @foreach($addresses as $address)
+
+                                                @foreach($addresses as $address)
 
                                                         <div class="col-md-6">
                                                             <div class="bg-white card addresses-item mb-4 shadow">
@@ -159,9 +161,11 @@
                                                                         </div>
                                                                         @if(isset($errorarray))
                                                                             @if(array_key_exists('message', $errorarray))
-                                                                                <span class="d-block text-danger mb-2 font-weight-bold">{{$errorarray['message']}}</span>
+                                                                                <span
+                                                                                    class="d-block text-danger mb-2 font-weight-bold">{{$errorarray['message']}}</span>
                                                                             @endif
                                                                         @endif
+
                                                                         <div class="media-body">
                                                                             <h6 class="mb-1 text-secondary">{{$address ->
                                                                             name}}</h6>
@@ -209,10 +213,11 @@
                                                                                         </button>
                                                                                     </div>
                                                                                     <div class="modal-body">
-                                                                                        <form action="{{route('update_address',$address->id)}}"
-                                                                                              enctype="multipart/form-data" >
+                                                                                        <form
+                                                                                            action="{{route('update_address',$address->id)}}"
+                                                                                            enctype="multipart/form-data">
                                                                                             @csrf
-                                                                                             <div class="form-row">
+                                                                                            <div class="form-row">
                                                                                                 <div
                                                                                                     class="form-group col-md-12">
                                                                                                     <label
@@ -226,14 +231,15 @@
                                                                                                             placeholder="Address Name"
                                                                                                             name="name"
                                                                                                             value="{{$address->name}}"
-                                                                                                        required>
+                                                                                                            required>
                                                                                                         <div
                                                                                                             class="input-group-append">
                                                                                                         </div>
                                                                                                     </div>
                                                                                                     @if(isset($errorarray))
                                                                                                         @if(array_key_exists('name', $errorarray))
-                                                                                                            <span class="d-block text-danger mb-2 font-weight-bold">{{$errorarray['name']}}</span>
+                                                                                                            <span
+                                                                                                                class="d-block text-danger mb-2 font-weight-bold">{{$errorarray['name']}}</span>
                                                                                                         @endif
                                                                                                     @endif
                                                                                                 </div>
@@ -276,7 +282,8 @@
                                                                                                     </div>
                                                                                                     @if(isset($errorarray))
                                                                                                         @if(array_key_exists('city_id', $errorarray))
-                                                                                                            <span class="d-block text-danger mb-2 font-weight-bold">{{$errorarray['city_id']}}</span>
+                                                                                                            <span
+                                                                                                                class="d-block text-danger mb-2 font-weight-bold">{{$errorarray['city_id']}}</span>
                                                                                                         @endif
                                                                                                     @endif
                                                                                                 </div>
@@ -306,7 +313,8 @@
                                                                                                             </button>
                                                                                                             @if(isset($errorarray))
                                                                                                                 @if(array_key_exists('area_id', $errorarray))
-                                                                                                                    <span class="d-block text-danger mb-2 font-weight-bold">{{$errorarray['area_id']}}</span>
+                                                                                                                    <span
+                                                                                                                        class="d-block text-danger mb-2 font-weight-bold">{{$errorarray['area_id']}}</span>
                                                                                                                 @endif
                                                                                                             @endif
                                                                                                         </div>
@@ -393,7 +401,8 @@
 
 
                                                                                             </div>
-                                                                                            <div class="modal-footer d-flex">
+                                                                                            <div
+                                                                                                class="modal-footer d-flex">
                                                                                                 <button type="button"
                                                                                                         class="btn text-center btn-outline-primary"
                                                                                                         data-dismiss="modal"
@@ -465,7 +474,262 @@
                                                             </div>
                                                         </div>
                                                     @endforeach
+                                                    <div class="col-md-4">
+                                                        <div class="bg-white card addresses-item mb-4 shadow">
+                                                            <div class="gold-members p-4">
+                                                                <div class="media">
+
+                                                                    <div class="media-body ">
+
+                                                                        <p class="mb-0 text-black font-weight-bold">
+                                                                            <a
+                                                                                class="text-success mr-3"
+                                                                                data-toggle="modal"
+                                                                                data-target="#add-address-modal "
+                                                                                href="#"><i class="icofont-ui-add " style="font-size: 100px ;padding: 25px;"></i>
+                                                                            </a>
+
+                                                                        </p>
+                                                                    </div>
+
+                                                                    <div class="modal fade"
+                                                                         id="add-address-modal"
+                                                                         tabindex="-1" role="dialog"
+                                                                         aria-labelledby="add-address"
+                                                                         aria-hidden="true">
+                                                                        <div
+                                                                            class="modal-dialog modal-dialog-centered"
+                                                                            role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title"
+                                                                                        id="add-address">Add
+                                                                                        Delivery Address</h5>
+                                                                                    <button type="button"
+                                                                                            class="close"
+                                                                                            data-dismiss="modal"
+                                                                                            aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <form
+                                                                                        method="post"
+                                                                                        action="{{route('new.address')}}"
+                                                                                        enctype="multipart/form-data">
+                                                                                        @csrf
+                                                                                        <div class="form-row">
+                                                                                            <div
+                                                                                                class="form-group col-md-12">
+                                                                                                <label
+                                                                                                    for="inputPassword4">Delivery
+                                                                                                    Area</label>
+                                                                                                <div
+                                                                                                    class="input-group">
+                                                                                                    <input
+                                                                                                        type="text"
+                                                                                                        class="form-control"
+                                                                                                        placeholder="Address Name"
+                                                                                                        name="name"
+                                                                                                        value=""
+                                                                                                        required>
+                                                                                                    <div
+                                                                                                        class="input-group-append">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                @if(isset($errorarray))
+                                                                                                    @if(array_key_exists('name', $errorarray))
+                                                                                                        <span
+                                                                                                            class="d-block text-danger mb-2 font-weight-bold">{{$errorarray['name']}}</span>
+                                                                                                    @endif
+                                                                                                @endif
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="form-group col-md-12 wrapCity">
+                                                                                                <label
+                                                                                                    for="inputPassword4">
+                                                                                                    City </label>
+                                                                                                <div
+                                                                                                    class="input-group">
+                                                                                                    <select
+                                                                                                        class="form-control city w-100"
+                                                                                                        name="city_id"
+                                                                                                        required
+
+                                                                                                    >
+                                                                                                        <option
+                                                                                                            value="">
+                                                                                                            Select
+                                                                                                            City
+                                                                                                        </option>
+
+                                                                                                        @php
+                                                                                                            $cities = (app(\App\Http\Controllers\Api\HelperController::class)->getCities())->getOriginalContent();
+                                                                                                        @endphp
+                                                                                                        @foreach( $cities ['data']  as $city)
+                                                                                                            <option
+
+                                                                                                                value="{{$city->id}}">
+                                                                                                                {{$city->name_ar}}
+                                                                                                            </option>
+                                                                                                        @endforeach
+                                                                                                    </select>
+                                                                                                    <div
+                                                                                                        class="input-group-append">
+
+                                                                                                    </div>
+
+                                                                                                </div>
+                                                                                                @if(isset($errorarray))
+                                                                                                    @if(array_key_exists('city_id', $errorarray))
+                                                                                                        <span
+                                                                                                            class="d-block text-danger mb-2 font-weight-bold">{{$errorarray['city_id']}}</span>
+                                                                                                    @endif
+                                                                                                @endif
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="form-group col-md-12 wrapArea">
+                                                                                                <label
+                                                                                                    for="inputPassword4">
+                                                                                                    Area </label>
+                                                                                                <div
+                                                                                                    class="input-group">
+                                                                                                    <select
+                                                                                                        class="form-control area w-100"
+                                                                                                        name="area_id"
+                                                                                                        required>
+                                                                                                        <option
+                                                                                                            value="">
+
+                                                                                                        </option>
+
+                                                                                                    </select>
+                                                                                                    <div
+                                                                                                        class="input-group-append">
+                                                                                                        <button
+                                                                                                            class="btn "
+                                                                                                            type="button"
+                                                                                                        >
+                                                                                                        </button>
+                                                                                                        @if(isset($errorarray))
+                                                                                                            @if(array_key_exists('area_id', $errorarray))
+                                                                                                                <span
+                                                                                                                    class="d-block text-danger mb-2 font-weight-bold">{{$errorarray['area_id']}}</span>
+                                                                                                            @endif
+                                                                                                        @endif
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="form-group col-md-12">
+                                                                                                <label
+                                                                                                    for="inputPassword5">Street
+                                                                                                </label>
+                                                                                                <div
+                                                                                                    class="input-group">
+                                                                                                    <input
+                                                                                                        type="text"
+                                                                                                        class="form-control"
+                                                                                                        placeholder="Delivery Area"
+                                                                                                        name="street"
+                                                                                                        value="">
+                                                                                                    <div
+                                                                                                        class="input-group-append">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="form-group col-md-12">
+                                                                                                <label
+                                                                                                    for="inputPassword5">
+                                                                                                    Building No.
+                                                                                                </label>
+                                                                                                <div
+                                                                                                    class="input-group">
+                                                                                                    <input
+                                                                                                        type="text"
+                                                                                                        class="form-control"
+                                                                                                        placeholder="Building No.  "
+                                                                                                        name="building_number"
+                                                                                                        value="">
+                                                                                                    <div
+                                                                                                        class="input-group-append">
+
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="form-group col-md-12">
+                                                                                                <label
+                                                                                                    for="inputPassword5">
+                                                                                                    Floor No.
+                                                                                                </label>
+                                                                                                <div
+                                                                                                    class="input-group">
+                                                                                                    <input
+                                                                                                        type="text"
+                                                                                                        class="form-control"
+                                                                                                        placeholder="Floor No."
+                                                                                                        name="building_number"
+                                                                                                        value="">
+                                                                                                    <div
+                                                                                                        class="input-group-append">
+
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="form-group col-md-12">
+                                                                                                <label
+                                                                                                    for="inputPassword6">
+                                                                                                    Landing Mark
+                                                                                                </label>
+                                                                                                <div
+                                                                                                    class="input-group">
+                                                                                                    <input
+                                                                                                        type="text"
+                                                                                                        class="form-control"
+                                                                                                        placeholder="Landing Mark"
+                                                                                                        name="building_number"
+                                                                                                        value="">
+                                                                                                    <div
+                                                                                                        class="input-group-append">
+
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+
+
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="modal-footer d-flex">
+                                                                                            <button type="button"
+                                                                                                    class="btn text-center btn-outline-primary"
+                                                                                                    data-dismiss="modal"
+                                                                                                    style="width: 48%!important;">
+                                                                                                CANCEL
+                                                                                            </button>
+                                                                                            <button type="submit"
+                                                                                                    class="btn text-center btn-outline-primary"
+                                                                                                    style="width: 48%!important;">
+                                                                                                SUBMIT
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>

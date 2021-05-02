@@ -30,9 +30,9 @@ class AddressesController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$guard='api')
+    public function index(Request $request, $guard = 'api')
     {
-        $user= auth()->guard($guard)->user();
+        $user = auth()->guard($guard)->user();
         $address = Address::where('customer_id', $user->id)->orderBy('created_at', 'DESC')->get();
         return $this->sendResponse($address, 'The addresses returned successfuly');
     }
@@ -40,7 +40,7 @@ class AddressesController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -54,9 +54,16 @@ class AddressesController extends BaseController
 
         // attach customer reference
         if ($request->user()->hasRole('customer')) {
-            $request->merge(['customer_id' => $request->user()->id]);
+            if ($request->user()) {
+                $request->merge(['customer_id' => $request->user()->id]);
+            }
+            if (auth()->user()) {
+                $request->merge(['customer_id' => auth()->user()->id]);
+            }
         }
-
+        if ($request->has('_token')) {
+            unset($request['_token']);
+        }
         $address = Address::firstOrCreate($request->all());
 
         if (!$address) {
@@ -110,7 +117,7 @@ class AddressesController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, Address $address)
@@ -122,8 +129,8 @@ class AddressesController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Address $address)
@@ -143,12 +150,12 @@ class AddressesController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Address $address, Request $request ,$guard='api')
+    public function destroy(Address $address, Request $request, $guard = 'api')
     {
-          if ($address->customer->id ==   auth()->guard($guard)->user()->id) {
+        if ($address->customer->id == auth()->guard($guard)->user()->id) {
             if ($address->delete())
                 return $this->sendResponse(null, 'The address deleted successfully!');
         }

@@ -33,15 +33,24 @@ class AddressController extends Controller
             return redirect()->route('profile')->with(['success' => 'address deleted successfully']);
         }
     }
-
-    public function update(Address $address, Request $request)
+    public function store(Request $request)
     {
         $success= 'Unauthorized, Please Check Your Credentials.';
 
+        $return = (app(\App\Http\Controllers\Api\AddressesController::class)->store($request))->getOriginalContent();
+        if ($return['success'] == true) {
+            $success= 'New Address Been Add.';
+            return redirect()->route('profile')->with(compact(['success']));
+        }
+        return $request;
+    }
+    public function update(Address $address, Request $request)
+    {
+        $success= 'Your Address Been Updated.';
+
         $return = (app(\App\Http\Controllers\Api\AddressesController::class)->update($request, $address, 'web'))->getOriginalContent();
         if ($return['success'] == true) {
-            $success= 'Unauthorized, Please Check Your Credentials.';
-             return redirect()->route('profile')->with(compact(['success']));
+              return redirect()->route('profile')->with(compact(['success']));
         }
 
 
