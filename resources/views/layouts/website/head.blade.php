@@ -22,5 +22,16 @@
     <link rel="stylesheet" href="{{asset('website-assets/css/main.css')}}">
     <link id="dm-light" rel="stylesheet" href="{{asset('website-assets/css/light.css')}}">
     <link id="dm-dark" rel="stylesheet" href="{{asset('website-assets/css/dark.css')}}" disabled="true">
+    <!-- Flag Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" integrity="sha512-Cv93isQdFwaKBV+Z4X8kaVBYWHST58Xb/jVOcV9aRsGSArZsgAnFIhMpDoMDcFNoUtday1hdjn0nGp3+KZyyFw==" crossorigin="anonymous" />
+    <!-- Bootstrap RTL -->
+    @if(LaravelLocalization::getCurrentLocaleName() == 'Arabic')
+        <link
+            rel="stylesheet"
+            href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css"
+            integrity="sha384-JvExCACAZcHNJEc7156QaHXTnQL3hQBixvj5RV5buE7vgnNEzzskDtx9NQ4p6BJe"
+            crossorigin="anonymous" />
+        <link rel="stylesheet" href="{{asset('adminlte/bootstrapRTL/rtl.css')}}">
+    @endif
     @yield('styles')
 </head>

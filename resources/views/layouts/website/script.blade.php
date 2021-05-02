@@ -10,3 +10,11 @@
 <script src="{{asset('website2-assets/vendor/sidebar/hc-offcanvas-nav.js')}}"></script>
 <script src="{{asset('website2-assets/js/osahan.js')}}"></script>
 
+<!-- Bootstrap RTL -->
+@if(LaravelLocalization::getCurrentLocaleName() == 'Arabic')
+    <script
+        src="https://cdn.rtlcss.com/bootstrap/v4.5.3/js/bootstrap.min.js"
+        integrity="sha384-VmD+lKnI0Y4FPvr6hvZRw6xvdt/QZoNHQ4h5k0RL30aGkR9ylHU56BzrE2UoohWK"
+        crossorigin="anonymous"></script>
+@endif
+

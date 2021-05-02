@@ -6,46 +6,53 @@
                     <button class="uk-button" type="button" data-target="#offcanvas" data-uk-toggle
                             data-uk-icon="menu"></button>
                     <ul class="uk-navbar-nav">
-                        <li><a href="{{route('menu.page')}}">Home</a></li>
-                        <li><a href="{{route('aboutUS.page')}}">About us</a></li>
-                        @auth()
-                        <li><a href="{{route('careers.all')}}">Careers</a></li>
-                        @endauth
-
-                        <li><a href="#">Order Online</a></li>
-                        <li><a href="#">Your Wishlist</a></li>
+                        <li><a href="{{route('menu.page')}}">Menus</a></li>
+                        <li><a href="{{route('aboutUS.page')}}">About</a></li>
+                        <li><a href="{{route('news.all')}}">What's New</a></li>
+                        <li><a href="#">Branches</a></li>
+                        <li><a href="{{route('health-infos.all')}}">Health info</a></li>
                     </ul>
                 </div>
                 <div class="uk-navbar-center">
                     <div class="logo">
-
-                        <div class="logo__box"><a class="logo__link" href="{{route('home.page')}}"> <img
-                                    class="logo__img logo__img--full" src="{{asset('website-assets/img/logo.png')}}"
-                                    alt="logo"><img class="logo__img logo__img-small"
-                                                    src="{{asset('website-assets/img/logo-small.png')}}" alt="logo"></a>
+                        <div class="logo__box"><a class="logo__link" href="{{route('home.page')}}"> <img class="logo__img logo__img--full" src="{{asset('website-assets/img/logo.png')}}" alt="logo"><img class="logo__img logo__img-small" src="{{asset('website-assets/img/logo-small.png')}}" alt="logo"></a>
                         </div>
-
                     </div>
                 </div>
                 <div class="uk-navbar-right "><a class="uk-button" href="#"> <span>Make Your Pizza</span><img
                             class="uk-margin-small-left" src="{{asset('website-assets/img/icons/pizza.png')}}"
                             alt="pizza"></a>
-                    <ul class="uk-navbar-nav stre">
-                        <li><a href="#">Our Menu</a></li>
-                        <li><a href="{{route('gallery.page')}}">Gallery</a></li>
-                        <li><a href="{{route('video.page')}}">Videos</a></li>
-                        <li><a href="{{route('news.all')}}">Latest News</a></li>
-                        <li><a href="{{route('health-infos.all')}}">Health</a></li>
-                        <li><a href="{{route('contact.page')}}">Contact us</a></li>
-                         @auth()
-                            <li><a href="{{route('profile')}}">Profile</a></li>
-                            <li><a href="{{route('logout')}}">Log Out </a></li>
-                        @endauth
-                        @if(!auth()->user())
-                            <li><a href="{{route('get.login')}}">Login</a></li>
-                            <li><a href="{{route('get.sign.up')}}">Register</a></li>
-
-                        @endif
+                    <ul class="uk-navbar-nav">
+                        <li class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Media Center
+                            </a>
+                            <div class="dropdown-menu uk-dropdown-nav" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{route('video.page')}}">Videos</a>
+                                <a class="dropdown-item" href="{{route('gallery.page')}}">Photo Albums</a>
+                            </div>
+                        </li>
+                        <li><a href="{{route('careers.all')}}">Jobs</a></li>
+                        <li><a href="{{route('contact.page')}}">Contact Us</a></li>
+                        <li class="dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown-flag" href="{{ LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(), null, [], true) }}" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                @if(LaravelLocalization::getCurrentLocaleName() == 'Arabic')
+                                    <i class="flag-icon flag-icon-eg"></i> &nbsp;<span> العربية </span>
+                                @else
+                                    <i class="flag-icon flag-icon-us"></i> &nbsp;<span> English </span>
+                                @endif
+                            </a>
+                            <div class="dropdown-menu uk-dropdown-nav" aria-labelledby="dropdown-flag">
+                                @if(LaravelLocalization::getCurrentLocaleName() == 'Arabic')
+                                    <a class="dropdown-item" rel="alternate" hreflang="en" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">
+                                        <i class="flag-icon flag-icon-us"></i> &nbsp;<span> English </span></a>
+                                @else
+                                    <a class="dropdown-item" rel="alternate" hreflang="ar" href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}">
+                                        <i class="flag-icon flag-icon-eg"></i> &nbsp;<span> العربية </span></a>
+                                @endif
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -67,12 +74,14 @@
                     <div class="other-links">
                         <ul class="other-links-list">
                             <li><a href="#modal-full" data-uk-toggle><span data-uk-icon="search"></span></a></li>
-                            <li><a href="#"><span data-uk-icon="user"></span></a></li>
+                            <li><a href="{{route('profile')}}"><span data-uk-icon="user"></span></a></li>
                             <li><a href="#"><span data-uk-icon="cart"></span></a></li>
                         </ul>
-                        <a class="uk-button" href="#"> <span>Make Your Pizza</span><img class="uk-margin-small-left"
-                                                                                        src="{{asset('website-assets/img/icons/pizza.png')}}"
-                                                                                        alt="pizza"></a>
+                        @if(!auth()->user())
+                            <a class="uk-button" href="{{route('get.login')}}"> <span>sign-in / sign-up</span></a>
+                        @elseif(auth()->user())
+                            <a class="uk-button" href="{{route('logout')}}"> <span>log out</span></a>
+                        @endif
                     </div>
                 </div>
             </div>
