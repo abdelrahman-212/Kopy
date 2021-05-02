@@ -474,7 +474,7 @@
                                                             </div>
                                                         </div>
                                                     @endforeach
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <div class="bg-white card addresses-item mb-4 shadow">
                                                             <div class="gold-members p-4">
                                                                 <div class="media">
@@ -486,7 +486,7 @@
                                                                                 class="text-success mr-3"
                                                                                 data-toggle="modal"
                                                                                 data-target="#add-address-modal "
-                                                                                href="#"><i class="icofont-ui-add " style="font-size: 100px ;padding: 25px;"></i>
+                                                                                href="#"><i class="icofont-ui-add " style="font-size: 100px ;padding: 13px;"></i>
                                                                             </a>
 
                                                                         </p>
