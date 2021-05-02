@@ -30,13 +30,13 @@ class AddressesController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $guard = 'api')
+    public function index(Request $request)
     {
         if ($request->user()) {
                 $user = $request->user();
         }
         else {
-            $user = auth()->guard($guard)->user();
+            $user = auth('web')->user();
         }
         $address = Address::where('customer_id', $user->id)->orderBy('created_at', 'DESC')->get();
         return $this->sendResponse($address, 'The addresses returned successfuly');
@@ -64,11 +64,11 @@ class AddressesController extends BaseController
             }
         }
         else {
-            if (auth()->user()->hasRole('customer')) {
-                $request->merge(['customer_id' => auth()->user()->id]);
+            if (auth('web')->user()->hasRole('customer')) {
+                $request->merge(['customer_id' => auth('web')->user()->id]);
             }
         }
-        
+
         if ($request->has('_token')) {
             unset($request['_token']);
         }
@@ -116,9 +116,9 @@ class AddressesController extends BaseController
             }
         }
         else {
-            if (auth()->user()->hasRole('customer')) {
+            if (auth('web')->user()->hasRole('customer')) {
                 $request->merge([
-                        'customer_id' => auth()->user()->id,
+                        'customer_id' => auth('web')->user()->id,
                         'city_id' => $city->id,
                         'area_id' => $area->id
                     ]);
@@ -172,7 +172,7 @@ class AddressesController extends BaseController
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Address $address, Request $request, $guard = 'api')
+    public function destroy(Address $address, Request $request)
     {
         if ($request->user()) {
             if ($address->customer->id == $request->user()->id) {
@@ -181,7 +181,7 @@ class AddressesController extends BaseController
             }
         }
         else {
-            if ($address->customer->id == auth()->user()->id) {
+            if ($address->customer->id == auth('web')->user()->id) {
                 if ($address->delete())
                     return $this->sendResponse(null, 'The address deleted successfully!');
             }

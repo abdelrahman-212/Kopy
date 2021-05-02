@@ -10,25 +10,20 @@ class AddressController extends Controller
 {
     public function get_address()
     {
-
         $request = new \Illuminate\Http\Request();
 
-
-        $return = (app(\App\Http\Controllers\Api\AddressesController::class)->index($request, 'web'))->getOriginalContent();
+        $return = (app(\App\Http\Controllers\Api\AddressesController::class)->index($request))->getOriginalContent();
 
         if ($return['success'] == 'success') {
             $addresses = $return['data'];
         }
-
-
-        //return  $menu;
         return view('website.profile', compact(['addresses']));
     }
 
     public function delete(Address $address)
     {
         $request = new \Illuminate\Http\Request();
-        $return = (app(\App\Http\Controllers\Api\AddressesController::class)->destroy($address, $request, 'web'))->getOriginalContent();
+        $return = (app(\App\Http\Controllers\Api\AddressesController::class)->destroy($address, $request))->getOriginalContent();
         if ($return['success'] == 'success') {
             return redirect()->route('profile')->with(['success' => 'address deleted successfully']);
         }
@@ -48,7 +43,7 @@ class AddressController extends Controller
     {
         $success= 'Your Address Been Updated.';
 
-        $return = (app(\App\Http\Controllers\Api\AddressesController::class)->update($request, $address, 'web'))->getOriginalContent();
+        $return = (app(\App\Http\Controllers\Api\AddressesController::class)->update($request, $address))->getOriginalContent();
         if ($return['success'] == true) {
               return redirect()->route('profile')->with(compact(['success']));
         }
