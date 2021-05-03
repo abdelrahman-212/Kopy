@@ -165,10 +165,9 @@
                                 <div class="uk-position-relative">
                                     <div class="uk-slider-container uk-light">
                                         <ul class="uk-slider-items uk-grid uk-grid-small uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l">
-
                                             @php
                                             $request = new \Illuminate\Http\Request();
-                                            $request->branch_id;
+                                            $request->branch_id = (session()->has('branch_id'))? session()->get('branch_id'): 0 ;//det branch_id
                                             $items = (app(\App\Http\Controllers\Api\MenuController::class)->getItems($request,$category))->getOriginalContent();
                                             @endphp
 

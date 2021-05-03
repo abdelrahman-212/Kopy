@@ -9,7 +9,7 @@
                         <li><a href="{{route('menu.page')}}">Menus</a></li>
                         <li><a href="{{route('aboutUS.page')}}">About</a></li>
                         <li><a href="{{route('news.all')}}">What's New</a></li>
-                        <li><a href="#">Branches</a></li>
+                        <li><a href="{{route('takeaway.page')}}">Branches</a></li>
                         <li><a href="{{route('health-infos.all')}}">Health info</a></li>
                     </ul>
                 </div>

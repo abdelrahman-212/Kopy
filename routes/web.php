@@ -140,12 +140,26 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
         //auth routes
         Route::group(['middleware' => ['auth'] ], function () {
+
+            //for all ordering route needs branch_id
+            Route::group(['middleware'=>'service'],function (){
+
+            });
+
+
             Route::get('/profile',[\App\Http\Controllers\Website\AddressController::class,'get_address'])->name('profile');
             Route::get('/delete_address/{address}',[\App\Http\Controllers\Website\AddressController::class,'delete'])->name('delete_address');
             Route::post('/update/',[\App\Http\Controllers\Website\AddressController::class,'store'])->name('new.address');
 
             Route::get('/update/{address}',[\App\Http\Controllers\Website\AddressController::class,'update'])->name('update_address');
             Route::get('/logout',[\App\Http\Controllers\Website\AuthController::class,'logout'])->name('logout');
+
+            //choose service delivery or take away
+            Route::get('/service', 'ServiceController@servicePage')->name('service.page');
+            Route::get('/delivery', 'ServiceController@deliveryPage')->name('delivery.page');
+            Route::get('/takeaway', 'ServiceController@takeawayPage')->name('takeaway.page');
+            Route::get('/takeaway/{branch_id}', 'ServiceController@takeawayBranch')->name('takeaway.branch');
+
         });
 
     });

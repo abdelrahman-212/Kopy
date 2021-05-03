@@ -14,12 +14,6 @@ class MenuController extends Controller
         if($return['success'] == 'success'){
             $menu['categories'] = $return['data'];
         }
-        $return = (app(FrontController::class)->getAboutUS())->getOriginalContent();
-        if($return['success'] == 'success'){
-            $menu['aboutus'] = $return['data'][0];
-        }
-        //return  $menu;
         return view('website.menu',compact(['menu']));
-
     }
 }
