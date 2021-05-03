@@ -149,9 +149,9 @@
                                                 </div>
                                                 {{--                                    <div class="article-intro__comments"><i class="fas fa-comment"></i><span>210</span></div>--}}
                                             </div>
-                                            <h2 class="article-intro__title">{{$info -> title_en}}</h2>
+                                            <h2 class="article-intro__title">           {{(app()->getLocale() == 'ar') ?$info->title_ar:$info->title_en}}</h2>
                                             <div class="article-intro__content">
-                                                <p> {!! nl2br(e($info -> description_en)) !!} </p>
+                                                <p> {!! nl2br(e((app()->getLocale() == 'ar') ?$info ->description_ar:$info->description_en)) !!} </p>
                                             </div>
                                             {{--                                            <div class="article-intro__bottom">--}}
                                             {{--                                                --}}{{--                                    <div class="article-intro__tags"><i class="fas fa-tags"></i><span>cheese, Pizza, Cookies, Bake</span></div>--}}
@@ -230,15 +230,15 @@
                             {{--                                </div>--}}
                             {{--                            </div>--}}
                             {{--                        </article>--}}
-                            <ul class="uk-pagination uk-flex-center uk-margin-medium-top">
-                                <li class="uk-active"><span>1</span></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li class="uk-disabled"><span>...</span></li>
-                                <li><a href="#"><span data-uk-pagination-next></span></a></li>
-                            </ul>
-                        </div>
-                        <div class="uk-width-1-3@m">
+{{--                            <ul class="uk-pagination uk-flex-center uk-margin-medium-top">--}}
+{{--                                <li class="uk-active"><span>1</span></li>--}}
+{{--                                <li><a href="#">2</a></li>--}}
+{{--                                <li><a href="#">3</a></li>--}}
+{{--                                <li class="uk-disabled"><span>...</span></li>--}}
+{{--                                <li><a href="#"><span data-uk-pagination-next></span></a></li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
+{{--                        <div class="uk-width-1-3@m">--}}
                             {{--                        <aside class="sidebar">--}}
                             {{--                            <div class="widjet widjet-search">--}}
                             {{--                                <form class="uk-search uk-search-default" action="#!"><button class="uk-search-icon-flip" data-uk-search-icon type="submit"></button><input class="uk-input uk-search-input uk-form-large" type="search" placeholder="Search blog ..."></form>--}}

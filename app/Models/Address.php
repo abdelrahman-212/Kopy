@@ -25,5 +25,8 @@ class Address extends Model
     public function area() {
         return $this->belongsTo('App\Models\Area','area_id');
     }
+    public function orders() {
+        return $this->hasMany(Order::class,'address_id','id');
+    }
 
 }

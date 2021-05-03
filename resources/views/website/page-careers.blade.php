@@ -187,9 +187,9 @@
                                                         </div>
                                                         {{--                                    <div class="article-intro__comments"><i class="fas fa-comment"></i><span>210</span></div>--}}
                                                     </div>
-                                                    <h2 class="article-intro__title">{{$job -> title_en}}</h2>
+                                                    <h2 class="article-intro__title">           {{(app()->getLocale() == 'ar') ?$job -> title_ar:$job->title_en}}</h2>
                                                     <div class="article-intro__content">
-                                                        <p> {{$job -> brief_description_en}} </p>
+                                                        <p>            {{(app()->getLocale() == 'ar') ?$job -> brief_description_ar:$job->brief_description_en}} </p>
                                                     </div>
                                                     <div class="article-intro__bottom row justify-content-center">
                                                         {{--                                    <div class="article-intro__tags"><i class="fas fa-tags"></i><span>cheese, Pizza, Cookies, Bake</span></div>--}}
