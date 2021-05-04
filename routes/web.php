@@ -146,10 +146,20 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
             Route::get('/update/{address}',[\App\Http\Controllers\Website\AddressController::class,'update'])->name('update_address');
             Route::get('/logout',[\App\Http\Controllers\Website\AuthController::class,'logout'])->name('logout');
+
+            //choose service delivery or take away
+            Route::get('/service', 'ServiceController@servicePage')->name('service.page');
+            Route::get('/delivery', 'ServiceController@deliveryPage')->name('delivery.page');
+            Route::get('/takeaway', 'ServiceController@takeawayPage')->name('takeaway.page');
+            Route::get('/takeaway/{branch_id}', 'ServiceController@takeawayBranch')->name('takeaway.branch');
+
             Route::post('/update-profile/',[\App\Http\Controllers\Website\UserController::class,'update_user'])->name('update.profile');
 
 //Offers Route
             Route::get('/offers/',[\App\Http\Controllers\Website\OffersController::class,'get_offers'])->name('offers');
+            Route::get('/loyalty/',[\App\Http\Controllers\Website\LoyalityController::class, 'get_loyalty'])->name('loyalty');
+
+                        Route::get('/exchange/',[\App\Http\Controllers\Website\LoyalityController::class, 'get_loyalty_exchange'])->name('exchange.points');
 
         });
 

@@ -825,7 +825,7 @@
                                 selectele.parent().parent().next().first().find('.area').html('');
                                 selectele.parent().parent().next().first().find('.area').append('<option selected value="">Choose Area</option>');
                                 $.each(data, function (index, area) {
-                                    selectele.parent().parent().next().first().find('.area').append('<option value="' + area.id + '">' + area.name_ar   + '</option>');
+                                    selectele.parent().parent().next().first().find('.area').append('<option value="' + area.id + '">' + area.name_ar + '</option>');
                                 });
                             }
                         },
