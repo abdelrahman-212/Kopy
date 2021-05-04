@@ -148,6 +148,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
             Route::get('/logout',[\App\Http\Controllers\Website\AuthController::class,'logout'])->name('logout');
             Route::post('/update-profile/',[\App\Http\Controllers\Website\UserController::class,'update_user'])->name('update.profile');
 
+//Offers Route
+            Route::get('/offers/',[\App\Http\Controllers\Website\OffersController::class,'get_offers'])->name('offers');
 
         });
 
