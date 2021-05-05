@@ -133,7 +133,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::get('/health-infos/',[\App\Http\Controllers\Website\HealthInfo::class,'Infos'])->name('health-infos.all');
 
         Route::get('/get-sign-in',[\App\Http\Controllers\Website\AuthController::class,'get_login'])->name('get.login');
-        Route::post('/signin',[\App\Http\Controllers\Website\AuthController::class,'login'])->name('login');
+        Route::post('/signin',[\App\Http\Controllers\Website\AuthController::class,'login'])->name('sign.in');
 
         Route::get('/signup',[\App\Http\Controllers\Website\AuthController::class,'get_sign_up'])->middleware('web')->name('get.sign.up');
         Route::post('/get-sign-up',[\App\Http\Controllers\Website\AuthController::class,'sign_up'])->name('sign.up');
@@ -143,7 +143,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
             //for all ordering route needs branch_id
             Route::group(['middleware'=>'service'],function (){
-
+                // menu
+                Route::get('/item/{category_id}/{item_id}', 'MenuController@itemPage')->name('item.page');
             });
 
 
@@ -152,13 +153,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
             Route::post('/update/',[\App\Http\Controllers\Website\AddressController::class,'store'])->name('new.address');
 
             Route::get('/update/{address}',[\App\Http\Controllers\Website\AddressController::class,'update'])->name('update_address');
-            Route::get('/logout',[\App\Http\Controllers\Website\AuthController::class,'logout'])->name('logout');
+            Route::get('/sign-out',[\App\Http\Controllers\Website\AuthController::class,'logout'])->name('signout');
 
             //choose service delivery or take away
             Route::get('/service', 'ServiceController@servicePage')->name('service.page');
             Route::get('/delivery', 'ServiceController@deliveryPage')->name('delivery.page');
             Route::get('/takeaway', 'ServiceController@takeawayPage')->name('takeaway.page');
-            Route::get('/takeaway/{branch_id}', 'ServiceController@takeawayBranch')->name('takeaway.branch');
+            Route::get('/takeaway/{branch_id}/{service_type}', 'ServiceController@takeawayBranch')->name('takeaway.branch');
 
         });
 

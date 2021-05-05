@@ -29,7 +29,7 @@
                         </div>
                     @endif
 
-                    <form class="mt-5 mb-4" method="post" action="{{route('login')}}">
+                    <form class="mt-5 mb-4" method="post" action="{{route('sign.in')}}">
                         @csrf
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="text-dark">Email</label>

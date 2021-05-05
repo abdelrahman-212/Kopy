@@ -80,7 +80,7 @@
                         @if(!auth()->user())
                             <a class="uk-button" href="{{route('get.login')}}"> <span>sign-in / sign-up</span></a>
                         @elseif(auth()->user())
-                            <a class="uk-button" href="{{route('logout')}}"> <span>log out</span></a>
+                            <a class="uk-button" href="{{route('signout')}}"> <span>log out</span></a>
                         @endif
                     </div>
                 </div>

@@ -29,8 +29,30 @@ class ServiceController extends Controller
         return view('website.takeaway',compact(['branches']));
     }
 
-    public function takeawayBranch($branch_id){
-        session()->put(['branch_id'=>$branch_id]);
-        return redirect()->route('home.page');
+    public function takeawayBranch($id,$service_type){
+        $request = new Request();
+        if($service_type == 'takeaway'){
+            $request->branch_id = $id;
+        }
+        else{
+            $request->address_id = $id;
+        }
+        $return = (app(\App\Http\Controllers\Api\BranchesController::class)->getBranchWorkingHours($request))->getOriginalContent();
+
+        if ($return['success'] == true) {
+            session()->put(['branch_id'=>$return['data']['id']]);
+            session()->put(['service_type'=>$service_type]);
+            return redirect()->route('menu.page');
+        }
+       return redirect()->back()->with('err',$return['message']);
+    /*
+     @if (\Session::has('success'))
+        <div class="alert alert-success">
+            <ul>
+                <li>{!! \Session::get('success') !!}</li>
+            </ul>
+        </div>
+    @endif
+    */
     }
 }

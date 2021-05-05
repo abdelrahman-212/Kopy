@@ -23,7 +23,7 @@ class MenuController extends BaseController
 
             $branches = explode(',',$item->branches);
 
-            if(in_array($request->branch_id, $branches))
+            //if(in_array($request->branch_id, $branches))
             {
                 $offers = DB::table('offer_discount_items')->where('item_id', $item->id)->get();
 
@@ -64,11 +64,11 @@ class MenuController extends BaseController
 
     public function getItems(Request $request, Category $category) {
         $items = $category->items()->with('category.extras', 'category.withouts')->get();
-        foreach ($items as $key => $item) {
 
+        foreach ($items as $key => $item) {
             $branches = explode(',',$item->branches);
 
-            if(in_array($request->branch_id, $branches))
+            //if(in_array($request->branch_id, $branches))
             {
                 $offers = DB::table('offer_discount_items')->where('item_id', $item->id)->get();
 

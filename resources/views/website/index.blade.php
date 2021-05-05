@@ -152,16 +152,29 @@
                 <div class="section-title section-title--center wave french-fries">
                     <h3 class="uk-h3">Our Special Deals</h3>
                 </div>
-                <div class="section-content">
-                    <ul class="uk-subnav uk-flex-center" data-uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium; swiping: false; active: 0">
+                <div class="section-content" data-uk-filter="target: .js-filter">
+
+                    <div class="catalog-filter-row uk-position-relative uk-visible-toggle" tabindex="-1" uk-slider>
+                        <ul class="uk-subnav uk-slider-items uk-child-width-1-6 uk-grid">
+                            @foreach($menu['categories'] as $index => $category)
+                                <li data-uk-filter-control="[data-tags='{{$category->name_en}}']" style="width: 10%">
+                                    <a class="uk-panel w-100 h-100" style="background:none; border: none;" href="#">
+                                        <div class="text-center w-100 h-75">
+                                            <img src="{{$category->image}}" class="img-thumbnail rounded w-100 h-100" alt="">
+                                            <h4 class="m-1">{{(app()->getLocale() == 'ar')? $category->name_ar : $category->name_en}}</h4>
+                                        </div>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                        <a class="uk-position-center-left uk-position-small" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                        <a class="uk-position-center-right uk-position-small" href="#" uk-slidenav-next uk-slider-item="next"></a>
+                    </div>
+
+                    <ul class="js-filter uk-grid uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l" data-uk-grid>
                         @foreach($menu['categories'] as $category)
-                        <li><a href="#">{{(app()->getLocale() == 'ar')? $category->name_ar : $category->name_en}}</a></li>
-                        @endforeach
-                    </ul>
-                    <ul class="uk-switcher">
-                        @foreach($menu['categories'] as $category)
-                        <li>
-                            <div data-uk-slider>
+                        <li data-tags="{{$category->name_en}}" class="w-100">
+                            <div data-uk-slider style="width: 100%">
                                 <div class="uk-position-relative">
                                     <div class="uk-slider-container uk-light">
                                         <ul class="uk-slider-items uk-grid uk-grid-small uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l">
@@ -179,7 +192,7 @@
                                                                 <div class="product-item__intro">
                                                                     <div class="product-item__not-active">
                                                                         <div class="product-item__media">
-                                                                            <div class="uk-inline-clip uk-transition-toggle uk-light" data-uk-lightbox="data-uk-lightbox"><a href="{{asset($item->image)}}"><img src="{{asset($item->image)}}" alt="{{(app()->getLocale() == 'ar')? $item->name_ar : $item->name_en}}" />
+                                                                            <div class="uk-inline-clip uk-transition-toggle uk-light" data-uk-lightbox="data-uk-lightbox"><a href="{{asset($item->image)}}" class="w-100 h-100"><img class="w-100 h-100" src="{{asset($item->image)}}" alt="{{(app()->getLocale() == 'ar')? $item->name_ar : $item->name_en}}" />
                                                                                     <div class="uk-transition-fade uk-position-cover uk-overlay uk-overlay-primary"></div>
                                                                                     <div class="uk-position-center"><span class="uk-transition-fade" data-uk-icon="icon: search;"></span></div>
                                                                                 </a></div>
@@ -204,8 +217,11 @@
                                                                 </div>
 
                                                                 <div class="product-item__info">
-                                                                    <div class="product-item__price"> <span>Price: </span><span class="value">{{$item->price}} SR</span></div>
-                                                                    <div class="product-item__addcart"> <a class="uk-button uk-button-default" href="page-product.html">Add to Cart<span data-uk-icon="cart"></span></a></div>
+                                                                    <div class="product-item__price">
+                                                                        <span>Price: </span><span class="value" @if($item['offer']) style="text-decoration: line-through;font-size: 20px;" @endif > {{$item->price}} </span>
+                                                                        @if($item['offer']) <span style="font-size: 26px;color:#6dc405;text-decoration: none"> {{$item['offer']['offer_price']}} </span> @endif
+                                                                    </div>
+                                                                    <div class="product-item__addcart"> <a class="uk-button uk-button-default" href="{{route('item.page',[$category->id,$item->id])}}">Add to Cart<span data-uk-icon="cart"></span></a></div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -214,7 +230,10 @@
                                             @endforeach
                                         </ul>
                                     </div>
-                                    <div class="uk-visible@l"><a class="uk-position-top-left-out" href="#" data-uk-slidenav-previous data-uk-slider-item="previous"></a><a class="uk-position-top-right-out" href="#" data-uk-slidenav-next data-uk-slider-item="next"></a></div>
+                                    <div class="uk-visible@l">
+                                        <a class="uk-position-top-left-out" href="#" data-uk-slidenav-previous data-uk-slider-item="previous"></a>
+                                        <a class="uk-position-top-right-out" href="#" data-uk-slidenav-next data-uk-slider-item="next"></a>
+                                    </div>
                                     <div class="uk-hidden@l">
                                         <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin-medium-top"></ul>
                                     </div>

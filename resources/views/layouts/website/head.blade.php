@@ -16,6 +16,7 @@
     <link href="{{asset('website2-assets/vendor/icons/feather.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('website2-assets/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('website2-assets/vendor/sidebar/demo.css')}}" rel="stylesheet">
+    <link href="{{asset('website2-assets/vendor/icofont/icofont.min.css')}}" rel="stylesheet">
 
     <link rel="shortcut icon" href="{{asset('website-assets/img/favicon.png')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('website-assets/css/uikit.min.css')}}">

@@ -98,8 +98,8 @@
                         <ul class="uk-subnav uk-slider-items uk-child-width-1-6 uk-grid">
                             @foreach($menu['categories'] as $index => $category)
                                 <li data-uk-filter-control="[data-tags='{{$category->name_en}}']" style="width: 10%">
-                                    <a class="uk-panel bg-white" href="#">
-                                        <div class="text-center">
+                                    <a class="uk-panel w-100 h-100" style="background:none; border: none;" href="#">
+                                        <div class="text-center w-100 h-75">
                                             <img src="{{$category->image}}" class="img-thumbnail rounded w-100 h-100" alt="">
                                             <h4 class="m-1">{{(app()->getLocale() == 'ar')? $category->name_ar : $category->name_en}}</h4>
                                         </div>
@@ -126,7 +126,7 @@
                                         <div class="product-item__intro">
                                             <div class="product-item__not-active">
                                                 <div class="product-item__media">
-                                                    <div class="uk-inline-clip uk-transition-toggle uk-light" data-uk-lightbox="data-uk-lightbox"><a href="{{asset($item->image)}}"><img src="{{asset($item->image)}}" alt="{{(app()->getLocale() == 'ar')? $item->name_ar : $item->name_en}}" />
+                                                    <div class="uk-inline-clip uk-transition-toggle uk-light" data-uk-lightbox="data-uk-lightbox"><a href="{{asset($item->image)}}" class="w-100 h-100"><img class="w-100 h-100" src="{{asset($item->image)}}" alt="{{(app()->getLocale() == 'ar')? $item->name_ar : $item->name_en}}" />
                                                             <div class="uk-transition-fade uk-position-cover uk-overlay uk-overlay-primary"></div>
                                                             <div class="uk-position-center"><span class="uk-transition-fade" data-uk-icon="icon: search;"></span></div>
                                                         </a></div>
@@ -151,8 +151,11 @@
                                         </div>
 
                                         <div class="product-item__info">
-                                            <div class="product-item__price"> <span>Price: </span><span class="value">{{$item->price}} SR</span></div>
-                                            <div class="product-item__addcart"> <a class="uk-button uk-button-default" href="page-product.html">Add to Cart<span data-uk-icon="cart"></span></a></div>
+                                            <div class="product-item__price">
+                                                <span>Price: </span><span class="value" @if($item['offer']) style="text-decoration: line-through;font-size: 20px;" @endif > {{$item->price}} </span>
+                                                @if($item['offer']) <span style="font-size: 26px;color:#6dc405;text-decoration: none"> {{$item['offer']['offer_price']}} </span> @endif
+                                            </div>
+                                            <div class="product-item__addcart"> <a class="uk-button uk-button-default" href="{{route('item.page',[$category->id,$item->id])}}">Add to Cart<span data-uk-icon="cart"></span></a></div>
                                         </div>
                                     </div>
                                 </div>

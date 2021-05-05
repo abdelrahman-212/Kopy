@@ -19,7 +19,7 @@
                                 <input type="radio" id="customRadioInline{{$branche->id}}" name="customRadioInline"
                                        class="custom-control-input" @if(session()->has('branch_id')) {{(session()->get('branch_id') == $branche->id)? "checked" : "" }} @endif>
                                 <label class="custom-control-label w-100 h-100" for="customRadioInline{{$branche->id}}">
-                                    <a href="{{route('takeaway.branch',$branche->id)}}">
+                                    <a href="{{route('takeaway.branch',[$branche->id,'takeaway'])}}">
                                         <div class="w-100 h-100">
                                             <div class="bg-white shadow-sm rounded p-4 w-100 h-100">
                                                 <p class="h6 mb-3"><span class="feather-home text-primary"></span><span
