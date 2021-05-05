@@ -58,7 +58,7 @@ class OffersController extends BaseController
 
         //     return $this->sendResponse($result, 'offer detials');
         // }
-        
+
         if ($offer->offer_type == 'buy-get') {
 
             $buy_items = $offer->buyGet->buyItems;
@@ -108,7 +108,7 @@ class OffersController extends BaseController
 
         return $offer->with('buyGet', 'discount')->first()->toJson();
     }
-    
+
      public function check(Request $request)
     {
         $order = Order::find($request->order_id);
@@ -290,7 +290,7 @@ class OffersController extends BaseController
                     // Calculate the item prices before discount * ordered buy quantity
                     //dd($offer->buyGet->buy_quantity);
                     //$itemOfferPrices = $itemPrices * $offer->buyGet->buy_quantity;
-                    
+
                     $order_item = DB::table('order_item')->where([
                         ['order_id', $order->id],
                         ['offer_id', $offer->id],
@@ -333,7 +333,7 @@ class OffersController extends BaseController
                 //dd($order_item);
                 foreach ($order_item as $row) {
                     $item = Item::where('id', $row->item_id)->first();
-                    
+
                     //$row->offer_price = $item->price;
                     //$row->save();
                     $itemOfferPrices += $item->price * $row->quantity;
@@ -756,13 +756,13 @@ class OffersController extends BaseController
     protected  function getOfferItems($offer, $pivots, $buyItems, $getItems, $is_valid)
     {
         $pivots->map(function ($pivot) use ($offer, $buyItems, $getItems, $is_valid) {
-            
+
             $item = $buyItems->where('id', $pivot->item_id)->first();
             $mainItem = Item::where('id', $pivot->item_id)->first();
-            
+
             if($is_valid == true)
             {
-               
+
                 $itemType = 'discount';
                 if ($offer->offer_type == 'buy-get') {
                     if ($item && $pivot->price !=0) {
@@ -772,12 +772,12 @@ class OffersController extends BaseController
                         $itemType = 'get';
                     }
                 }
-    
+
                 $pivot->offer_price = $itemType == 'get' ? 0 : $item->price;
                 $pivot->type = $itemType;
             }
             else{
-              
+
                 $itemType = 'discount';
                 if ($offer->offer_type == 'buy-get') {
                     if ($item && $pivot->price !=0) {
@@ -787,7 +787,7 @@ class OffersController extends BaseController
                         $itemType = 'get';
                     }
                 }
-    
+
                 $pivot->offer_price = $mainItem->price;
                 $pivot->price = $mainItem->price;
                 $pivot->type = $itemType;

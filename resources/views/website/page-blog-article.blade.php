@@ -164,9 +164,9 @@
                                                     src="{{$article->image}}" alt="img-article"></a></div>
                                         <div class="article-full__content article-full__nav text-center">
 
-                                            <h2 class="article-intro__title">{{$article -> title_en}}</h2>
+                                            <h2 class="article-intro__title">           {{(app()->getLocale() == 'ar') ?$article -> title_ar:$article->title_en}}</h2>
                                             <div class="article-intro__content">
-                                                <p> {{$article -> description_en}} </p>
+                                                <p>            {{(app()->getLocale() == 'ar') ?$article->description_ar:$article->description_en}} </p>
                                             </div>
                                             {{--                        <div class="uk-grid uk-child-width-1-2@s" data-uk-grid>--}}
                                             {{--                            <div><img class="uk-width-1-1" src="{{asset('website-assets/img/blog/img-article-1.jpg')}}" alt="article"></div>--}}
