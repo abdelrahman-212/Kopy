@@ -7,12 +7,16 @@ use App\Http\Controllers\Controller;
 
 class CartController extends Controller
 {
-    public function get_cart () {
+    public function get_cart()
+    {
         $return = (app(\App\Http\Controllers\Api\CartController::class)->getCart())->getOriginalContent();
 
         if ($return['success'] == 'success') {
-            $cart = $return['data'];
-            return $cart;}
-        return view('website.cart');
+            $carts = $return['data'];
+// foreach ($carts as $cart){
+//     return $cart->item->name_en;
+// }
+            return view('website.cart', compact('carts'));
+        }
     }
 }
