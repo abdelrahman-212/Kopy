@@ -2,7 +2,14 @@
 
 @section('title') Offers @endsection
 
-@section('styles')@endsection
+@section('styles')
+<style>
+   h6 , h5,h4,h3,h2{
+        font-family: inherit;
+    }
+</style>
+
+@endsection
 
 @section('pageName')
     <body class="page-article dm-light"> @endsection

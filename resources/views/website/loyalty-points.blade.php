@@ -4,6 +4,7 @@
 
 @section('styles')
     <style type="text/css">
+
         .numberCircle {
             display: inline-block;
 
