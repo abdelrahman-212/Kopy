@@ -7,6 +7,7 @@
         h6 {
             font-family: 'sans-serif';
         }
+
     </style>
     <link rel="icon" type="image/png" href="{{asset('website2-assets/img/favicon.png')}}">
 

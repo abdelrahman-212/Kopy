@@ -169,3 +169,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
 
 
+
+Route::get('gg',function(){
+    return view('website.cart');
+});
