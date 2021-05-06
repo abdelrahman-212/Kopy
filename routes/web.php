@@ -203,6 +203,4 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
     });
 });
-Route::get('hh',function (){
-    return 'sdhdsh';
-});
+

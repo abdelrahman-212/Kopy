@@ -161,8 +161,8 @@
                                                         id="taxes" style="font-size: smaller;">{{$arr_check['delivery_fees']}} SR</span></h6>
                                                 <h6 class="mt-1 mb-2"><b
 
-                                                        class="inset-right-5 text-gray-light"     id="total">Total: {{$arr_check['total']}} </b> <span
-                                                        style="font-size: smaller;">31.1 SR</span></h6>
+                                                        class="inset-right-5 text-gray-light" >Total:   </b> <span
+                                                        style="font-size: smaller;" id="total">{{$arr_check['total']}} SR</span></h6>
                                             </div>
                                             <a class="uk-button w-100" href="#" style="border-radius: 100px;"> <span>Checkout</span></a>
                                         </div>
@@ -197,6 +197,10 @@
                             $(`.cart2${id}`).hide();
                             $(`.cart3${id}`).hide();
                             $('#itemcount').text((parseInt($('#itemcount').text())) - 1);
+                            $('#subtotal').text(data.subtotal);
+                            $('#taxes').text(data.taxes);
+                            $('#total').text(data.total);
+                            $('#delivery_fees').text(data.delivery_fees);
                         },
                         error: function (reject) {
                             console.log(reject);
@@ -216,10 +220,11 @@
                             'quantity': quantity,
                         },
                         success: function (data) {
-                            $('#taxes').text((parseInt($('#taxes').text())) =data.taxes);
-                            $('#itemcount').text((parseInt($('#itemcount').text())) - 1);
-                            $('#itemcount').text((parseInt($('#itemcount').text())) - 1);
-                            $('#itemcount').text((parseInt($('#itemcount').text())) - 1);
+                            $('#subtotal').text(data.subtotal);
+                            $('#taxes').text(data.taxes);
+                            $('#total').text(data.total);
+                            $('#delivery_fees').text(data.delivery_fees);
+
 
                             console.log(data.taxes)
                         },
