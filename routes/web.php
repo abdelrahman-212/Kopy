@@ -145,6 +145,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
             Route::group(['middleware'=>'service'],function (){
                 // menu
                 Route::get('/item/{category_id}/{item_id}', 'MenuController@itemPage')->name('item.page');
+                // add to cart
+                Route::post('/cart', 'CartController@addCart')->name('add.cart');
+                // offers
+                Route::get('/offers', 'OffersController@get_offers')->name('offers');
+                Route::get('/offers/{oferID}', 'OffersController@offerItems')->name('offer.item');
             });
 
 
@@ -160,6 +165,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
             Route::get('/delivery', 'ServiceController@deliveryPage')->name('delivery.page');
             Route::get('/takeaway', 'ServiceController@takeawayPage')->name('takeaway.page');
             Route::get('/takeaway/{branch_id}/{service_type}', 'ServiceController@takeawayBranch')->name('takeaway.branch');
+
+
 
         });
 

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 use App\Models\Extra;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Without;
 
 class Cart extends Model
 {
@@ -12,29 +12,47 @@ class Cart extends Model
         'user_id',
         'item_id',
         'extras',
+        'withouts',
+        'dough_type_ar',
+        'dough_type_en',
         'quantity',
         'offer_id'
     ];
-    
+
     public $appends = [
-        'extras_objects'
+        'extras_objects',
+        'withouts_objects'
     ];
-    
+
     public function item(){
         return $this->belongsTo('App\Models\Item');
     }
-    
+
     public function getExtrasObjectsAttribute()
     {
         $objects = [];
-        
-        if (isset($this->attributes['extras'])) {
+        //return $objects= json_decode($this->attributes['extras']);
+        if (isset($this->attributes['extras']) && $this->attributes['extras'] != 'null') {
             foreach (json_decode($this->attributes['extras']) as $extra) {
                 $extra = Extra::find($extra);
                 if ($extra) $objects[] = $extra;
             }
         }
-        
+
+        return $objects;
+    }
+
+    public function getWithoutsObjectsAttribute()
+    {
+        $objects = [];
+        //return $objects = json_decode($this->attributes['withouts']);
+        if (isset($this->attributes['withouts']) && $this->attributes['withouts'] != 'null') {
+            foreach (json_decode($this->attributes['withouts']) as $without) {
+                $without = Without::find($without);
+                if ($without) $objects[] = $without;
+            }
+        }
+
         return $objects;
     }
 }

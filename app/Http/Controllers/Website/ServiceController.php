@@ -42,17 +42,9 @@ class ServiceController extends Controller
         if ($return['success'] == true) {
             session()->put(['branch_id'=>$return['data']['id']]);
             session()->put(['service_type'=>$service_type]);
+            session()->forget('status');
             return redirect()->route('menu.page');
         }
        return redirect()->back()->with('err',$return['message']);
-    /*
-     @if (\Session::has('success'))
-        <div class="alert alert-success">
-            <ul>
-                <li>{!! \Session::get('success') !!}</li>
-            </ul>
-        </div>
-    @endif
-    */
     }
 }
