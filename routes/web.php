@@ -133,10 +133,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
         Route::get('/get-sign-in', [\App\Http\Controllers\Website\AuthController::class, 'get_login'])->name('get.login');
         Route::post('/signin', [\App\Http\Controllers\Website\AuthController::class, 'login'])->name('sign.in');
-        Route::get('/get-sign-in', [\App\Http\Controllers\Website\AuthController::class, 'get_login'])->name('get.login');
-        Route::post('/signin', [\App\Http\Controllers\Website\AuthController::class, 'login'])->name('login');
-        Route::get('/get-sign-in', [\App\Http\Controllers\Website\AuthController::class, 'get_login'])->name('get.login');
-        Route::post('/signin', [\App\Http\Controllers\Website\AuthController::class, 'login'])->name('login');
 
         Route::get('/signup', [\App\Http\Controllers\Website\AuthController::class, 'get_sign_up'])->middleware('web')->name('get.sign.up');
         Route::post('/get-sign-up', [\App\Http\Controllers\Website\AuthController::class, 'sign_up'])->name('sign.up');
@@ -182,6 +178,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
                     Route::get('/exchange/', [\App\Http\Controllers\Website\LoyalityController::class, 'get_loyalty_exchange'])->name('exchange.points');
                     //cart Route
                     Route::get('/get-cart/', [\App\Http\Controllers\Website\CartController::class, 'get_cart'])->name('get.cart');
+                    Route::post('/delete-cart/', [\App\Http\Controllers\Website\CartController::class, 'delete_cart'])->name('delete.cart');
+                    Route::post('/update-quantity/', [\App\Http\Controllers\Website\CartController::class, 'update_quantity'])->name('update.quantity');
+                    Route::get('/get-check/', [\App\Http\Controllers\Website\CartController::class, 'get_check'])->name('get.check');
 
                     Route::get('/update/{address}', [\App\Http\Controllers\Website\AddressController::class, 'update'])->name('update_address');
                     Route::get('/sign-out', [\App\Http\Controllers\Website\AuthController::class, 'logout'])->name('signout');
@@ -203,4 +202,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
 
     });
+});
+Route::get('hh',function (){
+    return 'sdhdsh';
 });
