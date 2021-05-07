@@ -86,6 +86,11 @@
                                                                     </div>
                                                                     <div class="col-4 d-flex">
                                                                         <div class="p-2 mr-4"><span class="h6">Price: {{$cart->item->price}} SR</span>
+                                                                            @if($cart->offer_id)
+                                                                                <i class="fa fa-gift fa-4x text-danger "
+                                                                                   aria-hidden="true"></i>
+
+                                                                            @endif
                                                                         </div>
                                                                         <div class="inset-left-20 delete_cart"
                                                                              data-id="{{$cart->id}}"><a
@@ -95,52 +100,59 @@
                                                                                     class="fas fa-trash"></i></a></div>
                                                                     </div>
                                                                 </div>
+                                                                @if(!$cart->offer_id)
+                                                                    <div>
+                                                                        <div class="row w-100 m-0 mt-4">
 
-                                                                <div>
-                                                                    <div class="row w-100 m-0 mt-4">
+                                                                            @foreach($cart->ExtrasObjects as $extra)
+                                                                                <div class="col-4">
 
-                                                                        @foreach($cart->ExtrasObjects as $extra)
-                                                                            <div class="col-4">
+                                                                                    <p>Extra
+                                                                                        : {{(app()->getLocale() == 'ar')? $extra->name_ar:$extra->name_en}} </p>
+                                                                                </div>
+                                                                                <div class="col-4">
+                                                                                    <p> Calories
+                                                                                        : {{$extra->calories}}</p>
+                                                                                </div>
+                                                                                <div class="col-4">
+                                                                                    <p> Price : {{$extra->price}}
+                                                                                        SR</p>
 
-                                                                                <p>Extra
-                                                                                    : {{(app()->getLocale() == 'ar')? $extra->name_ar:$extra->name_en}} </p>
+                                                                                </div>
+
+                                                                            @endforeach
+
+
+                                                                        </div>
+                                                                        <div class="row w-100 m-0 mt-2">
+
+                                                                            @foreach($cart->WithoutsObjects as $without)
+                                                                                <div class="col-4">
+
+                                                                                    <p>Without
+                                                                                        : {{(app()->getLocale() == 'ar')? $without->name_ar:$without->name_en}} </p>
+                                                                                </div>
+                                                                                <div class="col-6">
+                                                                                    <p> Calories
+                                                                                        : {{$without -> calories}}</p>
+                                                                                </div>
+                                                                            @endforeach
+                                                                        </div>
+                                                                        <div class="row w-100 m-0 mt-3">
+                                                                            <div class="col-3">
+                                                                                <p>Dough Type
+                                                                                    : {{(app()->getLocale() == 'ar')? $cart->dough_type_ar:$cart->dough_type_en}} </p>
                                                                             </div>
-                                                                            <div class="col-4">
-                                                                                <p> Calories : {{$extra->calories}}</p>
-                                                                            </div>
-                                                                            <div class="col-4">
-                                                                                <p> Price : {{$extra->price}} SR</p>
-                                                                            </div>
-
-                                                                        @endforeach
-
-
-                                                                    </div>
-                                                                    <div class="row w-100 m-0 mt-2">
-
-                                                                        @foreach($cart->WithoutsObjects as $without)
-                                                                            <div class="col-4">
-
-                                                                                <p>Without
-                                                                                    : {{(app()->getLocale() == 'ar')? $without->name_ar:$without->name_en}} </p>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <p> Calories
-                                                                                    : {{$without -> calories}}</p>
-                                                                            </div>
-                                                                        @endforeach
-                                                                    </div>
-                                                                    <div class="row w-100 m-0 mt-3">
-                                                                        <div class="col-3">
-                                                                            <p>Dough Type
-                                                                                : {{(app()->getLocale() == 'ar')? $cart->dough_type_ar:$cart->dough_type_en}} </p>
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                @endif
+
+
                                                             </div>
                                                         </td>
                                                     </tr>
                                                     <tr class="cart3{{$cart->id}}" style="height: 30px">
+
                                                     </tr>
                                                 @endforeach
                                                 </tbody>
@@ -150,19 +162,27 @@
                                             <div class="h4 font-default text-bold">
                                                 <h6 class="mt-1 mb-2"><b
                                                         class="inset-right-5 text-gray-light">Sub
-                                                        Total: </b> <span  id="subtotal" style="font-size: smaller;">{{$arr_check['subtotal']}} SR</span>
+                                                        Total: </b> <span id="subtotal" style="font-size: smaller;">{{$arr_check['subtotal']}} SR</span>
                                                 </h6>
                                                 <h6 class="mt-1 mb-2"><b
 
-                                                                         class="inset-right-5 text-gray-light">Tax: </b>
-                                                    <span              id="taxes" style="font-size: smaller;">{{$arr_check['taxes']}} SR</span></h6>
+                                                        class="inset-right-5 text-gray-light">Tax: </b>
+                                                    <span id="taxes" style="font-size: smaller;">{{$arr_check['taxes']}} SR</span>
+                                                </h6>
                                                 <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">Delivery
                                                         Fees: </b> <span
-                                                        id="taxes" style="font-size: smaller;">{{$arr_check['delivery_fees']}} SR</span></h6>
+                                                        id="taxes" style="font-size: smaller;">{{$arr_check['delivery_fees']}} SR</span>
+                                                </h6>
+                                                @if(isset($arr_check['points']))
+                                                    <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">Loyality Discount: </b> <span
+                                                            id="points" style="font-size: smaller;"> - {{$arr_check['points']}} SR</span>
+                                                    </h6>
+                                                @endif
                                                 <h6 class="mt-1 mb-2"><b
 
-                                                        class="inset-right-5 text-gray-light" >Total:   </b> <span
-                                                        style="font-size: smaller;" id="total">{{$arr_check['total']}} SR</span></h6>
+                                                        class="inset-right-5 text-gray-light">Total: </b> <span
+                                                        style="font-size: smaller;" id="total">{{$arr_check['total']}} SR</span>
+                                                </h6>
                                             </div>
                                             <a class="uk-button w-100" href="#" style="border-radius: 100px;"> <span>Checkout</span></a>
                                         </div>
@@ -201,6 +221,9 @@
                             $('#taxes').text(data.taxes);
                             $('#total').text(data.total);
                             $('#delivery_fees').text(data.delivery_fees);
+                            @if(isset($arr_check['points']))
+                            $('#points').text(data.points);
+                             @endif
                         },
                         error: function (reject) {
                             console.log(reject);
@@ -224,7 +247,9 @@
                             $('#taxes').text(data.taxes);
                             $('#total').text(data.total);
                             $('#delivery_fees').text(data.delivery_fees);
-
+                            @if(isset($arr_check['points']))
+                            $('#points').text(data.points);
+                            @endif
 
                             console.log(data.taxes)
                         },
