@@ -193,6 +193,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
                     Route::get('/update/{address}', [\App\Http\Controllers\Website\AddressController::class, 'update'])->name('update_address');
                     Route::get('/logout', [\App\Http\Controllers\Website\AuthController::class, 'logout'])->name('logout');
+                    /*****************Begin Checkout And Orders Routes ****************/
+                    Route::post('get-checkout/', [\App\Http\Controllers\Website\CartController::class, 'get_checkout'])->name('checkout');
+                    Route::post('make-order/', [\App\Http\Controllers\Website\OrdersController::class, 'make_order'])->name('make_order');
+                    Route::get('my-orders/', [\App\Http\Controllers\Website\OrdersController::class, 'my_orders'])->name('get.orders');
+
+                    /*****************End Checkout And Orders Routes ****************/
 
                 });
 
@@ -203,4 +209,5 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
     });
 });
+
 

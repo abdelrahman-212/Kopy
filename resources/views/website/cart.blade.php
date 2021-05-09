@@ -158,34 +158,50 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="mt-5 offset-9 col-xs-3">
-                                            <div class="h4 font-default text-bold">
-                                                <h6 class="mt-1 mb-2"><b
-                                                        class="inset-right-5 text-gray-light">Sub
-                                                        Total: </b> <span id="subtotal" style="font-size: smaller;">{{$arr_check['subtotal']}} SR</span>
-                                                </h6>
-                                                <h6 class="mt-1 mb-2"><b
 
-                                                        class="inset-right-5 text-gray-light">Tax: </b>
-                                                    <span id="taxes" style="font-size: smaller;">{{$arr_check['taxes']}} SR</span>
-                                                </h6>
-                                                <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">Delivery
-                                                        Fees: </b> <span
-                                                        id="taxes" style="font-size: smaller;">{{$arr_check['delivery_fees']}} SR</span>
-                                                </h6>
-                                                @if(isset($arr_check['points']))
-                                                    <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">Loyality Discount: </b> <span
-                                                            id="points" style="font-size: smaller;"> - {{$arr_check['points']}} SR</span>
+                                        <form action="{{route('checkout')}}" method="post"  >
+
+                                            @csrf
+                                            <div class="mt-5 offset-9 col-xs-3">
+                                                <div class="h4 font-default text-bold">
+                                                    <h6 class="mt-1 mb-2"><b
+                                                            class="inset-right-5 text-gray-light">Sub
+                                                            Total: </b> <span id="subtotal" style="font-size: smaller;">{{$arr_check['subtotal']}} SR</span>
+                                                  <input id="subtotalinput" hidden    name="subtotal" value="{{$arr_check['subtotal']}}"/>
                                                     </h6>
-                                                @endif
-                                                <h6 class="mt-1 mb-2"><b
+                                                    <h6 class="mt-1 mb-2"><b
 
-                                                        class="inset-right-5 text-gray-light">Total: </b> <span
-                                                        style="font-size: smaller;" id="total">{{$arr_check['total']}} SR</span>
-                                                </h6>
+                                                            class="inset-right-5 text-gray-light">Tax: </b>
+                                                        <span id="taxes" style="font-size: smaller;">{{$arr_check['taxes']}} SR</span>
+                                                        <input id="taxesinput" hidden   name="taxes" value="{{$arr_check['taxes']}}"/>
+
+                                                    </h6>
+                                                    <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">Delivery
+                                                            Fees: </b> <span
+                                                            id="delivery_fees" style="font-size: smaller;">{{$arr_check['delivery_fees']}} SR</span>
+                                                        <input id="delivery_feesnput"  hidden   name="delivery_fees" value="{{$arr_check['delivery_fees']}}"/>
+
+                                                    </h6>
+                                                    @if(isset($arr_check['points']))
+                                                        <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">Loyality Discount: </b> <span
+                                                                id="points" style="font-size: smaller;"> - {{$arr_check['points']}} SR</span>
+                                                            <input id="pointsinput"  hidden   name="points_paid" value="{{$arr_check['points']}}"/>
+
+                                                        </h6>
+                                                    @endif
+
+                                                    <h6 class="mt-1 mb-2"><b
+
+                                                            class="inset-right-5 text-gray-light">Total: </b> <span
+                                                            style="font-size: smaller;" id="total">{{$arr_check['total']}} SR</span>
+                                                        <input id="totalinput"   hidden name="total" value="{{$arr_check['total']}}"/>
+
+                                                    </h6>
+                                                </div>
+                                                <button type="submit" class="uk-button w-100"  style="border-radius: 100px;"> <span>Checkout</span></button>
                                             </div>
-                                            <a class="uk-button w-100" href="#" style="border-radius: 100px;"> <span>Checkout</span></a>
-                                        </div>
+
+                                        </form>
                                     </div>
                                 @endif
                             </div>
@@ -217,7 +233,8 @@
                             $(`.cart2${id}`).hide();
                             $(`.cart3${id}`).hide();
                             $('#itemcount').text((parseInt($('#itemcount').text())) - 1);
-                            $('#subtotal').text(data.subtotal);
+
+                             $('#subtotal').text(data.subtotal);
                             $('#taxes').text(data.taxes);
                             $('#total').text(data.total);
                             $('#delivery_fees').text(data.delivery_fees);
@@ -244,15 +261,24 @@
                         },
                         success: function (data) {
                             $('#subtotal').text(data.subtotal);
+                            $('#subtotalinput').val(data.subtotal)
+
                             $('#taxes').text(data.taxes);
+                            $('#taxesinput').val(data.taxes)
+
                             $('#total').text(data.total);
+                            $('#totalinput').val(data.total)
+
                             $('#delivery_fees').text(data.delivery_fees);
+                          $('#delivery_feesinput').val(data.delivery_fees)
+
                             @if(isset($arr_check['points']))
                             $('#points').text(data.points);
+                            $('#pointsnput').val(data.points)
+
                             @endif
 
-                            console.log(data.taxes)
-                        },
+                         },
                         error: function (reject) {
                             console.log(reject);
 
