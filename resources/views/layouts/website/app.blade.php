@@ -149,8 +149,8 @@
             $('#address-modal').modal('toggle');
         });
 
-        @if (session('err'))
-        alert({{session('err')}});
+        @if(session()->has('err'))
+        alert("{{session('err')}}");
         {{session()->forget('err')}}
         @endif
 

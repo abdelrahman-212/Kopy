@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\FrontController;
 use App\Models\Branch;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class ServiceController extends Controller
 {
@@ -30,12 +31,14 @@ class ServiceController extends Controller
     }
 
     public function takeawayBranch($id,$service_type){
+
         $request = new Request();
         if($service_type == 'takeaway'){
-            $request->branch_id = $id;
+            $request->merge(['branch_id' => $id]);
         }
         else{
-            $request->address_id = $id;
+            $request->merge(['address_id' => $id]);
+            session()->put(['address_id'=>$id]);
         }
         $return = (app(\App\Http\Controllers\Api\BranchesController::class)->getBranchWorkingHours($request))->getOriginalContent();
 
@@ -45,6 +48,6 @@ class ServiceController extends Controller
             session()->forget('status');
             return redirect()->route('menu.page');
         }
-       return redirect()->back()->with('err',$return['message']);
+       return redirect()->back()->withErrors(['err'=>$return['message']]);
     }
 }

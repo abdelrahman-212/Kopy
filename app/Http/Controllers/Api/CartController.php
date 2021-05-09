@@ -25,7 +25,7 @@ class CartController extends BaseController
 
         $validator = Validator::make($request->all(), [
             'item_id' => ['required', 'exists:items,id'],
-            'extras' => ['required'],
+            //'extras' => ['required'],
             'quantity' => ['required', 'numeric']
         ]);
 

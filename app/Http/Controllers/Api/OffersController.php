@@ -86,7 +86,11 @@ class OffersController extends BaseController
 
         if ($offer->offer_type == 'discount') {
             //dd($offer->discount);
-            $itemsIds = explode(',', $offer->discount->items);
+            //$itemsIds = explode(',', $offer->discount->items); // wrong
+            $itemsIds = [];
+            foreach ($offer->discount->items as $item){
+                $itemsIds[] = $item['id'];
+            }
             $items = Item::whereIn('id', $itemsIds)->get();
 
             foreach ($items as $item) {
@@ -97,12 +101,9 @@ class OffersController extends BaseController
                     $item->offer_price = $item->price - $offer->discount->discount_value;
                 }
             }
-
             $details = $offer->discount;
             $details['items'] = $items;
-
             $result['details'] = $details;
-
             return $this->sendResponse($result, 'offer details');
         }
 
