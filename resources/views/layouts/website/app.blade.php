@@ -105,21 +105,6 @@
                                 </div>
                             @endforeach
                         @endif
-                        {{--                            <div class="col-md-6 m-auto">--}}
-                        {{--                                <p class="mb-0 text-black font-weight-bold">--}}
-                        {{--                                    <button--}}
-
-                        {{--                                        data-toggle="modal"--}}
-                        {{--                                        data-target="#add-address-modal "--}}
-                        {{--                                        href="#" type="button"--}}
-
-                        {{--                                        class="btn btn-lg btn-primary w-100">--}}
-                        {{--                                        <i class="fas fa-plus"></i>--}}
-                        {{--                                        New Address--}}
-                        {{--                                    </button>--}}
-
-                        {{--                                </p>--}}
-                        {{--                            </div>--}}
                     </div>
 
                 </div>
@@ -150,7 +135,7 @@
         });
 
         @if(session()->has('err'))
-        alert("{{session('err')}}");
+        alert("{{session()->get('err')}}");
         {{session()->forget('err')}}
         @endif
 
