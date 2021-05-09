@@ -19,28 +19,31 @@ class CartController extends BaseController
     {
         return $this->sendResponse(Auth::user()->carts()->with('item')->get(), 'User Cart Retrieved');
     }
-    
+
     public function addCart(Request $request)
     {
-        
+
         $validator = Validator::make($request->all(), [
             'item_id' => ['required', 'exists:items,id'],
-            'extras' => ['required'],
+            //'extras' => ['required'],
             'quantity' => ['required', 'numeric']
         ]);
 
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);
         }
-        
+
         $cart = Cart::create([
                 'user_id' =>  Auth::user()->id,
                 'item_id' =>  $request->item_id,
                 'extras' =>  $request->extras,
+                'withouts' =>  $request->withouts,
+                'dough_type_ar' =>  $request->dough_type_ar,
+                'dough_type_en' =>  $request->dough_type_en,
                 'quantity' =>  $request->quantity,
                 'offer_id' =>  $request->offer_id,
             ]);
-            
+
         // $cart = new Cart;
         // $cart->user_id = Auth::user()->id;
         // $cart->item_id = $request->item_id;
@@ -48,10 +51,10 @@ class CartController extends BaseController
         // $cart->quantity = $request->quantity;
         // $cart->offer_id = $request->offer_id;
         // $cart->save();
-            
+
         return $this->sendResponse($cart, 'Cart Created Successfully');
     }
-    
+
     public function deleteCart(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -61,11 +64,11 @@ class CartController extends BaseController
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);
         }
-        
+
         Auth::user()->carts()->find($request->cart_id)->delete();
         return $this->sendResponse(null, 'User Cart Item Deleted');
     }
-    
+
     public function updateQuantity(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -76,10 +79,10 @@ class CartController extends BaseController
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);
         }
-        
+
         Auth::user()->carts()->find($request->cart_id)->update(['quantity' => $request->quantity]);
-        
+
         return $this->sendResponse(Auth::user()->carts()->with('item')->get(), 'User Cart Updated');
     }
-    
+
 }

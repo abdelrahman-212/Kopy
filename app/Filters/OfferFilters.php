@@ -7,9 +7,9 @@ class OfferFilters extends QueryFilter
         return $this->builder->where('branches', 'LIKE', "%$branch%");
     }
 
-    public function now($current_time=null) {
+    public function now($current_time = null) {
 
-        $current_time = ($current_time) ?: now();
+        $current_time = ($current_time) ? $current_time : now();
 
         return $this->builder->where([
             ['date_from', '<=', $current_time],
@@ -18,7 +18,7 @@ class OfferFilters extends QueryFilter
     }
 
     public function type($type = null) {
-        
+
         return $this->builder->where('service_type', $type);
     }
 

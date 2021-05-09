@@ -15,7 +15,6 @@
                         <div class="osahan-cart-item-profile bg-white p-3">
                             <div class="d-flex flex-column">
                                 <div class="row">
-
                                     <div class="card custom-control col-md-5 custom-radio mb-3 p-0 position-relative border-custom-radio">
                                         <input type="radio" id="customRadioInline1" name="customRadioInline1"
                                                class="custom-control-input">
@@ -44,7 +43,6 @@
                                         </label>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>

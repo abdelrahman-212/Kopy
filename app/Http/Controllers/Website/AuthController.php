@@ -85,6 +85,7 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->logout();
+        session()->flush();
         return redirect()->route('get.login')->with(['success' => 'Successfully logged out']);
     }
 

@@ -4,7 +4,7 @@
 
 @section('styles')
 <style>
-   h6 , h5,h4,h3,h2{
+   h6,h5,h4,h3,h2{
         font-family: inherit;
     }
 </style>
@@ -16,45 +16,39 @@
 
     @section('content')
         <main>
-            <section class="breadcrumb-osahan pt-5 pb-5 bg-dark position-relative text-center">
-                <h1 class="text-white">Offers for you</h1>
-                <h6 class="text-white-50">Explore top deals and offers exclusively for you!</h6>
-            </section>
-            <section class="section pt-5 pb-5">
-                <div class="container">
-                    <div class="row mt-4 pt-2">
-                        <div class="col-md-12">
-                            <h4 class="font-weight-bold mt-0 mb-3">Available Offers</h4>
-                        </div>
-                        @if(isset($offers))
-                            @foreach($offers as $offer)
-                                <div class="col-md-4 mb-3 mt-3" style="padding-right: 15px;padding-left: 15px;">
-                                    <div class="card offer-card border-1 shadow-sm rounded">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><img src="{{$offer->image}}">
-                                            </h5>
-                                            <h6>{{(app()->getLocale() == 'ar') ?$offer->title_ar:$offer->title}}</h6>
+            <div class="page-content">
+                <div class="uk-container">
+                    <div>
+                        <div class="py-2">
+                            <h2 class="mb-3 mt-0">Offers</h2>
+                            <div class="row">
+                                @if(isset($offers))
+                                    @foreach($offers as $offer)
+                                        <div class="col-md-4 mb-3 mt-3" style="padding-right: 15px;padding-left: 15px;">
+                                            <div class="card offer-card border-1 shadow-sm rounded">
+                                                <div class="card-body p-0">
+                                                    <h5 class="card-title w-100 h-100"><img class="w-100 h-100 img-thumbnail rounded" src="{{asset($offer->image)}}"></h5>
+                                                   <div class="pl-4 pr-4 pb-1 pt-0" style="overflow: hidden">
+                                                       <h3 class="mt-2 mb-1 font-weight-bold">{{(app()->getLocale() == 'ar') ?$offer->title_ar:$offer->title}}</h3>
 
-                                            <p style="line-height: 1.3;font-size: 12px;"
-                                               class="card-subtitle mb-2 text-muted">
-                                                {{(app()->getLocale() == 'ar') ?$offer->description_ar:$offer->description}}
-                                            </p>
-                                            <h6 style=""
-                                                class="card-subtitle mb-2 text-block">
-                                                Offer Type:{{$offer->offer_type}}
-                                            </h6>
-                                            <a href="{{$offer->offer_typ=='discount'?'discount':'get-buy'}}"
-                                               class="card-link">Get Offer</a>
+                                                       <p style="line-height: 1.3;font-size: 12px;"
+                                                          class="card-subtitle mb-3 text-muted">
+                                                           {{(app()->getLocale() == 'ar') ?$offer->description_ar:$offer->description}}
+                                                       </p>
+                                                       <h6 class="float-left card-subtitle mt-2 mb-3">Offer: {{$offer->offer_type}}</h6>
+                                                       <a href="{{route('offer.item',$offer->id)}}" class="float-right" style="color: red;font-weight: bold">Get Offer >></a>
+                                                   </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
 
-                            @endforeach
-                        @endif
+                                    @endforeach
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </section>
-
+            </div>
         </main>
 
 @endsection

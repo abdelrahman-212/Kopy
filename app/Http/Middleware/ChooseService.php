@@ -15,10 +15,10 @@ class ChooseService
      */
     public function handle($request, Closure $next)
     {
-        if (!session()->has('branch_id')) {
+
+        if (!session()->has('branch_id')){
             return redirect('menu')->with('status', 'not');
         }
         return $next($request);
     }
 }
-

@@ -3,35 +3,37 @@
 namespace App\Http\Controllers\Website;
 
 use App\Filters\OfferFilters;
-use App\Models\Address;
-use Illuminate\Http\Request;
+use App\Models\Offer;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class OffersController extends Controller
 {
     public function get_offers()
     {
         $request = new \Illuminate\Http\Request();
-
-        $request->merge(['branches' => 16]);
+        //$request->merge(['branch' => session()->get('branch_id')]);
+        $request->merge(['type' => session()->get('service_type')]);
+        $request->merge(['now' => Carbon::now()]);
         $filters = new OfferFilters($request);
+
         $return = (app(\App\Http\Controllers\Api\OffersController::class)->index($request, $filters))->getOriginalContent();
+
         if ($return['success'] == 'success') {
-            $offers = $return['data'];
+             $offers = $return['data'];
         }
-        if (session()->has('service_type')) {
+        return view('website.offers', compact(['offers']));
+    }
 
-            $collection = collect($offers->json());
-            $filtered = $collection->whereIn('service_type', session()->get('service_type'));
-            $offers = $filtered->all();
-            return view('website.offers', compact(['offers']));
-
-        } else {
-
-
-            return view('website.offers', compact(['offers']));
-
-            return "Pleas Chose Service Type";
+    public function offerItems($offerID)
+    {
+        $request = new \Illuminate\Http\Request();
+        $offer = Offer::find($offerID);
+        $return = (app(\App\Http\Controllers\Api\OffersController::class)->get($request, $offer))->getOriginalContent();
+        $offers = $return['data'];
+        if ($offer->offer_type == 'discount') {
+            return view('website.offerDiscount', compact(['offers']));
         }
+        return view('website.offerBuyGet', compact(['offers']));
     }
 }
