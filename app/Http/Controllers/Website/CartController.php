@@ -8,17 +8,18 @@ use App\Http\Controllers\Controller;
 
 class CartController extends Controller
 {
-    public function addCart(Request $request){
 
-        if($request->has('buy_items')){
-            foreach ($request->buy_items as $buy_item){
+    public function addCart(Request $request)
+    {
+        if ($request->has('buy_items')) {
+            foreach ($request->buy_items as $buy_item) {
                 $newRequest = new Request();
                 $newRequest->merge(['item_id' => $buy_item]);
                 $newRequest->merge(['offer_id' => $request->offer_id]);
                 $newRequest->merge(['quantity' => $request->quantity]);
                 $return = (app(\App\Http\Controllers\Api\CartController::class)->addCart($newRequest))->getOriginalContent();
             }
-            foreach ($request->get_items as $get_item){
+            foreach ($request->get_items as $get_item) {
                 $newRequest = new Request();
                 $newRequest->merge(['item_id' => $get_item]);
                 $newRequest->merge(['offer_id' => $request->offer_id]);
@@ -28,8 +29,8 @@ class CartController extends Controller
             return redirect()->route('menu.page');
         }
 
-        if($request->has('dough_type')){
-            $dough_type = explode(',',$request->dough_type);
+        if ($request->has('dough_type')) {
+            $dough_type = explode(',', $request->dough_type);
             $request->merge(['dough_type_ar' => $dough_type[0]]);
             $request->merge(['dough_type_en' => $dough_type[1]]);
         }
@@ -39,10 +40,10 @@ class CartController extends Controller
 
         $return = (app(\App\Http\Controllers\Api\CartController::class)->getCart())->getOriginalContent();
 
-        if($return['data']->count() > 0){
-            foreach ($return['data'] as $item){
-                if($item->item_id == $request->item_id){
-                    if(($item->extras == $request->extras) && ($item->withouts == $request->withouts) && ($item->dough_type_en == $request->dough_type_en)){
+        if ($return['data']->count() > 0) {
+            foreach ($return['data'] as $item) {
+                if ($item->item_id == $request->item_id) {
+                    if (($item->extras == $request->extras) && ($item->withouts == $request->withouts) && ($item->dough_type_en == $request->dough_type_en)) {
                         $cart = Cart::find($item->id);
                         $cart->quantity = $cart->quantity + $request->quantity;
                         $cart->save();
@@ -55,4 +56,14 @@ class CartController extends Controller
         $return = (app(\App\Http\Controllers\Api\CartController::class)->addCart($request))->getOriginalContent();
         return redirect()->route('menu.page');
     }
+
+    public function get_cart () {
+        $return = (app(\App\Http\Controllers\Api\CartController::class)->getCart())->getOriginalContent();
+
+        if ($return['success'] == 'success') {
+            $cart = $return['data'];
+            return $cart;}
+        return view('website.cart');
+    }
+
 }

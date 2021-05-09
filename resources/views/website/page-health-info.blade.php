@@ -149,9 +149,9 @@
                                                 </div>
                                                 {{--                                    <div class="article-intro__comments"><i class="fas fa-comment"></i><span>210</span></div>--}}
                                             </div>
-                                            <h2 class="article-intro__title">{{$info -> title_en}}</h2>
+                                            <h2 class="article-intro__title">           {{(app()->getLocale() == 'ar') ?$info->title_ar:$info->title_en}}</h2>
                                             <div class="article-intro__content">
-                                                <p> {!! nl2br(e($info -> description_en)) !!} </p>
+                                                <p> {!! nl2br(e((app()->getLocale() == 'ar') ?$info ->description_ar:$info->description_en)) !!} </p>
                                             </div>
                                             {{--                                            <div class="article-intro__bottom">--}}
                                             {{--                                                --}}{{--                                    <div class="article-intro__tags"><i class="fas fa-tags"></i><span>cheese, Pizza, Cookies, Bake</span></div>--}}

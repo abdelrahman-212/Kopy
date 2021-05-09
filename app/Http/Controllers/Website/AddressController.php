@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Models\Address;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -13,44 +14,57 @@ class AddressController extends Controller
         $request = new \Illuminate\Http\Request();
 
         $return = (app(\App\Http\Controllers\Api\AddressesController::class)->index($request))->getOriginalContent();
+        $return2 = (app(\App\Http\Controllers\Api\AuthController::class)->getUserPoints($request))->getOriginalContent();
 
-        if ($return['success'] == 'success') {
+        if ($return2['success'] == 'success') {
+             $points = $return2['data'];
+        }
+
+         if ($return['success'] == 'success') {
             $addresses = $return['data'];
         }
-        return view('website.profile', compact(['addresses']));
+         return view('website.profile', compact(['addresses', 'points']));
     }
 
     public function delete(Address $address)
     {
         $request = new \Illuminate\Http\Request();
         $return = (app(\App\Http\Controllers\Api\AddressesController::class)->destroy($address, $request))->getOriginalContent();
-        if ($return['success'] == 'success') {
-            return redirect()->route('profile')->with(['success' => 'address deleted successfully']);
+         if ($return['success'] == 'success') {
+            return redirect()->route('profile')->with('success', 'address deleted successfully');
         }
     }
+
     public function store(Request $request)
     {
-        $success= 'Unauthorized, Please Check Your Credentials.';
-
         $return = (app(\App\Http\Controllers\Api\AddressesController::class)->store($request))->getOriginalContent();
         if ($return['success'] == true) {
-            $success= 'New Address Been Add.';
-            return redirect()->route('profile')->with(compact(['success']));
+            session()->put(['success'=> 'Address been Add!']);
+            return redirect('profile');
+
+        } else {
+            session()->put(['error'=> 'Address Can Not be Add!']);
+
+            return redirect('profile');
         }
-        return $request;
-    }
+     }
+
     public function update(Address $address, Request $request)
     {
-        $success= 'Your Address Been Updated.';
+        $success = 'Your Address Been Updated.';
 
         $return = (app(\App\Http\Controllers\Api\AddressesController::class)->update($request, $address))->getOriginalContent();
         if ($return['success'] == true) {
-              return redirect()->route('profile')->with(compact(['success']));
+            session()->put(['success'=> 'Address been Updated!']);
+
+            return redirect()->route('profile');
         }
 
 
         if ($return['success'] == false) {
             $errorarray = [];
+            session()->put(['error'=> 'Address Can Not be Updated!']);
+
             if (array_key_exists('message', $return)) {
                 $errorarray['message'] = "Update Addresses Failed";
 
@@ -68,7 +82,7 @@ class AddressController extends Controller
 
                 return view('website.profile', compact(['errorarray']));
             }
-            return redirect()->route('profile')->with(compact(['success']));
+            return redirect()->route('profile');
         }
 
     }

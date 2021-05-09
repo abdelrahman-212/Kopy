@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Filters\OfferFilters;
-use App\Models\Address;
 use App\Models\Offer;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 
@@ -26,14 +24,16 @@ class OffersController extends Controller
         }
         return view('website.offers', compact(['offers']));
     }
-    public function offerItems($offerID){
+
+    public function offerItems($offerID)
+    {
         $request = new \Illuminate\Http\Request();
         $offer = Offer::find($offerID);
         $return = (app(\App\Http\Controllers\Api\OffersController::class)->get($request, $offer))->getOriginalContent();
         $offers = $return['data'];
-        if ($offer->offer_type == 'discount'){
-            return view('website.offerDiscount',compact(['offers']));
+        if ($offer->offer_type == 'discount') {
+            return view('website.offerDiscount', compact(['offers']));
         }
-        return view('website.offerBuyGet',compact(['offers']));
+        return view('website.offerBuyGet', compact(['offers']));
     }
 }

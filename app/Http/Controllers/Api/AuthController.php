@@ -15,7 +15,8 @@ use App\Notifications\activateSMS;
 use AWS;
 use Twilio\Rest\Client;
 use Twilio\Jwt\ClientToken;
- class AuthController extends BaseController
+
+class AuthController extends BaseController
 {
     //website
     //
@@ -24,20 +25,20 @@ use Twilio\Jwt\ClientToken;
     public function login(Request $request)
     {
 
-         $credentials = [
+        $credentials = [
             'email' => request('email'),
             'password' => request('password')
         ];
 
-         if (Auth::attempt($credentials)) {
-             $user = Auth::user();
-             if ($user->hasRole('customer')) {
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            if ($user->hasRole('customer')) {
                 if ($request->has('device_token')) {
                     $user->device_token = $request->device_token;
                     $user->save();
                 }
 
-             $user->branches;//??
+                $user->branches;//??
 
                 $data = [
                     'userData' => $user,
@@ -184,6 +185,7 @@ use Twilio\Jwt\ClientToken;
         return $this->sendResponse($request->user(), 'User data retrieved Successfully');
     }
 
+
     public function resendCode(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -247,16 +249,18 @@ use Twilio\Jwt\ClientToken;
             'phone' => ['min:2'],
             'image' => 'image|max:5000'
         ]);
-
         $request->merge(['first_phone' => $request->phone]);
         if ($request->password) {
             $request->merge(['password' => bcrypt($request->password)]);
         }
+        if ($request->user()) {
+            $user = $request->user();
 
-
-        $user = $request->user();
-
-
+        } else {
+            if (auth('web')->user()) {
+                $user = auth()->user();
+            }
+        }
         $user = $user->update($request->except(['image']));
 
         if ($request->hasFile('image')) {
@@ -269,8 +273,6 @@ use Twilio\Jwt\ClientToken;
 
         return $this->sendResponse($user, 'Successfuly customer updated.');
     }
-
-
     public function setFirstOfferFlag(Request $request)
     {
 

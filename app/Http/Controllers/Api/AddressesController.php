@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
 use App\Models\Address;
@@ -33,9 +34,8 @@ class AddressesController extends BaseController
     public function index(Request $request)
     {
         if ($request->user()) {
-                $user = $request->user();
-        }
-        else {
+            $user = $request->user();
+        } else {
             $user = auth('web')->user();
         }
         $address = Address::where('customer_id', $user->id)->orderBy('created_at', 'DESC')->get();
@@ -62,8 +62,7 @@ class AddressesController extends BaseController
             if ($request->user()->hasRole('customer')) {
                 $request->merge(['customer_id' => $request->user()->id]);
             }
-        }
-        else {
+        } else {
             if (auth('web')->user()->hasRole('customer')) {
                 $request->merge(['customer_id' => auth('web')->user()->id]);
             }
@@ -108,20 +107,19 @@ class AddressesController extends BaseController
         // attach customer reference
         if ($request->user()) {
             if ($request->user()->hasRole('customer')) {
-                    $request->merge([
-                        'customer_id' => $request->user()->id,
-                        'city_id' => $city->id,
-                        'area_id' => $area->id
-                    ]);
+                $request->merge([
+                    'customer_id' => $request->user()->id,
+                    'city_id' => $city->id,
+                    'area_id' => $area->id
+                ]);
             }
-        }
-        else {
+        } else {
             if (auth('web')->user()->hasRole('customer')) {
                 $request->merge([
-                        'customer_id' => auth('web')->user()->id,
-                        'city_id' => $city->id,
-                        'area_id' => $area->id
-                    ]);
+                    'customer_id' => auth('web')->user()->id,
+                    'city_id' => $city->id,
+                    'area_id' => $area->id
+                ]);
             }
         }
 
@@ -181,12 +179,14 @@ class AddressesController extends BaseController
             }
         }
         else {
-            if ($address->customer->id == auth('web')->user()->id) {
-                if ($address->delete())
-                    return $this->sendResponse(null, 'The address deleted successfully!');
+            $order=Order::where('address_id',$address->id)->get();
+             if ($order->count() <= 0) {
+                 if ($address->customer->id == auth('web')->user()->id) {
+                     if ($address->delete())
+                         return $this->sendResponse(null, 'The c deleted successfully!');
+                 }
             }
+            return $this->sendError('This address cannot be deleted');
         }
-
-        return $this->sendError('The cannot be deleted');
     }
 }
