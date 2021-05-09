@@ -131,81 +131,49 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::get('/Blog/{id}', [\App\Http\Controllers\Website\NewsController::class, 'Blog'])->name('get.new');
         Route::get('/health-infos/', [\App\Http\Controllers\Website\HealthInfo::class, 'Infos'])->name('health-infos.all');
 
-<<<<<<< HEAD
         Route::get('/get-sign-in',[\App\Http\Controllers\Website\AuthController::class,'get_login'])->name('get.login');
         Route::post('/signin',[\App\Http\Controllers\Website\AuthController::class,'login'])->name('sign.in');
-||||||| 92bdb17
-        Route::get('/get-sign-in',[\App\Http\Controllers\Website\AuthController::class,'get_login'])->name('get.login');
-        Route::post('/signin',[\App\Http\Controllers\Website\AuthController::class,'login'])->name('login');
-=======
-        Route::get('/get-sign-in', [\App\Http\Controllers\Website\AuthController::class, 'get_login'])->name('get.login');
-        Route::post('/signin', [\App\Http\Controllers\Website\AuthController::class, 'login'])->name('login');
->>>>>>> abd_2
 
         Route::get('/signup', [\App\Http\Controllers\Website\AuthController::class, 'get_sign_up'])->middleware('web')->name('get.sign.up');
         Route::post('/get-sign-up', [\App\Http\Controllers\Website\AuthController::class, 'sign_up'])->name('sign.up');
 
         //auth routes
-<<<<<<< HEAD
+
         Route::group(['middleware' => ['auth'] ], function () {
 
             //for all ordering route needs branch_id
             Route::group(['middleware'=>'service'],function (){
                 // menu
                 Route::get('/item/{category_id}/{item_id}', 'MenuController@itemPage')->name('item.page');
+                // add to cart
+                Route::post('/cart', 'CartController@addCart')->name('add.cart');
+                // offers
+                Route::get('/offers', 'OffersController@get_offers')->name('offers');
+                Route::get('/offers/{oferID}', 'OffersController@offerItems')->name('offer.item');
             });
-
-
-            Route::get('/profile',[\App\Http\Controllers\Website\AddressController::class,'get_address'])->name('profile');
-            Route::get('/delete_address/{address}',[\App\Http\Controllers\Website\AddressController::class,'delete'])->name('delete_address');
-            Route::post('/update/',[\App\Http\Controllers\Website\AddressController::class,'store'])->name('new.address');
-||||||| 92bdb17
-        Route::group(['middleware' => ['auth'] ], function () {
-            Route::get('/profile',[\App\Http\Controllers\Website\AddressController::class,'get_address'])->name('profile');
-            Route::get('/delete_address/{address}',[\App\Http\Controllers\Website\AddressController::class,'delete'])->name('delete_address');
-            Route::post('/update/',[\App\Http\Controllers\Website\AddressController::class,'store'])->name('new.address');
-=======
-        Route::group(['middleware' => ['auth']], function () {
+            //profile
             Route::get('/profile/', [\App\Http\Controllers\Website\AddressController::class, 'get_address'])->name('profile');
+            Route::post('/update-profile/', [\App\Http\Controllers\Website\UserController::class, 'update_user'])->name('update.profile');
             Route::get('/delete_address/{address}', [\App\Http\Controllers\Website\AddressController::class, 'delete'])->name('delete_address');
             Route::post('/new-address/', [\App\Http\Controllers\Website\AddressController::class, 'store'])->name('new.address');
-
-            Route::get('/update/{address}', [\App\Http\Controllers\Website\AddressController::class, 'update'])->name('update_address');
-            Route::get('/logout', [\App\Http\Controllers\Website\AuthController::class, 'logout'])->name('logout');
-
-            //choose service delivery or take away
-            Route::get('/service', 'ServiceController@servicePage')->name('service.page');
-            Route::get('/delivery', 'ServiceController@deliveryPage')->name('delivery.page');
-            Route::get('/takeaway', 'ServiceController@takeawayPage')->name('takeaway.page');
-            Route::get('/takeaway/{branch_id}', 'ServiceController@takeawayBranch')->name('takeaway.branch');
-
-            Route::post('/update-profile/', [\App\Http\Controllers\Website\UserController::class, 'update_user'])->name('update.profile');
-
-//Offers Route
+            Route::get('/update/{address}',[\App\Http\Controllers\Website\AddressController::class,'update'])->name('update_address');
+            //log out
+            Route::get('/sign-out',[\App\Http\Controllers\Website\AuthController::class,'logout'])->name('signout');
+            //Offers Route
             Route::get('/offers/', [\App\Http\Controllers\Website\OffersController::class, 'get_offers'])->name('offers');
-
             //Loyalty Route
             Route::get('/loyalty/', [\App\Http\Controllers\Website\LoyalityController::class, 'get_loyalty'])->name('loyalty');
             Route::get('/exchange/', [\App\Http\Controllers\Website\LoyalityController::class, 'get_loyalty_exchange'])->name('exchange.points');
             //cart Route
             Route::get('/get-cart/', [\App\Http\Controllers\Website\CartController::class, 'get_cart'])->name('get.cart');
->>>>>>> abd_2
-
-<<<<<<< HEAD
-            Route::get('/update/{address}',[\App\Http\Controllers\Website\AddressController::class,'update'])->name('update_address');
-            Route::get('/sign-out',[\App\Http\Controllers\Website\AuthController::class,'logout'])->name('signout');
-
             //choose service delivery or take away
             Route::get('/service', 'ServiceController@servicePage')->name('service.page');
             Route::get('/delivery', 'ServiceController@deliveryPage')->name('delivery.page');
             Route::get('/takeaway', 'ServiceController@takeawayPage')->name('takeaway.page');
             Route::get('/takeaway/{branch_id}/{service_type}', 'ServiceController@takeawayBranch')->name('takeaway.branch');
 
-||||||| 92bdb17
-            Route::get('/update/{address}',[\App\Http\Controllers\Website\AddressController::class,'update'])->name('update_address');
-            Route::get('/logout',[\App\Http\Controllers\Website\AuthController::class,'logout'])->name('logout');
-=======
->>>>>>> abd_2
+
+
         });
 
     });
@@ -213,6 +181,3 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 });
 
 
-Route::get('gg', function () {
-    return view('website.cart');
-});
