@@ -23,6 +23,9 @@
                             class="uk-margin-small-left" src="{{asset('website-assets/img/icons/pizza.png')}}"
                             alt="pizza"></a>
                     <ul class="uk-navbar-nav">
+                        @auth()
+                        <li><a href="{{route('offers')}}">Offers</a></li>
+                        @endauth
                         <li class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Media Center

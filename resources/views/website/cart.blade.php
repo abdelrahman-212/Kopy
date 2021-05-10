@@ -84,10 +84,10 @@
                                                                             <p> Calories : {{$cart->item->calories}}</p>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-4 d-flex">
+                                                                    <div class="col-4 d-flex text-center">
                                                                         <div class="p-2 mr-4"><span class="h6">Price: {{$cart->item->price}} SR</span>
                                                                             @if($cart->offer_id)
-                                                                                <i class="fa fa-gift fa-4x text-danger "
+                                                                                <i class="fa fa-gift fa-4x text-danger"
                                                                                    aria-hidden="true"></i>
 
                                                                             @endif

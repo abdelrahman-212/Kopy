@@ -48,6 +48,7 @@ class ServiceController extends Controller
             session()->forget('status');
             return redirect()->route('menu.page');
         }
-       return redirect()->back()->withErrors(['err'=>$return['message']]);
+        session()->put(['err'=>$return['message']]);
+        return redirect()->back();
     }
 }
