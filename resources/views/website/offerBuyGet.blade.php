@@ -40,6 +40,7 @@
                                                 <div class="col-md-12">
                                                     <div class="rounded border" style="background-color: #f5f5f5!important;box-shadow: 0.1rem 0rem 1.5rem rgb(0 0 0 / 20%);">
                                                         @foreach($offers['details']['buy_items'] as $buyItem)
+                                                            <input type="hidden" name="offer_price[]" value="{{$buyItem['price']}}">
                                                             <div class="gold-members p-3 border-bottom">
                                                                 <a class="btn btn-primary float-right buyBtnAdd" href="#">Buy</a>
                                                                 <div class="media d-flex">
@@ -72,7 +73,7 @@
                                                                     </div>
                                                                     <div class="media-body">
                                                                         <h4 class="m-0" style="font-size: 16px;line-height: 1.8;">{{(app()->getLocale() == 'ar')? $getItem['name_ar'] : $getItem['name_en'] }}</h4>
-                                                                        <p class="text-gray m-0 " style="font-size: 12px;">Price: <span class="text-success font-weight-bold">{{$getItem['price']}} SR</span></p>
+                                                                        <p class="text-gray m-0 " style="font-size: 12px;">Price: <span class="text-success font-weight-bold">0 SR</span></p>
                                                                     </div>
                                                                 </div>
                                                             </div>

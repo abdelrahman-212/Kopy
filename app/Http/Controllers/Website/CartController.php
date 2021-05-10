@@ -12,10 +12,11 @@ class CartController extends Controller
     public function addCart(Request $request)
     {
         if ($request->has('buy_items')) {
-            foreach ($request->buy_items as $buy_item) {
+            foreach ($request->buy_items as $index => $buy_item) {
                 $newRequest = new Request();
                 $newRequest->merge(['item_id' => $buy_item]);
                 $newRequest->merge(['offer_id' => $request->offer_id]);
+                $newRequest->merge(['offer_price' => $request->offer_price[$index]]);
                 $newRequest->merge(['quantity' => $request->quantity]);
                 $return = (app(\App\Http\Controllers\Api\CartController::class)->addCart($newRequest))->getOriginalContent();
             }
@@ -23,6 +24,7 @@ class CartController extends Controller
                 $newRequest = new Request();
                 $newRequest->merge(['item_id' => $get_item]);
                 $newRequest->merge(['offer_id' => $request->offer_id]);
+                $newRequest->merge(['offer_price' => 0]);
                 $newRequest->merge(['quantity' => $request->quantity]);
                 (app(\App\Http\Controllers\Api\CartController::class)->addCart($newRequest))->getOriginalContent();
             }
@@ -37,6 +39,7 @@ class CartController extends Controller
 
         $request->merge(['withouts' => json_encode($request->withouts)]);
         $request->merge(['extras' => json_encode($request->extras)]);
+        $request->merge(['offer_price' => $request->offer_price]);
 
         $return = (app(\App\Http\Controllers\Api\CartController::class)->getCart())->getOriginalContent();
 

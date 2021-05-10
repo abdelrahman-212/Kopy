@@ -16,7 +16,8 @@ class Cart extends Model
         'dough_type_ar',
         'dough_type_en',
         'quantity',
-        'offer_id'
+        'offer_id',
+        'offer_price'
     ];
 
     public $appends = [

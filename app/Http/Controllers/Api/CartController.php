@@ -42,6 +42,7 @@ class CartController extends BaseController
                 'dough_type_en' =>  $request->dough_type_en,
                 'quantity' =>  $request->quantity,
                 'offer_id' =>  $request->offer_id,
+                'offer_price' =>  $request->offer_price,
             ]);
 
         // $cart = new Cart;
@@ -50,6 +51,7 @@ class CartController extends BaseController
         // $cart->extras = $request->extras;
         // $cart->quantity = $request->quantity;
         // $cart->offer_id = $request->offer_id;
+        // $cart->offer_price = $request->offer_price;
         // $cart->save();
 
         return $this->sendResponse($cart, 'Cart Created Successfully');
