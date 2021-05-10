@@ -130,8 +130,7 @@ class OrdersController extends BaseController
         })->first();
 
         $branch_id = 0;
-
-        if ($request->service_type == 'delivery') {
+         if ($request->service_type == 'delivery') {
 
             // validate user input
             $validator = Validator::make($request->all(), [
@@ -142,8 +141,7 @@ class OrdersController extends BaseController
                 return $this->sendError('Validation Errors!', $validator->errors());
             }
             $customerAddress = $customer->addresses->where('id', $request->address_id)->first();
-
-            // get the branch covers customer area and open
+             // get the branch covers customer area and open
             $area = $customerAddress->area;
 
             if ($area) {
@@ -207,8 +205,12 @@ class OrdersController extends BaseController
         // send notification to all user_branches
         $cashiers = Branch::find($branch_id);
         if ($cashiers) {
-            foreach ($cashiers->cashiers2 as $cashier) {
-                \App\Http\Controllers\NotificationController::pushNotifications($cashier->id,  "New Order has been placed", "Order");
+            if ($cashiers->cashiers2) {
+                foreach ($cashiers->cashiers2 as $cashier) {
+
+                    \App\Http\Controllers\NotificationController::pushNotifications($cashier->id, "New Order has been placed", "Order");
+                }
+
             }
         }
 
@@ -219,19 +221,19 @@ class OrdersController extends BaseController
             //dd($request->items);
             $orderItem = Item::where('id', $item['item_id'])->first();
             $orderItemExtras = null;
-            if (array_key_exists('extras', $item)) {
+            if (array_key_exists('extras', (array)$item)) {
                 $orderItemExtras = Extra::whereIn('id', $item['extras'])->get();
             }
 
             $orderItemWithouts = null;
-            if (array_key_exists('withouts', $item)) {
+            if (array_key_exists('withouts', (array)$item)) {
                 $orderItemWithouts = Without::whereIn('id', $item['withouts'])->get();
             }
 
 
             // check if there is offer price
             // count sum of extras price and item price
-            if (array_key_exists('price', $item)) {
+            if (array_key_exists('price',(array) $item)) {
                 $extras = $orderItemExtras ? $orderItemExtras->sum('price') : 0;
                 $itemPrice = $item['price'] + $extras;
             } else {
@@ -244,15 +246,15 @@ class OrdersController extends BaseController
             $offer = Offer::find(isset($item['offerId']) ? $item['offerId'] : 0);
 
             $order->items()->attach($item['item_id'], [
-                'item_extras' =>  array_key_exists('extras', $item) ? implode(', ', $item['extras']) : null,
-                'item_withouts' =>  array_key_exists('withouts', $item) ? implode(', ', $item['withouts']) : null,
-                'dough_type_ar' => array_key_exists('dough_type_ar', $item) ? $item['dough_type_ar'] : null,
-                'dough_type_en' => array_key_exists('dough_type_en', $item) ? $item['dough_type_en'] : null,
+                'item_extras' => array_key_exists('extras', (array)$item) ? implode(', ', $item['extras']) : null,
+                'item_withouts' => array_key_exists('withouts', (array)$item) ? implode(', ', $item['withouts']) : null,
+                'dough_type_ar' => array_key_exists('dough_type_ar', (array)$item) ? $item['dough_type_ar'] : null,
+                'dough_type_en' => array_key_exists('dough_type_en', (array)$item) ? $item['dough_type_en'] : null,
                 'price' => $itemPrice,
-                'offer_price' => array_key_exists('price', $item) ? $item['price'] : null, // TODO: Remove price
-                'offer_id' =>  optional($offer)->id,
-                'offer_last_updated_at' =>  optional($offer)->updated_at,
-                'quantity' => array_key_exists('quantity', $item) ? $item['quantity'] : 1
+                'offer_price' => array_key_exists('price', (array)$item) ? $item['price'] : null, // TODO: Remove price
+                'offer_id' => optional($offer)->id,
+                'offer_last_updated_at' => optional($offer)->updated_at,
+                'quantity' => array_key_exists('quantity', (array)$item) ? $item['quantity'] : 1
             ]);
         }
 
@@ -273,7 +275,7 @@ class OrdersController extends BaseController
 
         $order->update(['state' => 'in-progress']);
 
-        \App\Http\Controllers\NotificationController::pushNotifications($order->customer_id,  "Your Order has been Accepted, لقد تم قبول طلبك", "Order");
+        \App\Http\Controllers\NotificationController::pushNotifications($order->customer_id, "Your Order has been Accepted, لقد تم قبول طلبك", "Order");
         return $this->sendResponse($order->toArray(), 'Order has been accepted');
     }
 
@@ -289,15 +291,15 @@ class OrdersController extends BaseController
 
         if ($order->points_paid != 0) {
             PointsTransaction::create([
-                'points'   => $order->points_paid,
-                'user_id'  => $order->customer_id,
+                'points' => $order->points_paid,
+                'user_id' => $order->customer_id,
                 'order_id' => $order->id,
-                'status'   => 3
+                'status' => 3
             ]);
         }
 
 
-        \App\Http\Controllers\NotificationController::pushNotifications($order->customer_id,  "Your Order has been Rejected, لقد تم رفض طلبك", "Order");
+        \App\Http\Controllers\NotificationController::pushNotifications($order->customer_id, "Your Order has been Rejected, لقد تم رفض طلبك", "Order");
         return $this->sendResponse($order->toArray(), 'Order has been rejected');
     }
 
@@ -311,19 +313,19 @@ class OrdersController extends BaseController
         $order->update(['state' => 'completed']);
 
         PointsTransaction::create([
-            'points'   => round($order->total) / 10,
-            'user_id'  => $order->customer_id,
+            'points' => round($order->total) / 10,
+            'user_id' => $order->customer_id,
             'order_id' => $order->id,
-            'status'   => 0
+            'status' => 0
         ]);
 
         if ($order->service_type == 'delivery') {
-            \App\Http\Controllers\NotificationController::pushNotifications($order->customer_id,  "Your Order is on the way, الطلب في الطريق إليك", "Order");
+            \App\Http\Controllers\NotificationController::pushNotifications($order->customer_id, "Your Order is on the way, الطلب في الطريق إليك", "Order");
             return $this->sendResponse($order->toArray(), 'Order is on the way');
         }
 
         if ($order->service_type == 'takeaway') {
-            \App\Http\Controllers\NotificationController::pushNotifications($order->customer_id,  "Your Order has been completed, تم تجهيز الطلب", "Order");
+            \App\Http\Controllers\NotificationController::pushNotifications($order->customer_id, "Your Order has been completed, تم تجهيز الطلب", "Order");
             return $this->sendResponse($order->toArray(), 'Order has been completed');
         }
     }
@@ -340,14 +342,14 @@ class OrdersController extends BaseController
 
         if ($order->points_paid != 0) {
             PointsTransaction::create([
-                'points'   => $order->points_paid,
-                'user_id'  => $order->customer_id,
+                'points' => $order->points_paid,
+                'user_id' => $order->customer_id,
                 'order_id' => $order->id,
-                'status'   => 3
+                'status' => 3
             ]);
         }
 
-        \App\Http\Controllers\NotificationController::pushNotifications($order->customer_id,  "Your Order has been Cancelled, لقد تم إلغاء طلبك", "Order");
+        \App\Http\Controllers\NotificationController::pushNotifications($order->customer_id, "Your Order has been Cancelled, لقد تم إلغاء طلبك", "Order");
         return $this->sendResponse($order->toArray(), 'Order has been canceled');
     }
 
