@@ -30,7 +30,6 @@ class MenuController extends Controller
                 break;
             }
         }
-        //return $item;
         return view('website.item',compact(['item']));
     }
 

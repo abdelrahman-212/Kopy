@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Website;
 
 use App\Models\Cart;
+use App\Models\Offer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -69,7 +71,6 @@ class CartController extends Controller
             $carts = $return['data'];
             $arr_check = $this->get_check();
             if (session()->has('point_claim')) {
-
                 return view('website.cart', compact(['carts', 'arr_check']));
             } else {
                 return view('website.cart', compact(['carts', 'arr_check']));
@@ -80,9 +81,26 @@ class CartController extends Controller
 
     public function delete_cart(Request $request)
     {
-
-        $return = (app(\App\Http\Controllers\Api\CartController::class)->deleteCart($request))->getOriginalContent();
-
+        $cart = Auth::user()->carts()->find($request->cart_id);
+        if($cart->offer_id){
+            $offer = Offer::find($cart->offer_id);
+            if ($offer->offer_type == 'buy-get')
+            {
+                $carts = Auth::user()->carts()->where('offer_id', $cart->offer_id)->get();
+                foreach ($carts as $oneCart){
+                    $newRequest = new Request();
+                    $newRequest->merge(['cart_id' => $oneCart->id]);
+                    $return = (app(\App\Http\Controllers\Api\CartController::class)->deleteCart($newRequest))->getOriginalContent();
+                }
+            }
+            else
+            {
+                $return = (app(\App\Http\Controllers\Api\CartController::class)->deleteCart($request))->getOriginalContent();
+            }
+        }
+        else{
+            $return = (app(\App\Http\Controllers\Api\CartController::class)->deleteCart($request))->getOriginalContent();
+        }
         $arr_check = $this->get_check();
         return response()->json($arr_check);
     }
@@ -105,7 +123,13 @@ class CartController extends Controller
             $final_item_price = 0;
             foreach ($carts as $cart) {
                 $quantity = $cart->quantity;
-                $item_price = $cart->item->price;
+                if($cart->offer_id){
+                     $item_price = $cart->offer_price;
+                }
+                else{
+                    $item_price = $cart->item->price;
+                }
+
                 $final_item_price += ($item_price * $quantity);
 
                 if ($cart->ExtrasObjects) {

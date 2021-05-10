@@ -207,7 +207,7 @@
                                                                             <div class="select-box select-box--thickness">
                                                                                 <ul>
                                                                                     @foreach($item->dough_type as $index => $dough)
-                                                                                        <li><label><input type="radio" name="thickness-{{$item->id}}" @if($index == 0) checked="checked" @endif /><span>{{(app()->getLocale() == 'ar')? $dough->name_ar : $dough->name_en}}</span></label></li>
+                                                                                        <li><label class="mb-0"><input type="radio" name="thickness-{{$item->id}}" @if($index == 0) checked="checked" @endif /><span>{{(app()->getLocale() == 'ar')? $dough->name_ar : $dough->name_en}}</span></label></li>
                                                                                     @endforeach
                                                                                 </ul>
                                                                             </div>

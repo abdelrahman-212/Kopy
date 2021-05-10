@@ -57,10 +57,11 @@
                                                         <td style="width: 1px;">
                                                             <div
                                                                 class="form-group stepper-type-2 quantity-up-{{$cart->id}}">
-                                                                <input type="number" data-zeros="true"
+                                                                <input type="number" @if($cart->offer_id && !$cart->dough_type_ar) disabled @endif data-zeros="true"
                                                                        value="{{$cart->quantity}}" min="1" max="20"
                                                                        readonl
                                                                        data-id="{{$cart->id}}"
+                                                                       data-price="{{($cart->offer_id)? $cart->offer_price : $cart->item->price}}"
                                                                        class="form-control text-bold quantity_ch quantity_change{{$cart->id}}">
                                                             </div>
                                                         </td>
@@ -85,7 +86,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-4 d-flex text-center">
-                                                                        <div class="p-2 mr-4"><span class="h6">Price: {{$cart->item->price}} SR</span>
+                                                                        <div class="p-2 mr-4"><span class="h6 price-item">Price: {{(($cart->offer_id)? $cart->offer_price : $cart->item->price) * $cart->quantity}} SR</span>
                                                                             @if($cart->offer_id)
                                                                                 <i class="fa fa-gift fa-4x text-danger"
                                                                                    aria-hidden="true"></i>
@@ -100,7 +101,7 @@
                                                                                     class="fas fa-trash"></i></a></div>
                                                                     </div>
                                                                 </div>
-                                                                @if(!$cart->offer_id)
+                                                                @if(!$cart->offer_id || $cart->dough_type_ar)
                                                                     <div>
                                                                         <div class="row w-100 m-0 mt-4">
 
@@ -240,7 +241,7 @@
                             $('#delivery_fees').text(data.delivery_fees);
                             @if(isset($arr_check['points']))
                             $('#points').text(data.points);
-                             @endif
+                            @endif
                         },
                         error: function (reject) {
                             console.log(reject);
@@ -250,6 +251,8 @@
                 $(".quantity_ch").change(function () {
                     var quantity = $(this).val();
                     var id = $(this).attr('data-id');
+                    var price = $(this).attr('data-price');
+                    var elem = $(this);
 
                     $.ajax({
                         type: 'post',
@@ -260,28 +263,28 @@
                             'quantity': quantity,
                         },
                         success: function (data) {
-                            $('#subtotal').text(data.subtotal);
-                            $('#subtotalinput').val(data.subtotal)
+                            $('#subtotal').text((data.subtotal).toFixed(2));
+                            $('#subtotalinput').val(data.subtotal);
 
-                            $('#taxes').text(data.taxes);
-                            $('#taxesinput').val(data.taxes)
+                            $('#taxes').text((data.taxes).toFixed(2));
+                            $('#taxesinput').val(data.taxes);
 
-                            $('#total').text(data.total);
-                            $('#totalinput').val(data.total)
+                            $('#total').text((data.total).toFixed(2));
+                            $('#totalinput').val(data.total);
 
-                            $('#delivery_fees').text(data.delivery_fees);
-                          $('#delivery_feesinput').val(data.delivery_fees)
+                            $('#delivery_fees').text((data.delivery_fees).toFixed(2));
+                            $('#delivery_feesinput').val(data.delivery_fees);
+
+                            elem.parent().parent().parent().next().next().find('.price-item').first().html('Price: ' + (quantity * price).toFixed(2) +' SR');
 
                             @if(isset($arr_check['points']))
                             $('#points').text(data.points);
-                            $('#pointsnput').val(data.points)
-
+                            $('#pointsnput').val(data.points);
                             @endif
 
                          },
                         error: function (reject) {
                             console.log(reject);
-
                         }
                     })
 

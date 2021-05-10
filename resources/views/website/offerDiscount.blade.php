@@ -27,7 +27,7 @@
                                                             <input type="hidden" name="item_id" value="{{$item['id']}}">
                                                             <input type="hidden" name="quantity" value="{{$offers['details']['quantity']}}">
                                                             <input type="hidden" name="offer_id" value="{{$offers['details']['offer_id']}}">
-                                                            <input type="hidden" name="offer_price" value="{{$item['price']}}">
+                                                            <input type="hidden" name="offer_price" value="{{$item['offer_price']}}">
                                                             <div class="gold-members p-3 border-bottom">
                                                                 <button type="submit" class="btn btn-outline-secondary btn-sm float-right btnAdd">Add to cart</button>
                                                                 <div class="media d-flex">

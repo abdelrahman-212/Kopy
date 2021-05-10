@@ -131,7 +131,10 @@
                     @csrf
 
                     <input type="hidden" name="item_id" value="{{$item['id']}}">
+                    @if($item['offer'])
                     <input type="hidden" name="offer_id" value="{{$item['offer']['id']}}">
+                    <input type="hidden" name="offer_price" value="{{$item['offer']['offer_price']}}">
+                    @endif
                     <div class="product-full-card">
                         <div class="uk-grid uk-grid-large uk-child-width-1-2@m" data-uk-grid="">
                             <div class="uk-first-column">
