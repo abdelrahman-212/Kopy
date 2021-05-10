@@ -159,8 +159,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
             Route::get('/update/{address}',[\App\Http\Controllers\Website\AddressController::class,'update'])->name('update_address');
             //log out
             Route::get('/sign-out',[\App\Http\Controllers\Website\AuthController::class,'logout'])->name('signout');
-            //Offers Route
-            Route::get('/offers/', [\App\Http\Controllers\Website\OffersController::class, 'get_offers'])->name('offers');
             //Loyalty Route
             Route::get('/loyalty/', [\App\Http\Controllers\Website\LoyalityController::class, 'get_loyalty'])->name('loyalty');
             Route::get('/exchange/', [\App\Http\Controllers\Website\LoyalityController::class, 'get_loyalty_exchange'])->name('exchange.points');

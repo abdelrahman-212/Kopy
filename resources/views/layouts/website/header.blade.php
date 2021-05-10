@@ -75,7 +75,7 @@
                         <ul class="other-links-list">
                             <li><a href="#modal-full" data-uk-toggle><span data-uk-icon="search"></span></a></li>
                             <li><a href="{{route('profile')}}"><span data-uk-icon="user"></span></a></li>
-                            <li><a href="#"><span data-uk-icon="cart"></span></a></li>
+                            <li><a href="{{route('get.cart')}}"><span data-uk-icon="cart"></span></a></li>
                         </ul>
                         @if(!auth()->user())
                             <a class="uk-button" href="{{route('get.login')}}"> <span>sign-in / sign-up</span></a>
