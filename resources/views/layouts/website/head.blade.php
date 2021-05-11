@@ -35,4 +35,9 @@
         <link rel="stylesheet" href="{{asset('adminlte/bootstrapRTL/rtl.css')}}">
     @endif
     @yield('styles')
+    <style>
+        body{
+            overflow-x: hidden;
+        }
+    </style>
 </head>

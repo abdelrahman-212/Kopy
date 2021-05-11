@@ -16,6 +16,7 @@ use App\Models\Without;
 use App\Models\PointsTransaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\DocBlock\Tags\Author;
 
 class OrdersController extends BaseController
 {
@@ -130,7 +131,7 @@ class OrdersController extends BaseController
         })->first();
 
         $branch_id = 0;
-         if ($request->service_type == 'delivery') {
+        if ($request->service_type == 'delivery') {
 
             // validate user input
             $validator = Validator::make($request->all(), [
@@ -141,7 +142,7 @@ class OrdersController extends BaseController
                 return $this->sendError('Validation Errors!', $validator->errors());
             }
             $customerAddress = $customer->addresses->where('id', $request->address_id)->first();
-             // get the branch covers customer area and open
+            // get the branch covers customer area and open
             $area = $customerAddress->area;
 
             if ($area) {
@@ -184,7 +185,6 @@ class OrdersController extends BaseController
 
 
         $orderData = [
-            "service_type" => $request->service_type,
             "address_id" => $request->address_id,
             "customer_id" => $request->customer_id, //$request->user()->id,
             "branch_id" => $branch_id, //$branch->id,
@@ -216,45 +216,45 @@ class OrdersController extends BaseController
 
         $subtotal = 0;
 
-        foreach ($request->items as $item) {
+        foreach($request->items as $item) {
 
-            //dd($request->items);
             $orderItem = Item::where('id', $item['item_id'])->first();
             $orderItemExtras = null;
-            if (array_key_exists('extras', (array)$item)) {
+            if ($item['extras']) {
                 $orderItemExtras = Extra::whereIn('id', $item['extras'])->get();
             }
 
             $orderItemWithouts = null;
-            if (array_key_exists('withouts', (array)$item)) {
+            if ($item['withouts']) {
                 $orderItemWithouts = Without::whereIn('id', $item['withouts'])->get();
             }
 
 
             // check if there is offer price
             // count sum of extras price and item price
-            if (array_key_exists('price',(array) $item)) {
+            //if ($item->price) {
+            if ($item['offer_price']) {
                 $extras = $orderItemExtras ? $orderItemExtras->sum('price') : 0;
-                $itemPrice = $item['price'] + $extras;
+                //$itemPrice = $item['price'] + $extras;
+                $itemPrice = $item['offer_price'] + $extras;
             } else {
                 $extras = $orderItemExtras ? $orderItemExtras->sum('price') : 0;
                 $itemPrice = $orderItem->price + $extras;
             }
 
             $subtotal = $subtotal + $itemPrice;
-
             $offer = Offer::find(isset($item['offerId']) ? $item['offerId'] : 0);
 
             $order->items()->attach($item['item_id'], [
-                'item_extras' => array_key_exists('extras', (array)$item) ? implode(', ', $item['extras']) : null,
-                'item_withouts' => array_key_exists('withouts', (array)$item) ? implode(', ', $item['withouts']) : null,
-                'dough_type_ar' => array_key_exists('dough_type_ar', (array)$item) ? $item['dough_type_ar'] : null,
-                'dough_type_en' => array_key_exists('dough_type_en', (array)$item) ? $item['dough_type_en'] : null,
+                'item_extras' => ($item['extras']) ? implode(', ', $item['extras']) : null,
+                'item_withouts' => ($item['withouts']) ? implode(', ', $item['withouts']) : null,
+                'dough_type_ar' => ($item['dough_type_ar']) ? $item['dough_type_ar'] : null,
+                'dough_type_en' => ($item['dough_type_en']) ? $item['dough_type_en'] : null,
                 'price' => $itemPrice,
-                'offer_price' => array_key_exists('price', (array)$item) ? $item['price'] : null, // TODO: Remove price
+                'offer_price' => ($item['price']) ? $item['price'] : null, // TODO: Remove price
                 'offer_id' => optional($offer)->id,
                 'offer_last_updated_at' => optional($offer)->updated_at,
-                'quantity' => array_key_exists('quantity', (array)$item) ? $item['quantity'] : 1
+                'quantity' => ($item['quantity']) ? $item['quantity'] : 1
             ]);
         }
 

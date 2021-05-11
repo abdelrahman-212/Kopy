@@ -46,7 +46,7 @@ class ServiceController extends Controller
             session()->put(['branch_id'=>$return['data']['id']]);
             session()->put(['service_type'=>$service_type]);
             session()->forget('status');
-            return redirect()->route('menu.page');
+            return redirect()->intended();
         }
         session()->put(['err'=>$return['message']]);
         return redirect()->back();

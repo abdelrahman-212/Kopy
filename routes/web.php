@@ -150,6 +150,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
                 // offers
                 Route::get('/offers', 'OffersController@get_offers')->name('offers');
                 Route::get('/offers/{oferID}', 'OffersController@offerItems')->name('offer.item');
+                /*****************Begin Checkout And Orders Routes ****************/
+                Route::post('get-checkout/', [\App\Http\Controllers\Website\CartController::class, 'get_checkout'])->name('checkout');
+                Route::post('make-order/', [\App\Http\Controllers\Website\OrdersController::class, 'make_order'])->name('make_order');
+                Route::get('my-orders/', [\App\Http\Controllers\Website\OrdersController::class, 'my_orders'])->name('get.orders');
+                Route::get('order-details/{id}/{order?}', [\App\Http\Controllers\Website\OrdersController::class, 'my_orders_details'])->name('order.details');
+                Route::get('re-order/{id}', [\App\Http\Controllers\Website\OrdersController::class, 're_order'])->name('re.order');
+                /*****************End Checkout And Orders Routes ****************/
             });
             //profile
             Route::get('/profile/', [\App\Http\Controllers\Website\AddressController::class, 'get_address'])->name('profile');
@@ -173,11 +180,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
             Route::get('/takeaway', 'ServiceController@takeawayPage')->name('takeaway.page');
             Route::get('/takeaway/{branch_id}/{service_type}', 'ServiceController@takeawayBranch')->name('takeaway.branch');
 
-            /*****************Begin Checkout And Orders Routes ****************/
-            Route::post('get-checkout/', [\App\Http\Controllers\Website\CartController::class, 'get_checkout'])->name('checkout');
-            Route::post('make-order/', [\App\Http\Controllers\Website\OrdersController::class, 'make_order'])->name('make_order');
-            Route::get('my-orders/', [\App\Http\Controllers\Website\OrdersController::class, 'my_orders'])->name('get.orders');
-            /*****************End Checkout And Orders Routes ****************/
         });
 
     });

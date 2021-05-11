@@ -34,21 +34,6 @@
                     <div class="osahan-profile">
 
                         <div class=" position-relative">
-                            @if(Session::has('success'))
-                                <div class="row mr-2 ml-2">
-                                    <button type="text" class="btn btn-lg btn-block btn-outline-success mb-2"
-                                            id="type-error">{{Session::get('success')}}
-                                    </button>
-                                </div>
-                            @endif
-
-                            @if(Session::has('error'))
-                                <div class="row mr-2 ml-2">
-                                    <button type="text" class="btn btn-lg btn-block btn-outline-danger mb-2"
-                                            id="type-error">{{Session::get('error')}}
-                                    </button>
-                                </div>
-                            @endif
                             <div class="pt-5 osahan-profile row">
                                 <div class="col-md-3 mb-3">
                                     <div class="bg-white rounded shadow-sm sticky_sidebar overflow-hidden"
@@ -68,51 +53,48 @@
                                                 </div>
                                             </div>
                                         </a>
-                                        <div class="osahan-credits d-flex align-items-center p-3 bg-light">
+                                        <a class="osahan-credits d-flex align-items-center p-3 bg-light" href="{{route('loyalty')}}">
                                             <p class="m-0">Account Points</p>
                                             <h5 class="m-0 ml-auto text-primary">
                                                 @if(isset($points))
-                                                    {{$points['user_points']}}</h5>
-
-                                            @endif
-
-
-                                        </div>
+                                                    {{$points['user_points']}}
+                                                @endif
+                                            </h5>
+                                        </a>
                                         <div class="bg-white profile-details">
 
                                             <ul class="nav   flex-column border-0  " id="myTab"
                                                 role="tablist">
 
-                                                <li class="nav-item d-flex w-100 align-items-center border-bottom    ">
+                                                <li class="nav-item d-flex w-100 align-items-center border-bottom">
                                                     <a class="nav-link" id="account-tab" data-toggle="tab"
-                                                       href="#account" role="tab"
-                                                       aria-controls="account" aria-selected="false">
+                                                       href="#account" role="tab" aria-controls="account" aria-selected="false">
                                                         <div class="left mr-3">
-                                                            <h6 class="font-weight-bold mb-1 text-dark">
-                                                                Account
-                                                            </h6>
-                                                            <p class="small text-muted m-0">Edit your Account
-                                                                Details</p>
+                                                            <h6 class="font-weight-bold mb-1 text-dark">Account</h6>
+                                                            <p class="small text-muted m-0">Edit your Account Details</p>
                                                         </div>
                                                     </a>
                                                 </li>
 
-
-                                                <li class="nav-item d-flex w-100 align-items-center border-bottom ">
+                                                <li class="nav-item d-flex w-100 align-items-center border-bottom">
                                                     <a class="nav-link" id="addresses-tab" data-toggle="tab"
-                                                       href="#addresses" role="tab"
-                                                       aria-controls="addresses" aria-selected="false">
-
+                                                       href="#addresses" role="tab" aria-controls="addresses" aria-selected="false">
                                                         <div class="left mr-3">
-                                                            <h6 class="font-weight-bold mb-1 text-dark">
-                                                                Addresses
-                                                            </h6>
-                                                            <p class="small text-muted m-0">Add or remove a delivery
-                                                                address</p>
+                                                            <h6 class="font-weight-bold mb-1 text-dark">Addresses</h6>
+                                                            <p class="small text-muted m-0">Add or remove a delivery address</p>
                                                         </div>
-
                                                     </a>
                                                 </li>
+
+                                                <li class="nav-item d-flex w-100 align-items-center border-botto">
+                                                    <a class="nav-link" href="{{route('get.orders')}}" aria-selected="false">
+                                                        <div class="left mr-3">
+                                                            <h6 class="font-weight-bold mb-1 text-dark">My Orders</h6>
+                                                            <p class="small text-muted m-0">Show all Orders</p>
+                                                        </div>
+                                                    </a>
+                                                </li>
+
                                             </ul>
                                         </div>
                                     </div>

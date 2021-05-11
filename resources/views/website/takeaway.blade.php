@@ -23,8 +23,8 @@
                                         <div class="w-100 h-100">
                                             <div class="bg-white shadow-sm rounded p-4 w-100 h-100">
                                                 <p class="h6 mb-3"><span class="feather-home text-primary"></span><span
-                                                        class="ml-3 font-weight-bold">{{$branche->name_en}}</span></p>
-                                                <p class="mb-4">{{$branche->address_description_en .' '. $branche->city->name_en .' '. $branche->area->name_en}}</p>
+                                                        class="ml-3 font-weight-bold">{{(app()->getLocale() == 'ar')? $branche->name_ar : $branche->name_en }}</span></p>
+                                                <p class="mb-4">{{(app()->getLocale() == 'ar')? $branche->address_description_ar .' '. $branche->city->name_ar .' '. $branche->area->name_ar : $branche->address_description_en .' '. $branche->city->name_en .' '. $branche->area->name_en }}</p>
                                                 @if($branche->working_hours->count()>0)
                                                     @foreach($branche->working_hours as $working_hour)
                                                         <p class="m-1" style="font-size: 14px;"><span

@@ -78,12 +78,11 @@
                                                         <div class="d-flex pt-3">
                                                             <div class="text-muted m-0 mr-auto mr-3 small"
                                                                  style="padding: 8px;">Total:
-                                                                <span class="text-dark font-weight-bold">{{$co ->total}}SR</span>
+                                                                <span class="text-dark font-weight-bold">{{$co->total+$co->points_total}} SR</span>
                                                             </div>
                                                             <div class="text-right">
-                                                                <a href="checkout.html"
-                                                                   class="btn btn-primary px-3">Reorder</a>
-                                                                <a href="contact-us.html"
+                                                                <a href="{{route('order.details',[$co->id,'reorder'])}}"                                                                   class="btn btn-primary px-3">Reorder</a>
+                                                                <a href="{{route('order.details',$co->id)}}"
                                                                    class="btn btn-outline-primary px-3">Details</a>
                                                             </div>
                                                         </div>
@@ -129,12 +128,11 @@
                                                         <div class="d-flex pt-3">
                                                             <div class="text-muted m-0 mr-auto mr-3 small"
                                                                  style="padding: 8px;">Total:
-                                                                <span class="text-dark font-weight-bold">12.74 SR</span>
+                                                                <span class="text-dark font-weight-bold">{{$pe->total+$pe->points_total}} SR</span>
                                                             </div>
                                                             <div class="text-right">
-                                                                <a href="checkout.html"
-                                                                   class="btn btn-primary px-3">Reorder</a>
-                                                                <a href="contact-us.html"
+                                                                <a href="{{route('order.details',[$pe->id,'reorder'])}}"                                                                   class="btn btn-primary px-3">Reorder</a>
+                                                                <a href="{{route('order.details',$pe->id)}}"
                                                                    class="btn btn-outline-primary px-3">Details</a>
                                                             </div>
                                                         </div>
@@ -176,11 +174,12 @@
                                                         <div class="d-flex pt-3">
                                                             <div class="text-muted m-0 mr-auto mr-3 small"
                                                                  style="padding: 8px;">Total:
-                                                                <span class="text-dark font-weight-bold">{{$ca->total}}SR</span>
+                                                                <span class="text-dark font-weight-bold">{{$ca->total + $ca->points_total}} SR</span>
                                                             </div>
                                                             <div class="text-right">
-                                                                <a href="checkout.html" class="btn btn-primary px-3">Reorder</a>
-                                                                <a href="contact-us.html"
+                                                                <a href="{{route('order.details',[$ca->id,'reorder'])}}"
+                                                                   class="btn btn-primary px-3">Reorder</a>
+                                                                <a href="{{route('order.details',$ca->id)}}"
                                                                    class="btn btn-outline-primary px-3">Details</a>
                                                             </div>
                                                         </div>
@@ -204,4 +203,12 @@
 
 @endsection
 
-@section('scripts')@endsection
+@section('scripts')
+    <script>
+        @if(session()->has('message'))
+            var x = "{{session()->get('message')}}";
+            {{session()->forget('message')}}
+            alert(x);
+        @endif
+    </script>
+@endsection

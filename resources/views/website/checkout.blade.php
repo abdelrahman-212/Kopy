@@ -13,14 +13,7 @@
 
                 <div class="uk-margin-small-top uk-container">
 
-                    @if(Session::has('success'))
-                        <div class="row mr-2 ml-2">
-                            <button type="text" class="btn btn-lg btn-block btn-outline-success mb-2"
-                                    id="type-error">{{Session::get('success')}}
-                            </button>
-                            {{session()->forget('success')}}
-                        </div>
-                    @endif
+
                     <div class="position-relative">
                         <div class="py-5 row">
                             <div class="col-md-8 mb-3">
@@ -28,13 +21,12 @@
                                     <div class="osahan-cart-item mb-3 rounded shadow-sm bg-white overflow-hidden">
                                         <div class="osahan-cart-item-profile bg-white p-3">
                                             <div class="d-flex flex-column">
-                                                <h4 class="mb-3 font-weight-bold">Receive Your Order From</h4>
                                                 <div class="row">
                                                     @if(isset($branch))
+
                                                         <div
                                                             class="custom-control text-center col-lg-12 custom-radio mb-3 position-relative border-custom-radio">
                                                             <input type="radio" id="customRadioInline1"
-                                                                   name="customRadioInline1"
                                                                    class="custom-control-input" checked>
                                                             <label class="custom-control-label w-100"
                                                                    for="customRadioInline1">
@@ -42,10 +34,13 @@
                                                                     <div class="p-3 bg-white rounded shadow-sm w-100">
                                                                         <div class="d-flex align-items-center mb-2">
                                                                         </div>
-                                                                        <p class="small text m-0">{{$branch->address_description}}</p>
-                                                                        <p class="small text m-0">{{$branch->address_description_en}}</p>
+                                                                        <h4 class="mb-3 mt-2 font-weight-bold">Receive
+                                                                            Your Order From</h4>
+                                                                        <p class="small text m-0 font-weight-bold">{{(app()->getLocale() == 'ar')? $branch->name_ar : $branch->name_en }}</p>
+                                                                        <p class="small text m-0">
+                                                                            {{(app()->getLocale() == 'ar')? $branch->address_description_ar .' '. $branch->city->name_ar .' '. $branch->area->name_ar : $branch->address_description_en .' '. $branch->city->name_en .' '. $branch->area->name_en }}
+                                                                        </p>
                                                                         <h6 class="mb-0">Working Hours</h6>
-
 
                                                                         @if(isset($work_hours))
                                                                             @foreach($work_hours as $h)
@@ -55,29 +50,42 @@
                                                                             @endforeach
                                                                         @endif
                                                                     </div>
-                                                                    {{--                                                            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-block btn-light border-top">Edit</a>--}}
                                                                 </div>
                                                             </label>
                                                         </div>
+
                                                     @endif
-                                                    {{--                                                <div class="custom-control col-lg-6 custom-radio position-relative border-custom-radio">--}}
-                                                    {{--                                                    <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">--}}
-                                                    {{--                                                    <label class="custom-control-label w-100" for="customRadioInline2">--}}
-                                                    {{--                                                        <div>--}}
-                                                    {{--                                                            <div class="p-3 rounded bg-white shadow-sm w-100">--}}
-                                                    {{--                                                                <div class="d-flex align-items-center mb-2">--}}
-                                                    {{--                                                                    <h6 class="mb-0">Work</h6>--}}
-                                                    {{--                                                                    <p class="mb-0 badge badge-light ml-auto"><i class="icofont-check-circled"></i> Select</p>--}}
-                                                    {{--                                                                </div>--}}
-                                                    {{--                                                                <p class="small text-muted m-0">Model Town, Ludhiana</p>--}}
-                                                    {{--                                                                <p class="small text-muted m-0">Punjab 141002, India</p>--}}
-                                                    {{--                                                            </div>--}}
-                                                    {{--                                                            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-block btn-light border-top">Edit</a>--}}
-                                                    {{--                                                        </div>--}}
-                                                    {{--                                                    </label>--}}
-                                                    {{--                                                </div>--}}
+                                                    @if(isset($address))
+
+                                                        <div
+                                                            class="custom-control text-center col-lg-12 custom-radio mb-3 position-relative border-custom-radio">
+                                                            <input type="radio" id="customRadioInline1"
+                                                                   class="custom-control-input" checked>
+                                                            <label class="custom-control-label w-100"
+                                                                   for="customRadioInline1">
+                                                                <div>
+                                                                    <div class="p-3 bg-white rounded shadow-sm w-100">
+                                                                        <div class="d-flex align-items-center mb-2">
+                                                                        </div>
+                                                                        <h4 class="mb-3 mt-2 font-weight-bold">We will
+                                                                            deliver your address to</h4>
+                                                                        <p class="small text m-0">{{$address ->name}}
+                                                                            , {{(app()->getLocale() == 'ar') ?$address->city->name_ar:$address->city->name_en}}
+                                                                            , {{(app()->getLocale() == 'ar') ?$address->area->name_ar:$address->area->name_en}}</p>
+                                                                        <p class="small text m-0">{{$address-> street}}
+                                                                            , BuildNo: {{$address-> building_number}}
+                                                                            , FloorNo: {{ $address-> floor_number}}
+                                                                            , Landmark: {{$address-> landmark}}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+
+                                                    @endif
                                                 </div>
-                                                {{--                                            <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#exampleModal"> ADD NEW ADDRESS </a>--}}
+                                                <a class="btn btn-primary" href="#" data-toggle="modal"
+                                                   data-target="#service-modal"> Change ServiceType </a>
                                             </div>
                                         </div>
                                     </div>
@@ -141,11 +149,11 @@
 
 
                                                 @endif
-                                            @auth()
-                                                <input id="pointsinput" hidden name="customer_id"
-                                                       value="{{auth()->user()->id}}"/>
+                                                @auth()
+                                                    <input id="pointsinput" hidden name="customer_id"
+                                                           value="{{auth()->user()->id}}"/>
                                                 @endauth
-                                                    <hr>
+                                                <hr>
 
                                                 <h5 class="font-weight-bold mb-0 text-success">TO PAY <span
                                                         class="float-right">{{$request->total}} SR</span>

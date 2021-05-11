@@ -42,7 +42,7 @@
                     <section class="section-50">
                         <div class="shell">
                             <div class="range">
-                                @if(isset($carts))
+                                @if($carts->count())
                                     <div class="cell-xs-12">
                                         <h4 class="text-left font-default"><span
                                                 id="itemcount">{{$carts->count()}}</span> Items in your cart</h4>
@@ -203,6 +203,13 @@
                                             </div>
 
                                         </form>
+                                    </div>
+
+                                @else
+                                    <div class="uk-container uk-container-small"><img class="page-cart__img" src="{{asset('website-assets/img/pages/cart/img-cart.png')}}" alt="">
+                                        <div class="page-cart__box">
+                                            <div class="page-cart__title">Your cart is currently empty.</div><a class="uk-button" href="{{route('menu.page')}}">Return to Shop</a>
+                                        </div>
                                     </div>
                                 @endif
                             </div>

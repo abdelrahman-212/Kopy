@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Website;
 
+use App\Models\Address;
+use App\Models\Branch;
 use App\Models\Cart;
 use App\Models\Offer;
 use Illuminate\Http\Request;
@@ -71,6 +73,7 @@ class CartController extends Controller
             $carts = $return['data'];
             $arr_check = $this->get_check();
             if (session()->has('point_claim')) {
+
                 return view('website.cart', compact(['carts', 'arr_check']));
             } else {
                 return view('website.cart', compact(['carts', 'arr_check']));
@@ -81,26 +84,9 @@ class CartController extends Controller
 
     public function delete_cart(Request $request)
     {
-        $cart = Auth::user()->carts()->find($request->cart_id);
-        if($cart->offer_id){
-            $offer = Offer::find($cart->offer_id);
-            if ($offer->offer_type == 'buy-get')
-            {
-                $carts = Auth::user()->carts()->where('offer_id', $cart->offer_id)->get();
-                foreach ($carts as $oneCart){
-                    $newRequest = new Request();
-                    $newRequest->merge(['cart_id' => $oneCart->id]);
-                    $return = (app(\App\Http\Controllers\Api\CartController::class)->deleteCart($newRequest))->getOriginalContent();
-                }
-            }
-            else
-            {
-                $return = (app(\App\Http\Controllers\Api\CartController::class)->deleteCart($request))->getOriginalContent();
-            }
-        }
-        else{
-            $return = (app(\App\Http\Controllers\Api\CartController::class)->deleteCart($request))->getOriginalContent();
-        }
+
+        $return = (app(\App\Http\Controllers\Api\CartController::class)->deleteCart($request))->getOriginalContent();
+
         $arr_check = $this->get_check();
         return response()->json($arr_check);
     }
@@ -113,7 +99,6 @@ class CartController extends Controller
         return response()->json($arr_check);
     }
 
-
     public function get_check()
     {
         $return = (app(\App\Http\Controllers\Api\CartController::class)->getCart())->getOriginalContent();
@@ -121,15 +106,14 @@ class CartController extends Controller
         if ($return['success'] == 'success') {
             $carts = $return['data'];
             $final_item_price = 0;
-            foreach ($carts as $cart) {
+            foreach ($carts as $index => $cart) {
                 $quantity = $cart->quantity;
                 if($cart->offer_id){
-                     $item_price = $cart->offer_price;
+                    $item_price = $cart->offer_price;
                 }
                 else{
                     $item_price = $cart->item->price;
                 }
-
                 $final_item_price += ($item_price * $quantity);
 
                 if ($cart->ExtrasObjects) {
@@ -137,6 +121,7 @@ class CartController extends Controller
                     $final_item_price += $extras_price;
                 }
             }
+
             if (session()->has('point_claim')) {
                 $arr_data['points'] = session()->get('point_claim_value');
                 $arr_data['taxes'] = round($final_item_price * .15, 2);
@@ -162,37 +147,29 @@ class CartController extends Controller
 
     public function get_checkout(Request $request)
     {
-        $address_id = 33;
-        $branch_id = 16;
-        $service_type = 'delivery';
+        $service_type = session()->get('service_type');
+        if ($service_type == 'delivery') {
+            $address_id = session()->get('address_id');
+            $request->merge(['address_id' => $address_id]);
+        }
+        $branch_id = session()->get('branch_id');
         $request->merge([
-            'address_id' => $address_id,
             'branch_id' => $branch_id,
             'service_type' => $service_type
         ]);
-        $branch = Branch::find($branch_id);
-        $return = (app(\App\Http\Controllers\Api\BranchesController::class)->show($request, $branch))->getOriginalContent();
-        if ($return['success'] == true) {
-            $branch = $return['data'];
-            $work_hours = $branch->workingDays()->where('day', strtolower(now()->englishDayOfWeek))->get();
-            return view('website.checkout', compact('request', 'branch', 'work_hours'));
-        }
 
-        return $request;
-        if (session()->has('address_id')) {
-            if (session()->has('service_type'))
-                if (session()->has('branch_id')) {
-                    $address_id = session()->get('address_id');
-                    $branch_id = session()->get('branch_id');
-                    $service_type = session()->get('service_type');
-                    $request->merge([
-                        'address_id' => $address_id,
-                        'branch_id' => $branch_id,
-                        'service_type' => $service_type
-                    ]);
-                    return view('website.make-order', compact('request'));
-                }
+        $branch = Branch::where('id',$branch_id)->with(['city', 'area', 'deliveryAreas'])->with(['workingDays' => function($day) {
+            $day->where('day', strtolower(now()->englishDayOfWeek))->first();
+        }])->first();
+
+        $work_hours = $branch->workingDays()->where('day', strtolower(now()->englishDayOfWeek))->get();
+        if (isset($address_id)) {
+            $address = Address::find($address_id);
+            return view('website.checkout', compact('request', 'address', 'work_hours'));
         }
+        return view('website.checkout', compact('request', 'branch', 'work_hours'));
+
+
     }
 
 }
