@@ -67,7 +67,7 @@ class CartController extends Controller
 
     public function get_cart()
     {
-        $return = (app(\App\Http\Controllers\Api\CartController::class)->getCart())->getOriginalContent();
+         $return = (app(\App\Http\Controllers\Api\CartController::class)->getCart())->getOriginalContent();
         $request = new \Illuminate\Http\Request();
         if ($return['success'] == 'success') {
             $carts = $return['data'];
@@ -125,14 +125,14 @@ class CartController extends Controller
             if (session()->has('point_claim')) {
                 $arr_data['points'] = session()->get('point_claim_value');
                 $arr_data['taxes'] = round($final_item_price * .15, 2);
-                $arr_data['delivery_fees'] = session()->get('service_type') == 'delivery' ? 10 : 0;
+                $arr_data['delivery_fees'] = session()->get('service_type') == 'delivery' ? $this->get_delivery_fees(session()->get('branch_id')) : 0;
                 $arr_data['subtotal'] = $final_item_price;
                 $final_item_price += ($arr_data['taxes'] + $arr_data['delivery_fees']) - $arr_data['points'];
                 $arr_data['total'] = $final_item_price;
                 return $arr_data;
             } else {
                 $arr_data['taxes'] = round($final_item_price * .15, 2);
-                $arr_data['delivery_fees'] = session()->get('service_type') == 'delivery' ? 10 : 0;
+                $arr_data['delivery_fees'] = session()->get('service_type') == 'delivery' ? $this->get_delivery_fees(session()->get('branch_id')) : 0;
                 $arr_data['subtotal'] = $final_item_price;
 
                 $final_item_price += $arr_data['taxes'] + $arr_data['delivery_fees'];
@@ -171,5 +171,9 @@ class CartController extends Controller
 
 
     }
+public function get_delivery_fees($branch_id){
 
+        $fees= Branch::where('id',$branch_id)->select('delivery_fees')->get();
+     return ($fees[0]['delivery_fees']);
+}
 }
