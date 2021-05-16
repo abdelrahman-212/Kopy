@@ -29,6 +29,7 @@ class BranchController extends Controller
         'email' => 'required|email',
         'service_type.*' => 'required|string',
         'WorkingDay' => 'array',
+        'delivery_fees'=>'integer',
         'areas.*' => 'exists:areas,id|required'
     ];
 
@@ -64,6 +65,7 @@ class BranchController extends Controller
      */
     public function store(Request $request)
     {
+
         $attributes = $request->validate([
             'name_ar' => 'required|min:3|max:30',
             'name_en' => 'required|min:3|max:30',
@@ -75,10 +77,10 @@ class BranchController extends Controller
             'second_phone' => 'nullable|numeric',
             'email' => 'required|email',
             'service_type' => 'required|array',
-            // 'areas.*' => 'exists:areas,id'
+            // 'areas.*' => 'exists:areas,id',
+            'delivery_fees'=>'integer',
         ]);
 
-        //dd($request->areas);
 
         $attributes['service_type'] = implode(",", $request->get('service_type'));
 
@@ -95,6 +97,8 @@ class BranchController extends Controller
             'second_phone' => $input['second_phone'],
             'email' => $input['email'],
             'service_type' => $attributes['service_type'],
+            'delivery_fees' => $input['delivery_fees'],
+
         ]);
 
 

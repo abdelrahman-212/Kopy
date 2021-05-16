@@ -98,6 +98,14 @@
                 </div>
               </div>
             </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="form-group">
+                          <label for="exampleInputEmail">Delivery Fees</label>
+                          <input type="number" class="form-control {!! $errors->first('delivery_fees', 'is-invalid') !!}" id="exampleInputDeliveryFees" placeholder="Enter Delivery Fess" name="delivery_fees">
+                      </div>
+                  </div>
+              </div>
             <div class="row">
               <div class="col-md-4">
                 <label for="exampleInputServiceType">ServiceType</label>
@@ -183,7 +191,7 @@
                     </div>
                     <div class="row py-1">
                       <div class="col-md-3">
-                        
+
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
@@ -256,7 +264,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3">
-                        
+
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
@@ -329,7 +337,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3">
-                        
+
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
@@ -402,10 +410,10 @@
                         </div>
                       </div>
                     </div>
-                    
+
                     <div class="row">
                       <div class="col-md-3">
-                        
+
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
@@ -479,10 +487,10 @@
                         </div>
                       </div>
                     </div>
-                    
+
                     <div class="row">
                       <div class="col-md-3">
-                        
+
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
@@ -554,10 +562,10 @@
                         </div>
                       </div>
                     </div>
-                    
+
                     <div class="row">
                       <div class="col-md-3">
-                        
+
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
@@ -631,7 +639,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3">
-                        
+
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">

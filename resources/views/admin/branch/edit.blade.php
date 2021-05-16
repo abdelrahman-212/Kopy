@@ -110,6 +110,15 @@
                 </div>
               </div>
             </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="form-group">
+                          <label for="exampleInputDeliveryFees">Delivery Fees</label>
+                          <input type="number" class="form-control" id="exampleInputDeliveryFees" placeholder="Enter Delivery Fees" name="delivery_fees" value="{{$branch->delivery_fees}}">
+                          {!! $errors->first('delivery_fees', '<p class="invalid-feedback">:message</p>') !!}
+                      </div>
+                  </div>
+              </div>
             <div class="row">
               <div class="col-md-4">
                 <label for="exampleInputServiceType">ServiceType</label>
@@ -181,7 +190,7 @@
                     </div>
                     <div class="row py-1">
                       <div class="col-md-3">
-                        
+
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
@@ -254,7 +263,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3">
-                        
+
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
@@ -327,7 +336,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3">
-                        
+
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
@@ -400,10 +409,10 @@
                         </div>
                       </div>
                     </div>
-                    
+
                     <div class="row">
                       <div class="col-md-3">
-                        
+
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
@@ -477,10 +486,10 @@
                         </div>
                       </div>
                     </div>
-                    
+
                     <div class="row">
                       <div class="col-md-3">
-                        
+
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
@@ -552,10 +561,10 @@
                         </div>
                       </div>
                     </div>
-                    
+
                     <div class="row">
                       <div class="col-md-3">
-                        
+
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
@@ -629,7 +638,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-3">
-                        
+
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
@@ -822,7 +831,7 @@ $('input').change(function (e) {
         $(window).on('beforeunload', function(){
             return "Are you sure you want to navigate away from this page?";
         });
-        
+
         // Form Submit
         $(document).on("submit", "form", function(event){
             // disable unload warning
