@@ -282,9 +282,8 @@
                                                                                                                     City
                                                                                                                 </option>
 
-                                                                                                                @php
-                                                                                                                    $cities = (app(\App\Http\Controllers\Api\HelperController::class)->getCities())->getOriginalContent();
-                                                                                                                @endphp
+
+                                                                                                                @if(isset($cites))
                                                                                                                 @foreach( $cities ['data']  as $city)
                                                                                                                     <option
                                                                                                                         @if($address->city_id == $city->id) selected
@@ -293,6 +292,7 @@
                                                                                                                         {{(app()->getLocale() == 'ar') ? $city->name_ar : $city->name_en }}
                                                                                                                     </option>
                                                                                                                 @endforeach
+                                                                                                                    @endif
                                                                                                             </select>
                                                                                                             <div
                                                                                                                 class="input-group-append">

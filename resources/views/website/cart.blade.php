@@ -164,7 +164,7 @@
 
                                             @csrf
                                             <div class="mt-5 offset-9 col-xs-3">
-                                                <div class="h4 font-default text-bold">
+                                                <div class="h4 font-default text-bold" style="width: max-content">
                                                     <h6 class="mt-1 mb-2"><b
                                                             class="inset-right-5 text-gray-light">Sub
                                                             Total: </b> <span id="subtotal" style="font-size: smaller;">{{$arr_check['subtotal']}} SR</span>
@@ -185,7 +185,7 @@
                                                     </h6>
                                                     @if(isset($arr_check['points']))
                                                         <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">Loyality Discount: </b> <span
-                                                                id="points" style="font-size: smaller;"> - {{$arr_check['points']}} SR</span>
+                                                                id="points" style="font-size: smaller;"> - {{$arr_check['points']}}  SR</span>
                                                             <input id="pointsinput"  hidden   name="points_paid" value="{{$arr_check['points']}}"/>
 
                                                         </h6>

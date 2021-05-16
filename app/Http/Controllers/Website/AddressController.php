@@ -15,15 +15,18 @@ class AddressController extends Controller
 
         $return = (app(\App\Http\Controllers\Api\AddressesController::class)->index($request))->getOriginalContent();
         $return2 = (app(\App\Http\Controllers\Api\AuthController::class)->getUserPoints($request))->getOriginalContent();
-
-        if ($return2['success'] == 'success') {
+        $return3 = (app(\App\Http\Controllers\Api\HelperController::class)->getCities())->getOriginalContent();
+         if ($return2['success'] == 'success') {
              $points = $return2['data'];
         }
 
-         if ($return['success'] == 'success') {
+        if ($return3['success'] == 'success') {
+            $cities = $return3['data'];
+        }
+        if ($return['success'] == 'success') {
             $addresses = $return['data'];
         }
-         return view('website.profile', compact(['addresses', 'points']));
+         return view('website.profile', compact(['addresses', 'points','cities']));
     }
 
     public function delete(Address $address)
