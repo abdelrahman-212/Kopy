@@ -134,7 +134,8 @@ Route::group(['prefix' => 'menu'], function () {
 // helper endpoints
 Route::get('/cities', "Api\HelperController@getCities");
 Route::get('/cities/{city}/areas', "Api\HelperController@getAreas");
-
+Route::get('api/v1/cities/search', 'Api\HelperController@search')
+    ->name('api.cities.search');
 // Front routes
 Route::group(['prefix' => 'website'], function () {
 

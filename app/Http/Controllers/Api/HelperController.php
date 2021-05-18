@@ -12,14 +12,19 @@ class HelperController extends BaseController
         $cities = City::get();
 
         return $this->sendResponse($cities, 'test');
-    }
+        }
 
 
     public function getAreas(Request $request, City $city) {
         $areas = $city->areas;
         return $areas;
     }
-
+    public function search(Request $request)
+    {
+         $cities = City::where('name_ar', 'LIKE', '%'.$request->input('term', '').'%')
+            ->get(['id', 'name_ar as text']);
+        return ['results' => $cities];
+    }
 
 }
 

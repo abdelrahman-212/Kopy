@@ -53,7 +53,8 @@
                                                 </div>
                                             </div>
                                         </a>
-                                        <a class="osahan-credits d-flex align-items-center p-3 bg-light" href="{{route('loyalty')}}">
+                                        <a class="osahan-credits d-flex align-items-center p-3 bg-light"
+                                           href="{{route('loyalty')}}">
                                             <p class="m-0">Account Points</p>
                                             <h5 class="m-0 ml-auto text-primary">
                                                 @if(isset($points))
@@ -68,26 +69,31 @@
 
                                                 <li class="nav-item d-flex w-100 align-items-center border-bottom">
                                                     <a class="nav-link" id="account-tab" data-toggle="tab"
-                                                       href="#account" role="tab" aria-controls="account" aria-selected="false">
+                                                       href="#account" role="tab" aria-controls="account"
+                                                       aria-selected="false">
                                                         <div class="left mr-3">
                                                             <h6 class="font-weight-bold mb-1 text-dark">Account</h6>
-                                                            <p class="small text-muted m-0">Edit your Account Details</p>
+                                                            <p class="small text-muted m-0">Edit your Account
+                                                                Details</p>
                                                         </div>
                                                     </a>
                                                 </li>
 
                                                 <li class="nav-item d-flex w-100 align-items-center border-bottom">
                                                     <a class="nav-link" id="addresses-tab" data-toggle="tab"
-                                                       href="#addresses" role="tab" aria-controls="addresses" aria-selected="false">
+                                                       href="#addresses" role="tab" aria-controls="addresses"
+                                                       aria-selected="false">
                                                         <div class="left mr-3">
                                                             <h6 class="font-weight-bold mb-1 text-dark">Addresses</h6>
-                                                            <p class="small text-muted m-0">Add or remove a delivery address</p>
+                                                            <p class="small text-muted m-0">Add or remove a delivery
+                                                                address</p>
                                                         </div>
                                                     </a>
                                                 </li>
 
                                                 <li class="nav-item d-flex w-100 align-items-center border-botto">
-                                                    <a class="nav-link" href="{{route('get.orders')}}" aria-selected="false">
+                                                    <a class="nav-link" href="{{route('get.orders')}}"
+                                                       aria-selected="false">
                                                         <div class="left mr-3">
                                                             <h6 class="font-weight-bold mb-1 text-dark">My Orders</h6>
                                                             <p class="small text-muted m-0">Show all Orders</p>
@@ -198,11 +204,11 @@
                                                                                 </p>
                                                                                 <p class="mb-0 text-black font-weight-bold">
                                                                                     <a
-                                                                                        class="text-primary mr-3"
+                                                                                        class="text-primary mr-3  "
                                                                                         data-toggle="modal"
                                                                                         data-target="#edit-address-modal{{$address->id}}"
                                                                                         href="#"><i
-                                                                                            class="icofont-ui-edit"></i>
+                                                                                            class="icofont-ui-edit  "></i>
                                                                                         EDIT</a> <a class="text-danger"
                                                                                                     data-toggle="modal"
                                                                                                     data-target="#delete-address-modal{{$address->id}}"
@@ -271,28 +277,16 @@
                                                                                                         <div
                                                                                                             class="input-group">
                                                                                                             <select
-                                                                                                                class="form-control city w-100"
+                                                                                                                class="form-control select2-cities city w-100 select2-cities"
                                                                                                                 name="city_id"
                                                                                                                 required
 
                                                                                                             >
                                                                                                                 <option
-                                                                                                                    value="">
-                                                                                                                    Select
-                                                                                                                    City
+                                                                                                                    value="{{$address->city_id}}">
+                                                                                                                    {{$address->city['name_'.app()->getLocale()]}}
                                                                                                                 </option>
 
-
-                                                                                                                @if(isset($cites))
-                                                                                                                @foreach( $cities ['data']  as $city)
-                                                                                                                    <option
-                                                                                                                        @if($address->city_id == $city->id) selected
-                                                                                                                        @endif
-                                                                                                                        value="{{$city->id}}">
-                                                                                                                        {{(app()->getLocale() == 'ar') ? $city->name_ar : $city->name_en }}
-                                                                                                                    </option>
-                                                                                                                @endforeach
-                                                                                                                    @endif
                                                                                                             </select>
                                                                                                             <div
                                                                                                                 class="input-group-append">
@@ -586,7 +580,7 @@
                                                                                                     <div
                                                                                                         class="input-group">
                                                                                                         <select
-                                                                                                            class="form-control city w-100"
+                                                                                                            class="form-control select2-cities city w-100 select2-cities"
                                                                                                             name="city_id"
                                                                                                             required
 
@@ -597,16 +591,7 @@
                                                                                                                 City
                                                                                                             </option>
 
-                                                                                                            @php
-                                                                                                                $cities = (app(\App\Http\Controllers\Api\HelperController::class)->getCities())->getOriginalContent();
-                                                                                                            @endphp
-                                                                                                            @foreach( $cities ['data']  as $city)
-                                                                                                                <option
 
-                                                                                                                    value="{{$city->id}}">
-                                                                                                                    {{(app()->getLocale() == 'ar') ?$city->name_ar:$city->name_en}}
-                                                                                                                </option>
-                                                                                                            @endforeach
                                                                                                         </select>
                                                                                                         <div
                                                                                                             class="input-group-append">
@@ -791,8 +776,31 @@
                 type="text/javascript"></script>
 
         <script>
+            let app_url = '{{ url('/') }}';
+
+            $('.select2-cities').select2(
+                {
+                    ajax: {
+                        url: app_url + "/api/cities/",
+                        dataType: 'json',
+                        processResults: function (data) {
+                            return {
+                                results: $.map(data['data'], function (city) {
+                                    return {
+                                        id: city.id,
+                                        text: city["name_" + "{{app()->getLocale()}}"]
+                                    }
+                                })
+                            };
+                        },
+
+                        cache: true
+                    }
+                }
+            );
+
             window.onload = function () {
-                //$(document).on("change", "select.city", function () {
+
                 $('.city').change(function () {
                     let app_url = '{{ url('/') }}';
                     let city_id = $(this).val();

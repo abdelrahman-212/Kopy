@@ -180,6 +180,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
             Route::get('/takeaway', 'ServiceController@takeawayPage')->name('takeaway.page');
             Route::get('/takeaway/{branch_id}/{service_type}', 'ServiceController@takeawayBranch')->name('takeaway.branch');
 
+            Route::get('get-cities', [\App\Http\Controllers\Api\HelperController::class, 'getCities']);
+
         });
 
     });
