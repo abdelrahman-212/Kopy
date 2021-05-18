@@ -110,6 +110,7 @@ class CartController extends Controller
                 $quantity = $cart->quantity;
                 if($cart->offer_id){
                     $item_price = $cart->offer_price;
+
                 }
                 else{
                     $item_price = $cart->item->price;

@@ -125,6 +125,7 @@ class OrdersController extends BaseController
 
     public function store(Request $request)
     {
+
         // get customer information
         $customer = User::where('id', $request->customer_id)->whereHas('roles', function ($role) {
             $role->where('name', 'customer');
@@ -216,7 +217,7 @@ class OrdersController extends BaseController
 
         $subtotal = 0;
 
-        foreach($request->items as $item) {
+        foreach ($request->items as $item) {
 
             $orderItem = Item::where('id', $item['item_id'])->first();
             $orderItemExtras = null;
@@ -233,25 +234,27 @@ class OrdersController extends BaseController
             // check if there is offer price
             // count sum of extras price and item price
             //if ($item->price) {
+
+            $itemOfferPrice = 0;
+            $itemPrice = 0;
             if ($item['offer_price']) {
                 $extras = $orderItemExtras ? $orderItemExtras->sum('price') : 0;
                 //$itemPrice = $item['price'] + $extras;
-                $itemPrice = $item['offer_price'] + $extras;
-            } else {
+                $itemOfferPrice = $item['offer_price'] + $extras;
+            }
+            if ($item['price']) {
                 $extras = $orderItemExtras ? $orderItemExtras->sum('price') : 0;
                 $itemPrice = $orderItem->price + $extras;
             }
-
-            $subtotal = $subtotal + $itemPrice;
-            $offer = Offer::find(isset($item['offerId']) ? $item['offerId'] : 0);
-
+             $subtotal = $subtotal + $itemPrice;
+             $offer = Offer::find(isset($item['offerId']) ? $item['offerId'] : 0);
             $order->items()->attach($item['item_id'], [
                 'item_extras' => ($item['extras']) ? implode(', ', $item['extras']) : null,
                 'item_withouts' => ($item['withouts']) ? implode(', ', $item['withouts']) : null,
                 'dough_type_ar' => ($item['dough_type_ar']) ? $item['dough_type_ar'] : null,
                 'dough_type_en' => ($item['dough_type_en']) ? $item['dough_type_en'] : null,
                 'price' => $itemPrice,
-                'offer_price' => ($item['price']) ? $item['price'] : null, // TODO: Remove price
+                'offer_price' => ($item['offer_price']) ? $itemOfferPrice : null, // TODO: Remove price
                 'offer_id' => optional($offer)->id,
                 'offer_last_updated_at' => optional($offer)->updated_at,
                 'quantity' => ($item['quantity']) ? $item['quantity'] : 1

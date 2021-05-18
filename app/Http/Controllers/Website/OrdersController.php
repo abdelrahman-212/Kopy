@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Models\Branch;
+use App\Models\Item;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,8 +17,9 @@ class OrdersController extends Controller
             $item->extras = json_decode($item->extras);
             $item->withouts = json_decode($item->withouts);
             $item->offerId = $item->offer_id;
+            $item->price = Item::find($item->item_id)->price;
         }
-        if (!$request->has('points_paid')) {
+         if (!$request->has('points_paid')) {
             $request = $request->merge([
                 'items' => $items,
                 'points_paid' => 0,
@@ -86,7 +88,7 @@ class OrdersController extends Controller
                 'dough_type_ar' => $item->pivot->dough_type_ar,
                 'dough_type_en' => $item->pivot->dough_type_en,
                 'offer_price' => $item->pivot->offer_price,
-                'offer_id' => $item->pivot->offer_id,
+                'offerId' => $item->pivot->offer_id,
                 'quantity' => $item->pivot->quantity,
 
             ]);

@@ -112,7 +112,7 @@
                                         </div>
 
 
-                                        <div class="mt-5 offset-9 col-xs-3">
+                                        <div class="mt-5 offset-9 col-xs-3" style="width: max-content">
                                             <div class="h4 font-default text-bold">
                                                 <h6 class="mt-1 mb-2"><b
                                                         class="inset-right-5 text-gray-light">Sub
@@ -131,14 +131,20 @@
 
                                                 </h6>
 
-{{--                                                @if( $order->points_paid !=0)--}}
-{{--                                                    <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">Loyality--}}
-{{--                                                            Discount: </b> <span--}}
-{{--                                                            id="points" style="font-size: smaller;"> -  {{$order->points_paid}} SR</span>--}}
+                                                @if( $order->points_paid !=0  && !isset($reorder))
+                                                    <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">Loyality
+                                                            Discount: </b> <span
+                                                            id="points" style="font-size: smaller;"> -  {{$order->points_paid}} SR</span>
 
-{{--                                                    </h6>--}}
-{{--                                                @endif--}}
+                                                    </h6>
+                                                @endif
+                                                @if((session()->has('point_claim')) && $reorder)
+                                                    <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">Loyality
+                                                            Discount: </b> <span
+                                                            id="points" style="font-size: smaller;"> -  {{session()->get('point_claim_value')}} SR</span>
 
+                                                    </h6>
+                                                @endif
 
                                                 <h6 class="mt-1 mb-2"><b
 
