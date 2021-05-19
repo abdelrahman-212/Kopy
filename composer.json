@@ -20,6 +20,7 @@
         "laravel/passport": "^6.0",
         "laravel/tinker": "^1.0",
         "mcamara/laravel-localization": "^1.6",
+        "moyasar/moyasar": "^1.0",
         "twilio/sdk": "^6.12",
         "zizaco/entrust": "5.2.x-dev"
     },
@@ -47,9 +48,6 @@
         "classmap": [
             "database/seeds",
             "database/factories"
-        ],
-        "files": [
-            "app/Helpers/General.php"
         ]
     },
     "autoload-dev": {

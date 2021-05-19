@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="fontawesome-i2svg-active fontawesome-i2svg-complete">
+<html class="fontawesome-i2svg-active fontawesome-i2svg-complete" @if(app()->getLocale() == 'ar') dir="rtl" @endif>
 
 @include('layouts.website.head')
 

@@ -24,6 +24,7 @@ class CreateBranchesTable extends Migration
             $table->string('second_phone')->nullable();
             $table->string('email');
             $table->string('service_type');
+            $table->integer('delivery_fees');
             $table->unsignedBigInteger('created_by')->index()->nullable();
             $table->unsignedBigInteger('updated_by')->index()->nullable();
             $table->timestamps();

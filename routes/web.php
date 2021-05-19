@@ -145,11 +145,19 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
             Route::group(['middleware' => 'service'], function () {
                 // menu
                 Route::get('/item/{category_id}/{item_id}', 'MenuController@itemPage')->name('item.page');
+
                 // add to cart
                 Route::post('/cart', 'CartController@addCart')->name('add.cart');
+
                 // offers
                 Route::get('/offers', 'OffersController@get_offers')->name('offers');
                 Route::get('/offers/{oferID}', 'OffersController@offerItems')->name('offer.item');
+
+                // payment
+                Route::post('/payment','PaymentController@index')->name('payment');
+                Route::post('payment/order','PaymentController@get_payment')->name('do.payment');
+                Route::get('/payment/make-order','OrdersController@make_order_payment')->name('make-order.payment');
+
                 /*****************Begin Checkout And Orders Routes ****************/
                 Route::post('get-checkout/', [\App\Http\Controllers\Website\CartController::class, 'get_checkout'])->name('checkout');
                 Route::post('make-order/', [\App\Http\Controllers\Website\OrdersController::class, 'make_order'])->name('make_order');
@@ -158,34 +166,35 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
                 Route::get('re-order/{id}', [\App\Http\Controllers\Website\OrdersController::class, 're_order'])->name('re.order');
                 /*****************End Checkout And Orders Routes ****************/
             });
+
             //profile
             Route::get('/profile/', [\App\Http\Controllers\Website\AddressController::class, 'get_address'])->name('profile');
             Route::post('/update-profile/', [\App\Http\Controllers\Website\UserController::class, 'update_user'])->name('update.profile');
             Route::get('/delete_address/{address}', [\App\Http\Controllers\Website\AddressController::class, 'delete'])->name('delete_address');
             Route::post('/new-address/', [\App\Http\Controllers\Website\AddressController::class, 'store'])->name('new.address');
             Route::get('/update/{address}', [\App\Http\Controllers\Website\AddressController::class, 'update'])->name('update_address');
+
             //log out
             Route::get('/sign-out', [\App\Http\Controllers\Website\AuthController::class, 'logout'])->name('signout');
+
             //Loyalty Route
             Route::get('/loyalty/', [\App\Http\Controllers\Website\LoyalityController::class, 'get_loyalty'])->name('loyalty');
             Route::get('/exchange/', [\App\Http\Controllers\Website\LoyalityController::class, 'get_loyalty_exchange'])->name('exchange.points');
+
             //cart Route
             Route::get('/get-cart/', [\App\Http\Controllers\Website\CartController::class, 'get_cart'])->name('get.cart');
             Route::post('/delete-cart/', [\App\Http\Controllers\Website\CartController::class, 'delete_cart'])->name('delete.cart');
             Route::post('/update-quantity/', [\App\Http\Controllers\Website\CartController::class, 'update_quantity'])->name('update.quantity');
             Route::get('/get-check/', [\App\Http\Controllers\Website\CartController::class, 'get_check'])->name('get.check');
+
             //choose service delivery or take away
             Route::get('/service', 'ServiceController@servicePage')->name('service.page');
             Route::get('/delivery', 'ServiceController@deliveryPage')->name('delivery.page');
             Route::get('/takeaway', 'ServiceController@takeawayPage')->name('takeaway.page');
             Route::get('/takeaway/{branch_id}/{service_type}', 'ServiceController@takeawayBranch')->name('takeaway.branch');
-
-            Route::get('get-cities', [\App\Http\Controllers\Api\HelperController::class, 'getCities']);
-
         });
 
     });
 
 });
-
 

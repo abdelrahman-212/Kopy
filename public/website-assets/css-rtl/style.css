@@ -1,0 +1,19 @@
+.uk-navbar-right {
+    margin-right: auto;
+    margin-left: unset;
+}
+.block-with-phone svg {
+    margin-right: unset;
+    margin-left: 15px;
+}
+.other-links-list {
+    margin: 0 0 0 30px;
+}
+.other-links-list li + li {
+    margin-right: 15px;
+    margin-left: unset;
+}
+.uk-margin-small-left {
+    margin-right: 10px!important;
+    margin-left: unset;
+}

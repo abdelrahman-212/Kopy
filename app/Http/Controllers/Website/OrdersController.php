@@ -47,6 +47,19 @@ class OrdersController extends Controller
 
     }
 
+    /* To view payment page */
+    public function make_order_payment(Request $request)
+    {
+        if($request->status == 'paid' && $request->message == 'Succeeded!' && session('checkOut_details') ){
+            dd('dsf');
+            $this->make_order(session('checkOut_details'));
+        }
+        else{
+            session()->flash('message','Order Fail!');
+            return redirect()->route('checkout');
+        }
+    }
+
     public function my_orders()
     {
         $pending_orders = auth()->user()->orders()->where('state', 'pending')->get();

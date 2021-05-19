@@ -167,8 +167,8 @@
                                 </li>
                             @endforeach
                         </ul>
-                        <a class="uk-position-center-left uk-position-small" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
-                        <a class="uk-position-center-right uk-position-small" href="#" uk-slidenav-next uk-slider-item="next"></a>
+                        <a class="uk-position-center-left uk-position-small" href="#" @if(app()->getLocale() == 'en') uk-slidenav-previous @else uk-slidenav-next @endif uk-slider-item="previous"></a>
+                        <a class="uk-position-center-right uk-position-small" href="#" @if(app()->getLocale() == 'en') uk-slidenav-next @else uk-slidenav-previous @endif uk-slider-item="next"></a>
                     </div>
 
                     <ul class="js-filter uk-grid uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l" data-uk-grid>

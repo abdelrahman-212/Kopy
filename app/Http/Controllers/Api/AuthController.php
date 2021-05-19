@@ -284,7 +284,7 @@ class AuthController extends BaseController
         $user = $request->user();
 
         $user = $user->update($request->all());
-        return $this->sendResponse($user, 'Successfuly customer updated.');
+        return $this->sendResponse($user, 'Successfully customer updated.');
     }
 
     public function signupActivate($token)

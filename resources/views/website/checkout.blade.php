@@ -102,9 +102,8 @@
                                         <p class="mb-1">Email<span
                                                 class="float-right text-dark">{{auth()->user()->email}}</span></p>
 
-                                        <form method="post" action="{{route('make_order')}}">
+                                        <form method="post">
                                             @csrf
-
 
                                             @if(isset($request))
                                                 <p class="mb-1">Sub Total<span class="float-right text-dark">{{$request->subtotal}} SR</span>
@@ -161,14 +160,20 @@
                                                            value="{{$request->total}}"/>
 
                                                 </h5>
+
+                                            <div class="p-3">
+                                                <button class="btn btn-success btn-block btn-lg" type="submit" formaction="{{route('make_order')}}">
+                                                    Confirm Order Cash
+                                                    <i class="feather-arrow-right"></i>
+                                                </button>
+                                                <button class="btn btn-success btn-block btn-lg" type="submit" formaction="{{route('payment')}}">
+                                                    Confirm Order OnlinePay
+                                                    <i class="feather-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                            @endif
+                                        </form>
                                     </div>
-                                    <div class="p-3">
-                                        <button class="btn btn-success btn-block btn-lg" type="submit">Confirm
-                                            Order<i
-                                                class="feather-arrow-right"></i></button>
-                                    </div>
-                                    @endif
-                                    </form>
                                 </div>
                             </div>
                         </div>
