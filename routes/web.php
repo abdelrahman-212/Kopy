@@ -188,8 +188,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
             Route::get('/get-check/', [\App\Http\Controllers\Website\CartController::class, 'get_check'])->name('get.check');
 
             //choose service delivery or take away
-            Route::get('/service', 'ServiceController@servicePage')->name('service.page');
-            Route::get('/delivery', 'ServiceController@deliveryPage')->name('delivery.page');
             Route::get('/takeaway', 'ServiceController@takeawayPage')->name('takeaway.page');
             Route::get('/takeaway/{branch_id}/{service_type}', 'ServiceController@takeawayBranch')->name('takeaway.branch');
         });

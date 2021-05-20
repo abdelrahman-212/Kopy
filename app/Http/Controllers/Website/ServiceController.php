@@ -10,14 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class ServiceController extends Controller
 {
-    public function servicePage(){
-        return view('website.deliveryORtakeaway');
-    }
-
-    public function deliveryPage(){
-        return view('website.deliveryORtakeaway');
-    }
-
+    /* show all branches with its working hours */
     public function takeawayPage(){
 
         $branches = Branch::with(['city', 'area', 'deliveryAreas', 'workingDays'])->get();
@@ -30,6 +23,7 @@ class ServiceController extends Controller
         return view('website.takeaway',compact(['branches']));
     }
 
+    /* choose delivery(takeaway) branch or delivery address  */
     public function takeawayBranch($id,$service_type){
 
         $request = new Request();

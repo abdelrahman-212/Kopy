@@ -1092,7 +1092,7 @@ body.dm-light .pan-loader .shadow {
 }
 
 .page-header__top .uk-navbar-left .uk-navbar-nav {
-  margin-left: -20px;
+  margin-left: -60px;
 }
 
 .page-header__top .uk-navbar-left .uk-button {
@@ -1117,7 +1117,7 @@ body.dm-light .pan-loader .shadow {
 }
 
 .page-header__top .uk-navbar-right .uk-navbar-nav {
-  margin-right: -20px;
+  margin-right: -60px;
 }
 
 .page-header__top .uk-navbar-right .uk-button {

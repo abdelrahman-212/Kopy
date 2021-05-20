@@ -17,3 +17,10 @@
     margin-right: 10px!important;
     margin-left: unset;
 }
+.page-header__top .uk-navbar-left .uk-navbar-nav {
+    margin-right: -60px;
+    margin-left: unset;
+}
+.page-header__top .uk-navbar-right .uk-navbar-nav {
+    margin-left: -60px;
+}
