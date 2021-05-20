@@ -19,6 +19,7 @@ class ChooseService
         if (!session()->has('branch_id')){
             return redirect('menu')->with('status', 'not');
         }
+
         return $next($request);
     }
 }

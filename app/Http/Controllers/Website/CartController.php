@@ -67,7 +67,7 @@ class CartController extends Controller
 
     public function get_cart()
     {
-         $return = (app(\App\Http\Controllers\Api\CartController::class)->getCart())->getOriginalContent();
+        $return = (app(\App\Http\Controllers\Api\CartController::class)->getCart())->getOriginalContent();
         $request = new \Illuminate\Http\Request();
         if ($return['success'] == 'success') {
             $carts = $return['data'];
@@ -108,11 +108,10 @@ class CartController extends Controller
             $final_item_price = 0;
             foreach ($carts as $index => $cart) {
                 $quantity = $cart->quantity;
-                if($cart->offer_id){
+                if ($cart->offer_id) {
                     $item_price = $cart->offer_price;
 
-                }
-                else{
+                } else {
                     $item_price = $cart->item->price;
                 }
                 $final_item_price += ($item_price * $quantity);
@@ -159,22 +158,29 @@ class CartController extends Controller
             'service_type' => $service_type
         ]);
 
-        $branch = Branch::where('id',$branch_id)->with(['city', 'area', 'deliveryAreas'])->with(['workingDays' => function($day) {
+        $branch = Branch::where('id', $branch_id)->with(['city', 'area', 'deliveryAreas'])->with(['workingDays' => function ($day) {
             $day->where('day', strtolower(now()->englishDayOfWeek))->first();
         }])->first();
 
         $work_hours = $branch->workingDays()->where('day', strtolower(now()->englishDayOfWeek))->get();
+
+        unset($request['_token']);
+        session()->put(['checkOut_details' => $request->all()]);
+
         if (isset($address_id)) {
             $address = Address::find($address_id);
             return view('website.checkout', compact('request', 'address', 'work_hours'));
         }
+
         return view('website.checkout', compact('request', 'branch', 'work_hours'));
 
 
     }
-public function get_delivery_fees($branch_id){
 
-        $fees= Branch::where('id',$branch_id)->select('delivery_fees')->get();
-     return ($fees[0]['delivery_fees']);
-}
+    public function get_delivery_fees($branch_id)
+    {
+
+        $fees = Branch::where('id', $branch_id)->select('delivery_fees')->get();
+        return ($fees[0]['delivery_fees']);
+    }
 }

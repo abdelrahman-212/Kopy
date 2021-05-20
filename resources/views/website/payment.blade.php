@@ -3,179 +3,7 @@
 @section('title') Payment @endsection
 
 @section('styles')
-    <style>
-        .card {
-            max-width: 800px;
-            border: 0;
-        }
-
-        .card-top {
-            padding: 0.7rem 5rem
-        }
-
-        .card-top a {
-            float: left;
-            margin-top: 0.7rem
-        }
-
-        #logo {
-            font-family: 'Dancing Script';
-            font-weight: bold;
-            font-size: 1.6rem
-        }
-
-        .card-body {
-            padding: 0 5rem 5rem 5rem;
-            background-image: url("https://i.imgur.com/4bg1e6u.jpg");
-            background-size: cover;
-            background-repeat: no-repeat
-        }
-
-        @media (max-width: 768px) {
-            .card-body {
-                padding: 0 1rem 1rem 1rem;
-                background-image: url("https://i.imgur.com/4bg1e6u.jpg");
-                background-size: cover;
-                background-repeat: no-repeat
-            }
-
-            .card-top {
-                padding: 0.7rem 1rem
-            }
-        }
-
-        .row {
-            margin: 0
-        }
-
-        .upper {
-            padding: 1rem 0;
-            justify-content: space-evenly
-        }
-
-        #three {
-            border-radius: 1rem;
-            width: 22px;
-            height: 22px;
-            margin-right: 3px;
-            border: 1px solid blue;
-            text-align: center;
-            display: inline-block
-        }
-
-        #payment {
-            margin: 0;
-            color: blue
-        }
-
-        .icons {
-            margin-left: auto
-        }
-
-        form span {
-            color: rgb(179, 179, 179)
-        }
-
-        form {
-            padding: 2vh 0
-        }
-
-        input {
-            border: 1px solid rgba(0, 0, 0, 0.137);
-            padding: 1vh;
-            margin-bottom: 4vh;
-            outline: none;
-            width: 100%;
-            background-color: rgb(247, 247, 247)
-        }
-
-        input:focus::-webkit-input-placeholder {
-            color: transparent
-        }
-
-        .header {
-            font-size: 1.5rem
-        }
-
-        .left {
-            background-color: #ffffff;
-            padding: 2vh
-        }
-
-        .left img {
-            width: 2rem
-        }
-
-        .left .col-4 {
-            padding-left: 0
-        }
-
-        .right .item {
-            padding: 0.3rem 0
-        }
-
-        .right {
-            background-color: #ffffff;
-            padding: 2vh
-        }
-
-        .col-8 {
-            padding: 0 1vh
-        }
-
-        .lower {
-            line-height: 2
-        }
-
-        .btn {
-            background-color: rgb(23, 4, 189);
-            border-color: rgb(23, 4, 189);
-            color: white;
-            width: 100%;
-            font-size: 0.7rem;
-            margin: 4vh 0 1.5vh 0;
-            padding: 1.5vh;
-            border-radius: 0
-        }
-
-        .btn:focus {
-            box-shadow: none;
-            outline: none;
-            box-shadow: none;
-            color: white;
-            -webkit-box-shadow: none;
-            -webkit-user-select: none;
-            transition: none
-        }
-
-        .btn:hover {
-            color: white
-        }
-
-        a {
-            color: black
-        }
-
-        a:hover {
-            color: black;
-            text-decoration: none
-        }
-
-        input[type=checkbox] {
-            width: unset;
-            margin-bottom: unset
-        }
-
-        #cvv {
-            background-image: linear-gradient(to left, rgba(255, 255, 255, 0.575), rgba(255, 255, 255, 0.541)), url("https://img.icons8.com/material-outlined/24/000000/help.png");
-            background-repeat: no-repeat;
-            background-position-x: 95%;
-            background-position-y: center
-        }
-
-        #cvv:hover {
-        }
-    </style>
+    <link href="{{asset('website-assets/css/payment.css')}}" rel="stylesheet" />
 @endsection
 
 @section('pageName')
@@ -201,30 +29,44 @@
                                 <input type="hidden" name="description" value="Order id 1234 by guest">
 
                                 <span>Cardholder's name:</span>
-                                <input type="text" name="source[name]" />
+                                <input type="text" name="source[name]" @if(isset($errorarray['source[name]'])) class="mb-0" @endif/>
+                                @if(isset($errorarray['source[name]']))
+                                    <p style="color: red" class="mt-0">{{$errorarray['source[name]']}}</p>
+                                @endif
 
                                 <span>Card Number:</span>
-                                <input type="text" name="source[number]" />
-
+                                <input type="text" name="source[number]" @if(isset($errorarray['source[number]'])) class="mb-0" @endif/>
+                                @if(isset($errorarray['source[number]']))
+                                    <p style="color: red" class="mt-0">{{$errorarray['source[number]']}}</p>
+                                @endif
                                 <div class="row">
                                     <div class="col-12">
                                         <span>Expiry date</span>
                                         <div class="row d-flex">
                                             <div class="col-6">
                                                 <span>Month:</span>
-                                                <input type="text" name="source[month]" />
+                                                <input type="text" name="source[month]" @if(isset($errorarray['source[month]'])) class="mb-0" @endif/>
+                                                @if(isset($errorarray['source[month]']))
+                                                    <p style="color: red" class="mt-0">{{$errorarray['source[month]']}}</p>
+                                                @endif
                                             </div>
                                             <div class="col-6">
                                                 <span>Year:</span>
-                                                <input type="text" name="source[year]" />
+                                                <input type="text" name="source[year]" @if(isset($errorarray['source[year]'])) class="mb-0" @endif/>
+                                                @if(isset($errorarray['source[year]']))
+                                                    <p style="color: red" class="mt-0">{{$errorarray['source[year]']}}</p>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-4"><span>CVC:</span>
-                                        <input type="text" name="source[cvc]" />
+                                    <div class="col-12"><span>CVC:</span>
+                                        <input type="text" name="source[cvc]" @if(isset($errorarray['source[cvc]'])) class="mb-0" @endif/>
+                                        @if(isset($errorarray['source[cvc]']))
+                                            <p style="color: red" class="mt-0">{{$errorarray['source[cvc]']}}</p>
+                                        @endif
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-default">Purchase</button>
+                                <button type="submit" class="uk-button btn w-100">Purchase</button>
 
                             </form>
                         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Website;
 use App\Models\Branch;
 use App\Models\Item;
 use App\Models\Order;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -19,7 +20,7 @@ class OrdersController extends Controller
             $item->offerId = $item->offer_id;
             $item->price = Item::find($item->item_id)->price;
         }
-         if (!$request->has('points_paid')) {
+        if (!$request->has('points_paid')) {
             $request = $request->merge([
                 'items' => $items,
                 'points_paid' => 0,
@@ -28,7 +29,6 @@ class OrdersController extends Controller
             $request = $request->merge([
                 'items' => $items,
                 'points_paid' => $request->points_paid,
-
             ]);
         }
         $return = (app(\App\Http\Controllers\Api\OrdersController::class)->store($request))->getOriginalContent();
@@ -44,18 +44,69 @@ class OrdersController extends Controller
             return redirect()->route('get.cart');
 
         }
-
     }
-
     /* To view payment page */
     public function make_order_payment(Request $request)
     {
-        if($request->status == 'paid' && $request->message == 'Succeeded!' && session('checkOut_details') ){
-            dd('dsf');
-            $this->make_order(session('checkOut_details'));
-        }
-        else{
-            session()->flash('message','Order Fail!');
+
+        if ($request->status == 'paid' && $request->message == 'Succeeded!' && session('checkOut_details')) {
+
+
+            if (session()->has('checkOut_details')) {
+                $request = new \Illuminate\Http\Request();
+                $request->merge([
+                    'total' => session('checkOut_details')['total'],
+                    'subtotal' => session('checkOut_details')['subtotal'],
+                    'delivery_fees' => session('checkOut_details')['delivery_fees'],
+                    'branch_id' => session('checkOut_details')['branch_id'],
+                    'address_id' => session('checkOut_details')['address_id'],
+                    'service_type' => session('checkOut_details')['service_type'],
+//                  'points_paid' => session('checkOut_details')['points_paid'] ? session('checkOut_details')['points_paid'] : 0,
+                    'taxes' => session('checkOut_details')['taxes'],
+                    'customer_id' => auth()->user()->id,
+                ]);
+                // submit order
+                 $items = auth()->user()->carts;
+                foreach ($items as $item) {
+                    $item->extras = json_decode($item->extras);
+                    $item->withouts = json_decode($item->withouts);
+                    $item->offerId = $item->offer_id;
+                    $item->price = Item::find($item->item_id)->price;
+                }
+                if (!$request->has('points_paid')) {
+                    $request = $request->merge([
+                        'items' => $items,
+                        'points_paid' => 0,
+                    ]);
+                } else {
+                    $request = $request->merge([
+                        'items' => $items,
+                        'points_paid' => $request->points_paid,
+
+                    ]);
+                }
+                 $return = (app(\App\Http\Controllers\Api\OrdersController::class)->store($request))->getOriginalContent();
+                if ($return['success'] == true) {
+
+                    Payment::create([
+                       'payment_id'=>$request->id,
+                       'customer_id'=>auth()->user()->id,
+                       'status'=>$request->status,
+                       'message'=>$request->message
+                   ]);
+                    session()->put(['success' => $return['message']]);
+                    foreach ($items as $item) {
+                        $item->delete();
+                    }
+                    if (session()->has('point_claim')) {
+                        session()->forget('point_claim_value');
+                        session()->forget('point_claim');
+                    }
+                    return redirect()->route('get.cart');
+                }
+            }
+        } else {
+            session()->flash('message', 'Order Failed ! , Please Try again later');
             return redirect()->route('checkout');
         }
     }
@@ -114,7 +165,7 @@ class OrdersController extends Controller
 
 
         $request = $request->merge([
-            'total' => ($order->points_paid)?($order->total + $order->points_paid):($order->total),
+            'total' => ($order->points_paid) ? ($order->total + $order->points_paid) : ($order->total),
             'subtotal' => $order->subtotal,
             'taxes' => $order->taxes,
             'delivery_fees' => $order->delivery_fees,
