@@ -20,6 +20,13 @@
                                         src="https://img.icons8.com/color/48/000000/mastercard-logo.png"/> <img
                                         src="https://img.icons8.com/color/48/000000/maestro.png"/></div>
                             </div>
+                            @if(Session::has('err'))
+                                <div class="row mr-2 ml-2" >
+                                    <button type="text" class="btn btn-lg btn-block btn-outline-danger mb-2"
+                                            id="type-error">{{Session::get('err')}}
+                                    </button>
+                                </div>
+                            @endif
                             <form action="{{route('do.payment')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="callback_url" value="{{route('make-order.payment')}}">
@@ -45,7 +52,7 @@
                                         <div class="row d-flex">
                                             <div class="col-6">
                                                 <span>Month:</span>
-                                                <input type="text" name="source[month]" @if(isset($errorarray['source[month]'])) class="mb-0" @endif/>
+                                                <input type="text" name="source[month]" value="{{old('source[name]')}}" @if(isset($errorarray['source[month]'])) class="mb-0" @endif/>
                                                 @if(isset($errorarray['source[month]']))
                                                     <p style="color: red" class="mt-0">{{$errorarray['source[month]']}}</p>
                                                 @endif

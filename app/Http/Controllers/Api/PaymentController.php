@@ -1,23 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Website;
+namespace App\Http\Controllers\Api;
 
 
 use App\Models\Payment;
-use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use GuzzleHttp\TransferStats;
 use Illuminate\Support\Facades\Validator;
-use Moyasar\Providers\PaymentService;
 
-class PaymentController extends Controller
+class PaymentController extends BaseController
 {
-    public function __construct(PaymentService $paymentService)
-    {
-        $this->paymentService = $paymentService;
-    }
+
 
     public function index()
     {
@@ -49,34 +43,15 @@ class PaymentController extends Controller
                 'source.year.min' => 'The year is Not Valid',
             )
         );
-
         // If validation fails, redirect to the settings page and send the errors
         if ($validator->fails()) {
             $error = $validator->getMessageBag();
-            $errorarray = [];
-            if ($error->first('source.name')) {
-                $errorarray['source[name]'] = $error->first('source.name');
-
-            }
-            if ($error->first('source.cvc')) {
-                $errorarray['source[cvc]'] = $error->first('source.cvc');
-            }
-            if ($error->first('source.number')) {
-                $errorarray['source[number]'] = $error->first('source.number');
-            }
-            if ($error->first('source.month')) {
-                $errorarray['source[month]'] = $error->first('source.month');
-            }
-            if ($error->first('source.year')) {
-                $errorarray['source[year]'] = $error->first('source.year');
-            }
-            return view('website.payment', compact(['errorarray']));
         }
         try {
 
+
             if (session()->has('checkOut_details')) {
-                $amount = (int)session('checkOut_details')['total'];
-                $request = $request->merge(['amount' => $amount * 100]);
+                $request = $request->merge(['amount' => session('checkOut_details')['total']]);
                 $request->request->remove('_token');
                 $endpoint = "https://api.moyasar.com/v1/payments.html";
                 $redir = [];
@@ -92,29 +67,46 @@ class PaymentController extends Controller
                 return $statusCode = $response->getStatusCode();
 
             } else {
-                session()->flash('error', 'Something went wrong !, please try again later');
-                return redirect()->route('get_cart');
+
+                return $this->sendError('error', 'Something went wrong');
+
             }
 
-        }
-//        catch (RequestException $exception) {
-//            //$responseBody = $exception->getResponse()->getBody(true)->getContents();
-//            $response = json_decode($exception->getResponse()->getBody(true)->getContents(), true);
-//            $errors = $response['errors'];
-//            return $exception;
-//            return redirect(route('get.payment'))->withInput()->withErrors($errors);
-//        }
-        catch (GuzzleException $exception) {
-            return $exception;
-            //$responseBody = $exception->getResponse()->getBody(true)->getContents();
+        } catch (GuzzleException $exception) {
             $response = json_decode($exception->getResponse()->getBody(true)->getContents(), true);
-            $errors = $response['errors'];
-            if ($errors) {
-                session()->flash('err', $errors);
-            }
-            return redirect(route('get.payment'))->withInput();
+            return $this->sendError('error', $exception->getMessage());
         }
 
     }
 
+    public function refund($payment_id)
+    {
+
+        try {
+            $payment = Payment::find($payment_id);
+
+            if ($payment->status == 'paid') {
+                $paymentService = new \Moyasar\Providers\PaymentService();
+                $payment_service = $paymentService->fetch($payment->payment_id);
+                $payment_service->refund(); // 10.00 SAR
+                $payment->update([
+                    'status' => 'refunded'
+                ]);
+                return $this->sendResponse($payment, 'This payment has been refunded');
+
+            }
+            if ($payment->status == 'refunded') {
+                return $this->sendResponse($payment, 'This payment is already refunded');
+            }
+
+
+        } catch (\Moyasar\Exceptions\ApiException $e) {
+            $e->getCode(); // HTTP Status Code
+            $e->type(); // Error Type
+            $e->getMessage(); // Error Message
+            $e->errors(); // Empty Array
+            return $this->sendError($payment, $e->getMessage());
+
+        }
+    }
 }

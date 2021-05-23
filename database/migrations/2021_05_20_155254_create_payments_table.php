@@ -20,6 +20,7 @@ class CreatePaymentsTable extends Migration
             $table->string('status');
             $table->string('message');
             $table->string('payment_id');
+            $table->bigInteger('total_paid');
             $table->unsignedBigInteger('customer_id')->index();
             $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('order_id')->index();

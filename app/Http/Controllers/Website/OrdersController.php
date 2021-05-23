@@ -45,15 +45,14 @@ class OrdersController extends Controller
 
         }
     }
+
     /* To view payment page */
     public function make_order_payment(Request $request)
     {
-
         if ($request->status == 'paid' && $request->message == 'Succeeded!' && session('checkOut_details')) {
 
 
             if (session()->has('checkOut_details')) {
-                $request = new \Illuminate\Http\Request();
                 $request->merge([
                     'total' => session('checkOut_details')['total'],
                     'subtotal' => session('checkOut_details')['subtotal'],
@@ -61,12 +60,13 @@ class OrdersController extends Controller
                     'branch_id' => session('checkOut_details')['branch_id'],
                     'address_id' => session('checkOut_details')['address_id'],
                     'service_type' => session('checkOut_details')['service_type'],
-//                  'points_paid' => session('checkOut_details')['points_paid'] ? session('checkOut_details')['points_paid'] : 0,
+                    'points_paid' => array_key_exists("points_paid", session('checkOut_details')) ? session('checkOut_details')['points_paid'] : 0,
                     'taxes' => session('checkOut_details')['taxes'],
                     'customer_id' => auth()->user()->id,
                 ]);
+
                 // submit order
-                 $items = auth()->user()->carts;
+                $items = auth()->user()->carts;
                 foreach ($items as $item) {
                     $item->extras = json_decode($item->extras);
                     $item->withouts = json_decode($item->withouts);
@@ -85,15 +85,17 @@ class OrdersController extends Controller
 
                     ]);
                 }
-                 $return = (app(\App\Http\Controllers\Api\OrdersController::class)->store($request))->getOriginalContent();
+                $return = (app(\App\Http\Controllers\Api\OrdersController::class)->store($request))->getOriginalContent();
                 if ($return['success'] == true) {
 
                     Payment::create([
-                       'payment_id'=>$request->id,
-                       'customer_id'=>auth()->user()->id,
-                       'status'=>$request->status,
-                       'message'=>$request->message
-                   ]);
+                        'payment_id' => $request->id,
+                        'customer_id' => auth()->user()->id,
+                        'status' => $request->status,
+                        'message' => $request->message,
+                        'order_id' => $return['data']->id,
+                        'total_paid' => $request->amount
+                    ]);
                     session()->put(['success' => $return['message']]);
                     foreach ($items as $item) {
                         $item->delete();
@@ -102,6 +104,7 @@ class OrdersController extends Controller
                         session()->forget('point_claim_value');
                         session()->forget('point_claim');
                     }
+                    session()->flash('success', 'Order Payed Successfully');
                     return redirect()->route('get.cart');
                 }
             }
