@@ -58,6 +58,7 @@ class CareersControllers extends Controller
     {
         $return = (app(FrontController::class)->jobRequest($request, $id))->getOriginalContent();
         $temp = '';
+
         foreach ($return as $in => $re) {
 
             if ($in == 'success') {
@@ -67,13 +68,14 @@ class CareersControllers extends Controller
                 session()->put('error', $return['message']);
                 return redirect()->back();
             }
+
             if ($in == 'data') {
                 if ($temp == true) {
                     return redirect()->route('careers.all')->with(['success' => 'your application been submitted']);
+
                 } else {
                     $error = $re;
-
-                    $errorarray = [];
+                     $errorarray = [];
                     if ($error->first('name')) {
                         $errorarray['name'] = $error->first('name');
 

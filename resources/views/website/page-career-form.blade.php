@@ -129,7 +129,11 @@
             </div>
             <div class="page-content">
                 <div class="uk-section uk-container uk-container-small">
-
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
                     @if(isset($job))
 
                         <div class="container clearfix">
