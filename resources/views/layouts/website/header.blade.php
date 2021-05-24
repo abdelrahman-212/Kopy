@@ -6,16 +6,19 @@
                     <button class="uk-button" type="button" data-target="#offcanvas" data-uk-toggle
                             data-uk-icon="menu"></button>
                     <ul class="uk-navbar-nav">
-                        <li><a href="{{route('menu.page')}}">Menus</a></li>
-                        <li><a href="{{route('aboutUS.page')}}">About</a></li>
-                        <li><a href="{{route('news.all')}}">What's New</a></li>
-                        <li><a href="{{route('takeaway.page')}}">Branches</a></li>
-                        <li><a href="{{route('health-infos.all')}}">Health info</a></li>
+                        <li><a href="{{route('menu.page')}}">{{ __('header.Menu')}}</a></li>
+                        <li><a href="{{route('aboutUS.page')}}">{{ __('header.About')}}</a></li>
+                        <li><a href="{{route('news.all')}}">{{ __('header.What\'s New')}}</a></li>
+                        <li><a href="{{route('takeaway.page')}}">{{ __('header.Branches')}}</a></li>
+                        <li><a href="{{route('health-infos.all')}}">{{ __('header.Health info')}}</a></li>
                     </ul>
                 </div>
                 <div class="uk-navbar-center">
                     <div class="logo">
-                        <div class="logo__box"><a class="logo__link" href="{{route('home.page')}}"> <img class="logo__img logo__img--full" src="{{asset('website-assets/img/logo.png')}}" alt="logo"><img class="logo__img logo__img-small" src="{{asset('website-assets/img/logo-small.png')}}" alt="logo"></a>
+                        <div class="logo__box"><a class="logo__link" href="{{route('home.page')}}"> <img
+                                    class="logo__img logo__img--full" src="{{asset('website-assets/img/logo.png')}}"
+                                    alt="logo"><img class="logo__img logo__img-small"
+                                                    src="{{asset('website-assets/img/logo-small.png')}}" alt="logo"></a>
                         </div>
                     </div>
                 </div>
@@ -24,21 +27,25 @@
                             alt="pizza"></a>
                     <ul class="uk-navbar-nav">
                         @auth()
-                        <li><a href="{{route('offers')}}">Offers</a></li>
+                            <li><a href="{{route('offers')}}">{{ __('header.Offers')}}</a></li>
                         @endauth
                         <li class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Media Center
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{__('header.Media Center')}}
                             </a>
                             <div class="dropdown-menu uk-dropdown-nav" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{route('video.page')}}">Videos</a>
-                                <a class="dropdown-item" href="{{route('gallery.page')}}">Photo Albums</a>
+                                <a class="dropdown-item" href="{{route('video.page')}}">{{ __('header.Videos')}}</a>
+                                <a class="dropdown-item"
+                                   href="{{route('gallery.page')}}">{{ __('header.Photo Albums')}}</a>
                             </div>
                         </li>
-                        <li><a href="{{route('careers.all')}}">Jobs</a></li>
-                        <li><a href="{{route('contact.page')}}">Contact Us</a></li>
+                        <li><a href="{{route('careers.all')}}">{{ __('header.Jobs')}}</a></li>
+                        <li><a href="{{route('contact.page')}}">{{ __('header.Contact Us')}}</a></li>
                         <li class="dropdown">
-                            <a class="nav-link dropdown-toggle" id="dropdown-flag" href="{{ LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(), null, [], true) }}" data-toggle="dropdown"
+                            <a class="nav-link dropdown-toggle" id="dropdown-flag"
+                               href="{{ LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale(), null, [], true) }}"
+                               data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
                                 @if(LaravelLocalization::getCurrentLocaleName() == 'Arabic')
                                     <i class="flag-icon flag-icon-eg"></i> &nbsp;<span> العربية </span>
@@ -48,10 +55,12 @@
                             </a>
                             <div class="dropdown-menu uk-dropdown-nav" aria-labelledby="dropdown-flag">
                                 @if(LaravelLocalization::getCurrentLocaleName() == 'Arabic')
-                                    <a class="dropdown-item" rel="alternate" hreflang="en" href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">
+                                    <a class="dropdown-item" rel="alternate" hreflang="en"
+                                       href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">
                                         <i class="flag-icon flag-icon-us"></i> &nbsp;<span> English </span></a>
                                 @else
-                                    <a class="dropdown-item" rel="alternate" hreflang="ar" href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}">
+                                    <a class="dropdown-item" rel="alternate" hreflang="ar"
+                                       href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}">
                                         <i class="flag-icon flag-icon-eg"></i> &nbsp;<span> العربية </span></a>
                                 @endif
                             </div>
@@ -68,7 +77,8 @@
                     <div>
                         <div class="block-with-phone"><img src="{{asset('website-assets/img/icons/delivery.svg')}}"
                                                            alt="delivery" data-uk-svg>
-                            <div><span>For Delivery, Call us</span><a href="tel:13205448749">1-320-544-8749</a></div>
+                            <div><span>{{__('header.For Delivery, Call us')}}</span><a href="tel:13205448749">1-320-544-8749</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -81,9 +91,10 @@
                             <li><a href="{{route('get.cart')}}"><span data-uk-icon="cart"></span></a></li>
                         </ul>
                         @if(!auth()->user())
-                            <a class="uk-button" href="{{route('get.login')}}"> <span>sign-in / sign-up</span></a>
+                            <a class="uk-button" href="{{route('get.login')}}">
+                                <span>{{__('header.sign-in / sign-up')}}</span></a>
                         @elseif(auth()->user())
-                            <a class="uk-button" href="{{route('signout')}}"> <span>log out</span></a>
+                            <a class="uk-button" href="{{route('signout')}}"> <span>{{__('header.LOG OUT')}}</span></a>
                         @endif
                     </div>
                 </div>

@@ -79,12 +79,12 @@
                         </nav>
                     </nav>
                     <div class="first-screen__box">
-                        <h2 class="first-screen__title">Menu</h2>
-                        <p class="first-screen__desc">Delicious & Tasty Pastries By Expert Chefs</p>
+                        <h2 class="first-screen__title">{{__('menu.Menu')}}</h2>
+                        <p class="first-screen__desc">{{__('menu.Delicious & Tasty Pastries By Expert Chefs')}}</p>
                         <div class="first-screen__breadcrumb">
                             <ul class="uk-breadcrumb">
-                                <li><a href="{{route('home.page')}}">Home</a></li>
-                                <li><span>Menu</span></li>
+                                <li><a href="{{route('home.page')}}">{{__('menu.Home')}}</a></li>
+                                <li><span>{{__('menu.Menu')}}</span></li>
                             </ul>
                         </div>
                     </div>
@@ -135,7 +135,7 @@
                                                 </div>
                                                 <div class="product-item__title uk-text-truncate"><a href="#">{{(app()->getLocale() == 'ar')? $item->name_ar : $item->name_en}}</a></div>
                                                 <div class="product-item__desc">{{(app()->getLocale() == 'ar')? $item->description_ar : $item->description_en}}</div>
-                                                <div class="product-item__price">Calories: {{$item->calories}}</div>
+                                                <div class="product-item__price">{{__('menu.Calories')}}: {{$item->calories}}</div>
 
                                                 <div class="product-item__select">
                                                     <div class="select-box select-box--thickness">
@@ -152,10 +152,10 @@
 
                                         <div class="product-item__info">
                                             <div class="product-item__price">
-                                                <span>Price: </span><span class="value" @if($item['offer']) style="text-decoration: line-through;font-size: 20px;" @endif > {{$item->price}} </span>
+                                                <span>{{__('menu.Price')}}: </span><span class="value" @if($item['offer']) style="text-decoration: line-through;font-size: 20px;" @endif > {{$item->price}} </span>
                                                 @if($item['offer']) <span style="font-size: 26px;color:#6dc405;text-decoration: none"> {{$item['offer']['offer_price']}} </span> @endif
                                             </div>
-                                            <div class="product-item__addcart"> <a data-toggle="modal" data-target="#service-modal" class="uk-button uk-button-default cart" href="{{route('item.page',[$category->id,$item->id])}}">Add to Cart<span data-uk-icon="cart"></span></a></div>
+                                            <div class="product-item__addcart"> <a data-toggle="modal" data-target="#service-modal" class="uk-button uk-button-default cart" href="{{route('item.page',[$category->id,$item->id])}}">{{__('menu.Add to Cart')}}<span data-uk-icon="cart"></span></a></div>
                                         </div>
                                     </div>
                                 </div>

@@ -117,11 +117,11 @@
                             </nav>
                         </nav>
                         <div class="first-screen__box">
-                            <h2 class="first-screen__title">Latest News</h2>
+                            <h2 class="first-screen__title">{{__('general.Latest News')}}</h2>
                             <div class="first-screen__breadcrumb">
                                 <ul class="uk-breadcrumb">
-                                    <li><a href="/">Home</a></li>
-                                    <li><span>News Blog</span></li>
+                                    <li><a href="/">{{__('menu.Home')}}</a></li>
+                                    <li><span>{{__('general.News Blog')}}</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -131,14 +131,15 @@
             <div class="page-content">
                 <div class="uk-margin-large-top uk-container text-center">
                     <div class="uk-grid" data-uk-grid>
-                        <div class="uk-width-2-3@m">
-                            @if(isset($articles))
-                                @foreach($articles as $article)
+                        @if(isset($articles))
+                            @foreach($articles as $article)
+                                <div class="uk-width-2-3@m   container  d-flex justify-content-center">
 
-                                    <article class="article-intro">
+                                    <article class="article-intro w-50">
                                         <div class="article-intro__image"><a
-                                                href="{{route('get.new',$article->id)}}"><img src="{{$article
-->image}}" alt="img-article"></a></div>
+                                                href="{{route('get.new',$article->id)}}"><img src="{{$article->image}}"
+                                                                                              alt="img-article"></a>
+                                        </div>
                                         <div class="article-intro__body">
                                             <div class="article-intro__info">
                                                 <div class="article-intro__author"><i
@@ -156,88 +157,91 @@
                                             </div>
                                             <div class="article-intro__bottom row justify-content-center">
                                                 {{--                                    <div class="article-intro__tags"><i class="fas fa-tags"></i><span>cheese, Pizza, Cookies, Bake</span></div>--}}
-                                                <div class="article-intro__more align-self-center"><a class="uk-button " href="{{route('get.new',$article->id)}}">Read More</a></div>
+                                                <div class="article-intro__more align-self-center"><a class="uk-button "
+                                                         href="{{route('get.new',$article->id)}}">
+                                                        {{__('general.More')}}</a></div>
                                             </div>
                                         </div>
                                     </article>
-                                @endforeach
-                                {{$articles->links()}}
-                            @endif
-                            {{--                        <article class="article-intro">--}}
-                            {{--                            <div class="article-intro__image">--}}
-                            {{--                                <div class="video" data-uk-lightbox="video-autoplay:true; index: 1"><a href="https://www.youtube.com/watch?v=c2pz2mlSfXA" data-attrs="width: 1280; height: 720;"><img src="{{asset('website-assets/img/blog/img-blog-full-2.png')}}" alt="img-article"></a></div>--}}
-                            {{--                            </div>--}}
-                            {{--                            <div class="article-intro__body">--}}
-                            {{--                                <div class="article-intro__info">--}}
-                            {{--                                    <div class="article-intro__author"><i class="fas fa-user"></i><span>By Sam Joseph</span></div>--}}
-                            {{--                                    <div class="article-intro__category"><i class="fas fa-folder-open"></i><span>Posted in FOOD</span></div>--}}
-                            {{--                                    <div class="article-intro__date"><i class="fas fa-calendar-alt"></i><span>July 31, 2020</span></div>--}}
-                            {{--                                    <div class="article-intro__comments"><i class="fas fa-comment"></i><span>210</span></div>--}}
-                            {{--                                </div>--}}
-                            {{--                                <h2 class="article-intro__title">Juicy White Meat With Light Bread</h2>--}}
-                            {{--                                <div class="article-intro__content">--}}
-                            {{--                                    <p>Incididunt ut labore et dolore magna aliqua enim ad minim veniam quisya nos exercitation ullamco laboris nisi ut aliquip ex ea com labmodo consequat dhuis irure dolor in reprehesa deritn volupta velit esse fst anim laborum.</p>--}}
-                            {{--                                </div>--}}
-                            {{--                                <div class="article-intro__bottom">--}}
-                            {{--                                    <div class="article-intro__tags"><i class="fas fa-tags"></i><span>cheese, Pizza, Cookies, Bake</span></div>--}}
-                            {{--                                    <div class="article-intro__more"><a class="uk-button" href="page-blog-article.html">Read More</a></div>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
-                            {{--                        </article>--}}
-                            {{--                        <article class="article-intro">--}}
-                            {{--                            <div class="article-intro__image">--}}
-                            {{--                                <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" data-uk-slideshow>--}}
-                            {{--                                    <ul class="uk-slideshow-items">--}}
-                            {{--                                        <li><img src="{{asset('website-assets/img/blog/img-blog-full-3.png')}}" alt data-uk-cover></li>--}}
-                            {{--                                        <li><img src="{{asset('website-assets/img/blog/img-blog-full-2.png')}}" alt data-uk-cover></li>--}}
-                            {{--                                        <li><img src="{{asset('website-assets/img/blog/img-blog-full-1.jpg')}}" alt data-uk-cover></li>--}}
-                            {{--                                    </ul><a class="uk-position-center-left" href="#" data-uk-slidenav-previous data-uk-slideshow-item="previous"></a><a class="uk-position-center-right" href="#" data-uk-slidenav-next data-uk-slideshow-item="next"></a>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
-                            {{--                            <div class="article-intro__body">--}}
-                            {{--                                <div class="article-intro__info">--}}
-                            {{--                                    <div class="article-intro__author"><i class="fas fa-user"></i><span>By Sam Joseph</span></div>--}}
-                            {{--                                    <div class="article-intro__category"><i class="fas fa-folder-open"></i><span>Posted in FOOD</span></div>--}}
-                            {{--                                    <div class="article-intro__date"><i class="fas fa-calendar-alt"></i><span>July 31, 2020</span></div>--}}
-                            {{--                                    <div class="article-intro__comments"><i class="fas fa-comment"></i><span>210</span></div>--}}
-                            {{--                                </div>--}}
-                            {{--                                <h2 class="article-intro__title">Juicy White Meat With Light Bread</h2>--}}
-                            {{--                                <div class="article-intro__content">--}}
-                            {{--                                    <p>Incididunt ut labore et dolore magna aliqua enim ad minim veniam quisya nos exercitation ullamco laboris nisi ut aliquip ex ea com labmodo consequat dhuis irure dolor in reprehesa deritn volupta velit esse fst anim laborum.</p>--}}
-                            {{--                                </div>--}}
-                            {{--                                <div class="article-intro__bottom">--}}
-                            {{--                                    <div class="article-intro__tags"><i class="fas fa-tags"></i><span>cheese, Pizza, Cookies, Bake</span></div>--}}
-                            {{--                                    <div class="article-intro__more"><a class="uk-button" href="page-blog-article.html">Read More</a></div>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
-                            {{--                        </article>--}}
-                            {{--                        <article class="article-intro">--}}
-                            {{--                            <div class="article-intro__image"><a href="page-blog-article.html"><img src="{{asset('website-assets/img/blog/img-blog-full-4.png')}}" alt="img-article"></a></div>--}}
-                            {{--                            <div class="article-intro__body">--}}
-                            {{--                                <div class="article-intro__info">--}}
-                            {{--                                    <div class="article-intro__author"><i class="fas fa-user"></i><span>By Sam Joseph</span></div>--}}
-                            {{--                                    <div class="article-intro__category"><i class="fas fa-folder-open"></i><span>Posted in FOOD</span></div>--}}
-                            {{--                                    <div class="article-intro__date"><i class="fas fa-calendar-alt"></i><span>July 31, 2020</span></div>--}}
-                            {{--                                    <div class="article-intro__comments"><i class="fas fa-comment"></i><span>210</span></div>--}}
-                            {{--                                </div>--}}
-                            {{--                                <h2 class="article-intro__title">The Ultimate King: Chicken Burger</h2>--}}
-                            {{--                                <div class="article-intro__content">--}}
-                            {{--                                    <p>Incididunt ut labore et dolore magna aliqua enim ad minim veniam quisya nos exercitation ullamco laboris nisi ut aliquip ex ea com labmodo consequat dhuis irure dolor in reprehesa deritn volupta velit esse fst anim laborum.</p>--}}
-                            {{--                                </div>--}}
-                            {{--                                <div class="article-intro__bottom">--}}
-                            {{--                                    <div class="article-intro__tags"><i class="fas fa-tags"></i><span>cheese, Pizza, Cookies, Bake</span></div>--}}
-                            {{--                                    <div class="article-intro__more"><a class="uk-button" href="page-blog-article.html">Read More</a></div>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
-                            {{--                        </article>--}}
-                            {{--                            <ul class="uk-pagination uk-flex-center uk-margin-medium-top">--}}
-                            {{--                                <li class="uk-active"><span>1</span></li>--}}
-                            {{--                                <li><a href="#">2</a></li>--}}
-                            {{--                                <li><a href="#">3</a></li>--}}
-                            {{--                                <li class="uk-disabled"><span>...</span></li>--}}
-                            {{--                                <li><a href="#"><span data-uk-pagination-next></span></a></li>--}}
-                            {{--                            </ul>--}}
-                        </div>
+                                </div>
+                            @endforeach
+                            {{$articles->links()}}
+                        @endif
+                        {{--                        <article class="article-intro">--}}
+                        {{--                            <div class="article-intro__image">--}}
+                        {{--                                <div class="video" data-uk-lightbox="video-autoplay:true; index: 1"><a href="https://www.youtube.com/watch?v=c2pz2mlSfXA" data-attrs="width: 1280; height: 720;"><img src="{{asset('website-assets/img/blog/img-blog-full-2.png')}}" alt="img-article"></a></div>--}}
+                        {{--                            </div>--}}
+                        {{--                            <div class="article-intro__body">--}}
+                        {{--                                <div class="article-intro__info">--}}
+                        {{--                                    <div class="article-intro__author"><i class="fas fa-user"></i><span>By Sam Joseph</span></div>--}}
+                        {{--                                    <div class="article-intro__category"><i class="fas fa-folder-open"></i><span>Posted in FOOD</span></div>--}}
+                        {{--                                    <div class="article-intro__date"><i class="fas fa-calendar-alt"></i><span>July 31, 2020</span></div>--}}
+                        {{--                                    <div class="article-intro__comments"><i class="fas fa-comment"></i><span>210</span></div>--}}
+                        {{--                                </div>--}}
+                        {{--                                <h2 class="article-intro__title">Juicy White Meat With Light Bread</h2>--}}
+                        {{--                                <div class="article-intro__content">--}}
+                        {{--                                    <p>Incididunt ut labore et dolore magna aliqua enim ad minim veniam quisya nos exercitation ullamco laboris nisi ut aliquip ex ea com labmodo consequat dhuis irure dolor in reprehesa deritn volupta velit esse fst anim laborum.</p>--}}
+                        {{--                                </div>--}}
+                        {{--                                <div class="article-intro__bottom">--}}
+                        {{--                                    <div class="article-intro__tags"><i class="fas fa-tags"></i><span>cheese, Pizza, Cookies, Bake</span></div>--}}
+                        {{--                                    <div class="article-intro__more"><a class="uk-button" href="page-blog-article.html">Read More</a></div>--}}
+                        {{--                                </div>--}}
+                        {{--                            </div>--}}
+                        {{--                        </article>--}}
+                        {{--                        <article class="article-intro">--}}
+                        {{--                            <div class="article-intro__image">--}}
+                        {{--                                <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" data-uk-slideshow>--}}
+                        {{--                                    <ul class="uk-slideshow-items">--}}
+                        {{--                                        <li><img src="{{asset('website-assets/img/blog/img-blog-full-3.png')}}" alt data-uk-cover></li>--}}
+                        {{--                                        <li><img src="{{asset('website-assets/img/blog/img-blog-full-2.png')}}" alt data-uk-cover></li>--}}
+                        {{--                                        <li><img src="{{asset('website-assets/img/blog/img-blog-full-1.jpg')}}" alt data-uk-cover></li>--}}
+                        {{--                                    </ul><a class="uk-position-center-left" href="#" data-uk-slidenav-previous data-uk-slideshow-item="previous"></a><a class="uk-position-center-right" href="#" data-uk-slidenav-next data-uk-slideshow-item="next"></a>--}}
+                        {{--                                </div>--}}
+                        {{--                            </div>--}}
+                        {{--                            <div class="article-intro__body">--}}
+                        {{--                                <div class="article-intro__info">--}}
+                        {{--                                    <div class="article-intro__author"><i class="fas fa-user"></i><span>By Sam Joseph</span></div>--}}
+                        {{--                                    <div class="article-intro__category"><i class="fas fa-folder-open"></i><span>Posted in FOOD</span></div>--}}
+                        {{--                                    <div class="article-intro__date"><i class="fas fa-calendar-alt"></i><span>July 31, 2020</span></div>--}}
+                        {{--                                    <div class="article-intro__comments"><i class="fas fa-comment"></i><span>210</span></div>--}}
+                        {{--                                </div>--}}
+                        {{--                                <h2 class="article-intro__title">Juicy White Meat With Light Bread</h2>--}}
+                        {{--                                <div class="article-intro__content">--}}
+                        {{--                                    <p>Incididunt ut labore et dolore magna aliqua enim ad minim veniam quisya nos exercitation ullamco laboris nisi ut aliquip ex ea com labmodo consequat dhuis irure dolor in reprehesa deritn volupta velit esse fst anim laborum.</p>--}}
+                        {{--                                </div>--}}
+                        {{--                                <div class="article-intro__bottom">--}}
+                        {{--                                    <div class="article-intro__tags"><i class="fas fa-tags"></i><span>cheese, Pizza, Cookies, Bake</span></div>--}}
+                        {{--                                    <div class="article-intro__more"><a class="uk-button" href="page-blog-article.html">Read More</a></div>--}}
+                        {{--                                </div>--}}
+                        {{--                            </div>--}}
+                        {{--                        </article>--}}
+                        {{--                        <article class="article-intro">--}}
+                        {{--                            <div class="article-intro__image"><a href="page-blog-article.html"><img src="{{asset('website-assets/img/blog/img-blog-full-4.png')}}" alt="img-article"></a></div>--}}
+                        {{--                            <div class="article-intro__body">--}}
+                        {{--                                <div class="article-intro__info">--}}
+                        {{--                                    <div class="article-intro__author"><i class="fas fa-user"></i><span>By Sam Joseph</span></div>--}}
+                        {{--                                    <div class="article-intro__category"><i class="fas fa-folder-open"></i><span>Posted in FOOD</span></div>--}}
+                        {{--                                    <div class="article-intro__date"><i class="fas fa-calendar-alt"></i><span>July 31, 2020</span></div>--}}
+                        {{--                                    <div class="article-intro__comments"><i class="fas fa-comment"></i><span>210</span></div>--}}
+                        {{--                                </div>--}}
+                        {{--                                <h2 class="article-intro__title">The Ultimate King: Chicken Burger</h2>--}}
+                        {{--                                <div class="article-intro__content">--}}
+                        {{--                                    <p>Incididunt ut labore et dolore magna aliqua enim ad minim veniam quisya nos exercitation ullamco laboris nisi ut aliquip ex ea com labmodo consequat dhuis irure dolor in reprehesa deritn volupta velit esse fst anim laborum.</p>--}}
+                        {{--                                </div>--}}
+                        {{--                                <div class="article-intro__bottom">--}}
+                        {{--                                    <div class="article-intro__tags"><i class="fas fa-tags"></i><span>cheese, Pizza, Cookies, Bake</span></div>--}}
+                        {{--                                    <div class="article-intro__more"><a class="uk-button" href="page-blog-article.html">Read More</a></div>--}}
+                        {{--                                </div>--}}
+                        {{--                            </div>--}}
+                        {{--                        </article>--}}
+                        {{--                            <ul class="uk-pagination uk-flex-center uk-margin-medium-top">--}}
+                        {{--                                <li class="uk-active"><span>1</span></li>--}}
+                        {{--                                <li><a href="#">2</a></li>--}}
+                        {{--                                <li><a href="#">3</a></li>--}}
+                        {{--                                <li class="uk-disabled"><span>...</span></li>--}}
+                        {{--                                <li><a href="#"><span data-uk-pagination-next></span></a></li>--}}
+                        {{--                            </ul>--}}
+
                         <div class="uk-width-1-3@m">
                             {{--                        <aside class="sidebar">--}}
                             {{--                            <div class="widjet widjet-search">--}}

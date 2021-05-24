@@ -23,7 +23,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="add-address">Service Type</h5>
+                    <h5 class="modal-title" id="add-address">{{__('general.Service Type')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -33,15 +33,15 @@
                         <div class="col-md-6 m-auto">
                             <div class="bg-danger rounded shadow-sm w-100 h-100">
                                 <div class="w-100 text-center h-100">
-                                    <a id="address-mod" data-toggle="modal" data-target="#address-modal" href="#"><h1 class="m-0 w-100 h-100" style="color: #fff;padding: 5%;">Delivery</h1></a>
+                                    <a id="address-mod" data-toggle="modal" data-target="#address-modal" href="#"><h1 class="m-0 w-100 h-100" style="color: #fff;padding: 5%;">{{__('general.Delivery')}}</h1></a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 text-center mt-3 mb-3"> OR </div>
+                        <div class="col-md-12 text-center mt-3 mb-3"> {{__('general.OR')}} </div>
                         <div class="col-md-6 m-auto">
                             <div class="bg-success rounded shadow-sm w-100 h-100">
                                 <div class="w-100 text-center h-100">
-                                    <a href="{{route('takeaway.page')}}"><h1 class="m-0 w-100 h-100 bg" style="color: #fff;padding: 5%;">Take away</h1></a>
+                                    <a href="{{route('takeaway.page')}}"><h1 class="m-0 w-100 h-100 bg" style="color: #fff;padding: 5%;">{{__('general.Take away')}}</h1></a>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
         <div class="modal-dialog" style="overflow-y: initial !important" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="add-address">Delivery Addresses</h5>
+                    <h5 class="modal-title" id="add-address">{{__('general.Delivery Addresses')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -92,9 +92,9 @@
                                                         </h6>
                                                         <p class="text-black">
                                                             {{$address-> street}}
-                                                            , BuildNo: {{$address-> building_number}}
-                                                            , FloorNo: {{ $address-> floor_number}}
-                                                            , Landmark: {{$address-> landmark}}
+                                                            , {{__('general.BuildNo')}}: {{$address-> building_number}}
+                                                            , {{__('general.FloorNo')}}: {{ $address-> floor_number}}
+                                                            , {{__('general.Landmark')}}: {{$address-> landmark}}
                                                         </p>
                                                     </div>
 

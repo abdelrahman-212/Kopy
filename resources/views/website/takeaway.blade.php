@@ -12,7 +12,7 @@
             <div class="uk-container">
                 <div>
                     <div class="py-2">
-                        <h2 class="mb-3 mt-0">Branches</h2>
+                        <h2 class="mb-3 mt-0">{{__('general.Branches')}}</h2>
                         <div class="row">
                             @foreach($branches as $branche)
                             <div class="custom-control col-md-4 custom-radio mb-3 p-2 position-relative border-custom-radio">

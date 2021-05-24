@@ -45,7 +45,6 @@ class NewsController extends Controller
             'description_ar' => 'nullable',
             'description_en' => 'nullable',
             "image" => 'required',
-            "author" => 'required',
 
         ];
 
@@ -59,7 +58,7 @@ class NewsController extends Controller
         $job = News::create([
             'title_ar' => $request->title_ar,
             'title_en' => $request->title_en,
-            'author' => $request->author,
+            'author' => auth()->user()->name,
             'description_ar' => $request->description_ar,
             'description_en' => $request->description_en,
             'image' => $file_path,

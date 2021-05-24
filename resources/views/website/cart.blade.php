@@ -45,7 +45,7 @@
                                 @if($carts->count())
                                     <div class="cell-xs-12">
                                         <h4 class="text-left font-default"><span
-                                                id="itemcount">{{$carts->count()}}</span> Items in your cart</h4>
+                                                id="itemcount">{{$carts->count()}}</span>{{__('general.Items in your cart')}}</h4>
                                         <div class="table-responsive offset-top-10" style="border-radius: 10px;">
                                             <table class="table table-shopping-cart mt-4">
                                                 <tbody>
@@ -82,11 +82,11 @@
                                                                             style="font-size: 25px;">{{(app()->getLocale() == 'ar')? $cart->item->name_ar:$cart->item->name_en}}</span>
                                                                         <div class="offset-top-0">
                                                                             {{(app()->getLocale() == 'ar')? $cart->item->description_ar:$cart->item->description_en}}
-                                                                            <p> Calories : {{$cart->item->calories}}</p>
+                                                                            <p> {{__('home.Calories')}} : {{$cart->item->calories}}</p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-4 d-flex text-center">
-                                                                        <div class="p-2 mr-4"><span class="h6 price-item">Price: {{(($cart->offer_id)? $cart->offer_price : $cart->item->price) * $cart->quantity}} SR</span>
+                                                                        <div class="p-2 mr-4"><span class="h6 price-item">{{__('home.Price')}}: {{(($cart->offer_id)? $cart->offer_price : $cart->item->price) * $cart->quantity}} {{__('general.SR')}}</span>
                                                                             @if($cart->offer_id)
                                                                                 <i class="fa fa-gift fa-4x text-danger"
                                                                                    aria-hidden="true"></i>
@@ -108,16 +108,16 @@
                                                                             @foreach($cart->ExtrasObjects as $extra)
                                                                                 <div class="col-4">
 
-                                                                                    <p>Extra
+                                                                                    <p>{{__('general.Extra')}}
                                                                                         : {{(app()->getLocale() == 'ar')? $extra->name_ar:$extra->name_en}} </p>
                                                                                 </div>
                                                                                 <div class="col-4">
-                                                                                    <p> Calories
+                                                                                    <p> {{__('home.Calories')}}
                                                                                         : {{$extra->calories}}</p>
                                                                                 </div>
                                                                                 <div class="col-4">
-                                                                                    <p> Price : {{$extra->price}}
-                                                                                        SR</p>
+                                                                                    <p> {{__('home.Price')}} : {{$extra->price}}
+                                                                                        {{__('general.SR')}}</p>
 
                                                                                 </div>
 
@@ -130,18 +130,18 @@
                                                                             @foreach($cart->WithoutsObjects as $without)
                                                                                 <div class="col-4">
 
-                                                                                    <p>Without
+                                                                                    <p>{{__('general.Without')}}
                                                                                         : {{(app()->getLocale() == 'ar')? $without->name_ar:$without->name_en}} </p>
                                                                                 </div>
                                                                                 <div class="col-6">
-                                                                                    <p> Calories
+                                                                                    <p> {{__('home.Calories')}}
                                                                                         : {{$without -> calories}}</p>
                                                                                 </div>
                                                                             @endforeach
                                                                         </div>
                                                                         <div class="row w-100 m-0 mt-3">
                                                                             <div class="col-3">
-                                                                                <p>Dough Type
+                                                                                <p>{{__('general.Dough Type')}}
                                                                                     : {{(app()->getLocale() == 'ar')? $cart->dough_type_ar:$cart->dough_type_en}} </p>
                                                                             </div>
                                                                         </div>
@@ -166,26 +166,25 @@
                                             <div class="mt-5 offset-9 col-xs-3">
                                                 <div class="h4 font-default text-bold" style="width: max-content">
                                                     <h6 class="mt-1 mb-2"><b
-                                                            class="inset-right-5 text-gray-light">Sub
-                                                            Total: </b> <span id="subtotal" style="font-size: smaller;">{{$arr_check['subtotal']}} SR</span>
+                                                            class="inset-right-5 text-gray-light">
+                                                            {{__('general.Sub Total')}}: </b> <span id="subtotal" style="font-size: smaller;">{{$arr_check['subtotal']}} {{__('general.SR')}}</span>
                                                   <input id="subtotalinput" hidden    name="subtotal" value="{{$arr_check['subtotal']}}"/>
                                                     </h6>
                                                     <h6 class="mt-1 mb-2"><b
 
-                                                            class="inset-right-5 text-gray-light">Tax: </b>
-                                                        <span id="taxes" style="font-size: smaller;">{{$arr_check['taxes']}} SR</span>
+                                                            class="inset-right-5 text-gray-light">{{__('general.Taxes')}}: </b>
+                                                        <span id="taxes" style="font-size: smaller;">{{$arr_check['taxes']}} {{__('general.SR')}}</span>
                                                         <input id="taxesinput" hidden   name="taxes" value="{{$arr_check['taxes']}}"/>
 
                                                     </h6>
-                                                    <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">Delivery
-                                                            Fees: </b> <span
-                                                            id="delivery_fees" style="font-size: smaller;">{{$arr_check['delivery_fees']}} SR</span>
+                                                    <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">{{__('general.Delivery Fees')}}: </b> <span
+                                                            id="delivery_fees" style="font-size: smaller;">{{$arr_check['delivery_fees']}} {{__('general.SR')}}</span>
                                                         <input id="delivery_feesnput"  hidden   name="delivery_fees" value="{{$arr_check['delivery_fees']}}"/>
 
                                                     </h6>
                                                     @if(isset($arr_check['points']))
-                                                        <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">Loyality Discount: </b> <span
-                                                                id="points" style="font-size: smaller;"> - {{$arr_check['points']}}  SR</span>
+                                                        <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">{{__('general.Loyality Discount')}}: </b> <span
+                                                                id="points" style="font-size: smaller;"> - {{$arr_check['points']}}  {{__('general.SR')}}</span>
                                                             <input id="pointsinput"  hidden   name="points_paid" value="{{$arr_check['points']}}"/>
 
                                                         </h6>
@@ -193,13 +192,13 @@
 
                                                     <h6 class="mt-1 mb-2"><b
 
-                                                            class="inset-right-5 text-gray-light">Total: </b> <span
-                                                            style="font-size: smaller;" id="total">{{$arr_check['total']}} SR</span>
+                                                            class="inset-right-5 text-gray-light">{{__('general.Total')}}: </b> <span
+                                                            style="font-size: smaller;" id="total">{{$arr_check['total']}} {{__('general.SR')}}</span>
                                                         <input id="totalinput"   hidden name="total" value="{{$arr_check['total']}}"/>
 
                                                     </h6>
                                                 </div>
-                                                <button type="submit" class="uk-button w-100"  style="border-radius: 100px;"> <span>Checkout</span></button>
+                                                <button type="submit" class="uk-button w-100"  style="border-radius: 100px;"> <span>{{__('general.Checkout')}}</span></button>
                                             </div>
 
                                         </form>
@@ -270,19 +269,19 @@
                             'quantity': quantity,
                         },
                         success: function (data) {
-                            $('#subtotal').text((data.subtotal).toFixed(2));
+                            $('#subtotal').text((data.subtotal).toFixed(2)+' {{__('general.SR')}}');
                             $('#subtotalinput').val(data.subtotal);
 
-                            $('#taxes').text((data.taxes).toFixed(2));
+                            $('#taxes').text((data.taxes).toFixed(2)+' {{__('general.SR')}}');
                             $('#taxesinput').val(data.taxes);
 
-                            $('#total').text((data.total).toFixed(2));
+                            $('#total').text((data.total).toFixed(2)+' {{__('general.SR')}}');
                             $('#totalinput').val(data.total);
 
-                            $('#delivery_fees').text((data.delivery_fees).toFixed(2));
+                            $('#delivery_fees').text((data.delivery_fees).toFixed(2)+' {{__('general.SR')}}');
                             $('#delivery_feesinput').val(data.delivery_fees);
 
-                            elem.parent().parent().parent().next().next().find('.price-item').first().html('Price: ' + (quantity * price).toFixed(2) +' SR');
+                            elem.parent().parent().parent().next().next().find('.price-item').first().html('{{__('home.Price')}}: ' + (quantity * price).toFixed(2) +' {{__('general.SR')}}');
 
                             @if(isset($arr_check['points']))
                             $('#points').text(data.points);

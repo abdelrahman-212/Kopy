@@ -117,7 +117,7 @@
                             </nav>
                         </nav>
                         <div class="first-screen__box">
-                            <h2 class="first-screen__title">Careers</h2>
+                            <h2 class="first-screen__title">{{__('general.Careers')}}</h2>
                             <div class="first-screen__breadcrumb">
 
                             </div>
@@ -166,8 +166,8 @@
                                     </article>
 
 
-                                    <div class="btn btn-link btn-dark"><a href="{{route('get.career',$job->id)}}"> مزيد
-                                            من التفاصيل </a></div>
+{{--                                    <div class="btn btn-link btn-dark"><a href="{{route('get.career',$job->id)}}"> مزيد--}}
+{{--                                            من التفاصيل </a></div>--}}
                                     @else
                                         <div class="article-full__info">
                                             {{--                                    <div class="article-full__author"><i class="fas fa-user"></i><span>{{$article->auther}}</span></div>--}}

@@ -26,7 +26,7 @@
             <div class="uk-container">
                 <div>
                     <div class="py-2">
-                        <h2 class="mb-3 mt-0">Offer Menu</h2>
+                        <h2 class="mb-3 mt-0">{{__('general.Offer Menu')}}</h2>
                         <div class="row">
                             <div class="product-full-card__tabs w-100 mt-0">
                                 <form id="addToCard" action="{{route('add.cart')}}" method="POST">
@@ -36,20 +36,20 @@
                                     <div class="row">
                                         @if($offers['details']['buy_items']->count() > 0)
                                             <div class="col-sm-11 m-auto">
-                                                <h3 class="mb-4 mt-3 col-md-12">Buy <small class="h6 text-black-50">  {{$offers['details']['buy_quantity']}}</small></h3>
+                                                <h3 class="mb-4 mt-3 col-md-12">{{__('general.Buy')}} <small class="h6 text-black-50">  {{$offers['details']['buy_quantity']}}</small></h3>
                                                 <div class="col-md-12">
                                                     <div class="rounded border" style="background-color: #f5f5f5!important;box-shadow: 0.1rem 0rem 1.5rem rgb(0 0 0 / 20%);">
                                                         @foreach($offers['details']['buy_items'] as $buyItem)
                                                             <input type="hidden" name="offer_price[]" value="{{$buyItem['price']}}">
                                                             <div class="gold-members p-3 border-bottom">
-                                                                <a class="btn btn-primary float-right buyBtnAdd" href="#">Buy</a>
+                                                                <a class="btn btn-primary float-right buyBtnAdd" href="#">{{__('general.Buy')}}</a>
                                                                 <div class="media d-flex">
                                                                     <div class="mr-3 col-3" style="height: 150px"><input type="checkbox" value="{{$buyItem['id']}}" name="buy_items[]" class="d-none checkItem">
                                                                         <img class="img-thumbnail rounded h-100 w-100" src="{{$buyItem->image}}" alt="">
                                                                     </div>
                                                                     <div class="media-body">
                                                                         <h4 class="m-0" style="font-size: 16px;line-height: 1.8;">{{(app()->getLocale() == 'ar')? $buyItem['name_ar'] : $buyItem['name_en'] }}</h4>
-                                                                        <p class="text-gray m-0" style="font-size: 12px;">Price: <span class="text-danger font-weight-bold">{{$buyItem['price']}} SR</span></p>
+                                                                        <p class="text-gray m-0" style="font-size: 12px;">{{__('menu.Price')}}: <span class="text-danger font-weight-bold">{{$buyItem['price']}} {{__('general.SR')}}</span></p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -61,19 +61,19 @@
                                         @endif
                                         @if($offers['details']['get_items']->count() > 0)
                                             <div class="col-sm-11 m-auto">
-                                                <h3 class="mb-4 mt-3 col-md-12">Get <small class="h6 text-black-50">  {{$offers['details']['get_quantity']}}</small></h3>
+                                                <h3 class="mb-4 mt-3 col-md-12">{{__('general.Get')}} <small class="h6 text-black-50">  {{$offers['details']['get_quantity']}}</small></h3>
                                                 <div class="col-md-12">
                                                     <div class="rounded border" style="background-color: #f5f5f5!important;box-shadow: 0.1rem 0rem 1.5rem rgb(0 0 0 / 20%);">
                                                         @foreach($offers['details']['get_items'] as $getItem)
                                                             <div class="gold-members p-3 border-bottom">
-                                                                <a class="btn btn-primary float-right getBtnAdd" href="#">Buy</a>
+                                                                <a class="btn btn-primary float-right getBtnAdd" href="#">{{__('general.Buy')}}</a>
                                                                 <div class="media d-flex">
                                                                     <div class="mr-3 col-3" style="height: 150px"><input type="checkbox" value="{{$getItem['id']}}" name="get_items[]" class="d-none checkItem">
                                                                         <img class="img-thumbnail rounded h-100 w-100" src="{{$getItem->image}}" alt="">
                                                                     </div>
                                                                     <div class="media-body">
                                                                         <h4 class="m-0" style="font-size: 16px;line-height: 1.8;">{{(app()->getLocale() == 'ar')? $getItem['name_ar'] : $getItem['name_en'] }}</h4>
-                                                                        <p class="text-gray m-0 " style="font-size: 12px;">Price: <span class="text-success font-weight-bold">0 SR</span></p>
+                                                                        <p class="text-gray m-0 " style="font-size: 12px;">{{__('menu.Price')}}: <span class="text-success font-weight-bold">0 {{__('general.SR')}}</span></p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -84,7 +84,7 @@
                                             </div>
                                         @endif
                                             <div class="col-sm-3 mt-4 offset-9">
-                                                <button class="uk-button submitOffer" style="margin-left: 50px;" type="submit"> <span>Confirm Offer</span></button>
+                                                <button class="uk-button submitOffer" style="margin-left: 50px;" type="submit"> <span>{{__('general.Confirm Offer')}}</span></button>
                                             </div>
                                     </div>
                                 </form>
@@ -110,15 +110,15 @@
                 e.preventDefault();
                 let selectele = $(this);
                 if(buy_quantity_counter < buy_quantity){
-                    if(selectele.text() == "Buy"){
-                        selectele.text("Cancel");
+                    if(selectele.text() == "{{__('general.Buy')}}"){
+                        selectele.text("{{__('general.Cancel')}}");
                         selectele.addClass("btn-success");
                         selectele.removeClass("btn-primary");
                         selectele.next().find('.checkItem').attr('checked','checked');
                         buy_quantity_counter++;
                     }
                     else {
-                        selectele.text("Buy");
+                        selectele.text("{{__('general.Buy')}}");
                         selectele.removeClass("btn-success");
                         selectele.addClass("btn-primary");
                         selectele.next().find('.checkItem').attr('checked','');
@@ -126,8 +126,8 @@
                     }
                 }
                 else if(buy_quantity_counter <= buy_quantity){
-                    if(selectele.text() == "Cancel"){
-                        selectele.text("Buy");
+                    if(selectele.text() == "{{__('general.Cancel')}}"){
+                        selectele.text("{{__('general.Buy')}}");
                         selectele.removeClass("btn-success");
                         selectele.addClass("btn-primary");
                         selectele.next().find('.checkItem').attr('checked','');
@@ -135,12 +135,12 @@
                     }
                     else
                     {
-                        alert('you cant choose more than: ' + get_quantity + ' items')
+                        alert('{{__('general.you cant choose more than')}}: ' + get_quantity + ' items')
                     }
                 }
                 else
                 {
-                    alert('you cant choose more than: ' + buy_quantity + ' items')
+                    alert('{{__('general.you cant choose more than')}}: ' + buy_quantity + ' items')
                 }
             });
 
@@ -148,15 +148,15 @@
                 e.preventDefault();
                 let selectele = $(this);
                 if(get_quantity_counter < get_quantity){
-                    if(selectele.text() == "Buy"){
-                        selectele.text("Cancel");
+                    if(selectele.text() == "{{__('general.Buy')}}"){
+                        selectele.text("{{__('general.Cancel')}}");
                         selectele.addClass("btn-success");
                         selectele.removeClass("btn-primary");
                         selectele.next().find('.checkItem').attr('checked','checked');
                         get_quantity_counter++;
                     }
                     else {
-                        selectele.text("Buy");
+                        selectele.text("{{__('general.Buy')}}");
                         selectele.removeClass("btn-success");
                         selectele.addClass("btn-primary");
                         selectele.next().find('.checkItem').attr('checked','');
@@ -164,8 +164,8 @@
                     }
                 }
                 else if(get_quantity_counter <= get_quantity){
-                    if(selectele.text() == "Cancel"){
-                        selectele.text("Buy");
+                    if(selectele.text() == "{{__('general.Cancel')}}"){
+                        selectele.text("{{__('general.Buy')}}");
                         selectele.removeClass("btn-success");
                         selectele.addClass("btn-primary");
                         selectele.next().find('.checkItem').attr('checked','');
@@ -173,12 +173,12 @@
                     }
                     else
                     {
-                        alert('you cant choose more than: ' + get_quantity + ' items')
+                        alert('{{__('general.you cant choose more than')}}: ' + get_quantity + ' {{__('general.items')}}')
                     }
                 }
                 else
                 {
-                    alert('you cant choose more than: ' + get_quantity + ' items')
+                    alert('{{__('general.you cant choose more than')}}: ' + get_quantity + ' {{__('general.items')}}')
                 }
 
             });
@@ -189,10 +189,10 @@
                     $('#addToCard').submit();
                 }
                 else if (buy_quantity > buy_quantity_counter){
-                    alert('Please buy {{$offers['details']['buy_quantity']}} at least')
+                    alert('{{__('general.Please buy')}} {{$offers['details']['buy_quantity']}} {{__('general.at least')}}')
                 }
                 else if (get_quantity > get_quantity_counter){
-                    alert('Please get {{$offers['details']['get_quantity']}} at least')
+                    alert('{{__('general.Please buy')}} {{$offers['details']['get_quantity']}} {{__('general.at least')}}')
                 }
 
             });

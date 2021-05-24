@@ -14,10 +14,7 @@ use Moyasar\Providers\PaymentService;
 
 class PaymentController extends Controller
 {
-    public function __construct(PaymentService $paymentService)
-    {
-        $this->paymentService = $paymentService;
-    }
+
 
     public function index()
     {
@@ -97,16 +94,9 @@ class PaymentController extends Controller
             }
 
         }
-//        catch (RequestException $exception) {
-//            //$responseBody = $exception->getResponse()->getBody(true)->getContents();
-//            $response = json_decode($exception->getResponse()->getBody(true)->getContents(), true);
-//            $errors = $response['errors'];
-//            return $exception;
-//            return redirect(route('get.payment'))->withInput()->withErrors($errors);
-//        }
+
         catch (GuzzleException $exception) {
-            return $exception;
-            //$responseBody = $exception->getResponse()->getBody(true)->getContents();
+             //$responseBody = $exception->getResponse()->getBody(true)->getContents();
             $response = json_decode($exception->getResponse()->getBody(true)->getContents(), true);
             $errors = $response['errors'];
             if ($errors) {

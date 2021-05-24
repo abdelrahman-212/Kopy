@@ -22,7 +22,7 @@
                                             <div class="w-100 h-100">
                                                 <div class="bg-danger rounded shadow-sm w-100 h-100">
                                                     <div class="w-100 text-center h-100">
-                                                        <a href="{{route('delivery.page')}}"><h1 class="m-0 w-100 h-100" style="color: #fff;padding: 12%;">Delivery</h1></a>
+                                                        <a href="{{route('delivery.page')}}"><h1 class="m-0 w-100 h-100" style="color: #fff;padding: 12%;">{{__('general.Delivery')}}</h1></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -36,7 +36,7 @@
                                             <div class="w-100 h-100">
                                                 <div class="bg-success rounded shadow-sm w-100 h-100">
                                                     <div class="w-100 text-center h-100">
-                                                        <a href="{{route('takeaway.page')}}"><h1 class="m-0 w-100 h-100 bg" style="color: #fff;padding: 12%;">Take away</h1></a>
+                                                        <a href="{{route('takeaway.page')}}"><h1 class="m-0 w-100 h-100 bg" style="color: #fff;padding: 12%;">{{__('general.Take away')}}</h1></a>
                                                     </div>
                                                 </div>
                                             </div>

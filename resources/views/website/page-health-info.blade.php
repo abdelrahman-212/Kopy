@@ -117,11 +117,11 @@
                             </nav>
                         </nav>
                         <div class="first-screen__box">
-                            <h2 class="first-screen__title">Health Infos </h2>
+                            <h2 class="first-screen__title">{{__('general.Health Information')}}</h2>
                             <div class="first-screen__breadcrumb">
                                 <ul class="uk-breadcrumb">
-                                    <li><a href="/">Home</a></li>
-                                    <li><span>Health Information</span></li>
+                                    <li><a href="/">{{__('menu.Home')}}</a></li>
+                                    <li><span>{{__('general.Health Information')}}</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -130,11 +130,10 @@
             </div>
             <div class="page-content">
                 <div class="uk-margin-large-top uk-container">
-                    <div class="uk-grid" data-uk-grid>
+                    <div class="uk-grid data-uk-grid container h-100 d-flex justify-content-center" >
                         <div class="uk-width-2-3@m align-self-md-center">
                             @if(isset($infos))
                                 @foreach($infos as $info)
-
                                     <article class="article-intro">
                                         {{--                                        <div class="article-intro__image"><a href="page-blog-article.html"><img src="{{$article--}}
                                         {{--->image}}" alt="img-article"></a></div>--}}
@@ -230,15 +229,15 @@
                             {{--                                </div>--}}
                             {{--                            </div>--}}
                             {{--                        </article>--}}
-{{--                            <ul class="uk-pagination uk-flex-center uk-margin-medium-top">--}}
-{{--                                <li class="uk-active"><span>1</span></li>--}}
-{{--                                <li><a href="#">2</a></li>--}}
-{{--                                <li><a href="#">3</a></li>--}}
-{{--                                <li class="uk-disabled"><span>...</span></li>--}}
-{{--                                <li><a href="#"><span data-uk-pagination-next></span></a></li>--}}
-{{--                            </ul>--}}
-{{--                        </div>--}}
-{{--                        <div class="uk-width-1-3@m">--}}
+                            {{--                            <ul class="uk-pagination uk-flex-center uk-margin-medium-top">--}}
+                            {{--                                <li class="uk-active"><span>1</span></li>--}}
+                            {{--                                <li><a href="#">2</a></li>--}}
+                            {{--                                <li><a href="#">3</a></li>--}}
+                            {{--                                <li class="uk-disabled"><span>...</span></li>--}}
+                            {{--                                <li><a href="#"><span data-uk-pagination-next></span></a></li>--}}
+                            {{--                            </ul>--}}
+                            {{--                        </div>--}}
+                            {{--                        <div class="uk-width-1-3@m">--}}
                             {{--                        <aside class="sidebar">--}}
                             {{--                            <div class="widjet widjet-search">--}}
                             {{--                                <form class="uk-search uk-search-default" action="#!"><button class="uk-search-icon-flip" data-uk-search-icon type="submit"></button><input class="uk-input uk-search-input uk-form-large" type="search" placeholder="Search blog ..."></form>--}}
@@ -319,6 +318,6 @@
                 </div>
             </div>
         </main>
-    @endsection
+@endsection
 
-    @section('scripts')@endsection
+@section('scripts')@endsection

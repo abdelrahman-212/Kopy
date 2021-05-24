@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="left border">
-                            <div class="row"><span class="header">Payment</span>
+                            <div class="row"><span class="header">{{__('general.Payment')}}</span>
                                 <div class="icons"><img src="https://img.icons8.com/color/48/000000/visa.png"/> <img
                                         src="https://img.icons8.com/color/48/000000/mastercard-logo.png"/> <img
                                         src="https://img.icons8.com/color/48/000000/maestro.png"/></div>
@@ -35,30 +35,30 @@
                                 <input type="hidden" name="source[type]" value="creditcard">
                                 <input type="hidden" name="description" value="Order id 1234 by guest">
 
-                                <span>Cardholder's name:</span>
+                                <span>{{__('general.Cardholder\'s name')}}:</span>
                                 <input type="text" name="source[name]" @if(isset($errorarray['source[name]'])) class="mb-0" @endif/>
                                 @if(isset($errorarray['source[name]']))
                                     <p style="color: red" class="mt-0">{{$errorarray['source[name]']}}</p>
                                 @endif
 
-                                <span>Card Number:</span>
+                                <span>{{__('general.Card Number')}}:</span>
                                 <input type="text" name="source[number]" @if(isset($errorarray['source[number]'])) class="mb-0" @endif/>
                                 @if(isset($errorarray['source[number]']))
                                     <p style="color: red" class="mt-0">{{$errorarray['source[number]']}}</p>
                                 @endif
                                 <div class="row">
                                     <div class="col-12">
-                                        <span>Expiry date</span>
+                                        <span>{{__('general.Expiry date')}}</span>
                                         <div class="row d-flex">
                                             <div class="col-6">
-                                                <span>Month:</span>
+                                                <span>{{__('general.Month')}}:</span>
                                                 <input type="text" name="source[month]" value="{{old('source[name]')}}" @if(isset($errorarray['source[month]'])) class="mb-0" @endif/>
                                                 @if(isset($errorarray['source[month]']))
                                                     <p style="color: red" class="mt-0">{{$errorarray['source[month]']}}</p>
                                                 @endif
                                             </div>
                                             <div class="col-6">
-                                                <span>Year:</span>
+                                                <span>{{__('general.Year')}}:</span>
                                                 <input type="text" name="source[year]" @if(isset($errorarray['source[year]'])) class="mb-0" @endif/>
                                                 @if(isset($errorarray['source[year]']))
                                                     <p style="color: red" class="mt-0">{{$errorarray['source[year]']}}</p>
@@ -73,7 +73,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <button type="submit" class="uk-button btn w-100">Purchase</button>
+                                <button type="submit" class="uk-button btn w-100">{{__('general.Purchase')}}</button>
 
                             </form>
                         </div>

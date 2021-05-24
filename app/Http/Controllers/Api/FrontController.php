@@ -104,7 +104,7 @@ class FrontController extends BaseController
                     ->orWhere('phone', $request->phone);
             })->get()->count();
         if ($countExist > 0) {
-            return $this->sendResponse('You have already sent an application for this job before', 'Application Not Sent');
+            return $this->sendError('You have already sent an application for this job before', 'Application Not Sent');
         }
 
         try {

@@ -117,12 +117,12 @@
                             </nav>
                         </nav>
                         <div class="first-screen__box">
-                            <h2 class="first-screen__title">Blog</h2>
+                            <h2 class="first-screen__title">{{__('general.Blog')}}</h2>
                             <div class="first-screen__breadcrumb">
                                 <ul class="uk-breadcrumb">
-                                    <li><a href="/">Home</a></li>
-                                    <li><a href="{{route('news.all')}}">News Blog</a></li>
-                                    <li><span>Full Blog</span></li>
+                                    <li><a href="/">{{__('menu.Home')}}</a></li>
+                                    <li><a href="{{route('news.all')}}">{{__('general.News Blog')}}</a></li>
+                                    <li><span>{{__('general.Full Blog')}}</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -145,7 +145,7 @@
 
                                 <div class="article-full__image"><a href="/page-blog-article.html"><img
                                             src="{{$article->image}}" alt="img-article"></a></div>
-                                <div class="article-full__content">
+                                <div class="article-full__content text-center">
                                     <h3> {{$article ->title_ar}}</h3>
                                     <p> {{$article->description_ar}}</p>
 
