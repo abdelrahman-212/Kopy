@@ -221,7 +221,15 @@
                                                                         <span>{{__('home.Price')}}: </span><span class="value" @if($item['offer']) style="text-decoration: line-through;font-size: 20px;" @endif > {{$item->price}} </span>
                                                                         @if($item['offer']) <span style="font-size: 26px;color:#6dc405;text-decoration: none"> {{$item['offer']['offer_price']}} </span> @endif
                                                                     </div>
-                                                                    <div class="product-item__addcart"> <a data-toggle="modal" data-target="#service-modal" class="uk-button uk-button-default cart" href="{{route('item.page',[$category->id,$item->id])}}">{{__('home.Add to Cart')}}<span data-uk-icon="cart"></span></a></div>
+                                                                    <div class="product-item__addcart">
+                                                                        <a
+                                                                            @auth data-toggle="modal"
+                                                                           data-target="#service-modal"
+                                                                           @endauth
+                                                                           class="uk-button uk-button-default  cart"
+                                                                           href="{{route('item.page',[$category->id,$item->id])}}">
+                                                                            {{__('home.Add to Cart')}}
+                                                                            <span data-uk-icon="cart"></span></a></div>
                                                                 </div>
                                                             </div>
                                                         </div>

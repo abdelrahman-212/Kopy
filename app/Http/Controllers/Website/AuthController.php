@@ -22,32 +22,29 @@ class AuthController extends Controller
     public function sign_up(Request $request)
     {
         $return = (app(\App\Http\Controllers\Api\AuthController::class)->register($request))->getOriginalContent();
-
-        if ($return['success'] == true) {
+         if ($return['success'] == true) {
             return redirect()->route('get.login')->with(['success' => 'your application been submitted']);
-        }
-        else{
+        } else {
             $errorarray = [];
-            if(array_key_exists('message', $return)){
+            if (array_key_exists('message', $return)) {
                 $errorarray['message'] = "Failed to sign up, Try again later.";
 
-                return view('website.signup',compact(['errorarray']));
-            }
-            else{
-                if($return['error']->first('email')){
+                return view('website.signup', compact(['errorarray']));
+            } else {
+                if ($return['error']->first('email')) {
                     $errorarray['email'] = $return['error']->first('email');
                 }
-                if ($return['error']->first('name')){
+                if ($return['error']->first('name')) {
                     $errorarray['name'] = $return['error']->first('name');
                 }
-                if ($return['error']->first('password')){
+                if ($return['error']->first('password')) {
                     $errorarray['password'] = $return['error']->first('password');
                 }
-                if ($return['error']->first('phone')){
+                if ($return['error']->first('phone')) {
                     $errorarray['phone'] = $return['error']->first('phone');
                 }
 
-               return view('website.signup',compact(['errorarray']));
+                return view('website.signup', compact(['errorarray']));
             }
         }
 
@@ -56,6 +53,10 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        $validation_rules = ['email' => 'required',
+            'password' => 'required'];
+        $validatedData = $request->validate($validation_rules);
+
 
         $credentials = [
             'email' => request('email'),
@@ -80,7 +81,7 @@ class AuthController extends Controller
             }
         }
         $error = 'Unauthorized, Please Check Your Credentials.';
-        return view('website.login',compact(['error']));
+        return view('website.login', compact(['error']));
 
     }
 
@@ -88,7 +89,7 @@ class AuthController extends Controller
     {
         auth()->logout();
         session()->flush();
-        return redirect()->route('get.login')->with(['success' => 'Successfully logged out']);
+        return redirect()->route('home.page')->with(['success' => 'Successfully logged out']);
     }
 
 }

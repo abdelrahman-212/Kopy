@@ -129,23 +129,10 @@
             </div>
             <div class="page-content">
                 <div class="uk-section uk-container uk-container-small">
-                    @if ($message = Session::get('error'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @endif
-                    @if(isset($job))
 
+                    @if(isset($job))
                         <div class="container clearfix">
                             <section>
-                                @if(session()->has('error'))
-                                    <div class="row mr-2 ml-2" >
-                                        <button type="text" class="btn btn-lg btn-block btn-outline-danger mb-2"
-                                                id="type-error">{{Session::get('error')}}
-                                        </button>
-                                    </div>
-                                @endif
-
                                 <form method="POST" action="{{route('career.request' , $job->id)}}"
                                       enctype="multipart/form-data">
                                     @csrf

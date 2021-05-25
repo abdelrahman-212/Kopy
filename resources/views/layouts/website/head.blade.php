@@ -38,5 +38,9 @@
         body{
             overflow-x: hidden;
         }
+        .help-block{
+            color: red;
+            font-weight: bold;
+        }
     </style>
 </head>

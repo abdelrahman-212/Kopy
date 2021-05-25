@@ -33,7 +33,9 @@
                         <div class="col-md-6 m-auto">
                             <div class="bg-danger rounded shadow-sm w-100 h-100">
                                 <div class="w-100 text-center h-100">
-                                    <a id="address-mod" data-toggle="modal" data-target="#address-modal" href="#"><h1 class="m-0 w-100 h-100" style="color: #fff;padding: 5%;">{{__('general.Delivery')}}</h1></a>
+                                    <a id="address-mod" data-toggle="modal" data-target="#address-modal" href="#"><h1
+                                            class="m-0 w-100 h-100"
+                                            style="color: #fff;padding: 5%;">{{__('general.Delivery')}}</h1></a>
                                 </div>
                             </div>
                         </div>
@@ -41,7 +43,9 @@
                         <div class="col-md-6 m-auto">
                             <div class="bg-success rounded shadow-sm w-100 h-100">
                                 <div class="w-100 text-center h-100">
-                                    <a href="{{route('takeaway.page')}}"><h1 class="m-0 w-100 h-100 bg" style="color: #fff;padding: 5%;">{{__('general.Take away')}}</h1></a>
+                                    <a href="{{route('takeaway.page')}}"><h1 class="m-0 w-100 h-100 bg"
+                                                                             style="color: #fff;padding: 5%;">{{__('general.Take away')}}</h1>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -72,7 +76,8 @@
                             @foreach($addresses as $address)
                                 <div class="col-md-12">
                                     <div class="bg-white card addresses-item mb-4 shadow">
-                                        <a href="{{route('takeaway.branch',[$address->id,'delivery'])}}" style="color:#222222">
+                                        <a href="{{route('takeaway.branch',[$address->id,'delivery'])}}"
+                                           style="color:#222222">
                                             <div class="gold-members p-4">
                                                 <div class="media">
                                                     <div class="mr-3"><i
@@ -88,7 +93,9 @@
                                                     <div class="media-body">
                                                         <h6 class="mb-1 text-secondary">
 
-                                                            {{$address ->name}}, {{(app()->getLocale() == 'ar') ?$address->city->name_ar:$address->city->name_en}}, {{(app()->getLocale() == 'ar') ?$address->area->name_ar:$address->area->name_en}}
+                                                            {{$address ->name}}
+                                                            , {{(app()->getLocale() == 'ar') ?$address->city->name_ar:$address->city->name_en}}
+                                                            , {{(app()->getLocale() == 'ar') ?$address->area->name_ar:$address->area->name_en}}
                                                         </h6>
                                                         <p class="text-black">
                                                             {{$address-> street}}
@@ -120,26 +127,28 @@
 
     @if (session('status') )
     $('#service-modal').modal('toggle');
-     @endif
-        $('.cart').click(function (e) {
-            @if (session('status') || !session()->has('branch_id'))
-                $('#service-modal').modal('toggle');
-                 return false;
-            @endif
-            $(this).removeAttr('data-target');
-            $(this).removeAttr('data-toggle');
-            $(this).trigger('click');
-        });
-
-        $('#address-mod').click(function (e) {
-            $("#service-modal").modal("hide");
-            $('#address-modal').modal('toggle');
-        });
-
-        @if(session()->has('err'))
-        alert("{{session()->get('err')}}");
-        {{session()->forget('err')}}
+    @endif
+    @auth
+    $('.cart').click(function (e) {
+        @if (session('status') || !session()->has('branch_id'))
+        $('#service-modal').modal('toggle');
+        return false;
         @endif
+        $(this).removeAttr('data-target');
+        $(this).removeAttr('data-toggle');
+        $(this).trigger('click');
+
+    });
+    @endauth
+    $('#address-mod').click(function (e) {
+        $("#service-modal").modal("hide");
+        $('#address-modal').modal('toggle');
+    });
+
+    @if(session()->has('err'))
+    alert("{{session()->get('err')}}");
+    {{session()->forget('err')}}
+    @endif
 
 
 </script>

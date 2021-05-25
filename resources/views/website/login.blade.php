@@ -20,15 +20,6 @@
                 <div class="px-5 col-10 mx-auto">
                     <h2 class="text-dark my-0">{{__('general.Welcome Back')}}</h2>
                     <p class="text-50">{{__('general.Sign in to continue')}}</p>
-                     @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
 
                     <form class="mt-5 mb-4" method="post" action="{{route('sign.in')}}">
                         @csrf
@@ -37,12 +28,18 @@
                             <input type="email" value="{{ old('email') }}" name="email" placeholder="{{__('general.Enter Your E-mail')}}"
                                    class="form-control" id="exampleInputEmail1"
                                    aria-describedby="emailHelp">
+                            @error('email')
+                            <div class="help-block">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="exampleInputPassword1" class="text-dark">{{__('general.Password')}}</label>
                             <input type="password" name="password" placeholder="{{__('general.Enter Password')}}" class="form-control"
                                    id="exampleInputPassword1">
+                            @error('password')
+                            <div class="help-block">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <button class="btn btn-primary btn-lg btn-block">{{__('general.SIGN IN')}}</button>

@@ -56,19 +56,13 @@ class CareersControllers extends Controller
 
     public function CareerRequest(Request $request, $id)
     {
-        $return = (app(FrontController::class)->jobRequest($request, $id))->getOriginalContent();
+         $return = (app(FrontController::class)->jobRequest($request, $id))->getOriginalContent();
         $temp = '';
-
         foreach ($return as $in => $re) {
 
             if ($in == 'success') {
                 $temp = $re;
             }
-            if (!$temp) {
-                session()->put('error', $return['message']);
-                return redirect()->back();
-            }
-
             if ($in == 'data') {
                 if ($temp == true) {
                     return redirect()->route('careers.all')->with(['success' => 'your application been submitted']);
