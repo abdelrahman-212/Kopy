@@ -22,7 +22,8 @@
                     <h3 class="card-title">Item Details</h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.item.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.item.update', $item->id) }}" method="POST" enctype="multipart/form-data"
+                          novalidate>
                         @csrf
                         @method('PATCH')
 
@@ -95,14 +96,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Item Price</label>
-                                    <input type="text" class="form-control {!! $errors->first('price', 'is-invalid') !!}" placeholder="Enter Item Price" name="price" value="{{ old('price') ?? $item->price}}">
+                                    <input type="number" class="form-control {!! $errors->first('price', 'is-invalid') !!}" placeholder="Enter Item Price" name="price" value="{{ old('price') ?? $item->price}}">
                                     {!! $errors->first('price', '<p class="help-block">:message</p>') !!}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Item Calories</label>
-                                    <input type="text" class="form-control {!! $errors->first('calories', 'is-invalid') !!}" placeholder="Enter Item Calories" name="calories" value="{{ old('calories') ?? $item->calories }}">
+                                    <input type="number" class="form-control {!! $errors->first('calories', 'is-invalid') !!}" placeholder="Enter Item Calories" name="calories" value="{{ old('calories') ?? $item->calories }}">
                                     {!! $errors->first('calories', '<p class="help-block">:message</p>') !!}
                                 </div>
                             </div>

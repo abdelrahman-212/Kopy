@@ -50,13 +50,13 @@ class ItemController extends Controller
             "description_en" => 'nullable|required|string',
             "price" => 'required|numeric',
             "calories" => 'required|numeric',
-            "image" => 'required|image',
+            'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
             "category_id" => 'required|exists:categories,id',
         ]);
 
         $item = Item::create($validatedData);
 
-        
+
         if ($request->hasFile('image'))
         {
             $image = $request->image;
@@ -65,7 +65,7 @@ class ItemController extends Controller
             $item->image = '/items/' . $image_new_name;
             $item->save();
         }
-        
+
 
         if (!$item)
             return redirect()->route('admin.item.index')->with([
@@ -75,7 +75,7 @@ class ItemController extends Controller
 
         return redirect()->route('admin.item.index')->with([
             'type' => 'success',
-            'message' => 'Menu Update successfuly'
+            'message' => 'Menu Update successfully'
         ]);
     }
 
@@ -164,7 +164,7 @@ class ItemController extends Controller
             "description_en" => 'nullable|required|string',
             "price" => 'required|numeric',
             "calories" => 'required|numeric',
-            "image" => 'nullable|image',
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
             "category_id" => 'required|exists:categories,id',
         ]);
 
@@ -177,7 +177,7 @@ class ItemController extends Controller
             $item->image = '/items/' . $image_new_name;
             $item->save();
         }
-        
+
         if (!$item->update($validatedData))
             return redirect()->route('admin.item.index')->with([
                 'type' => 'error',

@@ -47,7 +47,7 @@ class CategoryController extends Controller
             'name_en' => 'required|min:3|max:20',
             'description_ar' => 'nullable',
             'description_en' => 'nullable',
-            'image' => 'required|image',
+            'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
         $item_validation_rules = [
             'Item.*.name_ar' => 'required|string',
@@ -190,7 +190,7 @@ class CategoryController extends Controller
             'name_en' => 'min:3|max:20',
             'description_ar' => 'nullable',
             'description_en' => 'nullable',
-            'image' => 'image|max:5000',
+            'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         if ($request->hasFile('image')) {

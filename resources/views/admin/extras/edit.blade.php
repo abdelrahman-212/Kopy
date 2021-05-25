@@ -84,14 +84,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Extra Price</label>
-                                    <input type="text" class="form-control {!! $errors->first('price', 'is-invalid') !!}" placeholder="Enter Extra Price" name="price" value="{{ old('price') ?? $extra->price}}">
+                                    <input type="number" class="form-control {!! $errors->first('price', 'is-invalid') !!}" placeholder="Enter Extra Price" name="price" value="{{ old('price') ?? $extra->price}}">
                                     {!! $errors->first('price', '<p class="help-block">:message</p>') !!}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Extra Calories</label>
-                                    <input type="text" class="form-control {!! $errors->first('calories', 'is-invalid') !!}" placeholder="Enter Extra Calories" name="calories" value="{{ old('calories') ?? $extra->calories }}">
+                                    <input type="number" class="form-control {!! $errors->first('calories', 'is-invalid') !!}" placeholder="Enter Extra Calories" name="calories" value="{{ old('calories') ?? $extra->calories }}">
                                     {!! $errors->first('calories', '<p class="help-block">:message</p>') !!}
                                 </div>
                             </div>

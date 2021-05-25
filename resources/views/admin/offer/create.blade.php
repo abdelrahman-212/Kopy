@@ -22,7 +22,8 @@
                     <h3 class="card-title">Offer Details</h3>
                 </div>
                 <form action="{{ route('admin.offer.store') }}" method="POST" enctype="multipart/form-data"
-                    id="add-offer">
+                    id="add-offer"
+                      novalidate>
                     @csrf
                     <div class="card-body">
                         <div class="row">

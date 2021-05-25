@@ -50,7 +50,7 @@ class ExtraController extends Controller
             "description_en" => 'nullable|required|string',
             "price" => 'required|numeric',
             "calories" => 'required|numeric',
-            "image" => 'required|image',
+            'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
             "category_id" => 'required|exists:categories,id',
         ]);
 
@@ -118,7 +118,7 @@ class ExtraController extends Controller
             "description_en" => 'nullable|required|string',
             "price" => 'required|numeric',
             "calories" => 'required|numeric',
-            "image" => 'nullable|image',
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
             "category_id" => 'required|exists:categories,id',
         ]);
 
@@ -130,7 +130,7 @@ class ExtraController extends Controller
             $extra->image = '/extras/' . $image_new_name;
             $extra->save();
         }
-        
+
         if (!$extra->update($validatedData))
             return redirect()->route('admin.extra.index')->with([
                 'type' => 'error',

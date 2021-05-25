@@ -32,7 +32,8 @@
         $.widget.bridge('uibutton', $.ui.button);
 
         toastr.options = {
-            "preventDuplicates": true
+            "preventDuplicates": true,
+            "fadeAway":2000,
         }
 
         $('.select2').select2();
@@ -82,11 +83,11 @@
 @endif
 
 @if($errors->any())
-<script>
-    @foreach($errors->all() as $error)
-        toastr.error("{{ $error }}");
-    @endforeach
-</script>
+{{--<script>--}}
+{{--    @foreach($errors->all() as $error)--}}
+{{--        toastr.error("{{ $error }}");--}}
+{{--    @endforeach--}}
+{{--</script>--}}
 <script>
     @if(count($errors) > 0)
         @foreach($errors->all() as $error)
