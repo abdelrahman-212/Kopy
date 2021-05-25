@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Website;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -55,6 +56,15 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        $validator = Validator::Make(
+           $request->all(),
+           array('name'=>'required',
+               'email'=>'required')
+        );
+        if ($validator->fails()){
+
+             return redirect()->back()->withErrors($validator->getMessageBag())->withInput();
+        }
         $credentials = [
             'email' => request('email'),
             'password' => request('password')

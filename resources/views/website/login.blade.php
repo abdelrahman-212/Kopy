@@ -20,12 +20,13 @@
                 <div class="px-5 col-10 mx-auto">
                     <h2 class="text-dark my-0">{{__('general.Welcome Back')}}</h2>
                     <p class="text-50">{{__('general.Sign in to continue')}}</p>
-
-                    @if(isset($error))
-                        <div class="row" >
-                            <alert type="text" class="btn btn-lg btn-block btn-outline-danger mb-2">
-                                {{$error}}
-                            </alert>
+                     @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                     @endif
 
