@@ -37,12 +37,14 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
+
         $validatedData = $request->validate([
             'title_ar' => ['required','unique:galleries,title_ar'],
             'title_en' => ['required','unique:galleries,title_en'],
-            "url" => 'required|mimes:jpeg,png,jpg,gif,svg,tif,bmp,ico,psd,webp',
+            "url" => 'required|mimes:jpeg,png,jpg,gif,svg,tif,bmp,ico,psd,webp|dimensions:width=270,height=260',
+
         ]);
-        try {
+         try {
             $gallery = new Gallery();
             $gallery->title_ar = $request->title_ar;
             $gallery->title_en = $request->title_en;
