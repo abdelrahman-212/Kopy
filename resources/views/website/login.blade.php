@@ -18,8 +18,8 @@
         <div class="d-flex align-items-center justify-content-center vh-100">
             <div class="px-5 col-md-6 ml-auto">
                 <div class="px-5 col-10 mx-auto">
-                    <h2 class="text-dark my-0">Welcome Back</h2>
-                    <p class="text-50">Sign in to continue</p>
+                    <h2 class="text-dark my-0">{{__('general.Welcome Back')}}</h2>
+                    <p class="text-50">{{__('general.Sign in to continue')}}</p>
 
                     @if(isset($error))
                         <div class="row" >
@@ -32,26 +32,26 @@
                     <form class="mt-5 mb-4" method="post" action="{{route('sign.in')}}">
                         @csrf
                         <div class="form-group">
-                            <label for="exampleInputEmail1" class="text-dark">Email</label>
-                            <input type="email" value="{{ old('email') }}" name="email" placeholder="Enter Email"
+                            <label for="exampleInputEmail1" class="text-dark">{{__('general.Email')}}</label>
+                            <input type="email" value="{{ old('email') }}" name="email" placeholder="{{__('general.Enter Your E-mail')}}"
                                    class="form-control" id="exampleInputEmail1"
                                    aria-describedby="emailHelp">
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputPassword1" class="text-dark">Password</label>
-                            <input type="password" name="password" placeholder="Enter Password" class="form-control"
+                            <label for="exampleInputPassword1" class="text-dark">{{__('general.Password')}}</label>
+                            <input type="password" name="password" placeholder="{{__('general.Enter Password')}}" class="form-control"
                                    id="exampleInputPassword1">
                         </div>
 
-                        <button class="btn btn-primary btn-lg btn-block">SIGN IN</button>
+                        <button class="btn btn-primary btn-lg btn-block">{{__('general.SIGN IN')}}</button>
                     </form>
                     <a href="forgot_password.html" class="text-decoration-none">
-                        <p class="text-center">Forgot your password?</p>
+                        <p class="text-center">{{__('general.Forgot your password?')}}</p>
                     </a>
                     <div class="d-flex align-items-center justify-content-center">
                         <a href="{{route('get.sign.up')}}">
-                            <p class="text-center m-0">Don't have an account? Sign up</p>
+                            <p class="text-center m-0">{{__('general.Don\'t have an account? Sign up')}}</p>
                         </a>
                     </div>
                 </div>

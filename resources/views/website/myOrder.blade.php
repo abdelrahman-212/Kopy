@@ -33,17 +33,17 @@
                                         <a class="nav-link border-0 text-dark py-3 active" id="completed-tab"
                                            data-toggle="tab" href="#completed" role="tab" aria-controls="completed"
                                            aria-selected="true">
-                                            <i class="feather-check mr-2 text-success mb-0"></i> Completed</a>
+                                            <i class="feather-check mr-2 text-success mb-0"></i> {{__('general.Completed')}}</a>
                                     </li>
                                     <li class="nav-item border-top" role="presentation">
                                         <a class="nav-link border-0 text-dark py-3" id="progress-tab" data-toggle="tab"
                                            href="#progress" role="tab" aria-controls="progress" aria-selected="false">
-                                            <i class="feather-clock mr-2 text-warning mb-0"></i> On Progress</a>
+                                            <i class="feather-clock mr-2 text-warning mb-0"></i> {{__('general.On Progress')}}</a>
                                     </li>
                                     <li class="nav-item border-top" role="presentation">
                                         <a class="nav-link border-0 text-dark py-3" id="canceled-tab" data-toggle="tab"
                                            href="#canceled" role="tab" aria-controls="canceled" aria-selected="false">
-                                            <i class="feather-x-circle mr-2 text-danger mb-0"></i> Canceled</a>
+                                            <i class="feather-x-circle mr-2 text-danger mb-0"></i> {{__('general.Canceled')}}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -67,23 +67,24 @@
                                                                      class="w-100 h-100 img-fluid order_img rounded">
                                                             </div>
                                                             <div>
-                                                                <p class="mb-0 font-weight-bold">ORDER {{$index +1}}</p>
-                                                                <p class="mb-0">{{$co->items->count()}} Orders</p>
+                                                                <p class="mb-0 font-weight-bold">{{__('general.ORDER')}} {{$index +1}}</p>
+                                                                <p class="mb-0">{{$co->items->count()}} {{__('general.Orders')}}</p>
                                                             </div>
                                                             <div class="ml-auto">
                                                                 <p class="bg-success text-white py-1 px-2 rounded small mb-1">
-                                                                    Completed</p>
+                                                                    {{__('general.Completed')}}</p>
                                                             </div>
                                                         </div>
                                                         <div class="d-flex pt-3">
                                                             <div class="text-muted m-0 mr-auto mr-3 small"
-                                                                 style="padding: 8px;">Total:
-                                                                <span class="text-dark font-weight-bold">{{$co->total+$co->points_total}} SR</span>
+                                                                 style="padding: 8px;">{{__('general.Total')}}:
+                                                                <span class="text-dark font-weight-bold">{{$co->total+$co->points_total}} {{__('general.SR')}}</span>
                                                             </div>
                                                             <div class="text-right">
-                                                                <a href="{{route('order.details',[$co->id,'reorder'])}}"                                                                   class="btn btn-primary px-3">Reorder</a>
+                                                                <a href="{{route('order.details',[$co->id,'reorder'])}}"
+                                                                   class="btn btn-primary px-3">{{__('general.Reorder')}}</a>
                                                                 <a href="{{route('order.details',$co->id)}}"
-                                                                   class="btn btn-outline-primary px-3">Details</a>
+                                                                   class="btn btn-outline-primary px-3">{{__('general.Details')}}</a>
                                                             </div>
                                                         </div>
 
@@ -116,24 +117,25 @@
                                                             </div>
                                                             <div>
                                                                 <p class="mb-0 font-weight-bold">
-                                                                    ORDER {{$index+1}}</p>
+                                                                    {{__('general.ORDER')}} {{$index+1}}</p>
                                                                 <p class="mb-0">{{$pe->items->count()}}
-                                                                    Orders</p>
+                                                                    {{__('general.Orders')}}</p>
                                                             </div>
                                                             <div class="ml-auto">
                                                                 <p class="bg-warning text-white py-1 px-2 rounded small mb-1">
-                                                                    Pending</p>
+                                                                    {{__('general.Pending')}}</p>
                                                             </div>
                                                         </div>
                                                         <div class="d-flex pt-3">
                                                             <div class="text-muted m-0 mr-auto mr-3 small"
-                                                                 style="padding: 8px;">Total:
-                                                                <span class="text-dark font-weight-bold">{{$pe->total+$pe->points_total}} SR</span>
+                                                                 style="padding: 8px;">{{__('general.Total')}}:
+                                                                <span class="text-dark font-weight-bold">{{$pe->total+$pe->points_total}} {{__('general.SR')}}</span>
                                                             </div>
                                                             <div class="text-right">
-                                                                <a href="{{route('order.details',[$pe->id,'reorder'])}}"                                                                   class="btn btn-primary px-3">Reorder</a>
+                                                                <a href="{{route('order.details',[$pe->id,'reorder'])}}"
+                                                                   class="btn btn-primary px-3">{{__('general.Reorder')}}</a>
                                                                 <a href="{{route('order.details',$pe->id)}}"
-                                                                   class="btn btn-outline-primary px-3">Details</a>
+                                                                   class="btn btn-outline-primary px-3">{{__('general.Details')}}</a>
                                                             </div>
                                                         </div>
 
@@ -163,24 +165,24 @@
                                                                      class="w-100 h-100 img-fluid order_img rounded">
                                                             </div>
                                                             <div>
-                                                                <p class="mb-0 font-weight-bold">ORDER {{$index +1}}</p>
-                                                                <p class="mb-0">{{$ca->items->count()}} Orders</p>
+                                                                <p class="mb-0 font-weight-bold">{{__('general.ORDER')}} {{$index +1}}</p>
+                                                                <p class="mb-0">{{$ca->items->count()}} {{__('general.Orders')}}</p>
                                                             </div>
                                                             <div class="ml-auto">
                                                                 <p class="bg-danger text-white py-1 px-2 rounded small mb-1">
-                                                                    Canceled</p>
+                                                                    {{__('general.Canceled')}}</p>
                                                             </div>
                                                         </div>
                                                         <div class="d-flex pt-3">
                                                             <div class="text-muted m-0 mr-auto mr-3 small"
-                                                                 style="padding: 8px;">Total:
-                                                                <span class="text-dark font-weight-bold">{{$ca->total + $ca->points_total}} SR</span>
+                                                                 style="padding: 8px;">{{__('general.Total')}}:
+                                                                <span class="text-dark font-weight-bold">{{$ca->total + $ca->points_total}} {{__('general.SR')}}</span>
                                                             </div>
                                                             <div class="text-right">
                                                                 <a href="{{route('order.details',[$ca->id,'reorder'])}}"
-                                                                   class="btn btn-primary px-3">Reorder</a>
+                                                                   class="btn btn-primary px-3">{{__('general.Reorder')}}</a>
                                                                 <a href="{{route('order.details',$ca->id)}}"
-                                                                   class="btn btn-outline-primary px-3">Details</a>
+                                                                   class="btn btn-outline-primary px-3">{{__('general.Details')}}</a>
                                                             </div>
                                                         </div>
                                                     </div>

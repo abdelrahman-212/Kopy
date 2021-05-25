@@ -16,8 +16,8 @@
             <div class="d-flex align-items-center justify-content-center flex-column vh-100">
                 <div class="px-5 col-md-6 ml-auto">
                     <div class="px-5 col-10 mx-auto">
-                        <h2 class="text-dark my-0">Hello There.</h2>
-                        <p class="text-50">Sign up to continue</p>
+                        <h2 class="text-dark my-0">{{__('general.Hello There.')}}</h2>
+                        <p class="text-50">{{__('general.Sign up to continue')}}</p>
 
                         @if(isset($errorarray))
                             @if(array_key_exists('message', $errorarray))
@@ -28,8 +28,8 @@
                         <form class="mt-5 mb-4"  method="POSt" action="{{route('sign.up')}}">
                              @CSRF
                             <div class="form-group">
-                                 <label for="exampleInputName1" class="text-dark">Full Name</label>
-                                <input type="text" name="name" placeholder="Enter Full Name" class="form-control" id="exampleInputName1"
+                                 <label for="exampleInputName1" class="text-dark">{{__('general.Full name')}}</label>
+                                <input type="text" name="name" placeholder="{{__('general.Enter Full Name')}}" class="form-control" id="exampleInputName1"
                                        aria-describedby="nameHelp">
                                 @if(isset($errorarray))
                                     @if(array_key_exists('name', $errorarray))
@@ -39,8 +39,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputEmail" class="text-dark">E-mail</label>
-                                <input type="email" name="email" placeholder="Enter Your E-mail" class="form-control" id="exampleInputEmail"
+                                <label for="exampleInputEmail" class="text-dark">{{__('general.Email')}}</label>
+                                <input type="email" name="email" placeholder="{{__('general.Enter Your E-mail')}}" class="form-control" id="exampleInputEmail"
                                        aria-describedby="EmailHelp">
                                 @if(isset($errorarray))
                                     @if(array_key_exists('email', $errorarray))
@@ -50,8 +50,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputNumber1" class="text-dark">Mobile Number</label>
-                                <input type="number" name="phone" placeholder="Enter Mobile" class="form-control" id="exampleInputNumber1"
+                                <label for="exampleInputNumber1" class="text-dark">{{__('general.Mobile')}}</label>
+                                <input type="number" name="phone" placeholder="{{__('general.Enter Mobile')}}" class="form-control" id="exampleInputNumber1"
                                        aria-describedby="numberHelp">
                                 @if(isset($errorarray))
                                     @if(array_key_exists('phone', $errorarray))
@@ -60,8 +60,8 @@
                                 @endif
                             </div>
                              <div class="form-group">
-                                <label for="exampleInputPassword1" class="text-dark">Password</label>
-                                <input type="password" name="password" placeholder="Enter Password" class="form-control"
+                                <label for="exampleInputPassword1" class="text-dark">{{__('general.Password')}}</label>
+                                <input type="password" name="password" placeholder="{{__('general.Enter Password')}}" class="form-control"
                                        id="exampleInputPassword1">
                                  @if(isset($errorarray))
                                      @if(array_key_exists('password', $errorarray))
@@ -70,13 +70,13 @@
                                  @endif
                             </div>
                             <button class="btn btn-primary btn-lg btn-block">
-                                SIGN UP
+                                {{__('general.SIGN UP')}}
                             </button>
                         </form>
                     </div>
                     <div class="new-acc d-flex align-items-center justify-content-center">
                         <a href="{{route('get.login')}}">
-                            <p class="text-center m-0">Already an account? Sign in</p>
+                            <p class="text-center m-0">{{__('general.Already an account? Sign in')}}</p>
                         </a>
                     </div>
                 </div>

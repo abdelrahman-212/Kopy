@@ -118,11 +118,13 @@
 
 <script>
 
-
+    @if (session('status') )
+    $('#service-modal').modal('toggle');
+     @endif
         $('.cart').click(function (e) {
             @if (session('status') || !session()->has('branch_id'))
                 $('#service-modal').modal('toggle');
-                return false;
+                 return false;
             @endif
             $(this).removeAttr('data-target');
             $(this).removeAttr('data-toggle');
