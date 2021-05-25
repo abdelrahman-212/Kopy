@@ -81,7 +81,8 @@
                             <div class="form-group">
                                 <label for="exampleInputFile">Image</label>
                                 <img src="{{ $category->image }}" class="mg-fluid img-thumbnail"
-                                    style="max-width: 75px"></td>
+                                    style="max-width: 75px">
+                                </td>
                             </div>
                         </div>
                     </div>

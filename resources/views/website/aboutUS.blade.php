@@ -80,21 +80,14 @@
                     </nav>
                     <div class="first-screen__box">
                         <h2 class="first-screen__title">
-                            @if(app()->getLocale() == 'ar')
-                                {{$about->title_ar}}
-                            @else
-                                {{$about->title_en}}
-                            @endif
+                          {{__('general.about_us')}}
                         </h2>
                         <div class="first-screen__breadcrumb">
                             <ul class="uk-breadcrumb">
-                                <li><a href="/">Home</a></li>
+                                <li><a href="/">{{__('menu.Home')}}</a></li>
                                 <li> <span>
-                                        @if(app()->getLocale() == 'ar')
-                                            {{$about->title_ar}}
-                                        @else
-                                            {{$about->title_en}}
-                                            @endif
+                                                    {{__('general.about_us')}}
+
                                     </span>
                                 </li>
                             </ul>

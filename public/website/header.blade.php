@@ -5,7 +5,7 @@
                 <div class="uk-navbar-left"><button class="uk-button" type="button" data-target="#offcanvas" data-uk-toggle data-uk-icon="menu"></button>
                     <ul class="uk-navbar-nav">
                         <li><a href="#">Home</a></li>
-                        <li><a href="{{route('aboutUS.page')}}">About us</a></li>
+                        <li><a href="{{route('aboutUS.page')}}">About</a></li>
                         <li><a href="#">Order Online</a></li>
                         <li><a href="#">Your Wishlist</a></li>
                     </ul>

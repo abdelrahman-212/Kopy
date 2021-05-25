@@ -12,7 +12,7 @@
             <div class="uk-container">
                 <div>
                     <div class="py-2">
-                        <h2 class="mb-3 mt-0">Offer Menu</h2>
+                        <h2 class="mb-3 mt-0">{{__('general.Offer Menu')}}</h2>
                         <div class="row">
                             <div class="product-full-card__tabs w-100 mt-0">
 
@@ -36,9 +36,9 @@
                                                                     </div>
                                                                     <div class="media-body">
                                                                         <h6 class="m-0" style="font-size: 14px;line-height: 1.8;">{{(app()->getLocale() == 'ar')? $item['name_ar'] : $item['name_en'] }}</h6>
-                                                                        <span>Price: </span><span class="value text-danger" style="text-decoration: line-through;font-size: 20px;" > {{$item['price']}} SR</span>
+                                                                        <span>{{__('menu.Price')}}: </span><span class="value text-danger" style="text-decoration: line-through;font-size: 20px;" > {{$item['price']}} {{__('general.SR')}}</span>
                                                                         <span style="font-size: 26px;color:#6dc405;text-decoration: none">
-                                                                            {{$item['offer_price']}} SR
+                                                                            {{$item['offer_price']}} {{__('general.SR')}}
                                                                         </span>
                                                                     </div>
                                                                 </div>

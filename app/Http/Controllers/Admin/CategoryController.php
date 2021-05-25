@@ -42,7 +42,6 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-
         $validationRules = [
             'name_ar' => 'required|min:3|max:20',
             'name_en' => 'required|min:3|max:20',
@@ -50,7 +49,6 @@ class CategoryController extends Controller
             'description_en' => 'nullable',
             'image' => 'required|image',
         ];
-
         $item_validation_rules = [
             'Item.*.name_ar' => 'required|string',
             'Item.*.name_en' => 'required|string',
@@ -60,7 +58,6 @@ class CategoryController extends Controller
             'Item.*.calories' => 'required|numeric',
             'Item.*.image' => 'required|image',
         ];
-
         $extra_validation_rules = [
             'Extra.*.name_ar' => 'required|string',
             'Extra.*.name_en' => 'required|string',
@@ -68,16 +65,14 @@ class CategoryController extends Controller
             'Extra.*.calories' => 'required|numeric',
             'Extra.*.image' => 'required|image'
         ];
-
         if ($request->has('Item'))
             $validationRules = array_merge($validationRules, $item_validation_rules);
 
         if ($request->has('Extra'))
             $validationRules = array_merge($validationRules, $extra_validation_rules);
+          $attributes = $request->validate($validationRules);
 
-        $attributes = $request->validate($validationRules);
-
-        $category = Category::create([
+          $category = Category::create([
             'name_ar' => $request->name_ar,
             'name_en' => $request->name_en,
             'description_ar' => $request->description_ar,
@@ -152,7 +147,7 @@ class CategoryController extends Controller
 
         return redirect()->route('admin.category.index')->with([
             'type' => 'success',
-            'message' => 'Menu insert successfuly'
+            'message' => 'Menu insert successfully'
         ]);
     }
 

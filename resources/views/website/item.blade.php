@@ -167,15 +167,15 @@
                                     </div>
                                 </div>
 
-                                <div class="product-full-card__category"><span>Category:  </span><a href="{{route('menu.page')}}">{{(app()->getLocale() == 'ar')? $item['category']['name_ar'] : $item['category']['name_en'] }}</a></div>
-                                <div class="product-full-card__category"><span>Calories:  {{$item->calories}}</span></div>
+                                <div class="product-full-card__category"><span>{{__('general.Category')}}:  </span><a href="{{route('menu.page')}}">{{(app()->getLocale() == 'ar')? $item['category']['name_ar'] : $item['category']['name_en'] }}</a></div>
+                                <div class="product-full-card__category"><span>{{__('home.Calories')}}:  {{$item->calories}}</span></div>
 
                                 <div class="product-full-card__info mt-5">
                                     <div class="product-full-card__price">
-                                        <span>Price: </span><span class="value" @if($item['offer']) style="text-decoration: line-through;font-size: 20px;" @endif > {{$item->price}} </span>
+                                        <span>{{__('home.Price')}}: </span><span class="value" @if($item['offer']) style="text-decoration: line-through;font-size: 20px;" @endif > {{$item->price}} </span>
                                         @if($item['offer']) <span style="font-size: 26px;color:#6dc405;text-decoration: none"> {{$item['offer']['offer_price']}} </span> @endif
                                     </div>
-                                    <div class="product-full-card__btns"><span class="counter"><span class="minus">-</span><input type="text" name="quantity" value="1"><span class="plus">+</span></span><button class="uk-button" type="submit">Add to Cart<span data-uk-icon="cart" class="uk-icon"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="cart"><circle cx="7.3" cy="17.3" r="1.4"></circle><circle cx="13.3" cy="17.3" r="1.4"></circle><polyline fill="none" stroke="#000" points="0 2 3.2 4 5.3 12.5 16 12.5 18 6.5 8 6.5"></polyline></svg></span></button></div>
+                                    <div class="product-full-card__btns"><span class="counter"><span class="minus">-</span><input type="text" name="quantity" value="1"><span class="plus">+</span></span><button class="uk-button" type="submit">{{__('home.Add to Cart')}}<span data-uk-icon="cart" class="uk-icon"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="cart"><circle cx="7.3" cy="17.3" r="1.4"></circle><circle cx="13.3" cy="17.3" r="1.4"></circle><polyline fill="none" stroke="#000" points="0 2 3.2 4 5.3 12.5 16 12.5 18 6.5 8 6.5"></polyline></svg></span></button></div>
                                 </div>
                             </div>
                         </div>
@@ -184,13 +184,13 @@
                             <div class="row">
                                 @if($item['category']['extras']->count() > 0)
                                 <div class="col-sm-6">
-                                    <h5 class="mb-4 mt-3 col-md-12">Extra <small class="h6 text-black-50"> Extra per quantity:1</small>
+                                    <h5 class="mb-4 mt-3 col-md-12">{{__('general.Extra')}} <small class="h6 text-black-50"> {{__('general.Extra per quantity:1')}}</small>
                                     </h5>
                                     <div class="col-md-12">
                                         <div class="rounded border" style="background-color: #f5f5f5!important;box-shadow: 0.1rem 0rem 1.5rem rgb(0 0 0 / 20%);">
                                             @foreach($item['category']['extras'] as $extra)
                                                 <div class="gold-members p-3 border-bottom">
-                                                    <a class="btn btn-outline-secondary btn-sm float-right btnAdd" href="#">ADD</a>
+                                                    <a class="btn btn-outline-secondary btn-sm float-right btnAdd" href="#">{{__('general.ADD')}}</a>
                                                     <div class="media d-flex">
                                                         <div class="mr-3"><input type="checkbox" value="{{$extra['id']}}" name="extras[]" class="d-none checkExtra">
                                                             <i class="icofont-ui-press text-danger food-item"></i>
@@ -209,20 +209,20 @@
                                 @endif
                                 @if($item['category']['withouts']->count() > 0)
                                 <div class="col-sm-6">
-                                    <h5 class="mb-4 mt-3 col-md-12">Without <small class="h6 text-black-50"> Without per quantity:1</small>
+                                    <h5 class="mb-4 mt-3 col-md-12">{{__('general.Without')}} <small class="h6 text-black-50"> {{__('general. Without per quantity:1')}}</small>
                                     </h5>
                                     <div class="col-md-12">
                                         <div class="rounded border" style="background-color: #f5f5f5!important;box-shadow: 0.1rem 0rem 1.5rem rgb(0 0 0 / 20%);">
                                             @foreach($item['category']['withouts'] as $without)
                                                 <div class="gold-members p-3 border-bottom">
-                                                    <a class="btn btn-outline-secondary btn-sm float-right btnAdd" href="#">ADD</a>
+                                                    <a class="btn btn-outline-secondary btn-sm float-right btnAdd" href="#">{{__('general.ADD')}}</a>
                                                     <div class="media d-flex">
                                                         <div class="mr-3"><input type="checkbox" value="{{$without['id']}}" name="withouts[]" class="d-none checkExtra">
                                                             <i class="icofont-ui-press text-danger food-item"></i>
                                                         </div>
                                                         <div class="media-body">
                                                             <h6 class="m-0" style="font-size: 14px;line-height: 1.8;">{{(app()->getLocale() == 'ar')? $without['name_ar'] : $without['name_en'] }}</h6>
-                                                            <p class="text-gray m-0" style="font-size: 11px;">Calories: {{$without['calories']}}</p>
+                                                            <p class="text-gray m-0" style="font-size: 11px;">{{__('home.Calories')}}: {{$without['calories']}}</p>
                                                         </div>
                                                     </div>
                                                 </div>

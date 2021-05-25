@@ -45,7 +45,7 @@
                                 @if(isset($items))
                                     <div class="cell-xs-12">
                                         <h4 class="text-left font-default"><span
-                                                id="itemcount">{{$items->count()}}</span> Items in your cart</h4>
+                                                id="itemcount">{{$items->count()}}</span> {{__('general.Items in your cart')}}</h4>
                                         <div class="table-responsive offset-top-10" style="border-radius: 10px;">
                                             <table class="table table-shopping-cart mt-4">
                                                 <tbody>
@@ -71,13 +71,13 @@
                                                                             style="font-size: 25px;">{{(app()->getLocale() == 'ar')? $item->name_ar: $item->name_en}}</span>
                                                                         <div class="offset-top-0">
 
-                                                                            <p> Calories : {{$item->calories}}</p>
+                                                                            <p> {{__('menu.Calories')}} : {{$item->calories}}</p>
                                                                             <p class="text-bold">
-                                                                                Quantity: {{$item->pivot->quantity}}</p>
+                                                                                {{__('general.Quantity')}}: {{$item->pivot->quantity}}</p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-4 text-center">
-                                                                        <div class="p-2 mr-4"><span class="h6 d-block">Price: {{($item->pivot->price) * $item->pivot->quantity}} SR</span>
+                                                                        <div class="p-2 mr-4"><span class="h6 d-block">{{__('menu.Price')}}: {{($item->pivot->price) * $item->pivot->quantity}} {{__('general.SR')}}</span>
                                                                             @if($item->pivot->offer_id)
                                                                                 <i class="fa fa-gift fa-4x text-danger"
                                                                                    aria-hidden="true"></i>
@@ -92,7 +92,7 @@
 
                                                                         <div class="row w-100 m-0 mt-3">
                                                                             <div class="col-3">
-                                                                                <p>Dough Type
+                                                                                <p>{{__('general.Dough Type')}}
                                                                                     : {{(app()->getLocale() == 'ar')? $item->pivot->dough_type_ar:$item->pivot->dough_type_en}} </p>
                                                                             </div>
                                                                         </div>
@@ -115,47 +115,44 @@
                                         <div class="mt-5 offset-9 col-xs-3" style="width: max-content">
                                             <div class="h4 font-default text-bold">
                                                 <h6 class="mt-1 mb-2"><b
-                                                        class="inset-right-5 text-gray-light">Sub
-                                                        Total: </b> <span id="subtotal"
-                                                                          style="font-size: smaller;"> {{$order->subtotal}} SR</span>
+                                                        class="inset-right-5 text-gray-light">{{__('general.Sub Total')}}: </b>
+                                                    <span id="subtotal"
+                                                                          style="font-size: smaller;"> {{$order->subtotal}} {{__('general.SR')}}</span>
                                                 </h6>
                                                 <h6 class="mt-1 mb-2"><b
 
-                                                        class="inset-right-5 text-gray-light">Tax: </b>
-                                                    <span id="taxes" style="font-size: smaller;"> {{$order->taxes}}  SR</span>
+                                                        class="inset-right-5 text-gray-light">{{__('general.Taxes')}}: </b>
+                                                    <span id="taxes" style="font-size: smaller;"> {{$order->taxes}}  {{__('general.SR')}}</span>
 
                                                 </h6>
-                                                <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">Delivery
-                                                        Fees: </b> <span
-                                                        id="delivery_fees" style="font-size: smaller;"> {{$order->delivery_fees}} SR</span>
+                                                <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">{{__('general.Delivery Fees')}}: </b> <span
+                                                        id="delivery_fees" style="font-size: smaller;"> {{$order->delivery_fees}} {{__('general.SR')}}</span>
 
                                                 </h6>
 
                                                 @if( $order->points_paid !=0  && !isset($reorder))
-                                                    <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">Loyality
-                                                            Discount: </b> <span
-                                                            id="points" style="font-size: smaller;"> -  {{$order->points_paid}} SR</span>
+                                                    <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">{{__('general.Loyality Discount')}}: </b> <span
+                                                            id="points" style="font-size: smaller;"> -  {{$order->points_paid}} {{__('general.SR')}}</span>
 
                                                     </h6>
                                                 @endif
                                                 @if((session()->has('point_claim')) && $reorder)
-                                                    <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">Loyality
-                                                            Discount: </b> <span
-                                                            id="points" style="font-size: smaller;"> -  {{session()->get('point_claim_value')}} SR</span>
+                                                    <h6 class="mt-1 mb-2"><b class="inset-right-5 text-gray-light">{{__('general.Loyality Discount')}}: </b> <span
+                                                            id="points" style="font-size: smaller;"> -  {{session()->get('point_claim_value')}} {{__('general.SR')}}</span>
 
                                                     </h6>
                                                 @endif
 
                                                 <h6 class="mt-1 mb-2"><b
 
-                                                        class="inset-right-5 text-gray-light">Total: </b> <span
-                                                        style="font-size: smaller;" id="total"> {{$order->total+ $order->points_paid}} SR</span>
+                                                        class="inset-right-5 text-gray-light">{{__('general.Total')}}: </b> <span
+                                                        style="font-size: smaller;" id="total"> {{$order->total+ $order->points_paid}} {{__('general.SR')}}</span>
 
                                                 </h6>
                                             </div>
                                             @if(isset($reorder))
                                             <a class="btn btn-primary" href="{{route('re.order',$order->id)}}"
-                                               data-target="#service-modal"> Confirm Order </a>
+                                               data-target="#service-modal"> {{__('general.Confirm Order')}} </a>
                                             @endif
                                         </div>
 

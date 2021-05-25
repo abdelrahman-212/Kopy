@@ -81,12 +81,12 @@
                         </nav>
                     </nav>
                     <div class="first-screen__box">
-                        <h2 class="first-screen__title">Video</h2>
-                        <p class="first-screen__desc">Video Library</p>
+                        <h2 class="first-screen__title">{{__('general.Video')}}</h2>
+                        <p class="first-screen__desc">{{__('general.Video Library')}}</p>
                         <div class="first-screen__breadcrumb">
                             <ul class="uk-breadcrumb">
-                                <li><a href="/">Home</a></li>
-                                <li><span>Video</span></li>
+                                <li><a href="/">{{__('menu.Home')}}</a></li>
+                                <li><span>{{__('general.Video')}}</span></li>
                             </ul>
                         </div>
                     </div>

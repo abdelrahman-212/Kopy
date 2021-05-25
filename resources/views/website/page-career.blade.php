@@ -125,7 +125,7 @@
                             </nav>
                         </nav>
                         <div class="first-screen__box">
-                            <h2 class="first-screen__title">Job Info</h2>
+                            <h2 class="first-screen__title">{{__('general.Job Information')}}</h2>
                             <div class="first-screen__breadcrumb">
                                 {{--                        <ul class="uk-breadcrumb">--}}
                                 {{--                            <li><a href="#">Back To Home</a></li>--}}

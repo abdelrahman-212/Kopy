@@ -154,9 +154,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
                 Route::get('/offers/{oferID}', 'OffersController@offerItems')->name('offer.item');
 
                 // payment
+                Route::get('/payment','PaymentController@index')->name('get.payment');
+
                 Route::post('/payment','PaymentController@index')->name('payment');
                 Route::post('payment/order','PaymentController@get_payment')->name('do.payment');
                 Route::get('/payment/make-order','OrdersController@make_order_payment')->name('make-order.payment');
+                Route::get('/payment/refund/{id}','PaymentController@refund')->name('get.refund');
 
                 /*****************Begin Checkout And Orders Routes ****************/
                 Route::post('get-checkout/', [\App\Http\Controllers\Website\CartController::class, 'get_checkout'])->name('checkout');

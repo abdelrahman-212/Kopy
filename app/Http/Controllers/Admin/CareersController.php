@@ -16,7 +16,7 @@ class CareersController extends Controller
      */
 
 
-        public function index(   )
+        public function index()
     {
 
             $jobs = Careers::all();
@@ -64,10 +64,6 @@ class CareersController extends Controller
             'responsibilities_ar' => 'nullable',
             'responsibilities_en' => 'nullable',
          ];
-
-
-
-
         $attributes = $request->validate($validationRules);
 
         $job = Careers::create([
@@ -179,4 +175,5 @@ class CareersController extends Controller
         ]);
 
     }
+
 }

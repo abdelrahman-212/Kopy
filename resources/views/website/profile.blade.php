@@ -55,7 +55,7 @@
                                         </a>
                                         <a class="osahan-credits d-flex align-items-center p-3 bg-light"
                                            href="{{route('loyalty')}}">
-                                            <p class="m-0">Account Points</p>
+                                            <p class="m-0">{{__('general.Account Points')}}</p>
                                             <h5 class="m-0 ml-auto text-primary">
                                                 @if(isset($points))
                                                     {{$points['user_points']}}
@@ -72,9 +72,8 @@
                                                        href="#account" role="tab" aria-controls="account"
                                                        aria-selected="false">
                                                         <div class="left mr-3">
-                                                            <h6 class="font-weight-bold mb-1 text-dark">Account</h6>
-                                                            <p class="small text-muted m-0">Edit your Account
-                                                                Details</p>
+                                                            <h6 class="font-weight-bold mb-1 text-dark">{{__('general.Account')}}</h6>
+                                                            <p class="small text-muted m-0">{{__('general.Edit your Account Details')}}</p>
                                                         </div>
                                                     </a>
                                                 </li>
@@ -84,9 +83,8 @@
                                                        href="#addresses" role="tab" aria-controls="addresses"
                                                        aria-selected="false">
                                                         <div class="left mr-3">
-                                                            <h6 class="font-weight-bold mb-1 text-dark">Addresses</h6>
-                                                            <p class="small text-muted m-0">Add or remove a delivery
-                                                                address</p>
+                                                            <h6 class="font-weight-bold mb-1 text-dark">{{__('general.Addresses')}}</h6>
+                                                            <p class="small text-muted m-0">{{__('general.Add or remove a delivery address')}}</p>
                                                         </div>
                                                     </a>
                                                 </li>
@@ -95,8 +93,8 @@
                                                     <a class="nav-link" href="{{route('get.orders')}}"
                                                        aria-selected="false">
                                                         <div class="left mr-3">
-                                                            <h6 class="font-weight-bold mb-1 text-dark">My Orders</h6>
-                                                            <p class="small text-muted m-0">Show all Orders</p>
+                                                            <h6 class="font-weight-bold mb-1 text-dark">{{__('general.My Orders')}}</h6>
+                                                            <p class="small text-muted m-0">{{__('general.Show all Orders')}}</p>
                                                         </div>
                                                     </a>
                                                 </li>
@@ -112,7 +110,7 @@
                                         <div class="tab-content" id="myTabContent">
                                             <div class="tab-pane fade show active" id="account" role="tabpanel"
                                                  aria-labelledby="account-tab">
-                                                <h4 class="font-weight-bold mt-0 mb-4">Manage account</h4>
+                                                <h4 class="font-weight-bold mt-0 mb-4">{{__('general.Manage account')}}</h4>
                                                 <div id="edit_profile">
                                                     <div>
                                                         @auth()
@@ -122,8 +120,8 @@
                                                                 enctype="multipart/form-data">
                                                                 @csrf
                                                                 <div class="form-group">
-                                                                    <label for="exampleInputName1">Name <span
-                                                                            class="text-info">Hint:Name should be "first last"</span></label>
+                                                                    <label for="exampleInputName1">{{__('general.Name')}} <span
+                                                                            class="text-info">{{__('general.Hint:Name should be "first last')}}"</span></label>
                                                                     <input type="text" class="form-control"
                                                                            id="exampleInputName1d"
                                                                            placeholder="Name"
@@ -134,8 +132,8 @@
 
 
                                                                 <div class="form-group">
-                                                                    <label for="exampleInputNumber1">Mobile
-                                                                        Number</label>
+                                                                    <label for="exampleInputNumber1">{{__('general.Mobile')}}
+                                                                         </label>
                                                                     <input type="tel" class="form-control"
                                                                            id="exampleInputNumber1"
                                                                            name="phone"
@@ -147,7 +145,7 @@
                                                                 </div>
 
                                                                 <div class="form-group">
-                                                                    <label for="exampleInputEmail1">Email</label>
+                                                                    <label for="exampleInputEmail1">{{__('general.Email')}}</label>
                                                                     <input type="email" class="form-control"
                                                                            id="exampleInputEmail1"
                                                                            name="email"
@@ -159,8 +157,7 @@
                                                                     <button type="submit" class="uk-button btn-block"
                                                                             disabled>
 
-                                                                        Save
-                                                                        Changes
+                                                                       {{__('general.Save Changes')}}
                                                                     </button>
                                                                 </div>
                                                             </form>
@@ -170,7 +167,7 @@
                                             </div>
                                             <div class="tab-pane fade" id="addresses" role="tabpanel"
                                                  aria-labelledby="addresses-tab">
-                                                <h4 class="font-weight-bold mt-0 mb-4">Manage Addresses</h4>
+                                                <h4 class="font-weight-bold mt-0 mb-4">{{__('general.Manage Addresses')}}</h4>
 
                                                 <div class="row">
                                                     @if(isset($addresses))
@@ -198,9 +195,9 @@
                                                                                     {{(app()->getLocale() == 'ar') ?$address->city->name_ar:$address->name_en}}
                                                                                     , {{(app()->getLocale() == 'ar') ?$address->area->name_ar:$address->area->name_en}}
                                                                                     , {{$address-> street}}
-                                                                                    , {{$address-> building_number}}
-                                                                                    ,{{ $address-> floor_number}}
-                                                                                    ,{{$address-> landmark}}
+                                                                                    ,{{__('general.BuildNo')}}: {{$address-> building_number}}
+                                                                                    ,{{__('general.FloorNo')}}:{{ $address-> floor_number}}
+                                                                                    ,{{__('general.Landmark')}}:{{$address-> landmark}}
                                                                                 </p>
                                                                                 <p class="mb-0 text-black font-weight-bold">
                                                                                     <a
@@ -209,12 +206,12 @@
                                                                                         data-target="#edit-address-modal{{$address->id}}"
                                                                                         href="#"><i
                                                                                             class="icofont-ui-edit  "></i>
-                                                                                        EDIT</a> <a class="text-danger"
+                                                                                        {{__('general.EDIT')}}</a> <a class="text-danger"
                                                                                                     data-toggle="modal"
                                                                                                     data-target="#delete-address-modal{{$address->id}}"
                                                                                                     href="{{route('delete_address',$address->id)}}"><i
                                                                                             class="icofont-ui-delete"></i>
-                                                                                        DELETE</a></p>
+                                                                                        {{__('general.DELETE')}}</a></p>
                                                                             </div>
 
                                                                             <div class="modal fade"
@@ -228,8 +225,7 @@
                                                                                     <div class="modal-content">
                                                                                         <div class="modal-header">
                                                                                             <h5 class="modal-title"
-                                                                                                id="add-address">Edit
-                                                                                                Delivery Address</h5>
+                                                                                                id="add-address"> {{__('general.Edit Delivery Address')}}</h5>
                                                                                             <button type="button"
                                                                                                     class="close"
                                                                                                     data-dismiss="modal"
@@ -247,14 +243,13 @@
                                                                                                     <div
                                                                                                         class="form-group col-md-12">
                                                                                                         <label
-                                                                                                            for="inputPassword4">Delivery
-                                                                                                            Area</label>
+                                                                                                            for="inputPassword4">{{__('general.Delivery Area')}}</label>
                                                                                                         <div
                                                                                                             class="input-group">
                                                                                                             <input
                                                                                                                 type="text"
                                                                                                                 class="form-control"
-                                                                                                                placeholder="Address Name"
+                                                                                                                placeholder="{{__('general.Address Name')}}"
                                                                                                                 name="name"
                                                                                                                 value="{{$address->name}}"
                                                                                                                 required>
@@ -273,7 +268,7 @@
                                                                                                         class="form-group col-md-12 wrapCity">
                                                                                                         <label
                                                                                                             for="inputPassword4">
-                                                                                                            City </label>
+                                                                                                            {{__('general.City')}} </label>
                                                                                                         <div
                                                                                                             class="input-group">
                                                                                                             <select
@@ -305,7 +300,7 @@
                                                                                                         class="form-group col-md-12 wrapArea">
                                                                                                         <label
                                                                                                             for="inputPassword4">
-                                                                                                            Area </label>
+                                                                                                            {{__('general.Area')}} </label>
                                                                                                         <div
                                                                                                             class="input-group">
                                                                                                             <select
@@ -337,14 +332,14 @@
                                                                                                     <div
                                                                                                         class="form-group col-md-12">
                                                                                                         <label
-                                                                                                            for="inputPassword5">Street
+                                                                                                            for="inputPassword5">{{__('general.Street')}}
                                                                                                         </label>
                                                                                                         <div
                                                                                                             class="input-group">
                                                                                                             <input
                                                                                                                 type="text"
                                                                                                                 class="form-control"
-                                                                                                                placeholder="Delivery Area"
+                                                                                                                placeholder="{{__('general.Delivery Area')}}"
                                                                                                                 name="street"
                                                                                                                 value="{{$address->street}}">
                                                                                                             <div
@@ -356,14 +351,14 @@
                                                                                                         class="form-group col-md-12">
                                                                                                         <label
                                                                                                             for="inputPassword5">
-                                                                                                            Building No.
+                                                                                                            {{__('general.BuildNo')}}
                                                                                                         </label>
                                                                                                         <div
                                                                                                             class="input-group">
                                                                                                             <input
                                                                                                                 type="text"
                                                                                                                 class="form-control"
-                                                                                                                placeholder="Building No.  "
+                                                                                                                placeholder="{{__('general.BuildNo')}} "
                                                                                                                 name="building_number"
                                                                                                                 value="{{$address->building_number}}">
                                                                                                             <div
@@ -376,14 +371,14 @@
                                                                                                         class="form-group col-md-12">
                                                                                                         <label
                                                                                                             for="inputPassword5">
-                                                                                                            Floor No.
+                                                                                                            {{__('general.FloorNo')}}
                                                                                                         </label>
                                                                                                         <div
                                                                                                             class="input-group">
                                                                                                             <input
                                                                                                                 type="text"
                                                                                                                 class="form-control"
-                                                                                                                placeholder="Floor No."
+                                                                                                                placeholder="{{__('general.FloorNo')}}"
                                                                                                                 name="building_number"
                                                                                                                 value="{{$address->floor_number}}">
                                                                                                             <div
@@ -396,14 +391,14 @@
                                                                                                         class="form-group col-md-12">
                                                                                                         <label
                                                                                                             for="inputPassword6">
-                                                                                                            Landing Mark
+                                                                                                            {{__('general.Landmark')}}
                                                                                                         </label>
                                                                                                         <div
                                                                                                             class="input-group">
                                                                                                             <input
                                                                                                                 type="text"
                                                                                                                 class="form-control"
-                                                                                                                placeholder="Landing Mark"
+                                                                                                                placeholder="{{__('general.Landmark')}}"
                                                                                                                 name="building_number"
                                                                                                                 value="{{$address->landmark}}">
                                                                                                             <div
@@ -422,13 +417,13 @@
                                                                                                         class="btn text-center btn-outline-primary"
                                                                                                         data-dismiss="modal"
                                                                                                         style="width: 48%!important;">
-                                                                                                        CANCEL
-                                                                                                    </button>
+                                                                                                        {{__('general.Cancel')}}
+                                                                                                     </button>
                                                                                                     <button
                                                                                                         type="submit"
                                                                                                         class="btn text-center btn-outline-primary"
                                                                                                         style="width: 48%!important;">
-                                                                                                        SUBMIT
+                                                                                                        {{__('general.SUBMIT')}}
                                                                                                     </button>
                                                                                                 </div>
                                                                                             </form>
@@ -452,7 +447,7 @@
                                                                                         <div class="modal-header">
                                                                                             <h5 class="modal-title"
                                                                                                 id="delete-address">
-                                                                                                Delete</h5>
+                                                                                                {{__('general.DELETE')}}</h5>
                                                                                             <button type="button"
                                                                                                     class="close"
                                                                                                     data-dismiss="modal"
@@ -463,24 +458,19 @@
                                                                                         </div>
                                                                                         <div class="modal-body">
                                                                                             <p class="mb-0 text-black">
-                                                                                                Are
-                                                                                                you sure you want to
-                                                                                                delete
-                                                                                                this
-                                                                                                Address?</p>
+                                                                                               {{__('general.Are you sure you want to delete this Address')}}?</p>
                                                                                         </div>
                                                                                         <div class="modal-footer"
                                                                                              style="justify-content:center ">
-
                                                                                             <button type="button"
                                                                                                     class="btn d-flex w-50 text-center justify-content-center btn-outline-primary"
                                                                                                     data-dismiss="modal">
-                                                                                                CANCEL
+                                                                                                 {{__('general.Cancel')}}
                                                                                             </button>
                                                                                             <a href="{{route('delete_address',$address->id)}}">
                                                                                                 <button type="button"
                                                                                                         class="btn d-flex w-100 text-center justify-content-center btn-primary">
-                                                                                                    DELETE
+                                                                                                    {{__('general.DELETE')}}
                                                                                                 </button>
                                                                                             </a>
 
@@ -530,8 +520,7 @@
                                                                                 <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title"
-                                                                                            id="add-address">Add
-                                                                                            Delivery Address</h5>
+                                                                                            id="add-address">{{__('general.Add Delivery Address')}}</h5>
                                                                                         <button type="button"
                                                                                                 class="close"
                                                                                                 data-dismiss="modal"
@@ -550,14 +539,13 @@
                                                                                                 <div
                                                                                                     class="form-group col-md-12">
                                                                                                     <label
-                                                                                                        for="inputPassword4">Delivery
-                                                                                                        Area</label>
+                                                                                                        for="inputPassword4">{{__('general.Delivery Area')}}</label>
                                                                                                     <div
                                                                                                         class="input-group">
                                                                                                         <input
                                                                                                             type="text"
                                                                                                             class="form-control"
-                                                                                                            placeholder="Address Name"
+                                                                                                            placeholder="{{__('general.Address Name')}}"
                                                                                                             name="name"
                                                                                                             value=""
                                                                                                             required>
@@ -576,7 +564,7 @@
                                                                                                     class="form-group col-md-12 wrapCity">
                                                                                                     <label
                                                                                                         for="inputPassword4">
-                                                                                                        City </label>
+                                                                                                        {{__('general.City')}} </label>
                                                                                                     <div
                                                                                                         class="input-group">
                                                                                                         <select
@@ -587,8 +575,7 @@
                                                                                                         >
                                                                                                             <option
                                                                                                                 value="">
-                                                                                                                Select
-                                                                                                                City
+                                                                                                                {{__('general.Select City')}}
                                                                                                             </option>
 
 
@@ -610,7 +597,7 @@
                                                                                                     class="form-group col-md-12 wrapArea">
                                                                                                     <label
                                                                                                         for="inputPassword4">
-                                                                                                        Area </label>
+                                                                                                        {{__('general.Area')}} </label>
                                                                                                     <div
                                                                                                         class="input-group">
                                                                                                         <select
@@ -642,14 +629,14 @@
                                                                                                 <div
                                                                                                     class="form-group col-md-12">
                                                                                                     <label
-                                                                                                        for="inputPassword5">Street
+                                                                                                        for="inputPassword5">{{__('general.Street')}}
                                                                                                     </label>
                                                                                                     <div
                                                                                                         class="input-group">
                                                                                                         <input
                                                                                                             type="text"
                                                                                                             class="form-control"
-                                                                                                            placeholder="Delivery Area"
+                                                                                                            placeholder="{{__('general.Delivery Area')}}"
                                                                                                             name="street"
                                                                                                             value="">
                                                                                                         <div
@@ -661,14 +648,14 @@
                                                                                                     class="form-group col-md-12">
                                                                                                     <label
                                                                                                         for="inputPassword5">
-                                                                                                        Building No.
+                                                                                                        {{__('general.BuildNo')}}
                                                                                                     </label>
                                                                                                     <div
                                                                                                         class="input-group">
                                                                                                         <input
                                                                                                             type="text"
                                                                                                             class="form-control"
-                                                                                                            placeholder="Building No.  "
+                                                                                                            placeholder="{{__('general.BuildNo')}} "
                                                                                                             name="building_number"
                                                                                                             value="">
                                                                                                         <div
@@ -681,14 +668,14 @@
                                                                                                     class="form-group col-md-12">
                                                                                                     <label
                                                                                                         for="inputPassword5">
-                                                                                                        Floor No.
+                                                                                                        {{__('general.FloorNo')}}
                                                                                                     </label>
                                                                                                     <div
                                                                                                         class="input-group">
                                                                                                         <input
                                                                                                             type="text"
                                                                                                             class="form-control"
-                                                                                                            placeholder="Floor No."
+                                                                                                            placeholder="{{__('general.FloorNo')}}"
                                                                                                             name="building_number"
                                                                                                             value="">
                                                                                                         <div
@@ -701,14 +688,14 @@
                                                                                                     class="form-group col-md-12">
                                                                                                     <label
                                                                                                         for="inputPassword6">
-                                                                                                        Landing Mark
+                                                                                                        {{__('general.Landmark')}}
                                                                                                     </label>
                                                                                                     <div
                                                                                                         class="input-group">
                                                                                                         <input
                                                                                                             type="text"
                                                                                                             class="form-control"
-                                                                                                            placeholder="Landing Mark"
+                                                                                                            placeholder="{{__('general.Landmark')}}"
                                                                                                             name="building_number"
                                                                                                             value="">
                                                                                                         <div
@@ -726,12 +713,12 @@
                                                                                                         class="btn text-center btn-outline-primary"
                                                                                                         data-dismiss="modal"
                                                                                                         style="width: 48%!important;">
-                                                                                                    CANCEL
+                                                                                                    {{__('general.Cancel')}}
                                                                                                 </button>
                                                                                                 <button type="submit"
                                                                                                         class="btn text-center btn-outline-primary"
                                                                                                         style="width: 48%!important;">
-                                                                                                    SUBMIT
+                                                                                                    {{__('general.SUBMIT')}}
                                                                                                 </button>
                                                                                             </div>
                                                                                         </form>
@@ -812,7 +799,7 @@
                         success: function (data) {
                             if (data) {
                                 selectele.parent().parent().next().first().find('.area').html('');
-                                selectele.parent().parent().next().first().find('.area').append('<option selected value="">Choose Area</option>');
+                                selectele.parent().parent().next().first().find('.area').append('<option selected value="">{{__('general.Choose Area')}}</option>');
                                 $.each(data, function (index, area) {
                                     selectele.parent().parent().next().first().find('.area').append('<option value="' + area.id + '">' + area.name_ar + '</option>');
                                 });

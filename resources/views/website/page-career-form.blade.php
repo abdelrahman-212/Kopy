@@ -117,7 +117,7 @@
                             </nav>
                         </nav>
                         <div class="first-screen__box">
-                            <h2 class="first-screen__title"> Apply Career</h2>
+                            <h2 class="first-screen__title"> {{__('general.Apply Career')}}</h2>
                             <div class="first-screen__breadcrumb">
                                 {{--                        <ul class="uk-breadcrumb">--}}
                                 {{--                            <li><a href="#">Back To Home</a></li>--}}
@@ -129,46 +129,79 @@
             </div>
             <div class="page-content">
                 <div class="uk-section uk-container uk-container-small">
-
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
                     @if(isset($job))
 
                         <div class="container clearfix">
                             <section>
+                                @if(session()->has('error'))
+                                    <div class="row mr-2 ml-2" >
+                                        <button type="text" class="btn btn-lg btn-block btn-outline-danger mb-2"
+                                                id="type-error">{{Session::get('error')}}
+                                        </button>
+                                    </div>
+                                @endif
+
                                 <form method="POST" action="{{route('career.request' , $job->id)}}"
                                       enctype="multipart/form-data">
                                     @csrf
                                      <div class="row">
                                         <div class="col-md-12 d-flex p-3">
                                             <div class="col-md-2">
-                                                <span>Name</span>
+                                                <span>{{__('general.Name')}}</span>
                                             </div>
                                             <div class="col-md-10">
-                                                <input name="name" class="form-control" type="text">
+                                                <input name="name"  class="form-control"  type="text"
+                                                       @if(isset($errorarray['name'])) class="mb-0" @endif
+                                                />
+                                                @if(isset($errorarray['name']))
+                                                    <p style="color: red" class="mt-0">{{$errorarray['name']}}</p>
+                                                @endif
                                             </div>
+
                                         </div>
                                         <div class="col-md-12 d-flex p-3">
                                             <div class="col-md-2">
-                                                <span>Email</span>
+                                                <span>{{__('general.Email')}}</span>
                                             </div>
                                             <div class="col-md-10 ">
-                                                <input name="email" class="form-control" type="email">
+                                                <input name="email" required class="form-control" type="email"
+                                                       @if(isset($errorarray['email'])) class="mb-0" @endif
+                                                />
+                                                @if(isset($errorarray['email']))
+                                                    <p style="color: red" class="mt-0">{{$errorarray['email']}}</p>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="col-md-12 d-flex p-3">
                                             <div class="col-md-2">
-                                                <span>Mobile</span>
+                                                <span>{{__('general.Mobile')}}</span>
                                             </div>
                                             <div class="col-md-10">
-                                                <input name="phone" class="form-control" type="tel">
+                                                <input name="phone" required class="form-control" type="tel"
+                                                       @if(isset($errorarray['phone'])) class="mb-0" @endif
+                                                />
+                                                @if(isset($errorarray['phone']))
+                                                    <p style="color: red" class="mt-0">{{$errorarray['phone']}}</p>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="col-md-12 d-flex p-3">
                                             <div class="col-md-2">
-                                                <span>Details</span>
+                                                <span>{{__('general.Details')}}</span>
                                             </div>
                                             <div class="col-md-10">
                                                 <textarea name="description" class="form-control" rows="2"
-                                                          cols="20"> @if(session()->has('error')) {{session()->get('error')->name}}  @endif </textarea>
+                                                          cols="20"></textarea
+                                                @if(isset($errorarray['description'])) class="mb-0" @endif
+                                                />
+                                                @if(isset($errorarray['description']))
+                                                    <p style="color: red" class="mt-0">{{$errorarray['description']}}</p>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="col-md-12 d-flex p-3">
@@ -176,11 +209,16 @@
                                                 <span>C.V</span>
                                             </div>
                                             <div class="col-md-10">
-                                                <input name="cv_file" class="form-group" type="file">
+                                                <input name="cv_file" required class="form-group" type="file"
+                                                       @if(isset($errorarray['cv_file'])) class="mb-0" @endif
+                                                />
+                                                @if(isset($errorarray['cv_file']))
+                                                    <p style="color: red" class="mt-0">{{$errorarray['cv_file']}}</p>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="col-md-8 offset-2" style="padding-left: 25px;">
-                                            <button type="submit" class="btn btn-primary ">Apply</button>
+                                            <button type="submit" class="btn btn-primary ">{{__('general.Apply')}}</button>
                                         </div>
                                     </div>
 

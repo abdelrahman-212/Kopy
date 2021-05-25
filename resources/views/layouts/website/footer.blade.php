@@ -23,13 +23,13 @@
     <div class="page-footer__middle">
         <div class="uk-container">
             <ul class="uk-navbar-nav">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Our Menu</a></li>
-                <li><a href="#">Offers</a></li>
-                <li><a href="#">404</a></li>
-                <li><a href="#">Wishlist</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#">{{__('footer.Home')}}</a></li>
+                <li><a href="#">{{__('footer.Our Menu')}}</a></li>
+                <li><a href="#">{{__('footer.Offers')}}</a></li>
+{{--                <li><a href="#">404</a></li>--}}
+                <li><a href="#">{{__('footer.Wishlist')}}</a></li>
+                <li><a href="#">{{__('footer.News')}}</a></li>
+                <li><a href="#">{{__('footer.Contact')}}</a></li>
             </ul>
         </div>
     </div>

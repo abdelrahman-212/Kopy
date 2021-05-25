@@ -7,29 +7,29 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
 
-    @if (count($errors) > 0)
-    <div class = "alert alert-danger">
+@if (count($errors) > 0)
+     <div class = "alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
+                <li>{{ $error }}</li>
             @endforeach
         </ul>
     </div>
-    @endif
+@endif
 
-    <div class="wrapper">
+<div class="wrapper">
 
-        @include('layouts.admin.header')
+    @include('layouts.admin.header')
 
-        @include('layouts.admin.sidebar')
+    @include('layouts.admin.sidebar')
 
-        <div id="app">
-            @yield('content')
-        </div>
-
+    <div id="app">
+        @yield('content')
     </div>
 
-    @include('layouts.admin.scripts')
+</div>
+
+@include('layouts.admin.scripts')
 </body>
 
 </html>

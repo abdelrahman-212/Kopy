@@ -20,7 +20,7 @@
                 <div class="uk-container">
                     <div>
                         <div class="py-2">
-                            <h2 class="mb-3 mt-0">Offers</h2>
+                            <h2 class="mb-3 mt-0">{{__('general.Offers')}}</h2>
                             <div class="row">
                                 @if(isset($offers))
                                     @foreach($offers as $offer)
@@ -35,8 +35,8 @@
                                                           class="card-subtitle mb-3 text-muted">
                                                            {{(app()->getLocale() == 'ar') ?$offer->description_ar:$offer->description}}
                                                        </p>
-                                                       <h6 class="float-left card-subtitle mt-2 mb-3">Offer: {{$offer->offer_type}}</h6>
-                                                       <a href="{{route('offer.item',$offer->id)}}" class="float-right" style="color: red;font-weight: bold">Get Offer >></a>
+                                                       <h6 class="float-left card-subtitle mt-2 mb-3">{{__('general.Offer')}}: {{$offer->offer_type}}</h6>
+                                                       <a href="{{route('offer.item',$offer->id)}}" class="float-right" style="color: red;font-weight: bold">{{__('general.Get Offer')}} >></a>
                                                    </div>
                                                 </div>
                                             </div>

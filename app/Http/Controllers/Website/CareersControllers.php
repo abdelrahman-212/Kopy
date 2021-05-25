@@ -58,17 +58,47 @@ class CareersControllers extends Controller
     {
         $return = (app(FrontController::class)->jobRequest($request, $id))->getOriginalContent();
         $temp = '';
+
         foreach ($return as $in => $re) {
+
             if ($in == 'success') {
                 $temp = $re;
             }
+            if (!$temp) {
+                session()->put('error', $return['message']);
+                return redirect()->back();
+            }
+
             if ($in == 'data') {
                 if ($temp == true) {
-               return     $job = $re;
                     return redirect()->route('careers.all')->with(['success' => 'your application been submitted']);
+
                 } else {
-                    return   $error = $re;
-                     return redirect()->route('apply.form',$id)->with(['error' => $error]);
+                    $error = $re;
+                     $errorarray = [];
+                    if ($error->first('name')) {
+                        $errorarray['name'] = $error->first('name');
+
+                    }
+                    if ($error->first('email')) {
+                        $errorarray['email'] = $error->first('email');
+
+                    }
+                    if ($error->first('phone')) {
+                        $errorarray['phone'] = $error->first('phone');
+
+                    }
+                    if ($error->first('description')) {
+                        $errorarray['description'] = $error->first('description');
+
+                    }
+                    if ($error->first('cv_file')) {
+                        $errorarray['cv_file'] = $error->first('cv_file');
+
+                    }
+                    $job = Careers::find($id);
+                    return view('website.page-career-form', compact(['errorarray', 'job']));
+
 
                 }
             }

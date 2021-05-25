@@ -98,8 +98,8 @@
                         </nav>
                     </nav>
                     <div class="first-screen__box">
-                        <h2 class="first-screen__title">Order Today, While It’s Hot!</h2>
-                        <p class="first-screen__desc">Eat Delicious & Tasty Fast-Foods With Real Flavours</p><a class="uk-button" href="page-catalog-sidebar.html">View Our Menu</a>
+                        <h2 class="first-screen__title">{{__('home.Order Today, While It’s Hot!')}}</h2>
+                        <p class="first-screen__desc">{{__('home.Eat Delicious & Tasty Fast-Foods With Real Flavours')}}</p><a class="uk-button" href="page-catalog-sidebar.html">{{__('home.View Our Menu')}}</a>
                     </div>
                 </div>
             </div>
@@ -114,7 +114,7 @@
                         </div>
                         <div class="section-content">
                             <p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 7;-webkit-box-orient: vertical;">{{(app()->getLocale() == 'ar')? $menu['aboutus']->description_ar : $menu['aboutus']->description_en}}</p>
-                            <div class="uk-margin-medium-top"><a class="uk-button" href="{{route('aboutUS.page')}}"><span>Read More</span><img class="uk-margin-small-left" src="{{asset('website-assets/img/icons/ice-cream.svg')}}" alt=""></a></div>
+                            <div class="uk-margin-medium-top"><a class="uk-button" href="{{route('aboutUS.page')}}"><span>{{__('home.Read More')}}</span><img class="uk-margin-small-left" src="{{asset('website-assets/img/icons/ice-cream.svg')}}" alt=""></a></div>
                         </div>
                     </div>
                 </div>
@@ -126,21 +126,21 @@
                     <div>
                         <div class="feature-item">
                             <div class="feature-item__icon"><img src="{{asset('website-assets/img/icons/feature-1.svg')}}" alt="feature"></div>
-                            <div class="feature-item__title">Fresh Ingredients</div>
+                            <div class="feature-item__title">{{__('home.Fresh Ingredients')}}</div>
                             <div class="feature-item__desc">Magna aliqua enim minim veniam quisya nost exercitation ullamco sed laboris nisy.</div>
                         </div>
                     </div>
                     <div>
                         <div class="feature-item">
                             <div class="feature-item__icon"><img src="{{asset('website-assets/img/icons/feature-2.svg')}}" alt="feature"></div>
-                            <div class="feature-item__title">The Certified Chefs</div>
+                            <div class="feature-item__title">{{__('home.The Certified Chefs')}}</div>
                             <div class="feature-item__desc">Magna aliqua enim minim veniam quisya nost exercitation ullamco sed laboris nisy.</div>
                         </div>
                     </div>
                     <div>
                         <div class="feature-item">
                             <div class="feature-item__icon"><img src="{{asset('website-assets/img/icons/feature-3.svg')}}" alt="feature"></div>
-                            <div class="feature-item__title">30 Mins Delivery</div>
+                            <div class="feature-item__title">{{__('home.30 Mins Delivery')}}</div>
                             <div class="feature-item__desc">Magna aliqua enim minim veniam quisya nost exercitation ullamco sed laboris nisy.</div>
                         </div>
                     </div>
@@ -150,7 +150,7 @@
         <div class="section-special-deals">
             <div class="uk-section uk-container">
                 <div class="section-title section-title--center wave french-fries">
-                    <h3 class="uk-h3">Our Special Deals</h3>
+                    <h3 class="uk-h3">{{__('home.Our Special Deals')}}</h3>
                 </div>
                 <div class="section-content" data-uk-filter="target: .js-filter">
 
@@ -201,7 +201,7 @@
                                                                         </div>
                                                                         <div class="product-item__title uk-text-truncate"><a href="#">{{(app()->getLocale() == 'ar')? $item->name_ar : $item->name_en}}</a></div>
                                                                         <div class="product-item__desc">{{(app()->getLocale() == 'ar')? $item->description_ar : $item->description_en}}</div>
-                                                                        <div class="product-item__price">Calories: {{$item->calories}}</div>
+                                                                        <div class="product-item__price">{{__('home.Calories')}}: {{$item->calories}}</div>
 
                                                                         <div class="product-item__select">
                                                                             <div class="select-box select-box--thickness">
@@ -218,10 +218,10 @@
 
                                                                 <div class="product-item__info">
                                                                     <div class="product-item__price">
-                                                                        <span>Price: </span><span class="value" @if($item['offer']) style="text-decoration: line-through;font-size: 20px;" @endif > {{$item->price}} </span>
+                                                                        <span>{{__('home.Price')}}: </span><span class="value" @if($item['offer']) style="text-decoration: line-through;font-size: 20px;" @endif > {{$item->price}} </span>
                                                                         @if($item['offer']) <span style="font-size: 26px;color:#6dc405;text-decoration: none"> {{$item['offer']['offer_price']}} </span> @endif
                                                                     </div>
-                                                                    <div class="product-item__addcart"> <a data-toggle="modal" data-target="#service-modal" class="uk-button uk-button-default cart" href="{{route('item.page',[$category->id,$item->id])}}">Add to Cart<span data-uk-icon="cart"></span></a></div>
+                                                                    <div class="product-item__addcart"> <a data-toggle="modal" data-target="#service-modal" class="uk-button uk-button-default cart" href="{{route('item.page',[$category->id,$item->id])}}">{{__('home.Add to Cart')}}<span data-uk-icon="cart"></span></a></div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -248,8 +248,8 @@
         <div class="section-steps">
             <div class="uk-section">
                 <div class="uk-container">
-                    <div class="section-title"> <span>Order Your Own Tasty Food</span>
-                        <h3 class="uk-h3">It Takes 2 Minutes To Make Your<br> Own Tasty Pizza And Order From Us</h3>
+                    <div class="section-title"> <span>{{__('home.Order Your Own Tasty Food')}}</span>
+                        <h3 class="uk-h3">{{__('home.It Takes 2 Minutes To Make Your')}}<br>{{__('home.Own Tasty Pizza And Order From Us')}}</h3>
                     </div>
                 </div>
                 <div class="uk-container-expand">
@@ -469,7 +469,7 @@
                                 <div class="banner-card">
                                     <div class="banner-card__bg" style="background-image: url({{asset('website-assets/img/banners/2.jpg')}})"></div>
                                     <div class="banner-card__box"> <a class="banner-card__category" href="#!">INTRODUCING</a>
-                                        <h4 class="banner-card__title">We Made Truly<br> Crayved Chickens</h4><a class="banner-card__btn" href="page-blog.html">Read More</a>
+                                        <h4 class="banner-card__title">We Made Truly<br> Crayved Chickens</h4><a class="banner-card__btn" href="page-blog.html">{{__('home.Read More')}}</a>
                                     </div>
                                 </div>
                             </div>

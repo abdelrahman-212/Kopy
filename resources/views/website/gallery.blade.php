@@ -101,12 +101,12 @@
                         </nav>
                     </nav>
                     <div class="first-screen__box">
-                        <h2 class="first-screen__title">Gallery</h2>
-                        <p class="first-screen__desc">Pictures of pastries kingdom products</p>
+                        <h2 class="first-screen__title">{{__('general.Gallery')}}</h2>
+                        <p class="first-screen__desc">{{__('general.Pictures of pastries kingdom products')}}</p>
                         <div class="first-screen__breadcrumb">
                             <ul class="uk-breadcrumb">
-                                <li><a href="/">Home</a></li>
-                                <li><span>Gallery</span></li>
+                                <li><a href="/">{{__('menu.Home')}}</a></li>
+                                <li><span>{{__('general.Gallery')}}</span></li>
                             </ul>
                         </div>
                     </div>
