@@ -54,7 +54,7 @@ class UserController extends Controller
             'branches' => 'required|array',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:4',
-            'image' => 'nullable|image|max:5000',
+            'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
 
@@ -80,7 +80,7 @@ class UserController extends Controller
             'active' => 1
         ]);
 
-        
+
         if ($request->hasFile('image'))
         {
             $image = $request->image;
@@ -89,7 +89,7 @@ class UserController extends Controller
             $user->image = '/users/' . $image_new_name;
             $user->save();
         }
-        
+
 
         $user->attachRoles($request->roles);
         $user->branches()->sync($request->branches);
@@ -143,8 +143,9 @@ class UserController extends Controller
             'first_phone' => 'nullable',
             'age' => 'nullable',
             'second_phone' => 'nullable',
-            'image' => 'nullable|image|max:5000'
-        ]);
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+         ]);
 
         if ($request->hasFile('image'))
         {
@@ -154,7 +155,7 @@ class UserController extends Controller
             $user->image = '/users/' . $image_new_name;
             $user->save();
         }
-        
+
 
         //dd($request->all(), $attributes);
         $user->update($attributes);

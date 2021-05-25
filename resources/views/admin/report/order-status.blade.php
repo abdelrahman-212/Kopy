@@ -18,7 +18,7 @@
               <div class="col-md-3">
               <div class="form-group">
                 <label>Status</label>
-                
+
                 <select name="state" class="form-control">
                   <option value="">All</option>
                   <option value="pending" @if(request('state') == 'pending') selected @endif>Pending</option>
@@ -72,7 +72,7 @@
               @foreach($orders as $order)
                 <tr>
                   <td>{{$order->id}}</td>
-                  <td>{{$order->updated_at->format('d-m-Y g:i A')}}</td>
+                  <td>{{$order->updated_at}}</td>
                   <td>{{$order->customer->name}}</td>
                   <td>{{$order->total}} SR</td>
                   <td>{{$order->state}}</td>

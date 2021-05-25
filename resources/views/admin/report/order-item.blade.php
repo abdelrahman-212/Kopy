@@ -22,7 +22,7 @@
                         <option value="all" >All</option>
                         @foreach($branches as $branch)
                         <option value="{{ $branch->id }}" @if(request('branch') == $branch->id) selected @endif>
-                            {{ $branch->name_ar }}
+                            {{ $branch->name_en }}
                         </option>
                         @endforeach
                     </select>
@@ -73,7 +73,7 @@
               @foreach($order->items as $item)
                 <tr>
                     <td>{{$order->id}}</td>
-                    <td>{{$order->created_at->format('Y-m-d H:i:')}}</td>
+                    <td>{{$order->created_at}}</td>
                     <td>{{$order->branch->name_ar}}</td>
                     <td>{{$item->name_ar}}</td>
                     <td>{{$item->pivot->quantity}}</td>

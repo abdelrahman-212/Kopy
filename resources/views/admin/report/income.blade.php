@@ -22,7 +22,7 @@
                         <option value="all" >All</option>
                         @foreach($branches as $branch)
                         <option value="{{ $branch->id }}" @if(request('branch') == $branch->id) selected @endif>
-                            {{ $branch->name_ar }}
+                            {{ $branch->name_en }}
                         </option>
                         @endforeach
                     </select>

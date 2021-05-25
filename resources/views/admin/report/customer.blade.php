@@ -30,7 +30,7 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label>To</label>
-                <input type="date" class="form-control" name="to" value="{{ request('from') }}">
+                <input type="date" class="form-control" name="to" value="{{ request('to') }}">
               </div>
             </div>
             <div class="col-md-1">

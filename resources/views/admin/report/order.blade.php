@@ -60,7 +60,7 @@
             @foreach($orders as $order)
               <tr>
                   <td>{{$order->id}}</td>
-                  <td>{{$order->created_at->format('Y-m-d H:i:')}}</td>
+                  <td>{{$order->created_at}}</td>
                   <td>{{$order->customer->name}}</td>
                   <td>{{$order->subtotal}}</td>
                   <td>{{$order->taxes}}</td>

@@ -31,10 +31,10 @@ class ReportController extends Controller
     public function getOrder(Request $request, OrderFilters $filters)
     {
         $orders = Order::filter($filters)->get();
-        return view('admin.report.order' , compact('orders'));
+         return view('admin.report.order' , compact('orders'));
     }
 
-    public function getOrderItems(Request $request, IncomeFilters $filters)
+    public function getOrderItems(Request $request, ItemFilters $filters)
     {
         $orders = Order::filter($filters)->where('state', 'completed')->get();
         $branches = Branch::all();
@@ -42,7 +42,7 @@ class ReportController extends Controller
         return view('admin.report.order-item' , compact('orders', 'branches'));
     }
 
-    public function getIncome(Request $request, ItemFilters $filters)
+    public function getIncome(Request $request, IncomeFilters $filters)
     {
         $orders = Order::filter($filters)->where('state', 'completed')->get();
         $branches = Branch::all();
@@ -80,5 +80,5 @@ class ReportController extends Controller
         return view('admin.report.order-customer' , compact('orders', 'customers'));
     }
 
-  
+
 }

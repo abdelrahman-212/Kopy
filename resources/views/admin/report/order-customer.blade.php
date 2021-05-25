@@ -72,7 +72,7 @@
                 <tr>
                   <td>{{$order->customer->name}}</td>
                   <td>{{$order->id}}</td>
-                  <td>{{$order->created_at->format('d-m-Y g:i A')}}</td>
+                  <td>{{$order->created_at}}</td>
                   <td>{{$order->total}}</td>
                   <td>{{$order->state}}</td>
                 </tr>

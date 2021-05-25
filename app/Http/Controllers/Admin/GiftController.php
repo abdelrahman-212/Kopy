@@ -55,7 +55,7 @@ class GiftController extends Controller
             'name'   => $request->name,
             'name_en' => $request->name_en,
             'points' => $request->points,
-            'image'  => ''
+            'image' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
 
@@ -120,9 +120,8 @@ class GiftController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-
             $gift->update([
-                'image' => ''
+                'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
 

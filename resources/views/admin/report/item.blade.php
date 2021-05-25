@@ -21,7 +21,7 @@
                     <select class="form-control" name="category">
                       <option value="null">All</option>
                       @foreach($categories as $category)
-                        <option value="{{ $category->id }}" @if(request('category') == $category->id) selected @endif >{{$category->name_ar}}</option>
+                        <option value="{{ $category->id }}" @if(request('category') == $category->id) selected @endif >{{$category->name_en}}</option>
                       @endforeach
                     </select>
                 </div>

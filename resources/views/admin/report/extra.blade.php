@@ -22,10 +22,9 @@
                     <option value="0">All</option>
                       @foreach($categories as $category)
                         <option value="{{ $category->id }}" @if(request('category_id') == $category->id) selected @endif>
-                          {{$category->name_ar}}
+                          {{$category->name_en}}
                         </option>
                       @endforeach
-                    </select>
                   </select>
               </div>
             </div>

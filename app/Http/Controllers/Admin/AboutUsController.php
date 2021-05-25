@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\AboutUs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class AboutUsController extends Controller
 {
@@ -33,11 +34,16 @@ class AboutUsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
+        $validator_rules = ['title_ar' => 'required',
+            'title_en' => 'required',
+            'description_ar' => 'required',
+            'description_en' => 'required'];
+        $validator = $request->validate($validator_rules);
         AboutUs::create($request->all());
         return redirect()->route('admin.aboutUS.index');
     }
@@ -45,7 +51,7 @@ class AboutUsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -57,24 +63,30 @@ class AboutUsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $about = AboutUs::findOrFail($id);
+
         return view('admin.aboutUS.edit', compact('about'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
+        $validator_rules = ['title_ar' => 'required',
+            'title_en' => 'required',
+            'description_ar' => 'required',
+            'description_en' => 'required'];
+        $validator = $request->validate($validator_rules);
         $about = AboutUs::findOrFail($id);
         $about->update($request->all());
         return redirect()->route('admin.aboutUS.index');
@@ -83,7 +95,7 @@ class AboutUsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

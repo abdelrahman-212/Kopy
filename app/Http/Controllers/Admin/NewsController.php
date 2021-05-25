@@ -112,8 +112,7 @@ class NewsController extends Controller
             'description_ar' => 'nullable',
             'description_en' => 'nullable',
             "image" => 'required',
-            'author'=>'required'
-        ]);
+         ]);
 
 
         $blog = News::findOrFail($id);
@@ -121,7 +120,7 @@ class NewsController extends Controller
         $blog->title_en = $request->title_en;
         $blog->description_ar = $request->description_ar;
         $blog->description_en = $request->description_en;
-        $blog->author = $request->author;
+//        $blog->author = $request->author;
 
         if ($request->hasFile('image')) {
             $oldImage = $blog->image;

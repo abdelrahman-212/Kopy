@@ -9,7 +9,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('admin.healthinfo.create')}}">Add New Blog</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.healthinfo.create')}}">Add New Blog</a>
+                            </li>
                         </ol>
                     </div>
                 </div>
@@ -22,21 +23,29 @@
                         <thead>
                         <tr>
                             <th>#ID</th>
-                             <th>English Title</th>
+                            <th>English Title</th>
+                            <th>Arabic Title</th>
+                            <th>Action</th>
 
-                         </tr>
+                        </tr>
                         </thead>
                         <tbody>
                         @foreach ($infos as $index => $info)
                             <tr>
                                 <td>{{$index + 1 }}</td>
-                                 <td>{{ $info->title_en}}</td>
+                                <td>{{ $info->title_en}}</td>
+                                <td>{{ $info->title_ar}}</td>
 
-                                 <td>
-                                    <a href="{{ route('admin.healthinfo.show', $info->id) }}" class="btn btn-primary btn-circle btn-sm" title="Show"><i class="fa fa-globe"></i></a>
-                                    <a href="{{ route('admin.healthinfo.edit', $info->id) }}" class="btn btn-primary btn-circle btn-sm" title="edit"><i class="fa fa-edit"></i></a>
+                                <td>
+                                    <a href="{{ route('admin.healthinfo.show', $info->id) }}"
+                                       class="btn btn-primary btn-circle btn-sm" title="Show"><i
+                                            class="fa fa-globe"></i></a>
+                                    <a href="{{ route('admin.healthinfo.edit', $info->id) }}"
+                                       class="btn btn-primary btn-circle btn-sm" title="edit"><i class="fa fa-edit"></i></a>
 
-                                     <a onclick="deleteInfo('{{ 'delete-info-' . $info->id }}')" href="#" class="btn btn-danger btn-circle btn-sm" title="delete"><i class="fas fa-trash"></i> </a>
+                                    <a onclick="deleteInfo('{{ 'delete-info-' . $info->id }}')" href="#"
+                                       class="btn btn-danger btn-circle btn-sm" title="delete"><i
+                                            class="fas fa-trash"></i> </a>
                                     <!-- Form Delete category -->
                                     <form
                                         action="{{ route('admin.healthinfo.delete', $info->id) }}"

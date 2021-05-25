@@ -126,7 +126,7 @@
 
                         <hr>
 
-                        <div class="card card-primary" id="buy-get">
+                        <div class="card card-primary" id="buy-get" style="display: none">
                             <div class="card-header">
                                 <h3 class="card-title">Buy</h3>
                             </div>
@@ -224,7 +224,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card card-primary" id="discount">
+                        <div class="card card-primary" id="discount" style="display: none">
                             <div class="card-header">
                                 <h3 class="card-title">Discount</h3>
                             </div>

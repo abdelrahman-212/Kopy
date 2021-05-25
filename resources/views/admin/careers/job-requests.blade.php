@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Categories</h1>
+                        <h1>Jop Requests</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -27,8 +27,8 @@
                             <th>Mobile</th>
                             <th>Details</th>
 
-                            <th>-</th>
-                             <th>Action</th>
+                            <th>C.V</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -41,11 +41,16 @@
                                 <td>{{ $request->description}}</td>
                                 <td><a href="{{asset($request->cv_file)}}">View C.V</a></td>
 
-                                  <td>
-                                    <a href="{{ route('admin.careers.show', $request->id) }}" class="btn btn-primary btn-circle btn-sm" title="Show"><i class="fa fa-globe"></i></a>
-                                    <a href="{{ route('admin.careers.edit', $request->id) }}" class="btn btn-primary btn-circle btn-sm" title="edit"><i class="fa fa-edit"></i></a>
+                                <td>
+                                    <a href="{{ route('admin.careers.show', $request->id) }}"
+                                       class="btn btn-primary btn-circle btn-sm" title="Show"><i
+                                            class="fa fa-globe"></i></a>
+                                    <a href="{{ route('admin.careers.edit', $request->id) }}"
+                                       class="btn btn-primary btn-circle btn-sm" title="edit"><i class="fa fa-edit"></i></a>
 
-                                     <a onclick="deleteRequest('{{ 'delete-request-' . $request->id }}')" href="#" class="btn btn-danger btn-circle btn-sm" title="delete"><i class="fas fa-trash"></i> </a>
+                                    <a onclick="deleteRequest('{{ 'delete-request-' . $request->id }}')" href="#"
+                                       class="btn btn-danger btn-circle btn-sm" title="delete"><i
+                                            class="fas fa-trash"></i> </a>
                                     <!-- Form Delete category -->
                                     <form
                                         action="{{ route('admin.careers.delete', $request->id) }}"

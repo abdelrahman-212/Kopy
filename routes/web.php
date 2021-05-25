@@ -92,7 +92,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         });
 
         // AboutUS
-        Route::resource('aboutUS', 'AboutUSController');
+         Route::resource('aboutUS', 'AboutUsController');
         // Gallery
         Route::resource('gallery', 'GalleryController');
         // Media

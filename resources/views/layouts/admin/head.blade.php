@@ -44,5 +44,10 @@
   .content-wrapper {
     background-color: white;
   }
+
+.help-block{
+    color: red;
+    font-weight: bold;
+}
 </style>
 @stack('css')
