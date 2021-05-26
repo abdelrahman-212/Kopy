@@ -118,7 +118,7 @@ return [
     'Quantity' => 'الكمية',
     'Hello There.' => 'مرحبا',
     'Sign up to continue' => 'برجاء التسجيل للأستمرار',
-    'Enter Full Name' => 'ادخل الاسم ثنائي',
+    'Enter Full name' => 'ادخل الاسم ثنائي',
     'Enter Your E-mail' => 'ادخل البريد الاكتروني',
     'Enter Mobile' => 'ادخل رقم الهاتف',
     'Enter Password' => 'ادخل الرقم السري',

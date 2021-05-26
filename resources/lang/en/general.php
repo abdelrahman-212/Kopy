@@ -118,6 +118,7 @@ return [
      'Quantity' => 'Quantity' ,
     'Hello There.' => 'Hello There.' ,
     'Sign up to continue' => 'Sign up to continue' ,
+    'Enter Full name'=>'Enter Full name',
     'Enter Your E-mail' => 'Enter Your E-mail' ,
     'Enter Mobile' => 'Enter Mobile' ,
     'Enter Password'=> 'Enter Password' ,

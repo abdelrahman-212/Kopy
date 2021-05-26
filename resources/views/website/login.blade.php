@@ -20,7 +20,20 @@
                 <div class="px-5 col-10 mx-auto">
                     <h2 class="text-dark my-0">{{__('general.Welcome Back')}}</h2>
                     <p class="text-50">{{__('general.Sign in to continue')}}</p>
-
+                    @if(Session::has('success'))
+                        <div class="row mr-2 ml-2">
+                            <button type="text" class="btn btn-lg btn-block btn-outline-success mb-2"
+                                    id="type-error">{{Session::get('success')}}
+                            </button>
+                        </div>
+                    @endif
+                    @if(Session::has('error'))
+                        <div class="row mr-2 ml-2" >
+                            <button type="text" class="btn btn-lg btn-block btn-outline-danger mb-2"
+                                    id="type-error">{{Session::get('error')}}
+                            </button>
+                        </div>
+                    @endif
                     <form class="mt-5 mb-4" method="post" action="{{route('sign.in')}}">
                         @csrf
                         <div class="form-group">

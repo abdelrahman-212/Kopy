@@ -32,13 +32,16 @@ class ServiceController extends Controller
         }
         else{
             $request->merge(['address_id' => $id]);
-            session()->put(['address_id'=>$id]);
+//            session()->put(['address_id'=>$id]);
         }
         $return = (app(\App\Http\Controllers\Api\BranchesController::class)->getBranchWorkingHours($request))->getOriginalContent();
 
         if ($return['success'] == true) {
             session()->put(['branch_id'=>$return['data']['id']]);
             session()->put(['service_type'=>$service_type]);
+            if($service_type == 'delivery'){
+                session()->put(['address_id'=>$id]);
+             }
             session()->forget('status');
 
             return redirect()->intended();

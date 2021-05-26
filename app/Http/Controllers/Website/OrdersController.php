@@ -58,7 +58,7 @@ class OrdersController extends Controller
                     'subtotal' => session('checkOut_details')['subtotal'],
                     'delivery_fees' => session('checkOut_details')['delivery_fees'],
                     'branch_id' => session('checkOut_details')['branch_id'],
-                    'address_id' => session('checkOut_details')['address_id'],
+                    'address_id' => array_key_exists('address_id',session('checkOut_details'))?session('checkOut_details')['address_id']:null,
                     'service_type' => session('checkOut_details')['service_type'],
                     'points_paid' => array_key_exists("points_paid", session('checkOut_details')) ? session('checkOut_details')['points_paid'] : 0,
                     'taxes' => session('checkOut_details')['taxes'],
